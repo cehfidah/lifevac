@@ -18,7 +18,8 @@ import Checkouts from "./pages/checkouts/Checkouts";
 import Collections from "./pages/collections/Collections";
 import Orders from "./pages/orders/Orders";
 import Profile from "./pages/profile/Profile";
-import Login from "./pages/login/Login";
+import Login from "./pages/auth/Login";
+import OtpVerification from "./pages/auth/OtpVerification";
 
 const App = () => {
   const location = useLocation();
@@ -34,6 +35,8 @@ const App = () => {
         <Route element={<Error500 />} path={`/500`} />
         {/* Default fallback route */}
         <Route path="*" element={<Navigate to="/404" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/verify-otp" element={<OtpVerification />} />
 
         <Route element={<Layout />}>
           <Route path="/home" element={<Navigate to="/" />} />
@@ -45,7 +48,6 @@ const App = () => {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/shipping-policy" element={<ShippingPolicy />} />
           <Route path="/contact-information" element={<ContactInformation />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/collections" element={<Collections />} />
 
           <Route element={<AuthProtect />}>
