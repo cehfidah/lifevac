@@ -3,6 +3,7 @@ import SEO from "../../utils/SEO";
 import Card from "./component/Card";
 import ChokingTimeline from "./component/ChokingTimeline";
 import Demo from "./component/Demo";
+import StatsSection from "./component/StatsSection";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <Demo />
       <Card />
       <ChokingTimeline />
+      <StatsSection />
     </>
   );
 };
