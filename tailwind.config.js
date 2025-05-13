@@ -16,9 +16,6 @@ module.exports = {
       screen: "1500px",
       ...defaultTheme.screens,
     },
-    fontFamily: {
-      roboto: ["Roboto", "sans-serif"],
-    },
     extend: {
       zIndex: {
         999999: "999999",
