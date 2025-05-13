@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+:root {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+.paddingX {
+  padding-right: calc(5rem - 100vw + 100%);
+  padding-left: calc(5rem - 100vw + 100%);
+}
+
+@media (max-width: 590px) {
+  .paddingX {
+    padding-right: calc(2rem - 100vw + 100%);
+    padding-left: calc(2rem - 100vw + 100%);
+  }
+}
