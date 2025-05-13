@@ -1,5 +1,6 @@
 import React from "react";
 import SEO from "../../utils/SEO";
+import AirwayClearFeatures from "./component/AirwayClearFeatures";
 import AirwayClearHero from "./component/AirwayClearHero";
 import Card from "./component/Card";
 import ChokingTimeline from "./component/ChokingTimeline";
@@ -23,6 +24,7 @@ const Home = () => {
       <ChokingTimeline />
       <StatsSection />
       <AirwayClearHero />
+      <AirwayClearFeatures />
     </>
   );
 };
