@@ -6,10 +6,10 @@ import Faq from "./Faq";
 const Demo = () => {
   return (
     <div className="bg-white p-6 lg:p-10 font-sans max-w-screen-xl mx-auto">
-      {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {/* Responsive Flex Layout */}
+      <div className="flex flex-col md:flex-row gap-8">
         {/* Left Sticky Image Panel */}
-        <div className="sticky top-6 self-start">
+        <div className="md:sticky md:top-6 md:self-start w-full md:w-1/2">
           <div className="flex flex-col items-center gap-4">
             <div className="flex">
               <div className="flex flex-col gap-2 pr-3">
@@ -65,7 +65,7 @@ const Demo = () => {
         </div>
 
         {/* Right Scrollable Info */}
-        <div className="flex flex-col gap-6 pr-2 max-h-[90vh] overflow-y-auto md:overflow-visible md:max-h-full">
+        <div className="flex flex-col gap-6 pr-2 max-h-[90vh] overflow-y-auto md:overflow-visible md:max-h-full w-full md:w-1/2">
           {/* Product Description */}
           <div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug">
@@ -188,7 +188,7 @@ const Demo = () => {
               ✅ ADD TO CART
             </button>
 
-            {/* Offer 4 - SSL & Payment Info */}
+            {/* SSL & Payment Info */}
             <div className="bg-[#f8fbff] px-6 py-8 sm:px-10 md:px-16 lg:px-24 xl:px-32 rounded-lg mt-8 text-center shadow-sm border border-gray-200">
               <p className="text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-3">
                 SSL Encrypted & Secure Payment With
@@ -247,6 +247,7 @@ const Demo = () => {
                 no-training-needed solution to prevent tragic outcomes.
               </p>
             </div>
+
             <Faq />
           </div>
         </div>
