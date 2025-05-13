@@ -1,6 +1,7 @@
 import React from "react";
 import SEO from "../../utils/SEO";
 import Card from "./component/Card";
+import ChokingTimeline from "./component/ChokingTimeline";
 import Demo from "./component/Demo";
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
       />
       <Demo />
       <Card />
+      <ChokingTimeline />
     </>
   );
 };

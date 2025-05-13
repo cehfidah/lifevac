@@ -6,7 +6,7 @@ function Card() {
     <div className="w-full max-w-6xl mx-auto px-4 py-6">
       <div className="flex flex-col md:flex-row gap-4">
         {/* Free Replacements Card */}
-        <div className="flex-1 border-2 border-dotted border-gray-400 rounded-xl bg-blue-50 p-6">
+        <div className="flex-1 border-2 border-dotted border-gray-400 rounded-xl bg-[#E8F2F4] p-6">
           <div className="flex items-start gap-4">
             <FaSyncAlt className="text-blue-900 text-3xl mt-1 shrink-0" />
             <div>
@@ -23,7 +23,7 @@ function Card() {
         </div>
 
         {/* Money Back Guarantee Card */}
-        <div className="flex-1 border-2 border-dotted border-gray-400 rounded-xl bg-blue-50 p-6">
+        <div className="flex-1 border-2 border-dotted border-gray-400 rounded-xl bg-[#E8F2F4] p-6">
           <div className="flex items-start gap-4">
             <FaMoneyBillWave className="text-blue-900 text-3xl mt-1 shrink-0" />
             <div>
