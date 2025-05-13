@@ -20,6 +20,7 @@ import Orders from "./pages/orders/Orders";
 import Profile from "./pages/profile/Profile";
 import Login from "./pages/auth/Login";
 import OtpVerification from "./pages/auth/OtpVerification";
+import DashboardLayout from "./components/dashboardlayout";
 
 const App = () => {
   const location = useLocation();
@@ -49,8 +50,10 @@ const App = () => {
           <Route path="/shipping-policy" element={<ShippingPolicy />} />
           <Route path="/contact-information" element={<ContactInformation />} />
           <Route path="/collections" element={<Collections />} />
+        </Route>
 
-          <Route element={<AuthProtect />}>
+        <Route element={<AuthProtect />}>
+          <Route element={<DashboardLayout />}>
             <Route path="/checkouts" element={<Checkouts />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/profile" element={<Profile />} />
