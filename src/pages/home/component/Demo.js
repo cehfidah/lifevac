@@ -65,7 +65,7 @@ const Demo = () => {
         </div>
 
         {/* Right Scrollable Info */}
-        <div className="flex flex-col gap-6 pr-2 max-h-[90vh] overflow-y-auto md:overflow-visible md:max-h-full w-full md:w-1/2">
+        <div className="flex flex-col gap-6 pr-2  overflow-y-auto md:overflow-visible max-h-full w-full md:w-1/2">
           {/* Product Description */}
           <div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug">

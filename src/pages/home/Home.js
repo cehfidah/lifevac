@@ -15,11 +15,8 @@ const Home = () => {
         twitterTitle="AirwayClear | airwayclear.co"
         twitterDescription="Clean air solutions for everyone. Explore AirwayClear products."
       />
-      <div className="paddingX text-2xl text-rose-300">
-        Home
-        <Demo />
-        <Card />
-      </div>
+      <Demo />
+      <Card />
     </>
   );
 };
