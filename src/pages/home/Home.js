@@ -2,6 +2,7 @@ import React from "react";
 import SEO from "../../utils/SEO";
 import AirwayClearFeatures from "./component/AirwayClearFeatures";
 import AirwayClearHero from "./component/AirwayClearHero";
+import AntiChokingSteps from "./component/AntiChokingSteps";
 import Card from "./component/Card";
 import ChokingTimeline from "./component/ChokingTimeline";
 import Demo from "./component/Demo";
@@ -25,6 +26,7 @@ const Home = () => {
       <StatsSection />
       <AirwayClearHero />
       <AirwayClearFeatures />
+      <AntiChokingSteps />
     </>
   );
 };
