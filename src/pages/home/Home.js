@@ -1,5 +1,6 @@
 import React from "react";
 import SEO from "../../utils/SEO";
+import Card from "./component/Card";
 import Demo from "./component/Demo";
 
 const Home = () => {
@@ -14,9 +15,10 @@ const Home = () => {
         twitterTitle="AirwayClear | airwayclear.co"
         twitterDescription="Clean air solutions for everyone. Explore AirwayClear products."
       />
-      <div className="text-2xl text-rose-300">
+      <div className="paddingX text-2xl text-rose-300">
         Home
         <Demo />
+        <Card />
       </div>
     </>
   );
