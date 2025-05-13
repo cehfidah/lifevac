@@ -1,5 +1,6 @@
-import React from 'react'
-import SEO from '../../utils/SEO';
+import React from "react";
+import SEO from "../../utils/SEO";
+import Demo from "./component/Demo";
 
 const Home = () => {
   return (
@@ -13,11 +14,12 @@ const Home = () => {
         twitterTitle="AirwayClear | airwayclear.co"
         twitterDescription="Clean air solutions for everyone. Explore AirwayClear products."
       />
-      <div className='text-2xl text-rose-300'>
+      <div className="text-2xl text-rose-300">
         Home
+        <Demo />
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Home;
