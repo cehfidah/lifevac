@@ -6,8 +6,10 @@ const Header = () => {
   const location = useLocation();
   const currentPath = location.pathname;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const cartCount = 4;
+  const [showStickyHeader, setShowStickyHeader] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const menuRef = useRef(null);
+  const cartCount = 4;
 
   const navLinks = [
     { name: 'Shipping Policy', path: '/shipping-policy' },
@@ -16,7 +18,28 @@ const Header = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
-  // Close menu when clicking outside
+  // Scroll logic for sticky behavior
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Show sticky only if scrolled more than 200px and scrolling up
+      if (currentScrollY > 200 && currentScrollY < lastScrollY) {
+        setShowStickyHeader(true);
+      }
+      // Hide sticky header below 50px or scrolling down
+      else if (currentScrollY < 50 || currentScrollY > lastScrollY) {
+        setShowStickyHeader(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
+  // Close menu on outside click
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (mobileMenuOpen && menuRef.current && !menuRef.current.contains(e.target)) {
@@ -27,21 +50,21 @@ const Header = () => {
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, [mobileMenuOpen]);
 
+  // Lock body scroll when menu open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.classList.add('overflow-hidden');
     } else {
       document.body.classList.remove('overflow-hidden');
     }
-
     return () => {
       document.body.classList.remove('overflow-hidden');
     };
   }, [mobileMenuOpen]);
 
   return (
-    <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50 font-harmonia">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+    <header className={`bg-white border-b border-gray-200  z-50 font-harmonia transition-all duration-300 ${showStickyHeader ? 'fixed top-0 w-full shadow-md' : 'shadow-sm'}`}>
+      <div className={`container mx-auto px-4 ${showStickyHeader ? 'py-5' : 'py-3'} flex items-center justify-between`}>
         {/* Icons & Mobile Toggle */}
         <button
           onClick={() => setMobileMenuOpen(true)}
