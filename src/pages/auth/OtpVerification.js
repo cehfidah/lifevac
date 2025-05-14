@@ -2,30 +2,51 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import SEO from '../../utils/SEO';
 import { toast } from 'react-toastify';
+import Loading from '../../components/Common/Loading';
+import { ApiHandler } from '../../helper/ApiHandler';
+import { useDispatch } from 'react-redux';
+import { setAuth } from '../../store/slice/authSlice';
 
 export default function VerifyOtp() {
     const location = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const [loading, setLoading] = useState(false);
     const email = location.state?.email || '';
 
     const [otp, setOtp] = useState('');
 
-    const handleVerify = (e) => {
+    const handleVerify = async (e) => {
         e.preventDefault();
+
         if (otp.length !== 6) {
             toast.error("Please enter a valid 6-digit OTP.");
             return;
         }
 
-        // TODO: Replace with actual OTP verification API
-        toast.success('OTP verified successfully!');
-        navigate('/'); // Replace with actual destination
+        setLoading(true);
+
+        const payload = { email, otp };
+
+        try {
+            const response = await ApiHandler("/verify_otp.php", "POST", payload, undefined, dispatch, navigate);
+            if (response.data.status === "1") {
+                const tokenPass = response.data.data.token;
+                dispatch(setAuth(tokenPass));
+                toast.success(response.data.msg);
+                navigate('/');
+            } else {
+                toast.error(response.data.msg);
+            }
+        } catch (error) {
+            toast.error("An error occurred. Please try again.");
+        } finally {
+            setLoading(false);
+        }
     };
 
-    const handleResendOtp = () => {
-        // TODO: Replace with actual resend logic
-        toast.info(`OTP resent to: ${email}`);
-    };
+    if (loading) return <Loading />;
 
     return (
         <>
