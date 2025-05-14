@@ -12,7 +12,7 @@ const reviews = [
     rating: 5,
     date: "05/11/2024",
     content:
-      "Had bought and kept this for a couple of months not knowing when it would come of value but today it help in extracting a foreign object from an 8 month baby. Work marvelously.",
+      "Had bought and kept this for a couple of months not knowing when it would come of value but today it helped in extracting a foreign object from an 8-month-old baby. Worked marvelously.",
     image: first,
   },
   {
@@ -63,10 +63,13 @@ export default function ReviewGrid() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    content: "",
+    message: "",
+    image: "",
   });
   const [selectedImage, setSelectedImage] = useState(null);
   const [sortType, setSortType] = useState("date");
+  const [loading, setLoading] = useState(false);
+  const [uploadedImage, setUploadedImage] = useState(null); // State to hold uploaded image filename
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -78,30 +81,77 @@ export default function ReviewGrid() {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (
       !formData.name ||
       !formData.email ||
-      !formData.content ||
+      !formData.message ||
       selectedStars === 0
     ) {
-      alert("Please fill all fields and select a star rating.");
       return;
     }
 
-    console.log("Review Submitted:");
-    console.log("Name:", formData.name);
-    console.log("Email:", formData.email);
-    console.log("Rating:", selectedStars);
-    console.log("Content:", formData.content);
-    console.log("Image File:", selectedImage);
+    try {
+      setLoading(true);
 
-    alert("Review submitted!");
-    setShowForm(false);
-    setFormData({ name: "", email: "", content: "" });
-    setSelectedStars(0);
-    setHoveredStar(0);
-    setSelectedImage(null);
+      // Step 1: If there is an image, upload it first
+      if (selectedImage) {
+        const formDataImage = new FormData();
+        formDataImage.append("upload_file", selectedImage);
+
+        const imageResponse = await fetch(
+          "https://airwayclear.ffnewsupdater.xyz/api/v1/GKdjjhsjhdKdSNd/rest_api/upload.php",
+          {
+            method: "POST",
+            body: formDataImage,
+          }
+        );
+
+        if (!imageResponse.ok) {
+          throw new Error("Failed to upload the image.");
+        }
+
+        const imageData = await imageResponse.json();
+
+        // Set the uploaded image filename to pass it to the review API
+        setUploadedImage(imageData.data);
+      }
+
+      const reviewData = {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        rating: selectedStars,
+        image: uploadedImage, // Add the uploaded image filename here
+      };
+      // Step 2: Submit the review with the image filename (if uploaded)
+      const reviewResponse = await fetch(
+        "https://airwayclear.ffnewsupdater.xyz/api/v1/GKdjjhsjhdKdSNd/rest_api/rating.php",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(reviewData),
+        }
+      );
+
+      if (!reviewResponse.ok) {
+        throw new Error("Failed to submit the review.");
+      }
+
+      const data = await reviewResponse.json();
+      console.log("Review Submitted:", data);
+
+      setShowForm(false);
+      setFormData({ name: "", email: "", message: "" });
+      setSelectedStars(0);
+      setHoveredStar(0);
+      setSelectedImage(null);
+      setUploadedImage(null); // Reset image state after submission
+    } catch (error) {
+      console.error("Error submitting review:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -206,8 +256,8 @@ export default function ReviewGrid() {
             <textarea
               className="border px-3 py-2 rounded text-sm w-full mb-4 min-h-[100px]"
               placeholder="Enter your feedback here"
-              name="content"
-              value={formData.content}
+              name="message"
+              value={formData.message}
               onChange={handleInputChange}
             ></textarea>
 
@@ -234,74 +284,13 @@ export default function ReviewGrid() {
               <button
                 onClick={handleSubmit}
                 className="bg-blue-900 text-white px-6 py-2 rounded text-sm"
+                disabled={loading}
               >
-                Submit review
+                {loading ? "Submitting..." : "Submit review"}
               </button>
             </div>
           </div>
         )}
-
-        {/* Sort Dropdown */}
-        <div className="relative inline-block text-left mb-6">
-          <button
-            onClick={() => setShowDropdown((prev) => !prev)}
-            className="inline-flex justify-center items-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-blue-900 hover:bg-gray-50 focus:outline-none"
-          >
-            Sort reviews
-            <svg
-              className="ml-2 h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-              stroke="currentColor"
-            >
-              <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.25 8.27a.75.75 0 01-.02-1.06z" />
-            </svg>
-          </button>
-
-          {showDropdown && (
-            <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
-              <div className="py-1">
-                <button
-                  onClick={() => {
-                    setSortType("date");
-                    setShowDropdown(false);
-                  }}
-                  className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left"
-                >
-                  Sort by Date
-                </button>
-                <button
-                  onClick={() => {
-                    setSortType("content");
-                    setShowDropdown(false);
-                  }}
-                  className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left"
-                >
-                  Sort by Content
-                </button>
-                <button
-                  onClick={() => {
-                    setSortType("photo");
-                    setShowDropdown(false);
-                  }}
-                  className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left"
-                >
-                  Sort by Photo
-                </button>
-                <button
-                  onClick={() => {
-                    setSortType("rate");
-                    setShowDropdown(false);
-                  }}
-                  className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left"
-                >
-                  Sort by Rating
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
 
         {/* Review Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -310,10 +299,6 @@ export default function ReviewGrid() {
               switch (sortType) {
                 case "date":
                   return new Date(b.date) - new Date(a.date);
-                case "content":
-                  return b.content.length - a.content.length;
-                case "photo":
-                  return a.image ? -1 : 1;
                 case "rate":
                   return b.rating - a.rating;
                 default:
@@ -323,39 +308,43 @@ export default function ReviewGrid() {
             .map((review) => (
               <div
                 key={review.id}
-                className="bg-white rounded-xl shadow p-4 flex flex-col h-full"
+                className="border p-4 rounded-lg bg-white shadow-sm"
               >
-                <div className="relative">
+                <div className="flex items-center gap-4 mb-4">
                   <img
                     src={review.image}
-                    alt="review"
-                    className="w-full h-40 object-cover rounded-md mb-3"
+                    alt={review.name}
+                    className="w-12 h-12 rounded-full object-cover"
                   />
-                  <span className="absolute top-1 right-1 bg-white/80 text-gray-600 text-xs rounded px-1 py-0.5">
-                    1/1
-                  </span>
+                  <div>
+                    <div className="font-semibold text-gray-800">
+                      {review.name}
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      {review.country}
+                    </div>
+                    <div className="text-xs text-gray-400">{review.date}</div>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 font-semibold">
-                  <span>{review.name}</span>
-                  <span>{review.country}</span>
-                </div>
-                <div className="flex items-center mt-1 mb-2 text-yellow-400">
+                <div className="flex gap-1 mb-3">
                   {Array(5)
-                    .fill()
+                    .fill(0)
                     .map((_, i) => (
                       <svg
                         key={i}
-                        className="w-4 h-4 fill-current"
+                        className={`w-4 h-4 ${
+                          i < review.rating
+                            ? "text-yellow-400"
+                            : "text-gray-300"
+                        }`}
+                        fill="currentColor"
                         viewBox="0 0 20 20"
                       >
                         <path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.562-.955L10 0l2.95 5.955 6.562.955-4.756 4.635 1.122 6.545z" />
                       </svg>
                     ))}
                 </div>
-                <p className="text-sm text-gray-700 mb-2">{review.content}</p>
-                <div className="text-xs text-gray-500 mt-auto">
-                  {review.date}
-                </div>
+                <p className="text-sm text-gray-600">{review.content}</p>
               </div>
             ))}
         </div>
