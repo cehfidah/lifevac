@@ -12,6 +12,7 @@ import ImageMarquee from "./component/ImageMarquee";
 import ProductFeature from "./component/ProductFeature";
 import StatsSection from "./component/StatsSection";
 import TestimonialCarousel from "./component/TestimonialCarousel";
+import TrustAirwaySection from "./component/TrustAirwaySection";
 import TrustedByFamilies from "./component/TrustedByFamilies";
 
 const Home = () => {
@@ -39,6 +40,7 @@ const Home = () => {
       <FacebookTestimonials />
       <TrustedByFamilies />
       <ComparisonTable />
+      <TrustAirwaySection />
     </>
   );
 };
