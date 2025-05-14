@@ -1,54 +1,58 @@
 import React from "react";
 import { FaUsers, FaUserMd, FaShieldAlt } from "react-icons/fa";
 
-const TrustAirwaySection = () => {
+const TrustAirwayClear = () => {
+  const cards = [
+    {
+      icon: <FaUsers className="text-[#00b8f1] text-3xl mb-3" />,
+      title: "Proven Track Record:",
+      desc: "Trusted by over 11,000 families who prioritize safety.",
+    },
+    {
+      icon: <FaUserMd className="text-[#00b8f1] text-3xl mb-3" />,
+      title: "Expert Endorsements:",
+      desc: "Backed by medical professionals advocating for choking prevention.",
+    },
+    {
+      icon: <FaShieldAlt className="text-[#00b8f1] text-3xl mb-3" />,
+      title: "Reliable Innovation:",
+      desc: "Designed with the latest safety technology to provide peace of mind.",
+    },
+  ];
+
   return (
-    <section className="bg-[#e6f6fd] pt-20 pb-16 px-4">
+    <section className="bg-[#e6f6fd] py-16 px-4">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-[28px] sm:text-[32px] font-extrabold text-[#0c1d3c] mb-12">
+        {/* Heading */}
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0c1d3c] mb-12">
           Why you should trust Airway Clear™
         </h2>
 
-        {/* Feature Boxes */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10 px-4 sm:px-0">
-          {/* Box 1 */}
-          <div className="bg-white shadow-md rounded-md p-6 text-[#0c1d3c]">
-            <FaUsers className="text-[#00b8f1] text-3xl mb-4 mx-auto" />
-            <p className="font-bold mb-1">Proven Track Record:</p>
-            <p className="text-sm">
-              Trusted by over 11,000 families who prioritize safety.
-            </p>
-          </div>
-
-          {/* Box 2 */}
-          <div className="bg-white shadow-md rounded-md p-6 text-[#0c1d3c]">
-            <FaUserMd className="text-[#00b8f1] text-3xl mb-4 mx-auto" />
-            <p className="font-bold mb-1">Expert Endorsements:</p>
-            <p className="text-sm">
-              Backed by medical professionals advocating for choking prevention.
-            </p>
-          </div>
-
-          {/* Box 3 */}
-          <div className="bg-white shadow-md rounded-md p-6 text-[#0c1d3c]">
-            <FaShieldAlt className="text-[#00b8f1] text-3xl mb-4 mx-auto" />
-            <p className="font-bold mb-1">Reliable Innovation:</p>
-            <p className="text-sm">
-              Designed with the latest safety technology to provide peace of
-              mind.
-            </p>
-          </div>
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
+          {cards.map((card, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-[#0c1d3c]"
+            >
+              {card.icon}
+              <h3 className="font-semibold mb-1 text-lg text-center">
+                {card.title}
+              </h3>
+              <p className="text-sm text-center">{card.desc}</p>
+            </div>
+          ))}
         </div>
 
-        {/* CTA Button */}
+        {/* CTA */}
         <div className="mb-4">
-          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded shadow-md transition">
+          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold text-sm sm:text-base px-8 py-3 rounded shadow-md transition">
             TAKE ACTION TODAY
           </button>
         </div>
 
-        {/* Guarantee Text */}
-        <p className="text-[#0c1d3c] font-bold text-sm tracking-wide">
+        {/* Subtext */}
+        <p className="text-[#0c1d3c] text-sm font-bold tracking-wide">
           100% MONEY BACK GUARANTEE
         </p>
       </div>
@@ -56,4 +60,4 @@ const TrustAirwaySection = () => {
   );
 };
 
-export default TrustAirwaySection;
+export default TrustAirwayClear;

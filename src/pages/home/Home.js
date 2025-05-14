@@ -8,6 +8,7 @@ import ChokingTimeline from "./component/ChokingTimeline";
 import ComparisonTable from "./component/ComparisonTable";
 import Demo from "./component/Demo";
 import FacebookTestimonials from "./component/FacebookTestimonials";
+import FAQSection from "./component/FAQSection";
 import ImageMarquee from "./component/ImageMarquee";
 import ProductFeature from "./component/ProductFeature";
 import StatsSection from "./component/StatsSection";
@@ -41,6 +42,7 @@ const Home = () => {
       <TrustedByFamilies />
       <ComparisonTable />
       <TrustAirwaySection />
+      <FAQSection />
     </>
   );
 };
