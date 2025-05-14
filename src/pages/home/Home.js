@@ -6,6 +6,8 @@ import AntiChokingSteps from "./component/AntiChokingSteps";
 import Card from "./component/Card";
 import ChokingTimeline from "./component/ChokingTimeline";
 import Demo from "./component/Demo";
+import ImageMarquee from "./component/ImageMarquee";
+import ProductFeature from "./component/ProductFeature";
 import StatsSection from "./component/StatsSection";
 
 const Home = () => {
@@ -27,6 +29,8 @@ const Home = () => {
       <AirwayClearHero />
       <AirwayClearFeatures />
       <AntiChokingSteps />
+      <ProductFeature />
+      <ImageMarquee />
     </>
   );
 };
