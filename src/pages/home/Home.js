@@ -5,6 +5,7 @@ import AirwayClearHero from "./component/AirwayClearHero";
 import AntiChokingSteps from "./component/AntiChokingSteps";
 import Card from "./component/Card";
 import ChokingTimeline from "./component/ChokingTimeline";
+import ComparisonTable from "./component/ComparisonTable";
 import Demo from "./component/Demo";
 import FacebookTestimonials from "./component/FacebookTestimonials";
 import ImageMarquee from "./component/ImageMarquee";
@@ -37,6 +38,7 @@ const Home = () => {
       <TestimonialCarousel />
       <FacebookTestimonials />
       <TrustedByFamilies />
+      <ComparisonTable />
     </>
   );
 };
