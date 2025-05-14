@@ -68,27 +68,29 @@ const ChokingTimeline = () => {
             <br className="hidden md:block" /> Choking Occurs...
           </h3>
 
-          {/* Vertical Line – only on medium and up */}
-          <div className="absolute left-2 md:left-4 top-0 bottom-0 w-[2px] bg-blue-300 hidden md:block"></div>
-
           {/* Timeline Cards */}
-          <div className="flex flex-col gap-10  md:pl-10 relative z-10">
-            {timelineData.map((item, idx) => (
-              <div key={idx} className="relative">
-                {/* Dot – only show on medium and up */}
-                <div className="absolute -left-6 md:-left-6 top-2 w-4 h-4 bg-blue-800 border-4 border-white rounded-full z-10 shadow-md hidden md:block"></div>
+          <div className="flex flex-col  md:pl-10 relative z-10">
+            {timelineData.map((step, index) => (
+              <div key={index} className="flex items-start relative pb-12">
+                {/* Line */}
+                {index !== timelineData.length - 1 && (
+                  <span className="absolute -left-6 top-4 h-full w-px bg-[#001f3f] z-0" />
+                )}
 
-                {/* Timeline Card */}
-                <div className="bg-white rounded-lg p-4 shadow-md">
+                {/* Dot */}
+                <span className="w-4 h-4 bg-[#001f3f] rounded-full z-10 absolute -left-8 top-1.5" />
+
+                {/* Step Content */}
+                <div className="bg-white rounded-lg pl-16 pr-4 py-4 shadow-md">
                   <p className="text-xs font-bold text-white bg-blue-900 inline-block px-2 py-1 rounded mb-3">
-                    {item.time}
+                    {step.time}
                   </p>
-                  {item.title && (
+                  {step.title && (
                     <p className="text-gray-800 font-semibold mb-1">
-                      {item.title}
+                      {step.title}
                     </p>
                   )}
-                  {item.content.map((line, i) => (
+                  {step.content.map((line, i) => (
                     <p
                       key={i}
                       className={`text-lg text-gray-700 ${i > 0 ? "mt-2" : ""}`}

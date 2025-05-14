@@ -1,11 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import SEO from '../../utils/SEO';
 import { useState } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import Loading from '../../components/Common/Loading';
+import { ApiHandler } from '../../helper/ApiHandler';
 
 const Contact = () => {
-    const navigate = useNavigate(); // or useRouter() in Next.js
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -29,16 +32,30 @@ const Contact = () => {
         }
 
         setLoading(true);
-        // try {
-        //     const res = await axios.post('/api/contact', formData); // your API route
-        //     toast.success('Your message has been sent successfully!');
-        //     setTimeout(() => navigate('/'), 2000); // navigate to home after 2s
-        // } catch (error) {
-        //     toast.error('Failed to send message. Try again later.');
-        // } finally {
-        //     setLoading(false);
-        // }
+
+        const payload = {
+            name,
+            email,
+            phone,
+            message: comment
+        };
+
+        try {
+            const response = await ApiHandler("/contact_us.php", "POST", payload, undefined, dispatch, navigate);
+            if (response.data.status === "1") {
+                toast.success(response.data.msg);
+                navigate('/');
+            } else {
+                toast.error(response.data.msg);
+            }
+        } catch (error) {
+            toast.error("An error occurred. Please try again.");
+        } finally {
+            setLoading(false);
+        }
     };
+
+    if (loading) return <Loading />;
 
     return (
         <>

@@ -21,7 +21,7 @@ const AntiChokingSteps = () => {
 
   return (
     <div className="bg-[#f0fbff] py-12 px-4 sm:px-8 lg:px-32">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-10">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-start gap-10">
         {/* Left: Image and CTA */}
         <div className="flex flex-col justify-center items-center md:items-start">
           <img
@@ -40,27 +40,28 @@ const AntiChokingSteps = () => {
         </div>
 
         {/* Right: Steps Timeline */}
-        <div className="relative pl-8">
-          {/* Vertical Line - visible only on md+ */}
-          <div className="hidden md:block absolute left-2 top-0 bottom-0 w-0.5 bg-[#13283e]/70"></div>
+        <div className="bg-[#f2fbff] py-12 px-4">
+          <div className="mx-auto flex flex-col relative">
+            {steps.map((step, index) => (
+              <div key={index} className="flex items-start relative pb-12">
+                {/* Line */}
+                {index !== steps.length - 1 && (
+                  <span className="absolute left-4 top-4 h-full w-px bg-[#001f3f] z-0" />
+                )}
 
-          {steps.map((step, index) => (
-            <div
-              className="relative flex items-start space-x-4 mb-10"
-              key={index}
-            >
-              {/* Step circle */}
-              <div className="absolute -left-1.5 w-4 h-4 rounded-full bg-[#13283e] z-10"></div>
+                {/* Dot */}
+                <span className="w-4 h-4 bg-[#001f3f] rounded-full z-10 absolute left-2 top-1.5" />
 
-              {/* Step content */}
-              <div className="ml-4">
-                <h3 className="font-bold text-xl text-[#13283e]">
-                  {step.title}
-                </h3>
-                <p className="text-lg text-gray-700 mt-1">{step.description}</p>
+                {/* Step Content */}
+                <div className="pl-10">
+                  <h3 className="font-bold text-[#001f3f] text-lg mb-1">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-700 text-sm">{step.description}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
