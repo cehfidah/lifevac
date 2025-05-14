@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import first from "../../../assest/image/imageone.jpeg";
+import second from "../../../assest/image/imagetwo.webp";
+import third from "../../../assest/image/imagefour.webp";
+import four from "../../../assest/image/imagefour.webp";
 
 const reviews = [
   {
@@ -9,7 +13,7 @@ const reviews = [
     date: "05/11/2024",
     content:
       "Had bought and kept this for a couple of months not knowing when it would come of value but today it help in extracting a foreign object from an 8 month baby. Work marvelously.",
-    image: "/review1.jpg",
+    image: first,
   },
   {
     id: 2,
@@ -19,7 +23,7 @@ const reviews = [
     date: "05/13/2024",
     content:
       "I purchased this kit for my restaurant, and it's given my staff the confidence to handle emergencies. Highly recommend!",
-    image: "/review2.jpg",
+    image: second,
   },
   {
     id: 3,
@@ -29,7 +33,7 @@ const reviews = [
     date: "05/08/2024",
     content:
       "Looks good. I don't want to ever have to use it! Instructions are clear enough even my children AND husband can follow them!",
-    image: "/review3.jpg",
+    image: third,
   },
   {
     id: 4,
@@ -39,7 +43,7 @@ const reviews = [
     date: "05/01/2024",
     content:
       "The suction is really good. Almost pulled my face off trying to test it 😂👍. I definitely feel more relieved having this around for my little one!",
-    image: "/review4.jpg",
+    image: four,
   },
 ];
 

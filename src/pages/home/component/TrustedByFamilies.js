@@ -3,25 +3,28 @@ import Slider from "react-slick";
 import { FaStar } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import first from "../../../assest/image/imageone.jpeg";
+import second from "../../../assest/image/imagetwo.webp";
+import third from "../../../assest/image/imagefour.webp";
 
 const testimonials = [
   {
     name: "Danny Ruben Yacob",
     title: "Work marvelously.",
     text: `I had bought this and kept it for a couple of months, unsure when it would come in handy. Today, it helped extract a foreign object from my 8-month-old baby. It worked marvelously and gave me immense relief. I absolutely recommend keeping one around, especially if you have a toddler. Having this tool on hand provides peace of mind in case of emergencies. It's an essential item for every home with little ones!`,
-    image: "/img1.jpg",
+    image: first,
   },
   {
     name: "Alexander",
     title: "Great tool to have handy",
     text: `Great tool to have handy and easily accessible. Worth every penny. Our 9yr old son whom has Down Syndrome, was choking on his food. To the point he turned blue in the face. Being limited on his verbal skills it was difficult to understand him. Once we realized he was in distress we immediately applied the tool to use and worked a miracle.`,
-    image: "/img2.jpg",
+    image: second,
   },
   {
     name: "Tom",
     title: "Highly recommend!",
     text: `I purchased this kit for my restaurant, and it has given my staff the confidence to handle emergencies effectively. Knowing they are equipped to respond brings peace of mind to both employees and customers. The kit’s comprehensive contents ensure we are prepared for various situations.`,
-    image: "/img3.jpg",
+    image: third,
   },
 ];
 

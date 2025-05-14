@@ -1,4 +1,5 @@
 import React from "react";
+import ProductFeaturew from "../../../assest/image/ProductFeature.webp";
 
 const features = [
   {
@@ -28,11 +29,7 @@ export default function ProductFeature() {
     <div className="bg-gradient-to-b from-[#e6f6fd] to-white py-10 px-4 md:px-10 lg:px-20">
       <div className="flex flex-col lg:flex-row justify-center items-center gap-10">
         <div className="relative w-full max-w-[300px] lg:max-w-[400px]">
-          <img
-            src="https://airwayclear.us/cdn/shop/files/gempages_531350529968702561-30204857-6f15-4fb1-89ec-97e77bd0ef38.webp?v=3924246830950887610"
-            alt="Product"
-            className="w-full"
-          />
+          <img src={ProductFeaturew} alt="Product" className="w-full" />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">

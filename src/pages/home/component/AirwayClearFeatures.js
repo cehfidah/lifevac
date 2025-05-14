@@ -8,7 +8,7 @@ const AirwayClearFeatures = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-10">
         {/* Card 1 */}
         <div className="border border-dashed border-gray-300 rounded-lg p-6">
-          <div className="text-cyan-500 text-4xl mb-4 mx-auto">
+          <div className="text-cyan-500 text-4xl mb-4 mx-auto flex justify-center items-center">
             <FaExclamationTriangle />
           </div>
           <h3 className="text-lg font-semibold text-[#0d1a4a] mb-2">
@@ -22,7 +22,7 @@ const AirwayClearFeatures = () => {
 
         {/* Card 2 - Highlighted */}
         <div className="bg-gradient-to-b from-cyan-400 to-cyan-500 text-white rounded-lg p-6 shadow-md">
-          <div className="text-4xl mb-4 mx-auto">
+          <div className="text-4xl mb-4 mx-auto flex justify-center items-center">
             <FaClock />
           </div>
           <h3 className="text-lg font-semibold mb-2">Immediate Response</h3>
@@ -34,7 +34,7 @@ const AirwayClearFeatures = () => {
 
         {/* Card 3 */}
         <div className="border border-dashed border-gray-300 rounded-lg p-6">
-          <div className="text-cyan-500 text-4xl mb-4 mx-auto">
+          <div className="text-cyan-500 text-4xl mb-4 mx-auto flex justify-center items-center">
             <FaShieldAlt />
           </div>
           <h3 className="text-lg font-semibold text-[#0d1a4a] mb-2">

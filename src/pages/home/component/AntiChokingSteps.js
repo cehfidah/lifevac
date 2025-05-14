@@ -1,4 +1,5 @@
 import React from "react";
+import video from "../../../assest/image/video3.webp";
 
 const AntiChokingSteps = () => {
   const steps = [
@@ -21,11 +22,14 @@ const AntiChokingSteps = () => {
 
   return (
     <div className="bg-[#f0fbff] py-12 px-4 sm:px-8 lg:px-32">
+      <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#0d1a4a] mb-12">
+        How to use Airway Clear™
+      </h2>
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-start gap-10">
         {/* Left: Image and CTA */}
         <div className="flex flex-col justify-center items-center md:items-start">
           <img
-            src="https://cdn.shopify.com/s/files/1/0638/0378/5380/files/hottogif-ezgif.com-speed.gif?v=1710187588"
+            src={video}
             alt="AirwayClear Device"
             className="rounded-xl shadow-md w-full max-w-md"
           />

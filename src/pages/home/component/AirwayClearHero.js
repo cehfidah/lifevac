@@ -1,4 +1,5 @@
 import React from "react";
+import video from "../../../assest/image/video2.webp";
 
 const AirwayClearHero = () => {
   return (
@@ -10,7 +11,7 @@ const AirwayClearHero = () => {
         {/* Image Section */}
         <div className="max-w-md w-full">
           <img
-            src="https://cdn.shopify.com/s/files/1/0638/0378/5380/files/deviceinaction-ezgif.com-speed-min.gif?v=1719443256" // Replace with your actual image path
+            src={video} // Replace with your actual image path
             alt="Man using Airway Clear"
             className="rounded-xl w-full object-cover shadow-lg"
           />

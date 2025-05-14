@@ -1,4 +1,5 @@
 import React from "react";
+import video from "../../../assest/image/video.webp";
 
 const timelineData = [
   {
@@ -45,7 +46,7 @@ const ChokingTimeline = () => {
         <div className="text-center md:text-left overflow-x-auto md:sticky md:top-20 md:self-start w-full md:w-1/2">
           <div className="w-full md:w-auto">
             <img
-              src="https://cdn.shopify.com/s/files/1/0638/0378/5380/files/0a66cab4a94ab6839f30effbc240401d61c7d5f9bdfc16571ade22ded3edbb2b.gif?v=1709318515"
+              src={video}
               alt="Choking incident animation"
               className="rounded-xl border-[3px] border-blue-900 shadow-lg w-full max-w-xs md:max-w-lg mx-auto md:mx-0"
             />
