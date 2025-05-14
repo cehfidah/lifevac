@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaUser, FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
 import Container from '../Container';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
   const location = useLocation();
@@ -11,6 +12,7 @@ const Header = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const menuRef = useRef(null);
   const cartCount = 4;
+  const { token } = useSelector((state) => state.auth);
 
   const navLinks = [
     { name: 'Shipping Policy', path: '/shipping-policy' },
@@ -103,7 +105,14 @@ const Header = () => {
 
           {/* Icons */}
           <div className="flex items-center gap-4">
-            <FaUser className="text-xl text-gray-700 cursor-pointer" />
+            {
+              token ? (
+                <Link to="/orders"> <FaUser className="text-xl text-gray-700 cursor-pointer" /></Link>
+              ) : (
+                <Link to="/login"> <FaUser className="text-xl text-gray-700 cursor-pointer" /></Link>
+              )
+            }
+
             <div className="relative cursor-pointer">
               <FaShoppingCart className="text-xl text-gray-700" />
               <span className="absolute -top-2 -right-2 bg-blue-800 text-white text-xs px-1.5 rounded-full">
@@ -144,17 +153,20 @@ const Header = () => {
                 {link.name}
               </Link>
             ))}
-            <Link
-              to="/login"
-              className={`flex items-center gap-4 font-bold py-2 px-6 ${currentPath === "/login"
-                ? 'bg-[#12121212] text-[#121212]'
-                : 'hover:text-blue-600'
-                }`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <FaUser className="text-xl text-gray-700 cursor-pointer" />
-              Log In
-            </Link>
+
+            {!token && (
+              <Link
+                to="/login"
+                className={`flex items-center gap-4 font-bold py-2 px-6 ${currentPath === "/login"
+                  ? 'bg-[#12121212] text-[#121212]'
+                  : 'hover:text-blue-600'
+                  }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <FaUser className="text-xl text-gray-700 cursor-pointer" />
+                Log In
+              </Link>
+            )}
           </nav>
         </div>
       </Container>

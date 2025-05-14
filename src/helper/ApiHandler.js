@@ -1,11 +1,17 @@
 import { toast } from "react-toastify";
 import axios from "axios";
+import {
+  logout
+} from "../store/slice/authSlice";
 import { apiBasePath } from "./basePath";
 
 export const ApiHandler = async (
   url,
   method,
-  body
+  body,
+  header,
+  dispatch,
+  navigate
 ) => {
   const api = apiBasePath + url;
 
@@ -13,6 +19,11 @@ export const ApiHandler = async (
     const headers = {
       "Content-Type": "application/json",
     };
+
+    // Add Authorization header only if the 'header' value is provided
+    if (header) {
+      headers.token = header;
+    }
 
     // Axios API request
     const response = await axios({
@@ -33,6 +44,8 @@ export const ApiHandler = async (
       result.status === 401
     ) {
       toast.error(result.msg || "Unauthorized. Please log in again.");
+      dispatch(logout());
+      navigate("/login");
     } else if (
       response.status === 404 ||
       result.status === 404 ||
@@ -46,6 +59,8 @@ export const ApiHandler = async (
       result.status === "500"
     ) {
       toast.error("Something went wrong. Please try again.");
+      dispatch(logout());
+      navigate("/500");
     }
 
     return response;
@@ -62,6 +77,8 @@ export const ApiHandler = async (
       result?.status === 401
     ) {
       toast.error(result?.msg || "Unauthorized. Please log in again.");
+      dispatch(logout());
+      navigate("/login");
     } else if (
       error.response?.status === 404 ||
       result?.status === 404 ||
@@ -75,6 +92,8 @@ export const ApiHandler = async (
       result?.status === "500"
     ) {
       toast.error("Something went wrong. Please try again.");
+      dispatch(logout());
+      navigate("/500");
     } else {
       toast.error(errorMessage);
       console.error("API Error:", error);

@@ -2,21 +2,54 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SEO from '../../utils/SEO';
 import { toast } from 'react-toastify';
+import Loading from '../../components/Common/Loading';
+import { ApiHandler } from '../../helper/ApiHandler';
+import { useDispatch } from 'react-redux';
 
 export default function Login() {
-    const [email, setEmail] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const isFormValid = () => {
+        return email !== "";
+    };
 
     const handleSendOtp = async (e) => {
-        e.preventDefault(); // ✅ fixed typo
-        if (!email.trim()) return;
+        e.preventDefault();
+        setLoading(true);
 
-        // TODO: Replace with actual API call
-        toast.success(`Sending OTP to: ${email}`); // ✅ fixed toast
+        if (!isFormValid()) {
+            setErrorMessage("Please fill in all required fields correctly.");
+            setLoading(false);
+            return;
+        }
 
-        // Navigate to OTP verification page, pass email
-        navigate('/verify-otp', { state: { email } });
+        setErrorMessage("");
+
+        const payload = {
+            email: email,
+        };
+
+        try {
+            const response = await ApiHandler("/login.php", "POST", payload, undefined, dispatch, navigate);
+            if (response.data.status === "1") {
+                toast.success(response.data.msg);
+                navigate('/verify-otp', { state: { email } });
+            }
+            else {
+                toast.error(response.data.msg);
+            }
+        } catch (error) {
+            toast.error("An error occurred. Please try again.");
+        } finally {
+            setLoading(false);
+        }
     };
+
+    if (loading) return <Loading />;
 
     const isEmailValid = email.trim() !== '';
 
