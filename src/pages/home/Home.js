@@ -9,6 +9,7 @@ import Demo from "./component/Demo";
 import ImageMarquee from "./component/ImageMarquee";
 import ProductFeature from "./component/ProductFeature";
 import StatsSection from "./component/StatsSection";
+import TestimonialCarousel from "./component/TestimonialCarousel";
 
 const Home = () => {
   return (
@@ -31,6 +32,7 @@ const Home = () => {
       <AntiChokingSteps />
       <ProductFeature />
       <ImageMarquee />
+      <TestimonialCarousel />
     </>
   );
 };
