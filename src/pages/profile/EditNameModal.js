@@ -1,21 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { ApiHandler } from "../../helper/ApiHandler";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-export default function EditNameModal({ onClose }) {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+export default function EditNameModal({ onClose, firstName: initialFirst, lastName: initialLast, email, fetchData }) {
+    const [firstName, setFirstName] = useState(initialFirst || "");
+    const [lastName, setLastName] = useState(initialLast || "");
+    const { token } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSave = async () => {
         try {
-            // call your API here
-            await fetch("/api/update-profile", {
-                method: "POST",
-                body: JSON.stringify({ firstName, lastName }),
-                headers: { "Content-Type": "application/json" }
-            });
-            onClose(); // close modal
-            window.location.href = "/"; // navigate home
+            const res = await ApiHandler(
+                "/edit_profile.php",
+                "POST",
+                { first_name: firstName, last_name: lastName },
+                token,
+                dispatch,
+                navigate
+            );
+
+            if (res.data?.status === "1") {
+                toast.success("Profile updated successfully");
+                onClose();
+                fetchData();
+            } else {
+                toast.error("Failed to update profile");
+            }
         } catch (err) {
-            console.error(err);
+            toast.error("Something went wrong");
         }
     };
 
@@ -27,6 +42,7 @@ export default function EditNameModal({ onClose }) {
                     <input className="w-1/2 border p-2 rounded" placeholder="First name" value={firstName} onChange={e => setFirstName(e.target.value)} />
                     <input className="w-1/2 border p-2 rounded" placeholder="Last name" value={lastName} onChange={e => setLastName(e.target.value)} />
                 </div>
+                <input className="w-full border p-2 mb-1 rounded bg-gray-100" value={email} readOnly />
                 <p className="text-sm text-gray-500 mb-4">Email used for login can't be changed</p>
                 <div className="flex justify-end gap-2">
                     <button onClick={onClose} className="text-gray-600">Cancel</button>

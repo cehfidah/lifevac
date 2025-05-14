@@ -1,13 +1,60 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SEO from '../../utils/SEO';
 import EditNameModal from "./EditNameModal";
 import EditAddressModal from "./EditAddressModal";
 import { MdOutlineEdit } from "react-icons/md";
 import Container from "../../components/Container";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { ApiHandler } from "../../helper/ApiHandler";
+import { toast } from "react-toastify";
+import Loading from "../../components/Common/Loading";
 
 export default function ProfilePage() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { token } = useSelector((state) => state.auth);
+
+    const [loading, setLoading] = useState(true);
     const [showNameModal, setShowNameModal] = useState(false);
     const [showAddressModal, setShowAddressModal] = useState(false);
+    const [getProfileData, setGetProfileData] = useState(null);
+    const [getAddressData, setGetAddressData] = useState([]);
+    const [editingIndex, setEditingIndex] = useState(null);
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const getProfile = await ApiHandler("/get_profile.php", "POST", undefined, token, dispatch, navigate);
+            if (getProfile.data.status === "1" && getProfile.data.data.length > 0) {
+                setGetProfileData(getProfile.data.data[0]);
+            }
+
+            const getAddress = await ApiHandler("/get_address.php", "POST", undefined, token, dispatch, navigate);
+            if (getAddress.data.status === "1" && getAddress.data.data.length > 0) {
+                setGetAddressData(getAddress.data.data);
+            }
+        } catch (error) {
+            toast.error("An error occurred. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleEditAddress = (index) => {
+        setEditingIndex(index);
+        setShowAddressModal(true);
+    };
+
+    const handleAddAddress = () => {
+        setEditingIndex(null); // This means "add" mode
+        setShowAddressModal(true);
+    };
+
+    if (loading) return <Loading />;
 
     return (
         <>
@@ -37,7 +84,7 @@ export default function ProfilePage() {
                                 </div>
                                 <div>
                                     <p className="text-sm text-gray-700 mt-4">Email</p>
-                                    <p className="text-sm text-black font-bold">creativekirtandoshi@gmail.com</p>
+                                    <p className="text-sm text-black font-bold">{getProfileData?.email}</p>
                                 </div>
 
                             </div>
@@ -50,21 +97,48 @@ export default function ProfilePage() {
                                     <div className="flex items-center gap-5 px-3">
                                         <p className="text-base font-bold text-gray-700 mb-1">Addresses</p>
                                         <button
-                                            onClick={() => setShowAddressModal(true)}
+                                            onClick={handleAddAddress}
                                             className="text-blue-900 text-base font-bold"
                                         >
                                             + Add
                                         </button>
                                     </div>
-                                    <div className="flex items-start gap-10 group hover:bg-[#f5f5f5] p-3 rounded-[12px]">
-                                        <div>
-                                            <p className="text-sm text-gray-400 mb-1">Default address</p>
-                                            <p className="text-sm text-gray-700">India</p>
+
+                                    {getAddressData.length > 0 ? (
+                                        getAddressData.map((address, idx) => (
+                                            <div
+                                                key={address.id}
+                                                className="flex justify-between items-start gap-5 px-3 py-4 mb-2 bg-[#f9f9f9] hover:bg-[#f0f0f0] rounded-[12px]"
+                                            >
+                                                <div>
+                                                    <p className="text-sm text-gray-400 mb-1">{idx === 0 ? "Default Address" : `Address ${idx + 1}`}</p>
+                                                    <p className="text-sm text-black font-semibold">
+                                                        {address.first_name} {address.last_name}
+                                                    </p>
+                                                    <p className="text-sm text-gray-700">
+                                                        {address.address}, {address.apartment}, {address.city}, {address.state} - {address.zip_code}
+                                                    </p>
+                                                    <p className="text-sm text-gray-700 mt-1">Phone: {address.phone}</p>
+                                                </div>
+                                                <button
+                                                    onClick={() => handleEditAddress(idx)}
+                                                    className="text-blue-900 hover:underline"
+                                                >
+                                                    <MdOutlineEdit size={22} />
+                                                </button>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div className="flex items-start gap-10 group hover:bg-[#f5f5f5] p-3 rounded-[12px]">
+                                            <div>
+                                                <p className="text-sm text-gray-400 mb-1">Default address</p>
+                                                <p className="text-sm text-gray-700">India</p>
+                                            </div>
+                                            <button onClick={handleAddAddress} className="text-blue-900 hover:underline text-sm">
+                                                <MdOutlineEdit size={22} />
+                                            </button>
                                         </div>
-                                        <button onClick={() => setShowAddressModal(true)} className="text-blue-900 hover:underline text-sm">
-                                            <MdOutlineEdit size={22} />
-                                        </button>
-                                    </div>
+                                    )}
 
                                 </div>
 
@@ -72,8 +146,30 @@ export default function ProfilePage() {
                         </div>
 
                         {/* Modals */}
-                        {showNameModal && <EditNameModal onClose={() => setShowNameModal(false)} />}
-                        {showAddressModal && <EditAddressModal onClose={() => setShowAddressModal(false)} />}
+                        {showNameModal && (
+                            <EditNameModal
+                                onClose={() => {
+                                    setShowNameModal(false);
+                                }}
+                                fetchData={fetchData} // Refresh addresses
+                                firstName={getProfileData?.first_name}
+                                lastName={getProfileData?.last_name}
+                                email={getProfileData?.email}
+                            />
+                        )}
+
+                        {showAddressModal && (
+                            <EditAddressModal
+                                onClose={() => {
+                                    setShowAddressModal(false);
+                                    setEditingIndex(null);
+                                }}
+                                fetchData={fetchData} // Refresh addresses
+                                mode={editingIndex !== null ? "edit" : "add"}
+                                addressData={editingIndex !== null ? getAddressData[editingIndex] : null}
+                                userId={getProfileData?.id}
+                            />
+                        )}
                     </div>
                 </Container>
             </div>
