@@ -13,6 +13,15 @@ import six from "../../../assest/image/firstsectionsevenimage.webp";
 import seven from "../../../assest/image/firstsectionsiximage.webp";
 import eaghit from "../../../assest/image/firstsectionthirdimage.png";
 
+import payone from "../../../assest/image/payment1.svg";
+import paytwo from "../../../assest/image/payment2.svg";
+import paythird from "../../../assest/image/payment3.svg";
+import payfour from "../../../assest/image/payment4.svg";
+import payfifth from "../../../assest/image/payment5.svg";
+import paysix from "../../../assest/image/payment6.svg";
+import paysaven from "../../../assest/image/payment7.svg";
+import payeaight from "../../../assest/image/payment8.svg";
+
 const Demo = () => {
   const images = [first, second, third, four, fifth, seven, eaghit, six];
   const [mainImageIndex, setMainImageIndex] = useState(images.indexOf(six));
@@ -260,46 +269,36 @@ const Demo = () => {
             </button>
 
             {/* Payment Logos */}
-            <div className="bg-[#f8fbff] px-6 py-8 sm:px-10 md:px-16 lg:px-24 xl:px-32 rounded-lg mt-8 text-center shadow-sm border border-gray-200">
-              <p className="text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-3">
+            <div className="bg-[#f8fbff] px-4 py-4 rounded-lg mt-8 text-center shadow-sm border border-gray-200">
+              <p className=" font-bold text-gray-700 uppercase tracking-wider mb-3">
                 SSL Encrypted & Secure Payment With
               </p>
               <div className="flex justify-center items-center flex-wrap gap-2 mb-6">
-                <img
-                  src="https://i.imgur.com/fnOUGgT.png"
-                  alt="Visa"
-                  className="h-6"
-                />
-                <img
-                  src="https://i.imgur.com/RISZlC1.png"
-                  alt="Amex"
-                  className="h-6"
-                />
-                <img
-                  src="https://i.imgur.com/DaZVSeT.png"
-                  alt="MasterCard"
-                  className="h-6"
-                />
-                <img
-                  src="https://i.imgur.com/9OKc4Zx.png"
-                  alt="PayPal"
-                  className="h-6"
-                />
-                <img
-                  src="https://i.imgur.com/BmKxXHx.png"
-                  alt="DPay"
-                  className="h-6"
-                />
-                <img
-                  src="https://i.imgur.com/Tji3Kqv.png"
-                  alt="Apple Pay"
-                  className="h-6"
-                />
-                <img
-                  src="https://i.imgur.com/5prLBBw.png"
-                  alt="Google Pay"
-                  className="h-6"
-                />
+                <img src={payone} alt="Visa" />
+                <img src={paytwo} alt="Amex" />
+                <img src={paythird} alt="MasterCard" />
+                <img src={payfour} alt="PayPal" />
+                <img src={payfifth} alt="DPay" />
+                <img src={paysix} alt="Apple Pay" />
+                <img src={paysaven} alt="Google Pay" />
+                <img src={payeaight} alt="Google Pay" />
+              </div>
+              <div className="text-start flex flex-col gap-4">
+                <p className="font-bold">
+                  Meet Airway Clear™, the lifesaving device designed to
+                  instantly clear blocked airways, &nbsp;for toddlers, children
+                  and adults.&nbsp;
+                </p>
+                <p>
+                  Whether at the dinner table, playtime, or snack time, choking
+                  accidents can happen in seconds, and traditional methods might
+                  fail you in the heat of the moment.
+                </p>
+                <p>
+                  With <strong className="font-bold">Airway Clear™</strong> you
+                  can act confidently, offering an intuitive, no-training-needed
+                  solution to prevent tragic outcomes.
+                </p>
               </div>
             </div>
           </div>
