@@ -225,12 +225,14 @@ const Demo = () => {
               <p className="text-sm line-through text-gray-400">
                 Rs. 18,300.00
               </p>
-              <p className="text-sm mt-1">
-                + <strong>FREE Home Medic Guide</strong>
-              </p>
-              <p className="bg-blue-900 text-white text-xs px-2 py-1 inline-block rounded mt-2">
-                You save Rs. 11,402.66
-              </p>
+              <div className="flex justify-between items-center bg-[#001532] px-2 py-2 mt-2">
+                <p className="text-sm mt-1 text-white">
+                  + <strong>FREE Home Medic Guide</strong>
+                </p>
+                <p className="bg-blue-900 text-white text-xs px-2 py-1 inline-block rounded ">
+                  You save Rs. 11,402.66
+                </p>
+              </div>
             </div>
 
             {/* Offer 3 */}
@@ -251,12 +253,14 @@ const Demo = () => {
               <p className="text-sm line-through text-gray-400">
                 Rs. 30,500.00
               </p>
-              <p className="text-sm mt-1">
-                + <strong>FREE Home Medic Guide</strong>
-              </p>
-              <p className="bg-blue-900 text-white text-xs px-2 py-1 inline-block rounded mt-2">
-                You save Rs. 21,878.76
-              </p>
+              <div className="flex justify-between items-center bg-[#0015324D] px-2 py-2 mt-2">
+                <p className="text-sm mt-1">
+                  + <strong>FREE Home Medic Guide</strong>
+                </p>
+                <p className="bg-blue-900 text-white text-xs px-2 py-1 inline-block rounded">
+                  You save Rs. 21,878.76
+                </p>
+              </div>
             </div>
 
             <div className="border border-dashed border-black text-sm text-gray-700 p-3 mb-4 rounded">
