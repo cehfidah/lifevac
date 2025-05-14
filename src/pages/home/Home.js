@@ -11,6 +11,7 @@ import FacebookTestimonials from "./component/FacebookTestimonials";
 import FAQSection from "./component/FAQSection";
 import ImageMarquee from "./component/ImageMarquee";
 import ProductFeature from "./component/ProductFeature";
+import ReviewGrid from "./component/ReviewGrid";
 import StatsSection from "./component/StatsSection";
 import TestimonialCarousel from "./component/TestimonialCarousel";
 import TrustAirwaySection from "./component/TrustAirwaySection";
@@ -43,6 +44,7 @@ const Home = () => {
       <ComparisonTable />
       <TrustAirwaySection />
       <FAQSection />
+      <ReviewGrid />
     </>
   );
 };
