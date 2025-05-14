@@ -8,7 +8,7 @@ const testimonials = [
   {
     title: "My son is alive because of this",
     content:
-      "My 1 year old choked on a grape a few weeks ago. I tried backblows which didn't work, i grabbed the airway device and it sucked the grape right out. This device saved his life.",
+      "My 1 year old choked on a grape a few weeks ago. I tried backblows which didn't work, I grabbed the airway device and it sucked the grape right out. This device saved his life.",
     name: "Libbie Dobbs",
     role: "Verified Customer",
   },
@@ -28,24 +28,6 @@ const testimonials = [
   },
 ];
 
-const CustomPrevArrow = (props) => (
-  <button
-    className="hidden sm:flex absolute -left-6 top-1/2 transform -translate-y-1/2 bg-[#0c1d3c] text-white p-2 rounded-full z-10"
-    onClick={props.onClick}
-  >
-    <FaArrowLeft />
-  </button>
-);
-
-const CustomNextArrow = (props) => (
-  <button
-    className="hidden sm:flex absolute -right-6 top-1/2 transform -translate-y-1/2 bg-[#0c1d3c] text-white p-2 rounded-full z-10"
-    onClick={props.onClick}
-  >
-    <FaArrowRight />
-  </button>
-);
-
 const TestimonialCarousel = () => {
   const sliderRef = useRef(null);
 
@@ -55,8 +37,7 @@ const TestimonialCarousel = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    nextArrow: <CustomNextArrow />,
-    prevArrow: <CustomPrevArrow />,
+    arrows: false, // Hide default arrows completely
     responsive: [
       {
         breakpoint: 1024,
@@ -123,8 +104,8 @@ const TestimonialCarousel = () => {
           ))}
         </Slider>
 
-        {/* Mobile arrows (below slider) */}
-        <div className="sm:hidden flex justify-center gap-4 mt-6">
+        {/* Unified Prev/Next buttons below slider for all screen sizes */}
+        <div className="flex justify-center gap-4 mt-6">
           <button
             className="flex items-center gap-1 bg-[#0c1d3c] text-white px-4 py-2 rounded-full"
             onClick={() => sliderRef.current.slickPrev()}

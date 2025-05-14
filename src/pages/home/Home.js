@@ -11,6 +11,7 @@ import ImageMarquee from "./component/ImageMarquee";
 import ProductFeature from "./component/ProductFeature";
 import StatsSection from "./component/StatsSection";
 import TestimonialCarousel from "./component/TestimonialCarousel";
+import TrustedByFamilies from "./component/TrustedByFamilies";
 
 const Home = () => {
   return (
@@ -35,6 +36,7 @@ const Home = () => {
       <ImageMarquee />
       <TestimonialCarousel />
       <FacebookTestimonials />
+      <TrustedByFamilies />
     </>
   );
 };
