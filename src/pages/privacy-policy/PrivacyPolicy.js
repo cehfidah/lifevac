@@ -181,49 +181,8 @@ const PrivacyPolicy = () => {
                 <p className='mb-6'>Opt-in data and consent for text messaging will not be shared with any third-parties except for messaging partners, for the purpose of enabling and operating our text messaging program.</p>
                 <p className='mb-6'>Our website uses cookies to keep track of items you put into your shopping cart, including when you have abandoned your checkout. This information is used to determine when to send cart reminder messages via SMS.</p>
             </div>
-
-            <div className="bg-[#f2fbff] py-12 px-4">
-                <div className="max-w-3xl mx-auto flex flex-col relative">
-                    {steps.map((step, index) => (
-                        <div key={index} className="flex items-start relative pb-12">
-                            {/* Line */}
-                            {index !== steps.length - 1 && (
-                                <span className="absolute left-4 top-4 h-full w-px bg-[#001f3f] z-0" />
-                            )}
-
-                            {/* Dot */}
-                            <span className="w-4 h-4 bg-[#001f3f] rounded-full z-10 absolute left-2 top-1.5" />
-
-                            {/* Step Content */}
-                            <div className="pl-10">
-                                <h3 className="font-bold text-[#001f3f] text-lg mb-1">
-                                    {step.title}
-                                </h3>
-                                <p className="text-gray-700 text-sm">{step.description}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
         </>
     )
 }
 
 export default PrivacyPolicy;
-const steps = [
-    {
-        title: "Step 1: Familiarize Yourself",
-        description:
-            "Read the user manual to familiarize yourself with the device and practice its operation. Being prepared can make all the difference in an emergency.",
-    },
-    {
-        title: "Step 2: Assess The Situation",
-        description:
-            "Assess the situation carefully: If the person can't speak, cough, or breathe, points to their throat, or makes unusual sounds, they require immediate assistance.",
-    },
-    {
-        title: "Step 3: Position And Activate",
-        description:
-            "Place Airway Clear™ over the mouth and nose and press down to create a seal. Pull the handle firmly to deliver a thrust. Repeat if necessary until the obstruction is cleared.",
-    },
-];
