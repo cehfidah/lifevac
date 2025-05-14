@@ -21,15 +21,15 @@ const AntiChokingSteps = () => {
 
   return (
     <div className="bg-[#f0fbff] py-12 px-4 sm:px-8 lg:px-32">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2  items-center">
-        {/* Left: Image */}
-        <div className="flex flex-col justify-center">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-10">
+        {/* Left: Image and CTA */}
+        <div className="flex flex-col justify-center items-center md:items-start">
           <img
             src="https://cdn.shopify.com/s/files/1/0638/0378/5380/files/hottogif-ezgif.com-speed.gif?v=1710187588"
             alt="AirwayClear Device"
             className="rounded-xl shadow-md w-full max-w-md"
           />
-          <div className="mt-8">
+          <div className="mt-8 w-full flex flex-col items-center md:items-start">
             <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg w-full max-w-xs">
               TAKE ACTION TODAY
             </button>
@@ -39,10 +39,10 @@ const AntiChokingSteps = () => {
           </div>
         </div>
 
-        {/* Right: Steps with timeline */}
+        {/* Right: Steps Timeline */}
         <div className="relative pl-8">
-          {/* Vertical Line */}
-          <div className="absolute left-2 top-0 bottom-0 w-0.5 bg-[#13283e]/70"></div>
+          {/* Vertical Line - visible only on md+ */}
+          <div className="hidden md:block absolute left-2 top-0 bottom-0 w-0.5 bg-[#13283e]/70"></div>
 
           {steps.map((step, index) => (
             <div
