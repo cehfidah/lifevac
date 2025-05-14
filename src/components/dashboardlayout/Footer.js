@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
-    <footer className="text-center py-6 text-sm text-gray-600 border-t mt-10">
+    <footer className="text-center py-6 text-sm text-gray-600 border-t">
       <div className="flex justify-center gap-4">
-        <a href="#" className="hover:underline">Refund policy</a>
-        <a href="#" className="hover:underline">Shipping policy</a>
-        <a href="#" className="hover:underline">Privacy policy</a>
-        <a href="#" className="hover:underline">Terms of service</a>
-        <a href="#" className="hover:underline">Contact information</a>
+        <Link to="/refund-policy" className="hover:underline">Refund policy</Link>
+        <Link to="/shipping-policy" className="hover:underline">Shipping policy</Link>
+        <Link to="/privacy-policy" className="hover:underline">Privacy policy</Link>
+        <Link to="/terms-of-service" className="hover:underline">Terms of service</Link>
+        <Link to="/contact-information" className="hover:underline">Contact information</Link>
       </div>
     </footer>
   );

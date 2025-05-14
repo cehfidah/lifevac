@@ -6,7 +6,7 @@ const DashboardLayout = () => {
     return (
         <>
             <Header />
-            <div style={{ minHeight: "calc(100vh - 545px)" }}>
+            <div className='bg-[#f5f5f5]' style={{ minHeight: "calc(100vh - 155.5px)" }}>
                 <Outlet />
             </div>
             <Footer />
