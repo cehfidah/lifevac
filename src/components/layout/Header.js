@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaUser, FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
 import Container from '../Container';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleCart } from '../../store/slice/cartSlice';
 
 const Header = () => {
   const location = useLocation();
@@ -11,8 +12,9 @@ const Header = () => {
   const [showStickyHeader, setShowStickyHeader] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const menuRef = useRef(null);
-  const cartCount = 4;
   const { token } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
   const navLinks = [
     { name: 'Shipping Policy', path: '/shipping-policy' },
@@ -113,11 +115,13 @@ const Header = () => {
               )
             }
 
-            <div className="relative cursor-pointer">
+            <div className="relative cursor-pointer" onClick={() => dispatch(toggleCart())}>
               <FaShoppingCart className="text-xl text-gray-700" />
-              <span className="absolute -top-2 -right-2 bg-blue-800 text-white text-xs px-1.5 rounded-full">
-                {cartCount}
-              </span>
+              {cartItems.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-blue-800 text-white text-xs px-1.5 rounded-full">
+                  {cartItems.length}
+                </span>
+              )}
             </div>
           </div>
         </div>

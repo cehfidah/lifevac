@@ -21,6 +21,7 @@ import Profile from "./pages/profile/Profile";
 import Login from "./pages/auth/Login";
 import OtpVerification from "./pages/auth/OtpVerification";
 import DashboardLayout from "./components/dashboardlayout";
+import CartModal from "./components/cart-modal/CartModal";
 
 const App = () => {
   const location = useLocation();
@@ -30,6 +31,7 @@ const App = () => {
   }, [location]);
   return (
     <>
+      <CartModal />
       {/* <GoogleAnalytics /> Add the Google Analytics tracker */}
       <Routes>
         <Route element={<Error404 />} path={`/404`} />

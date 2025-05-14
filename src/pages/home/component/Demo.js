@@ -13,14 +13,7 @@ import six from "../../../assest/image/firstsectionsevenimage.webp";
 import seven from "../../../assest/image/firstsectionsiximage.webp";
 import eaghit from "../../../assest/image/firstsectionthirdimage.png";
 
-import payone from "../../../assest/image/payment1.svg";
-import paytwo from "../../../assest/image/payment2.svg";
-import paythird from "../../../assest/image/payment3.svg";
-import payfour from "../../../assest/image/payment4.svg";
-import payfifth from "../../../assest/image/payment5.svg";
-import paysix from "../../../assest/image/payment6.svg";
-import paysaven from "../../../assest/image/payment7.svg";
-import payeaight from "../../../assest/image/payment8.svg";
+import OfferSelection from "./OfferSelection";
 
 const Demo = () => {
   const images = [first, second, third, four, fifth, seven, eaghit, six];
@@ -98,11 +91,10 @@ const Demo = () => {
                   key={index}
                   src={img}
                   alt={`thumb-${index}`}
-                  className={`w-16 h-16 object-cover rounded shadow cursor-pointer border-2 ${
-                    mainImageIndex === index
-                      ? "border-blue-600"
-                      : "border-transparent"
-                  }`}
+                  className={`w-16 h-16 object-cover rounded shadow cursor-pointer border-2 ${mainImageIndex === index
+                    ? "border-blue-600"
+                    : "border-transparent"
+                    }`}
                   onClick={() => setMainImageIndex(index)}
                 />
               ))}
@@ -186,126 +178,7 @@ const Demo = () => {
           </div>
 
           {/* Offers Section */}
-          <div className="text-center">
-            <p className="font-semibold text-sm mb-1">8 Left In Stock</p>
-
-            {/* Offer 1 */}
-            <div className="border rounded-xl p-4 text-left shadow-md mb-6">
-              <h4 className="text-sm font-bold text-blue-900 mb-2 uppercase">
-                Protection For Yourself And Your Kid:
-              </h4>
-              <div className="flex items-center justify-between mb-1">
-                <span className="font-bold text-lg">BUY ONE</span>
-                <span className="font-semibold text-gray-800">
-                  Rs. 3,448.67
-                </span>
-              </div>
-              <p className="text-sm text-gray-600 mb-1">1x Full Kit</p>
-              <p className="text-sm line-through text-gray-400">Rs. 6,100.00</p>
-              <p className="bg-blue-900 text-white text-xs px-2 py-1 inline-block rounded mt-2">
-                You Save Rs. 2,651.33
-              </p>
-            </div>
-
-            {/* Offer 2 */}
-            <div className="border-2 border-blue-400 bg-blue-50 rounded-xl p-4 text-left shadow-md mb-6 relative">
-              <div className="absolute top-2 right-2 bg-blue-900 text-white text-xs px-2 py-1 rounded">
-                MOST POPULAR
-              </div>
-              <h4 className="text-sm font-bold text-blue-900 mb-2 uppercase">
-                Protection For Your Close Family:
-              </h4>
-              <div className="flex items-center justify-between mb-1">
-                <span className="font-bold text-lg">BUY 2 GET 1 FREE</span>
-                <span className="font-semibold text-gray-800">
-                  Rs. 6,897.34
-                </span>
-              </div>
-              <p className="text-sm text-gray-600 mb-1">3x Full Kits</p>
-              <p className="text-sm line-through text-gray-400">
-                Rs. 18,300.00
-              </p>
-              <div className="flex justify-between items-center bg-[#001532] px-2 py-2 mt-2">
-                <p className="text-sm mt-1 text-white">
-                  + <strong>FREE Home Medic Guide</strong>
-                </p>
-                <p className="bg-blue-900 text-white text-xs px-2 py-1 inline-block rounded ">
-                  You save Rs. 11,402.66
-                </p>
-              </div>
-            </div>
-
-            {/* Offer 3 */}
-            <div className="border-2 border-blue-900 rounded-xl p-4 text-left shadow-md mb-6 relative">
-              <div className="absolute top-2 right-2 bg-blue-900 text-white text-xs px-2 py-1 rounded">
-                MOST SAVINGS
-              </div>
-              <h4 className="text-sm font-bold text-blue-900 mb-2 uppercase">
-                Protection For Your Large Family:
-              </h4>
-              <div className="flex items-center justify-between mb-1">
-                <span className="font-bold text-lg">BUY 3 GET 2 FREE</span>
-                <span className="font-semibold text-gray-800">
-                  Rs. 8,621.24
-                </span>
-              </div>
-              <p className="text-sm text-gray-600 mb-1">5x Full Kits</p>
-              <p className="text-sm line-through text-gray-400">
-                Rs. 30,500.00
-              </p>
-              <div className="flex justify-between items-center bg-[#0015324D] px-2 py-2 mt-2">
-                <p className="text-sm mt-1">
-                  + <strong>FREE Home Medic Guide</strong>
-                </p>
-                <p className="bg-blue-900 text-white text-xs px-2 py-1 inline-block rounded">
-                  You save Rs. 21,878.76
-                </p>
-              </div>
-            </div>
-
-            <div className="border border-dashed border-black text-sm text-gray-700 p-3 mb-4 rounded">
-              🛫 Be prepared and get it between{" "}
-              <strong>May (18) - May (21)</strong>
-            </div>
-
-            <button className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded text-lg">
-              ✅ ADD TO CART
-            </button>
-
-            {/* Payment Logos */}
-            <div className="bg-[#f8fbff] px-4 py-4 rounded-lg mt-8 text-center shadow-sm border border-gray-200">
-              <p className=" font-bold text-gray-700 uppercase tracking-wider mb-3">
-                SSL Encrypted & Secure Payment With
-              </p>
-              <div className="flex justify-center items-center flex-wrap gap-2 mb-6">
-                <img src={payone} alt="Visa" />
-                <img src={paytwo} alt="Amex" />
-                <img src={paythird} alt="MasterCard" />
-                <img src={payfour} alt="PayPal" />
-                <img src={payfifth} alt="DPay" />
-                <img src={paysix} alt="Apple Pay" />
-                <img src={paysaven} alt="Google Pay" />
-                <img src={payeaight} alt="Google Pay" />
-              </div>
-              <div className="text-start flex flex-col gap-4">
-                <p className="font-bold">
-                  Meet Airway Clear™, the lifesaving device designed to
-                  instantly clear blocked airways, &nbsp;for toddlers, children
-                  and adults.&nbsp;
-                </p>
-                <p>
-                  Whether at the dinner table, playtime, or snack time, choking
-                  accidents can happen in seconds, and traditional methods might
-                  fail you in the heat of the moment.
-                </p>
-                <p>
-                  With <strong className="font-bold">Airway Clear™</strong> you
-                  can act confidently, offering an intuitive, no-training-needed
-                  solution to prevent tragic outcomes.
-                </p>
-              </div>
-            </div>
-          </div>
+          <OfferSelection />
 
           <Faq />
         </div>
