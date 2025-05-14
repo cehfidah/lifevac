@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SEO from '../../utils/SEO';
 import { toast } from 'react-toastify';
 
@@ -34,7 +34,7 @@ export default function Login() {
 
             <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
                 <div className="bg-white w-full max-w-md p-8 rounded-lg shadow-md">
-                    <h2 className="text-center text-2xl font-semibold mb-6">AirwayClear 🌀🌀🌀🌀</h2>
+                    <Link to="/" className="flex items-center justify-center text-center text-2xl font-semibold mb-6">AirwayClear 🌀🌀🌀🌀</Link>
 
                     <h3 className="text-lg font-medium text-center mb-4">Log in</h3>
                     <p className="text-sm text-center text-gray-500 mb-6">
@@ -73,7 +73,7 @@ export default function Login() {
                     </form>
 
                     <p className="text-xs text-center text-gray-500 mt-6">
-                        <a href="#" className="underline">Privacy</a>
+                        <Link to="/privacy-policy" href="#" className="underline">Privacy</Link>
                     </p>
                 </div>
             </div>

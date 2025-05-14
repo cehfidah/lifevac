@@ -19,7 +19,7 @@ export default function VerifyOtp() {
 
         // TODO: Replace with actual OTP verification API
         toast.success('OTP verified successfully!');
-        navigate('/dashboard'); // Replace with actual destination
+        navigate('/'); // Replace with actual destination
     };
 
     const handleResendOtp = () => {
@@ -41,7 +41,7 @@ export default function VerifyOtp() {
 
             <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
                 <div className="bg-white w-full max-w-md p-8 rounded-lg shadow-md">
-                    <h2 className="text-center text-2xl font-semibold mb-6">AirwayClear 🌀🌀🌀🌀</h2>
+                    <Link to='/' className="flex items-center justify-center text-center text-2xl font-semibold mb-6">AirwayClear 🌀🌀🌀🌀</Link>
 
                     <h3 className="text-lg font-medium text-start mb-2">Verify OTP</h3>
                     <p className="text-sm text-start text-gray-500 mb-6">

@@ -2,13 +2,15 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import SEO from '../../utils/SEO';
 import Container from "../../components/Container";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/slice/authSlice";
 
 const Settings = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleLogout = () => {
-        // Example logout logic: Clear local storage, redirect
-        localStorage.clear();
+        dispatch(logout());
         navigate("/");
     };
 
