@@ -5,16 +5,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ApiHandler } from "../../helper/ApiHandler";
 import { toast } from "react-toastify";
+import Loading from '../../components/Common/Loading';
 
 export default function EditAddressModal({ onClose, mode = "add", addressData = null, fetchData, userId }) {
     const navigate = useNavigate();
-    const { token } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
-    const countries = Country.getAllCountries().map(c => ({ label: c.name, value: c.isoCode }));
+    const { token } = useSelector((state) => state.auth);
+
+    const countries = Country.getAllCountries().map((c) => ({
+        label: c.name,
+        value: c.isoCode,
+    }));
+
     const [country, setCountry] = useState({ label: "India", value: "IN" });
     const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState(null);
-    const [phoneCode, setPhoneCode] = useState("+91");
+    const [phoneCode, setPhoneCode] = useState("91");
+    const [loading, setLoading] = useState(false);
 
     const [form, setForm] = useState({
         firstName: "",
@@ -29,34 +36,54 @@ export default function EditAddressModal({ onClose, mode = "add", addressData = 
 
     useEffect(() => {
         if (addressData) {
+            const selectedCountry = Country.getAllCountries().find(
+                (c) =>
+                    c.name === addressData.country ||
+                    c.phonecode === addressData.country_code ||
+                    c.isoCode === addressData.country_code
+            );
+
+            const selectedCountryIso = selectedCountry?.isoCode || "IN";
+            const selectedCountryLabel = selectedCountry?.name || "India";
+            const phonecode = selectedCountry?.phonecode || "91";
+
+            const stateList = State.getStatesOfCountry(selectedCountryIso);
+            const matchedState = stateList.find((s) => s.name === addressData.state);
+
+            setCountry({ label: selectedCountryLabel, value: selectedCountryIso });
+            setPhoneCode(phonecode);
+            setStates(stateList.map((s) => ({ label: s.name, value: s.isoCode })));
+            setSelectedState(matchedState ? { label: matchedState.name, value: matchedState.isoCode } : null);
+
             setForm({
-                firstName: addressData.first_name,
-                lastName: addressData.last_name,
-                address: addressData.address,
+                firstName: addressData.first_name || "",
+                lastName: addressData.last_name || "",
+                address: addressData.address || "",
                 apt: addressData.apartment || "",
-                city: addressData.city,
-                zip: addressData.zip,
-                phone: addressData.phone,
-                isDefault: addressData.is_default === "1",
+                city: addressData.city || "",
+                zip: addressData.zip_code || "",
+                phone: addressData.phone || "",
+                isDefault: addressData.is_default === "1" || false,
             });
-            setCountry({ label: addressData.country, value: addressData.country_code });
-            setSelectedState({ label: addressData.state, value: addressData.state_code });
         }
     }, [addressData]);
 
     useEffect(() => {
         if (country?.value) {
             const stateList = State.getStatesOfCountry(country.value);
-            setStates(stateList.map(s => ({ label: s.name, value: s.isoCode })));
-            setPhoneCode(Country.getCountryByCode(country.value)?.phonecode || "");
+            setStates(stateList.map((s) => ({ label: s.name, value: s.isoCode })));
+            const code = Country.getCountryByCode(country.value)?.phonecode;
+            setPhoneCode(code || "91");
         }
     }, [country]);
 
-    const handleChange = (field, value) => setForm(prev => ({ ...prev, [field]: value }));
+    const handleChange = (field, value) => {
+        setForm((prev) => ({ ...prev, [field]: value }));
+    };
 
     const handleSubmit = async () => {
         if (!country || !selectedState || !form.firstName || !form.address || !form.city || !form.zip || !form.phone) {
-            return alert("All required fields must be filled");
+            return toast.error("All required fields must be filled");
         }
 
         const payload = {
@@ -67,7 +94,9 @@ export default function EditAddressModal({ onClose, mode = "add", addressData = 
             city: form.city,
             state: selectedState.label,
             zip_code: form.zip,
-            phone: form.phone
+            phone: form.phone,
+            country: country.label,
+            country_code: phoneCode,
         };
 
         const body =
@@ -76,20 +105,24 @@ export default function EditAddressModal({ onClose, mode = "add", addressData = 
                 : { user_id: userId, ...payload };
 
         const endpoint = mode === "add" ? "/add_address.php" : "/edit_address.php";
-        console.log(body, "body")
-        // try {
-        //     const res = await ApiHandler(endpoint, "POST", payload, token, dispatch, navigate);
-        //     if (res.data?.status === "1") {
-        //         toast.success(`${mode === "add" ? "Added" : "Updated"} address successfully`);
-        //         onClose();
-        //     } else {
-        //         toast.error("Failed to save address");
-        //     }
-        // } catch {
-        //     toast.error("An error occurred");
-        // }
+        try {
+            setLoading(true);
+            const res = await ApiHandler(endpoint, "POST", body, token, dispatch, navigate);
+            if (res.data?.status === "1") {
+                toast.success(res.data.msg || `${mode === "add" ? "Added" : "Updated"} address successfully`);
+                onClose();
+                fetchData();
+            } else {
+                toast.error(res.data.msg || "Failed to save address");
+            }
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
     };
 
+    if (loading) return <Loading />;
     return (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
             <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
