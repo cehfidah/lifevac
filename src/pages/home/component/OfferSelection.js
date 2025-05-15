@@ -14,17 +14,6 @@ const OfferSelection = () => {
     const dispatch = useDispatch();
     const [selectedId, setSelectedId] = useState(null);
 
-    const handleSelectOffer = (offer) => {
-        setSelectedId(offer.id);
-        dispatch(addItemToCart(offer));
-    };
-
-    const handleAddCart = () => {
-        if (selectedId) {
-            dispatch(toggleCart());
-        }
-    }
-
     const offers = [
         {
             id: 'offer1',
@@ -66,6 +55,20 @@ const OfferSelection = () => {
             image: "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_4_300x300.svg?v=1737985322"
         },
     ];
+
+    const handleSelectOffer = (offer) => {
+        setSelectedId(offer.id);
+    };
+
+    const handleAddCart = () => {
+        if (selectedId) {
+            const offer = offers.find(o => o.id === selectedId);
+            if (offer) {
+                dispatch(addItemToCart(offer)); // Only dispatch here
+                dispatch(toggleCart());
+            }
+        }
+    }
     return (
         <>
             <div className="text-center">

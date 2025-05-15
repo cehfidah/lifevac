@@ -9,10 +9,15 @@ const CartModal = () => {
     const dispatch = useDispatch();
     const { cartItems, cartOpen } = useSelector((state) => state.cart);
 
-    const guideItem = cartItems.find(item => item.type === 'guide');
-    const mainItems = cartItems.filter(item => item.type !== 'guide');
-
-    const subtotal = mainItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const subtotal = cartItems.reduce((sum, item) => {
+        if (item.type === 'guide' && item.extraPrice !== undefined) {
+            // One guide is free, others cost extraPrice
+            const extraQty = item.quantity > 1 ? item.quantity - 1 : 0;
+            return sum + extraQty * item.extraPrice;
+        } else {
+            return sum + item.price * item.quantity;
+        }
+    }, 0);
 
     useEffect(() => {
         document.body.style.overflow = cartOpen ? 'hidden' : 'auto';
