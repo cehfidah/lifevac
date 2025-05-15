@@ -154,6 +154,29 @@ export default function ReviewGrid() {
     }
   };
 
+  const [visibleCount, setVisibleCount] = useState(4); // Initial number of reviews to display
+  const increment = 4; // Number of reviews to add on each click
+
+  // Sort reviews based on sortType
+  const sortedReviews = [...reviews].sort((a, b) => {
+    switch (sortType) {
+      case "date":
+        return new Date(b.date) - new Date(a.date);
+      case "rate":
+        return b.rating - a.rating;
+      default:
+        return 0;
+    }
+  });
+
+  // Determine if there are more reviews to load
+  const hasMore = visibleCount < sortedReviews.length;
+
+  // Handle "Load More" button click
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + increment);
+  };
+
   return (
     <section className="px-4 py-8 md:px-12 lg:px-20 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -173,7 +196,6 @@ export default function ReviewGrid() {
             {showForm ? "Close review form" : "Write a review"}
           </button>
         </div>
-
         {/* Ratings Breakdown */}
         <div className="flex flex-col gap-2 mb-8">
           {ratingsBreakdown.map(({ stars, count }) => (
@@ -187,8 +209,9 @@ export default function ReviewGrid() {
                   .map((_, i) => (
                     <svg
                       key={i}
-                      className={`w-4 h-4 ${i < stars ? "text-gray-400" : "text-gray-200"
-                        }`}
+                      className={`w-4 h-4 ${
+                        i < stars ? "text-gray-400" : "text-gray-200"
+                      }`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -206,7 +229,6 @@ export default function ReviewGrid() {
             </div>
           ))}
         </div>
-
         {/* Review Form */}
         {showForm && (
           <div className="border-t border-gray-300 pt-6 mb-8">
@@ -222,10 +244,11 @@ export default function ReviewGrid() {
                   onClick={() => setSelectedStars(star)}
                   onMouseEnter={() => setHoveredStar(star)}
                   onMouseLeave={() => setHoveredStar(0)}
-                  className={`w-6 h-6 cursor-pointer ${star <= (hoveredStar || selectedStars)
+                  className={`w-6 h-6 cursor-pointer ${
+                    star <= (hoveredStar || selectedStars)
                       ? "text-yellow-400"
                       : "text-gray-300"
-                    }`}
+                  }`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -289,62 +312,86 @@ export default function ReviewGrid() {
             </div>
           </div>
         )}
-
         {/* Review Cards */}
+        <div className="flex justify-end mb-4">
+          <select
+            value={sortType}
+            onChange={(e) => setSortType(e.target.value)}
+            className="border border-gray-300 rounded px-4 py-2 text-sm"
+          >
+            <option value="date">Sort reviews</option>
+            <option value="rate">Sort by contact</option>
+            <option value="rate">Sort by photo</option>
+            <option value="rate">Sort by rate</option>
+          </select>
+        </div>
+        Edit
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {[...reviews]
-            .sort((a, b) => {
-              switch (sortType) {
-                case "date":
-                  return new Date(b.date) - new Date(a.date);
-                case "rate":
-                  return b.rating - a.rating;
-                default:
-                  return 0;
-              }
-            })
-            .map((review) => (
-              <div
-                key={review.id}
-                className="border p-4 rounded-lg bg-white shadow-sm"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src={review.image}
-                    alt={review.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <div className="font-semibold text-gray-800">
-                      {review.name}
-                    </div>
-                    <div className="text-sm text-gray-500">
-                      {review.country}
-                    </div>
-                    <div className="text-xs text-gray-400">{review.date}</div>
+          {sortedReviews.slice(0, visibleCount).map((review) => (
+            <div
+              key={review.id}
+              className="rounded-xl border bg-white shadow-md overflow-hidden flex flex-col"
+            >
+              {/* Review Image */}
+              <img
+                src={review.image}
+                alt="Review product"
+                className="w-full h-60 object-cover"
+              />
+
+              {/* Star Rating */}
+              <div className="flex justify-center gap-1 py-2 bg-white">
+                {Array(5)
+                  .fill(0)
+                  .map((_, i) => (
+                    <svg
+                      key={i}
+                      className={`w-4 h-4 ${
+                        i < review.rating ? "text-yellow-400" : "text-gray-300"
+                      }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.562-.955L10 0l2.95 5.955 6.562.955-4.756 4.635 1.122 6.545z" />
+                    </svg>
+                  ))}
+              </div>
+
+              {/* User Info */}
+              <div className="flex items-center gap-2 px-4 mb-2">
+                <div className="flex-shrink-0 w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-sm font-bold text-gray-600">
+                  {review.name.charAt(0)}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-semibold text-gray-800">
+                    {review.name}
+                  </span>
+                  <div className="flex items-center gap-1 text-xs text-gray-500">
+                    <span>{review.country}</span>
+                    <span>•</span>
+                    <span>{review.date}</span>
                   </div>
                 </div>
-                <div className="flex gap-1 mb-3">
-                  {Array(5)
-                    .fill(0)
-                    .map((_, i) => (
-                      <svg
-                        key={i}
-                        className={`w-4 h-4 ${i < review.rating
-                            ? "text-yellow-400"
-                            : "text-gray-300"
-                          }`}
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.562-.955L10 0l2.95 5.955 6.562.955-4.756 4.635 1.122 6.545z" />
-                      </svg>
-                    ))}
-                </div>
-                <p className="text-sm text-gray-600">{review.content}</p>
               </div>
-            ))}
+
+              {/* Review Content */}
+              <p className="text-sm text-gray-700 px-4 pb-4">
+                {review.content}
+              </p>
+            </div>
+          ))}
         </div>
+        {/* Load More Button */}
+        {hasMore && (
+          <div className="flex justify-center mt-6">
+            <button
+              onClick={handleLoadMore}
+              className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              Load More
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
