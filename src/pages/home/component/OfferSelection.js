@@ -29,7 +29,7 @@ const OfferSelection = () => {
         {
             id: 'offer1',
             image: "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_3_300x300.svg?v=1737985220",
-            sectionTitle: "PROTECTION FOR YOURSELF AND YOUR KID:",
+            sectionTitle: "AirwayClear™-Antichoking Device:",
             title: "BUY ONE",
             kits: "1× Full Kit",
             price: 3474.64,
@@ -41,7 +41,7 @@ const OfferSelection = () => {
         },
         {
             id: 'offer2',
-            sectionTitle: "PROTECTION FOR YOUR CLOSE FAMILY:",
+            sectionTitle: "AirwayClear™-Antichoking Device",
             title: "BUY 2 GET 1 FREE",
             kits: "3× Full Kits",
             price: 6949.27,
@@ -54,7 +54,7 @@ const OfferSelection = () => {
         },
         {
             id: 'offer3',
-            sectionTitle: "PROTECTION FOR YOUR LARGE FAMILY:",
+            sectionTitle: "AirwayClear™-Antichoking Device",
             title: "BUY 3 GET 2 FREE",
             kits: "5× Full Kits",
             price: 8686.16,

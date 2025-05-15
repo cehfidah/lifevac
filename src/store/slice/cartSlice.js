@@ -29,12 +29,15 @@ const cartSlice = createSlice({
                 if (!guideExists) {
                     state.cartItems.push({
                         id: 'guide',
-                        name: 'Guide For Household Emergencies',
+                        sectionTitle: 'Guide For Household Emergencies',
                         type: 'guide',
                         price: 0,
                         originalPrice: 1200,
+                        savings: "",
                         quantity: 1,
                         image: "https://airwayclear.us/cdn/shop/files/Airwayclear.svg?v=1743450735&width=600",
+                        title: "BUY ONE",
+                        kits: "1× Full Kit",
                     });
                 }
             }

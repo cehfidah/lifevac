@@ -52,42 +52,64 @@ const CartModal = () => {
                                     </button>
                                 </div>
                             ) : (
-                                <div className="bg-white rounded-xl p-6 max-w-md w-full">
+                                <div className="bg-white rounded-xl px-6 max-w-md w-full">
                                     {cartItems.map((item) => (
-                                        <div key={item.id} className="flex items-center justify-between mb-4">
-                                            <img src={item.image || "https://airwayclear.us/cdn/shop/files/Airwayclear.svg?v=1743450735&width=600"} alt={item.name} className="w-14 h-14 object-contain" />
-                                            <div>
-                                                <p className="font-bold">{item.name}</p>
-                                                <p className="text-sm line-through">Rs. {item.originalPrice}</p>
-                                                <p className="text-sm text-green-600">Rs. {item.price}</p>
-                                            </div>
-                                            <div className="flex items-center space-x-2">
-                                                <button
-                                                    className="border px-2"
-                                                    onClick={() =>
-                                                        dispatch(updateItemQuantity({ id: item.id, quantity: Math.max(1, item.quantity - 1) }))
-                                                    }
+                                        <>
+                                            <div key={item.id} className="flex gap-4 border-b py-4">
+                                                <img src={item.image} alt={item.sectionTitle} className="w-20 h-20 object-contain" />
 
-                                                >
-                                                    -
-                                                </button>
-                                                <span>{item.quantity}</span>
-                                                <button
-                                                    className="border px-2"
-                                                    onClick={() =>
-                                                        dispatch(updateItemQuantity({ id: item.id, quantity: item.quantity + 1 }))
-                                                    }
-                                                >
-                                                    +
-                                                </button>
-                                                <button
-                                                    className="text-red-500 ml-2"
-                                                    onClick={() => dispatch(removeItemFromCart(item.id))}
-                                                >
-                                                    🗑️
-                                                </button>
+                                                <div className="flex-1">
+                                                    <h3 className="font-semibold">{item.sectionTitle}</h3>
+
+                                                    <div className="mt-1">
+                                                        {item.originalPrice && (
+                                                            <span className="line-through text-gray-400 text-sm mr-2">
+                                                                Rs. {item.originalPrice.toLocaleString()}
+                                                            </span>
+                                                        )}
+                                                        <span className="text-lg font-semibold">Rs. {item.price.toLocaleString()}</span>
+                                                    </div>
+
+                                                    {item.offerText && (
+                                                        <p className="text-sm mt-1 text-gray-700">Offer: {item.offerText}</p>
+                                                    )}
+
+                                                    {item.title && (
+                                                        <div className="mt-1 text-sm flex items-center gap-1 text-blue-600">
+                                                            <span>🏷</span> <span>{item.title}</span>
+                                                        </div>
+                                                    )}
+
+                                                    {/* Quantity and Delete */}
+                                                    <div className="flex items-center gap-3 mt-3">
+                                                        <div className="flex items-center border rounded px-2">
+                                                            <button
+                                                                className="text-lg px-2"
+                                                                onClick={() =>
+                                                                    dispatch(updateItemQuantity({ id: item.id, quantity: Math.max(1, item.quantity - 1) }))
+                                                                }
+
+                                                            >
+                                                                -
+                                                            </button>
+                                                            <span className="px-2">{item.quantity}</span>
+                                                            <button
+                                                                className="text-lg px-2"
+                                                                onClick={() =>
+                                                                    dispatch(updateItemQuantity({ id: item.id, quantity: item.quantity + 1 }))
+                                                                }
+                                                            >+</button>
+                                                        </div>
+                                                        <button
+                                                            className="text-red-500 ml-2"
+                                                            onClick={() => dispatch(removeItemFromCart(item.id))}
+                                                        >
+                                                            🗑️
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </>
                                     ))}
                                 </div>
                             )}
