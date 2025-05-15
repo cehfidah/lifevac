@@ -25,8 +25,10 @@ const CartModal = () => {
     }, [cartOpen]);
 
     const handleCheckout = () => {
-        console.log('Cart Items:', cartItems);
-        console.log('Subtotal:', subtotal);
+        if (cartItems.length > 0) {
+            dispatch(toggleCart());
+            navigate('/checkouts', { state: { subtotal, cartItems } });
+        }
     };
     return (
         <>
@@ -128,8 +130,13 @@ const CartModal = () => {
                                         <span>Subtotal</span>
                                         <span>Rs. {subtotal.toFixed(2)}</span>
                                     </div>
-                                    <button className="w-full bg-blue-800 text-white py-2 rounded hover:bg-blue-900 transition mt-4"
+                                    <button
+                                        className={`w-full py-2 rounded mt-4 transition font-semibold ${cartItems.length === 0
+                                            ? 'bg-gray-400 text-white cursor-not-allowed'
+                                            : 'bg-blue-800 text-white hover:bg-blue-900'
+                                            }`}
                                         onClick={handleCheckout}
+                                        disabled={cartItems.length === 0}
                                     >
                                         Checkout
                                     </button>

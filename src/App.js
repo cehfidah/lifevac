@@ -54,8 +54,8 @@ const App = () => {
         </Route>
 
         <Route element={<AuthProtect />}>
+          <Route path="/checkouts" element={<Checkouts />} />
           <Route element={<DashboardLayout />}>
-            <Route path="/checkouts" element={<Checkouts />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />
