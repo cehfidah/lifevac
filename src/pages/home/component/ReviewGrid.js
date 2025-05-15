@@ -58,7 +58,7 @@ const ratingsBreakdown = [
 export default function ReviewGrid() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  const [selectedStars, setSelectedStars] = useState(0);
+  const [selectedStars, setSelectedStars] = useState(5);
   const [hoveredStar, setHoveredStar] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
@@ -187,9 +187,8 @@ export default function ReviewGrid() {
                   .map((_, i) => (
                     <svg
                       key={i}
-                      className={`w-4 h-4 ${
-                        i < stars ? "text-gray-400" : "text-gray-200"
-                      }`}
+                      className={`w-4 h-4 ${i < stars ? "text-gray-400" : "text-gray-200"
+                        }`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -223,11 +222,10 @@ export default function ReviewGrid() {
                   onClick={() => setSelectedStars(star)}
                   onMouseEnter={() => setHoveredStar(star)}
                   onMouseLeave={() => setHoveredStar(0)}
-                  className={`w-6 h-6 cursor-pointer ${
-                    star <= (hoveredStar || selectedStars)
+                  className={`w-6 h-6 cursor-pointer ${star <= (hoveredStar || selectedStars)
                       ? "text-yellow-400"
                       : "text-gray-300"
-                  }`}
+                    }`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -332,11 +330,10 @@ export default function ReviewGrid() {
                     .map((_, i) => (
                       <svg
                         key={i}
-                        className={`w-4 h-4 ${
-                          i < review.rating
+                        className={`w-4 h-4 ${i < review.rating
                             ? "text-yellow-400"
                             : "text-gray-300"
-                        }`}
+                          }`}
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
