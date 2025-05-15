@@ -31,7 +31,7 @@ export default function EditAddressModal({ onClose, mode = "add", addressData = 
         city: "",
         zip: "",
         phone: "",
-        isDefault: false,
+        is_default: false,
     });
 
     useEffect(() => {
@@ -63,7 +63,7 @@ export default function EditAddressModal({ onClose, mode = "add", addressData = 
                 city: addressData.city || "",
                 zip: addressData.zip_code || "",
                 phone: addressData.phone || "",
-                isDefault: addressData.is_default === "1" || false,
+                is_default: addressData.is_default_address === "1" ? true : false,
             });
         }
     }, [addressData]);
@@ -97,6 +97,7 @@ export default function EditAddressModal({ onClose, mode = "add", addressData = 
             phone: form.phone,
             country: country.label,
             country_code: phoneCode,
+            is_default: form.is_default === true ? "1" : "0"
         };
 
         const body =
@@ -128,7 +129,7 @@ export default function EditAddressModal({ onClose, mode = "add", addressData = 
             <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
                 <h3 className="text-xl font-semibold mb-4">{mode === "add" ? "Add Address" : "Edit Address"}</h3>
                 <label className="flex items-center gap-2 mb-2">
-                    <input type="checkbox" checked={form.isDefault} onChange={e => handleChange("isDefault", e.target.checked)} />
+                    <input type="checkbox" checked={form.is_default} onChange={e => handleChange("is_default", e.target.checked)} />
                     This is my default address
                 </label>
                 <div className="mb-4">

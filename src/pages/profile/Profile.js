@@ -104,41 +104,43 @@ export default function ProfilePage() {
                                         </button>
                                     </div>
 
-                                    {getAddressData.length > 0 ? (
-                                        getAddressData.map((address, idx) => (
-                                            <div
-                                                key={address.id}
-                                                className="flex justify-between items-start gap-5 px-3 py-4 mb-2 bg-[#f9f9f9] hover:bg-[#f0f0f0] rounded-[12px]"
-                                            >
-                                                <div>
-                                                    <p className="text-sm text-gray-400 mb-1">{idx === 0 ? "Default Address" : `Address ${idx + 1}`}</p>
-                                                    <p className="text-sm text-black font-semibold">
-                                                        {address.first_name} {address.last_name}
-                                                    </p>
-                                                    <p className="text-sm text-gray-700">
-                                                        {address.address}, {address.apartment}, {address.city}, {address.state} - {address.zip_code}
-                                                    </p>
-                                                    <p className="text-sm text-gray-700 mt-1">Phone: {address.phone}</p>
-                                                </div>
-                                                <button
-                                                    onClick={() => handleEditAddress(idx)}
-                                                    className="text-blue-900 hover:underline"
+                                    <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
+                                        {getAddressData.length > 0 ? (
+                                            getAddressData.map((address, idx) => (
+                                                <div
+                                                    key={address.id}
+                                                    className="flex justify-between items-start gap-5 px-3 py-4 mb-2 bg-[#f9f9f9] hover:bg-[#f0f0f0] rounded-[12px]"
                                                 >
+                                                    <div>
+                                                        <p className="text-sm text-gray-400 mb-1">{address.is_default_address === "1" ? "Default Address" : `Address ${idx + 1}`}</p>
+                                                        <p className="text-sm text-black font-semibold">
+                                                            {address.first_name} {address.last_name}
+                                                        </p>
+                                                        <p className="text-sm text-gray-700">
+                                                            {address.address}, {address.apartment}, {address.city}, {address.state} - {address.zip_code}
+                                                        </p>
+                                                        <p className="text-sm text-gray-700 mt-1">Phone: {address.phone}</p>
+                                                    </div>
+                                                    <button
+                                                        onClick={() => handleEditAddress(idx)}
+                                                        className="text-blue-900 hover:underline"
+                                                    >
+                                                        <MdOutlineEdit size={22} />
+                                                    </button>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="flex items-start gap-10 group hover:bg-[#f5f5f5] p-3 rounded-[12px]">
+                                                <div>
+                                                    <p className="text-sm text-gray-400 mb-1">Default address</p>
+                                                    <p className="text-sm text-gray-700">India</p>
+                                                </div>
+                                                <button onClick={handleAddAddress} className="text-blue-900 hover:underline text-sm">
                                                     <MdOutlineEdit size={22} />
                                                 </button>
                                             </div>
-                                        ))
-                                    ) : (
-                                        <div className="flex items-start gap-10 group hover:bg-[#f5f5f5] p-3 rounded-[12px]">
-                                            <div>
-                                                <p className="text-sm text-gray-400 mb-1">Default address</p>
-                                                <p className="text-sm text-gray-700">India</p>
-                                            </div>
-                                            <button onClick={handleAddAddress} className="text-blue-900 hover:underline text-sm">
-                                                <MdOutlineEdit size={22} />
-                                            </button>
-                                        </div>
-                                    )}
+                                        )}
+                                    </div>
 
                                 </div>
 
