@@ -1,51 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import first from "../../../assest/image/imageone.jpeg";
 import second from "../../../assest/image/imagetwo.webp";
 import third from "../../../assest/image/imagefour.webp";
 import four from "../../../assest/image/imagefour.webp";
-
-const reviews = [
-  {
-    id: 1,
-    name: "Danny Ruben Yaacb",
-    country: "🇺🇸",
-    rating: 5,
-    date: "05/11/2024",
-    content:
-      "Had bought and kept this for a couple of months not knowing when it would come of value but today it helped in extracting a foreign object from an 8-month-old baby. Worked marvelously.",
-    image: first,
-  },
-  {
-    id: 2,
-    name: "Tom",
-    country: "🇺🇸",
-    rating: 5,
-    date: "05/13/2024",
-    content:
-      "I purchased this kit for my restaurant, and it's given my staff the confidence to handle emergencies. Highly recommend!",
-    image: second,
-  },
-  {
-    id: 3,
-    name: "Buyyyyy",
-    country: "🇺🇸",
-    rating: 5,
-    date: "05/08/2024",
-    content:
-      "Looks good. I don't want to ever have to use it! Instructions are clear enough even my children AND husband can follow them!",
-    image: third,
-  },
-  {
-    id: 4,
-    name: "Destiny",
-    country: "🇺🇸",
-    rating: 5,
-    date: "05/01/2024",
-    content:
-      "The suction is really good. Almost pulled my face off trying to test it 😂👍. I definitely feel more relieved having this around for my little one!",
-    image: four,
-  },
-];
 
 const ratingsBreakdown = [
   { stars: 5, count: 69 },
@@ -56,6 +13,7 @@ const ratingsBreakdown = [
 ];
 
 export default function ReviewGrid() {
+  const [reviews, setReviews] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [selectedStars, setSelectedStars] = useState(5);
@@ -69,8 +27,56 @@ export default function ReviewGrid() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [sortType, setSortType] = useState("date");
   const [loading, setLoading] = useState(false);
-  const [uploadedImage, setUploadedImage] = useState(null); // State to hold uploaded image filename
+  const [uploadedImage, setUploadedImage] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(4);
+  const increment = 4;
 
+  // Fetch reviews from API
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const payload = {
+          page: 0,
+          perpage: 8,
+          rating: 3,
+          fromDate: "",
+          toDate: "",
+        };
+
+        const response = await fetch(
+          "https://airwayclear.ffnewsupdater.xyz/api/v1/GKdjjhsjhdKdSNd/rest_api/get_rating.php",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          }
+        );
+
+        const result = await response.json();
+        if (result) {
+          const formatted = result.data.map((r, idx) => ({
+            id: idx + 1,
+            name: r.name,
+            email: r.email,
+            country: "🇺🇸",
+            rating: parseInt(r.rating),
+            date: r.created_at.split(" ")[0],
+            content: r.message,
+            image: r.image
+              ? `https://airwayclear.ffnewsupdater.xyz/api/v1/GKdjjhsjhdKdSNd/rest_api/uploads/${r.image}`
+              : first,
+          }));
+          setReviews(formatted);
+        }
+      } catch (error) {
+        console.error("Failed to fetch reviews:", error);
+      }
+    };
+
+    fetchReviews();
+  }, []);
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -94,7 +100,8 @@ export default function ReviewGrid() {
     try {
       setLoading(true);
 
-      // Step 1: If there is an image, upload it first
+      let imageName = "";
+
       if (selectedImage) {
         const formDataImage = new FormData();
         formDataImage.append("upload_file", selectedImage);
@@ -112,9 +119,8 @@ export default function ReviewGrid() {
         }
 
         const imageData = await imageResponse.json();
-
-        // Set the uploaded image filename to pass it to the review API
-        setUploadedImage(imageData.data);
+        imageName = imageData.data;
+        setUploadedImage(imageName);
       }
 
       const reviewData = {
@@ -122,9 +128,9 @@ export default function ReviewGrid() {
         email: formData.email,
         message: formData.message,
         rating: selectedStars,
-        image: uploadedImage, // Add the uploaded image filename here
+        image: imageName,
       };
-      // Step 2: Submit the review with the image filename (if uploaded)
+
       const reviewResponse = await fetch(
         "https://airwayclear.ffnewsupdater.xyz/api/v1/GKdjjhsjhdKdSNd/rest_api/rating.php",
         {
@@ -146,7 +152,28 @@ export default function ReviewGrid() {
       setSelectedStars(0);
       setHoveredStar(0);
       setSelectedImage(null);
-      setUploadedImage(null); // Reset image state after submission
+      setUploadedImage(null);
+
+      // Refresh reviews after submission
+      const refresh = await fetch(
+        "https://airwayclear.ffnewsupdater.xyz/api/v1/GKdjjhsjhdKdSNd/rest_api/fetch_rating.php"
+      );
+      const newResult = await refresh.json();
+      if (Array.isArray(newResult.data)) {
+        const updated = newResult.data.map((r, idx) => ({
+          id: idx + 1,
+          name: r.name,
+          email: r.email,
+          country: "🇺🇸",
+          rating: parseInt(r.rating),
+          date: r.created_at.split(" ")[0],
+          content: r.message,
+          image: r.image
+            ? `https://airwayclear.ffnewsupdater.xyz/api/v1/GKdjjhsjhdKdSNd/rest_api/uploads/${r.image}`
+            : first,
+        }));
+        setReviews(updated);
+      }
     } catch (error) {
       console.error("Error submitting review:", error);
     } finally {
@@ -154,10 +181,6 @@ export default function ReviewGrid() {
     }
   };
 
-  const [visibleCount, setVisibleCount] = useState(4); // Initial number of reviews to display
-  const increment = 4; // Number of reviews to add on each click
-
-  // Sort reviews based on sortType
   const sortedReviews = [...reviews].sort((a, b) => {
     switch (sortType) {
       case "date":
@@ -169,13 +192,8 @@ export default function ReviewGrid() {
     }
   });
 
-  // Determine if there are more reviews to load
   const hasMore = visibleCount < sortedReviews.length;
-
-  // Handle "Load More" button click
-  const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + increment);
-  };
+  const handleLoadMore = () => setVisibleCount((prev) => prev + increment);
 
   return (
     <section className="px-4 py-8 md:px-12 lg:px-20 bg-white">
@@ -196,6 +214,7 @@ export default function ReviewGrid() {
             {showForm ? "Close review form" : "Write a review"}
           </button>
         </div>
+
         {/* Ratings Breakdown */}
         <div className="flex flex-col gap-2 mb-8">
           {ratingsBreakdown.map(({ stars, count }) => (
@@ -229,14 +248,13 @@ export default function ReviewGrid() {
             </div>
           ))}
         </div>
+
         {/* Review Form */}
         {showForm && (
           <div className="border-t border-gray-300 pt-6 mb-8">
             <h3 className="text-center text-lg font-semibold text-gray-700 mb-2">
               Write a Review
             </h3>
-
-            {/* Star Selector */}
             <div className="flex justify-center mb-4">
               {[1, 2, 3, 4, 5].map((star) => (
                 <svg
@@ -312,7 +330,8 @@ export default function ReviewGrid() {
             </div>
           </div>
         )}
-        {/* Review Cards */}
+
+        {/* Review Sort Dropdown */}
         <div className="flex justify-end mb-4">
           <select
             value={sortType}
@@ -320,26 +339,22 @@ export default function ReviewGrid() {
             className="border border-gray-300 rounded px-4 py-2 text-sm"
           >
             <option value="date">Sort reviews</option>
-            <option value="rate">Sort by contact</option>
-            <option value="rate">Sort by photo</option>
             <option value="rate">Sort by rate</option>
           </select>
         </div>
-        Edit
+
+        {/* Review Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {sortedReviews.slice(0, visibleCount).map((review) => (
+          {reviews.slice(0, visibleCount).map((review) => (
             <div
               key={review.id}
               className="rounded-xl border bg-white shadow-md overflow-hidden flex flex-col"
             >
-              {/* Review Image */}
               <img
                 src={review.image}
                 alt="Review product"
                 className="w-full h-60 object-cover"
               />
-
-              {/* Star Rating */}
               <div className="flex justify-center gap-1 py-2 bg-white">
                 {Array(5)
                   .fill(0)
@@ -356,8 +371,6 @@ export default function ReviewGrid() {
                     </svg>
                   ))}
               </div>
-
-              {/* User Info */}
               <div className="flex items-center gap-2 px-4 mb-2">
                 <div className="flex-shrink-0 w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-sm font-bold text-gray-600">
                   {review.name.charAt(0)}
@@ -373,14 +386,13 @@ export default function ReviewGrid() {
                   </div>
                 </div>
               </div>
-
-              {/* Review Content */}
               <p className="text-sm text-gray-700 px-4 pb-4">
                 {review.content}
               </p>
             </div>
           ))}
         </div>
+
         {/* Load More Button */}
         {hasMore && (
           <div className="flex justify-center mt-6">
