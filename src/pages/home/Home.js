@@ -1,52 +1,59 @@
-import React from "react";
-import SEO from "../../utils/SEO";
-import AirwayClearFeatures from "./component/AirwayClearFeatures";
-import AirwayClearHero from "./component/AirwayClearHero";
-import AntiChokingSteps from "./component/AntiChokingSteps";
-import Card from "./component/Card";
-import ChokingTimeline from "./component/ChokingTimeline";
-import ComparisonTable from "./component/ComparisonTable";
-import FacebookTestimonials from "./component/FacebookTestimonials";
-import FAQSection from "./component/FAQSection";
-import ImageMarquee from "./component/ImageMarquee";
-import ProductFeature from "./component/ProductFeature";
-import ReviewGrid from "./component/ReviewGrid";
-import StatsSection from "./component/StatsSection";
-import TestimonialCarousel from "./component/TestimonialCarousel";
-import TrustAirwaySection from "./component/TrustAirwaySection";
-import TrustedByFamilies from "./component/TrustedByFamilies";
-import ProductShowcase from "./component/ProductShowcase";
+import React from 'react'
+import SEO from '../../utils/SEO';
+import { useNavigate } from 'react-router-dom';
+import Container from '../../components/Container';
+import collections_img from '../../assest/collections_img.webp';
 
 const Home = () => {
-  return (
-    <>
-      <SEO
-        title="AirwayClear - Innovative Air Solutions for Your Space"
-        description="Discover AirwayClear’s advanced air purification systems. Clean air technology for homes, businesses, and industries. Breathe better today."
-        keywords="Air purifier, AirwayClear, clean air systems, air filtration, home air cleaner"
-        ogTitle="AirwayClear - Innovative Air Solutions"
-        ogDescription="Explore advanced clean air technology with AirwayClear. Healthier air for your home and workspace."
-        twitterTitle="AirwayClear | airwayclear.co"
-        twitterDescription="Clean air solutions for everyone. Explore AirwayClear products."
-      />
-      <ProductShowcase />
-      <Card />
-      <ChokingTimeline />
-      <StatsSection />
-      <AirwayClearHero />
-      <AirwayClearFeatures />
-      <AntiChokingSteps />
-      <ProductFeature />
-      <ImageMarquee />
-      <TestimonialCarousel />
-      <FacebookTestimonials />
-      <TrustedByFamilies />
-      <ComparisonTable />
-      <TrustAirwaySection />
-      <FAQSection />
-      <ReviewGrid />
-    </>
-  );
-};
+    const navigate = useNavigate();
+
+    const handleTakeAction = () => {
+        navigate('/product/airwayclear');
+    };
+    return (
+        <>
+            <SEO
+                title="Shop Air Purifiers - AirwayClear Collections"
+                description="Browse AirwayClear's collection of high-efficiency air purifiers. Choose the best model for your home or business."
+                keywords="Air purifiers, collections, AirwayClear shop, clean air devices"
+                ogTitle="AirwayClear Product Collections"
+                ogDescription="Explore our complete line of air purification systems."
+                twitterTitle="Collections - AirwayClear"
+                twitterDescription="View all AirwayClear products in one place."
+            />
+
+            <Container>
+                <div className="bg-white flex flex-col items-center paddingX py-4 md:py-10">
+                    <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">Products</h1>
+
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-5xl w-full">
+                        {/* Left Image Side */}
+                        <div className="flex-shrink-0 w-full md:w-1/2 flex justify-center">
+                            <img
+                                src={collections_img}
+                                alt="AirwayClear Kit"
+                                className="w-full max-w-md object-contain"
+                            />
+                        </div>
+
+                        {/* Right Text Side */}
+                        <div className="text-center md:text-left w-full md:w-1/2 space-y-4">
+                            <h2 className="text-2xl md:text-3xl font-bold">Airwayclear™</h2>
+                            <p className="text-gray-700">
+                                Life and death is a matter of seconds in an emergency. Are you prepared?
+                            </p>
+                            <button
+                                onClick={handleTakeAction}
+                                className="bg-blue-900 text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-800 transition"
+                            >
+                                Take action
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </Container>
+        </>
+    )
+}
 
 export default Home;

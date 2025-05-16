@@ -14,6 +14,7 @@ import Loading from "../../components/Common/Loading";
 import Paypal from "../../payment/Paypal";
 import { clearCart } from "../../store/slice/cartSlice";
 
+
 const shippingCost = 500;
 
 const Checkouts = () => {
@@ -130,7 +131,6 @@ const Checkouts = () => {
   };
 
   const handleApprove = async (data, actions) => {
-    setLoading(true);
     const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
     const total = subtotal + shippingCost;
     const totalSavings = cartItems.reduce((sum, item) => sum + (item.originalPrice - item.price || 0), 0);
@@ -143,8 +143,8 @@ const Checkouts = () => {
       phoneCode: phoneCode,
     };
 
-    const details = await actions.order.capture();
     try {
+      const details = await actions.order.capture();
       const payload = {
         gateway_transaction_id: details.id,
         item_quantity: itemQuantity,
@@ -161,7 +161,6 @@ const Checkouts = () => {
         const response = await ApiHandler("/transaction_create.php", "POST", payload, token, dispatch, navigate);
         if (response.data.status === "1") {
           toast.success(response.data.msg);
-          dispatch(clearCart());
 
           const paymentResponse = {
             ...payload,
@@ -203,8 +202,8 @@ const Checkouts = () => {
         state: { state: failedResponse }
       });
     } finally {
-      dispatch(clearCart());
       setLoading(false);
+      dispatch(clearCart());
     }
   };
 

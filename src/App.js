@@ -6,7 +6,7 @@ import Error500 from "./components/Common/Error500";
 import Layout from "./components/layout";
 
 import AuthProtect from "./protect/AuthProtect";
-import Home from "./pages/home/Home";
+import Product from "./pages/product/Product";
 import PrivacyPolicy from "./pages/privacy-policy/PrivacyPolicy";
 import Contact from "./pages/contact/Contact";
 import ContactInformation from "./pages/contact-information/ContactInformation";
@@ -15,7 +15,7 @@ import TermsOfService from "./pages/terms-of-service/TermsOfService";
 import ShippingPolicy from "./pages/shipping-policy/ShippingPolicy";
 import Settings from "./pages/settings/Settings";
 import Checkouts from "./pages/checkouts/Checkouts";
-import Collections from "./pages/collections/Collections";
+import Home from "./pages/home/Home";
 import Orders from "./pages/orders/Orders";
 import Profile from "./pages/profile/Profile";
 import Login from "./pages/auth/Login";
@@ -53,7 +53,7 @@ const App = () => {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/shipping-policy" element={<ShippingPolicy />} />
           <Route path="/contact-information" element={<ContactInformation />} />
-          <Route path="/collections" element={<Collections />} />
+          <Route path="/product/airwayclear" element={<Product />} />
         </Route>
 
         <Route element={<AuthProtect />}>
