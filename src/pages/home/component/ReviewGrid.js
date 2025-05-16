@@ -22,15 +22,18 @@ export default function ReviewGrid() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [sortType, setSortType] = useState("date");
   const [loading, setLoading] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(4);
-  const increment = 4;
+  const [page, setPage] = useState(0);
+  const perPage = 8;
+  const [hasMore, setHasMore] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(8);
+  const increment = 8;
 
-  const fetchReviews = async () => {
+  const fetchReviews = async (currentPage = 0, isAppending = false) => {
     try {
       const payload = {
-        page: 0,
-        perpage: 8,
-        rating: 3,
+        page: currentPage,
+        perpage: perPage,
+        rating: "",
         fromDate: "",
         toDate: "",
       };
@@ -46,27 +49,42 @@ export default function ReviewGrid() {
       const result = await response.json();
       if (result && Array.isArray(result.data)) {
         const formatted = result.data.map((r, idx) => ({
-          id: idx + 1,
+          id: idx + 1 + currentPage * perPage,
           name: r.name,
           email: r.email,
           country: "🇺🇸",
           rating: parseInt(r.rating),
           date: r.created_at?.split(" ")[0] || "",
           content: r.message,
-          image: r.image
-            ? `https://airwayclear.ffnewsupdater.xyz/api/v1/GKdjjhsjhdKdSNd/rest_api/uploads/${r.image}`
-            : first,
+          image: r.image ? r.image : first,
         }));
-        setReviews(formatted);
+
+        if (isAppending) {
+          setReviews((prev) => [...prev, ...formatted]);
+        } else {
+          setReviews(formatted);
+        }
+
+        setHasMore(formatted.length === perPage);
+      } else {
+        setHasMore(false);
       }
     } catch (error) {
       console.error("Failed to fetch reviews:", error);
+      setHasMore(false);
     }
   };
 
   useEffect(() => {
-    fetchReviews();
+    fetchReviews(page);
   }, []);
+
+  const handleLoadMore = () => {
+    const nextPage = page + 1;
+    fetchReviews(nextPage, true);
+    setPage(nextPage);
+    setVisibleCount((prev) => prev + increment);
+  };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -142,9 +160,6 @@ export default function ReviewGrid() {
         return new Date(b.date) - new Date(a.date);
     }
   });
-
-  const hasMore = visibleCount < sortedReviews.length;
-  const handleLoadMore = () => setVisibleCount((prev) => prev + increment);
 
   return (
     <section className="p-6 bg-white">
@@ -243,6 +258,7 @@ export default function ReviewGrid() {
             </div>
           </div>
         )}
+
         {/* Sort Dropdown */}
         <div className="flex justify-end mb-4">
           <select
@@ -294,7 +310,7 @@ export default function ReviewGrid() {
           <div className="flex justify-center mt-6">
             <button
               onClick={handleLoadMore}
-              className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+              className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded transition"
             >
               Load More
             </button>
