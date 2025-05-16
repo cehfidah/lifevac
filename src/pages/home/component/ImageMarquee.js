@@ -1,29 +1,34 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
+import first from "../../../assest/image/AAAA.webp";
+import second from "../../../assest/image/BBB.webp";
+import third from "../../../assest/image/CCC.webp";
+import four from "../../../assest/image/DDD.webp";
+import fiveth from "../../../assest/image/EEE.jpeg";
+import sixth from "../../../assest/image/GGG.webp";
+import one from "../../../assest/image/021.webp";
+import two from "../../../assest/image/022.jpeg";
+import three from "../../../assest/image/023.png";
+import foure from "../../../assest/image/024.png";
+import five from "../../../assest/image/025.png";
 
-const images = [
-  "/images/img1.jpg",
-  "/images/img2.jpg",
-  "/images/img3.jpg",
-  "/images/img4.jpg",
-  "/images/img5.jpg",
-  "/images/img6.jpg",
-  "/images/img7.jpg",
-  "/images/img8.jpg",
-];
+// Original images
+const images = [first, second, third, four, fiveth, sixth];
+const moreImages = [one, two, three, foure, five];
 
-const moreImages = [
-  "/images/img9.jpg",
-  "/images/img10.jpg",
-  "/images/img11.jpg",
-  "/images/img12.jpg",
-  "/images/img13.jpg",
-  "/images/img14.jpg",
-  "/images/img15.jpg",
-  "/images/img16.jpg",
-];
+// Helper function to repeat images
+const repeatImages = (imageArray, repeatCount = 3) => {
+  const repeated = [];
+  for (let i = 0; i < repeatCount; i++) {
+    repeated.push(...imageArray);
+  }
+  return repeated;
+};
 
-const DoubleImageMarquee = () => {
+const ImageMarquee = () => {
+  const repeatedTopImages = repeatImages(images, 3);
+  const repeatedBottomImages = repeatImages(moreImages, 3);
+
   return (
     <div className="w-full bg-white py-6 space-y-6">
       {/* Top Marquee */}
@@ -33,7 +38,7 @@ const DoubleImageMarquee = () => {
         pauseOnHover={true}
         className="overflow-hidden"
       >
-        {images.map((src, index) => (
+        {repeatedTopImages.map((src, index) => (
           <div
             key={index}
             className="mx-2 flex-shrink-0 border-4 border-blue-200 rounded-xl overflow-hidden p-1 bg-white shadow-md"
@@ -55,7 +60,7 @@ const DoubleImageMarquee = () => {
         direction="right"
         className="overflow-hidden"
       >
-        {moreImages.map((src, index) => (
+        {repeatedBottomImages.map((src, index) => (
           <div
             key={index}
             className="mx-2 flex-shrink-0 border-4 border-blue-200 rounded-xl overflow-hidden p-1 bg-white shadow-md"
@@ -72,4 +77,4 @@ const DoubleImageMarquee = () => {
   );
 };
 
-export default DoubleImageMarquee;
+export default ImageMarquee;
