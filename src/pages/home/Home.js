@@ -1,5 +1,6 @@
 import React from "react";
 import SEO from "../../utils/SEO";
+import EmergencyGuide from "../EmergencyGuide";
 import AirwayClearFeatures from "./component/AirwayClearFeatures";
 import AirwayClearHero from "./component/AirwayClearHero";
 import AntiChokingSteps from "./component/AntiChokingSteps";
