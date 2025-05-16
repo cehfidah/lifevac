@@ -1,36 +1,33 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import {
-  FaAmazon,
-  FaCcAmex,
-  FaCcApplePay,
-  FaCcDiscover,
-  FaGooglePay,
-  FaCcPaypal,
-  FaCcVisa,
-  FaCcStripe
-} from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import first from "../../assest/image/payment1.svg";
+import second from "../../assest/image/payment2.svg";
+import third from "../../assest/image/payment3.svg";
+import four from "../../assest/image/payment4.svg";
+import five from "../../assest/image/payment5.svg";
+import six from "../../assest/image/payment6.svg";
+import seven from "../../assest/image/payment7.svg";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
-    setMessage('');
-    setError('');
+    setMessage("");
+    setError("");
     setIsSubmitting(true);
 
     try {
       // Replace this URL with your actual subscription API endpoint
-      const res = await axios.post('/api/subscribe', { email });
-      setMessage('Thank you for subscribing!');
-      setEmail('');
+      const res = await axios.post("/api/subscribe", { email });
+      setMessage("Thank you for subscribing!");
+      setEmail("");
     } catch (err) {
-      setError('Something went wrong. Please try again.');
+      setError("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -44,7 +41,10 @@ const Footer = () => {
           Enter your email to stay up to date with with our newsletter!
         </p>
 
-        <form onSubmit={handleSubscribe} className="flex flex-col justify-center gap-3 mb-4">
+        <form
+          onSubmit={handleSubscribe}
+          className="flex flex-col justify-center gap-3 mb-4"
+        >
           <input
             type="email"
             value={email}
@@ -58,7 +58,7 @@ const Footer = () => {
             disabled={isSubmitting}
             className="bg-white text-black font-bold text-base px-6 py-4 rounded-md hover:bg-gray-200 transition"
           >
-            {isSubmitting ? 'Signing up...' : 'Sign up'}
+            {isSubmitting ? "Signing up..." : "Sign up"}
           </button>
         </form>
 
@@ -69,26 +69,35 @@ const Footer = () => {
       {/* Footer Bottom */}
       <div className="border-t border-white/20 mt-10 py-6 text-center">
         <div className="flex justify-center flex-wrap gap-5 mb-4">
-          <FaAmazon className="text-white text-4xl" />
-          <FaCcAmex className="text-white text-4xl" />
-          <FaCcApplePay className="text-white text-4xl" />
-          <FaCcDiscover className="text-white text-4xl" />
-          <FaGooglePay className="text-white text-4xl" />
-          <FaCcPaypal className="text-white text-4xl" />
-          <FaCcStripe className="text-white text-4xl" />
-          <FaCcVisa className="text-white text-4xl" />
+          <img src={first} />
+          <img src={second} />
+          <img src={third} />
+          <img src={four} />
+          <img src={five} />
+          <img src={six} />
+          <img src={seven} />
         </div>
 
-        <div className='flex flex-col md:flex-row items-center justify-center'>
+        <div className="flex flex-col md:flex-row items-center justify-center">
           <div className="text-sm text-gray-300">
             © 2025 All Rights Reserved
           </div>
           <div>
-            <Link to="/refund-policy" className="hover:underline">&nbsp; • &nbsp; Refund policy</Link>
-            <Link to="/privacy-policy" className="hover:underline">&nbsp; • &nbsp; Privacy policy</Link>
-            <Link to="/terms" className="hover:underline">&nbsp; • &nbsp; Terms of service</Link>
-            <Link to="/shipping-policy" className="hover:underline">&nbsp; • &nbsp; Shipping policy</Link>
-            <Link to="/contact-information" className="hover:underline">&nbsp; • &nbsp; Contact information</Link>
+            <Link to="/refund-policy" className="hover:underline">
+              &nbsp; • &nbsp; Refund policy
+            </Link>
+            <Link to="/privacy-policy" className="hover:underline">
+              &nbsp; • &nbsp; Privacy policy
+            </Link>
+            <Link to="/terms" className="hover:underline">
+              &nbsp; • &nbsp; Terms of service
+            </Link>
+            <Link to="/shipping-policy" className="hover:underline">
+              &nbsp; • &nbsp; Shipping policy
+            </Link>
+            <Link to="/contact-information" className="hover:underline">
+              &nbsp; • &nbsp; Contact information
+            </Link>
           </div>
         </div>
       </div>
