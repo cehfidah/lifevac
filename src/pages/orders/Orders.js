@@ -1,20 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import SEO from '../../utils/SEO';
+import { useEffect, useState } from "react";
 import Container from '../../components/Container';
+import SEO from '../../utils/SEO';
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { ApiHandler } from "../../helper/ApiHandler";
+import { toast } from "react-toastify";
+import Loading from "../../components/Common/Loading";
+import { FaTag } from "react-icons/fa";
+
 
 const Orders = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { token } = useSelector((state) => state.auth);
+
     const [loading, setLoading] = useState(true);
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        // Simulate loading for 3 seconds
-        setTimeout(() => {
-            // Example: Replace with actual API call
-            const fetchedOrders = []; // Try adding mock data here like [{ id: 1, title: "Order #1" }] to test cards
-            setOrders(fetchedOrders);
-            setLoading(false);
-        }, 3000);
+        fetchData();
     }, []);
+
+    const fetchData = async () => {
+        try {
+            const response = await ApiHandler("/get_transaction.php", "POST", undefined, token, dispatch, navigate);
+            if (response.data.status === "1" && response.data.data.length > 0) {
+                setOrders(response.data.data);
+            }
+        } catch (error) {
+            toast.error("An error occurred. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    if (loading) return <Loading />;
 
     return (
         <>
@@ -46,14 +66,15 @@ const Orders = () => {
                         <>
                             {/* If orders exist */}
                             {orders.length > 0 ? (
-                                <div className="grid grid-cols-1 gap-4 max-w-3xl mx-auto">
-                                    {orders.map((order, index) => (
-                                        <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-                                            <h2 className="font-bold text-lg">Order #{order.id}</h2>
-                                            <p className="text-gray-600 mt-2">Details: {order.title}</p>
-                                        </div>
-                                    ))}
-                                </div>
+                                <Container>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 paddingX mx-auto">
+                                        {orders.map((order, index) => (
+                                            <div key={index}>
+                                                <OrderSummary transaction={order} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </Container>
                             ) : (
                                 // Empty State Design
                                 <div className="bg-white text-center rounded-lg p-10 max-w-3xl mx-auto">
@@ -70,3 +91,34 @@ const Orders = () => {
 }
 
 export default Orders;
+
+
+const OrderSummary = ({ transaction }) => {
+    const navigate = useNavigate();
+    return (
+        <div
+            onClick={() => navigate(`/orders/${transaction.id}`, { state: { transaction } })}
+            className="bg-white rounded-xl shadow-md p-4 hover:shadow-lg cursor-pointer transition"
+        >
+            <div className="flex justify-between items-center mb-2">
+                <h2 className="text-lg font-semibold">
+                    Transaction:{" "}
+                    <span className="text-blue-600">{transaction.gateway_transaction_id}</span>
+                </h2>
+                <span
+                    className={`text-sm font-medium px-2 py-1 rounded-full ${transaction.payment_status === "COMPLETED"
+                        ? "bg-green-100 text-green-700"
+                        : "bg-yellow-100 text-yellow-700"
+                        }`}
+                >
+                    {transaction.payment_status}
+                </span>
+            </div>
+            <p className="text-sm text-gray-600">Quantity: {transaction.item_quantity}</p>
+            <p className="text-sm text-gray-600">Final Amount: ${transaction.final_amount}</p>
+            <p className="text-sm text-gray-500 mt-1">
+                Date: {new Date(transaction.created_date).toLocaleString()}
+            </p>
+        </div>
+    );
+}

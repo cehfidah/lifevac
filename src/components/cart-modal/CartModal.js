@@ -52,7 +52,7 @@ const CartModal = () => {
                                 <div className="h-full flex flex-col justify-center items-center px-6">
                                     <h2 className="text-xl font-extrabold mb-4 text-center">Your cart is empty</h2>
                                     <button
-                                        onClick={() => { navigate("/"); dispatch(toggleCart()) }}
+                                        onClick={() => { navigate("/product/airwayclear"); dispatch(toggleCart()) }}
                                         className="bg-[#0d1b39] text-white px-6 py-2 rounded font-semibold text-sm"
                                     >
                                         Continue shopping
