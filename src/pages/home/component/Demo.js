@@ -85,16 +85,17 @@ const Demo = () => {
         <div className="md:sticky md:top-6 md:self-start w-full md:w-1/2">
           <div className="flex flex-col md:flex-row items-start gap-4">
             {/* Thumbnails */}
-            <div className="flex md:flex-col gap-2 md:overflow-y-auto max-h-[400px] md:max-h-[500px] pr-2">
+            <div className="flex flex-col gap-2 md:overflow-y-auto max-h-[400px] md:max-h-[500px] pr-2">
               {images.map((img, index) => (
                 <img
                   key={index}
                   src={img}
                   alt={`thumb-${index}`}
-                  className={`w-16 h-16 object-cover rounded shadow cursor-pointer border-2 ${mainImageIndex === index
-                    ? "border-blue-600"
-                    : "border-transparent"
-                    }`}
+                  className={`w-16 h-16 object-cover rounded shadow cursor-pointer border-2 ${
+                    mainImageIndex === index
+                      ? "border-blue-600"
+                      : "border-transparent"
+                  }`}
                   onClick={() => setMainImageIndex(index)}
                 />
               ))}
