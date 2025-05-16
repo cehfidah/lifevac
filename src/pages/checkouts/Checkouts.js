@@ -130,7 +130,29 @@ const Checkouts = () => {
     }
   };
 
+  const validateForm = () => {
+    const requiredFields = [
+      formData.firstName,
+      formData.lastName,
+      formData.address,
+      formData.city,
+      formData.zip,
+      formData.phone,
+      country?.label,
+      selectedState?.label,
+    ];
+
+    return requiredFields.every((field) => field && field.trim() !== "");
+  };
+
   const handleApprove = async (data, actions) => {
+    if (!validateForm()) {
+      toast.error("Please fill in all required shipping details before proceeding.");
+      return;
+    }
+
+    setLoading(true);
+
     const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
     const total = subtotal + shippingCost;
     const totalSavings = cartItems.reduce((sum, item) => sum + (item.originalPrice - item.price || 0), 0);
