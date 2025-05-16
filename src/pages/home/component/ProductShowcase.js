@@ -15,7 +15,7 @@ import eaghit from "../../../assest/image/firstsectionthirdimage.png";
 
 import OfferSelection from "./OfferSelection";
 
-const Demo = () => {
+const ProductShowcase = () => {
   const images = [first, second, third, four, fifth, seven, eaghit, six];
   const [mainImageIndex, setMainImageIndex] = useState(images.indexOf(six));
   const mainImageRef = useRef(null);
@@ -188,4 +188,4 @@ const Demo = () => {
   );
 };
 
-export default Demo;
+export default ProductShowcase;
