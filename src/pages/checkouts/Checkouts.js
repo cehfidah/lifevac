@@ -1,16 +1,20 @@
-import SEO from "../../utils/SEO";
-import first from "../../assest/Airwayclear_64x64.svg";
-import second from "../../assest/Yourparagraphtext_64x64.svg";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ApiHandler } from "../../helper/ApiHandler";
-import { toast } from "react-toastify";
+// Imports
 import { useEffect, useState } from "react";
-import Loading from "../../components/Common/Loading";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { Country, State } from "country-state-city";
+import { toast } from "react-toastify";
 import { FaTag } from "react-icons/fa";
 
+// Utils & Components
+import SEO from "../../utils/SEO";
+import { ApiHandler } from "../../helper/ApiHandler";
+import Loading from "../../components/Common/Loading";
+import Paypal from "../../payment/Paypal";
+import { clearCart } from "../../store/slice/cartSlice";
+
+const shippingCost = 500;
 
 const Checkouts = () => {
   const location = useLocation();
@@ -24,6 +28,9 @@ const Checkouts = () => {
   const [loading, setLoading] = useState(true);
   const [addresses, setAddresses] = useState([]);
   const [selectedAddressId, setSelectedAddressId] = useState(null);
+  const [states, setStates] = useState([]);
+  const [selectedState, setSelectedState] = useState(null);
+  const [phoneCode, setPhoneCode] = useState("91");
 
   const countries = Country.getAllCountries().map((c) => ({
     label: c.name,
@@ -31,10 +38,6 @@ const Checkouts = () => {
   }));
 
   const [country, setCountry] = useState({ label: "India", value: "IN" });
-  const [states, setStates] = useState([]);
-  const [selectedState, setSelectedState] = useState(null);
-  const [phoneCode, setPhoneCode] = useState("91");
-
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -44,6 +47,13 @@ const Checkouts = () => {
     zip: "",
     phone: "",
   });
+
+  useEffect(() => {
+    if (!cartItems || cartItems.length === 0) {
+      toast.error("Your cart is empty. Redirecting to home.");
+      navigate("/", { replace: true });
+    }
+  }, [cartItems, navigate]);
 
   // Fetch addresses from API
   useEffect(() => {
@@ -119,11 +129,12 @@ const Checkouts = () => {
     }
   };
 
-  const handleCompletePurchase = () => {
+  const handleApprove = async (data, actions) => {
+    setLoading(true);
     const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
     const total = subtotal + shippingCost;
     const totalSavings = cartItems.reduce((sum, item) => sum + (item.originalPrice - item.price || 0), 0);
-    const item_quantity = cartItems.reduce((s, i) => s + i.quantity, 0);
+    const itemQuantity = cartItems.reduce((s, i) => s + i.quantity, 0);
 
     const finalData = {
       ...formData,
@@ -132,18 +143,69 @@ const Checkouts = () => {
       phoneCode: phoneCode,
     };
 
+    const details = await actions.order.capture();
+    try {
+      const payload = {
+        gateway_transaction_id: details.id,
+        item_quantity: itemQuantity,
+        sub_total: subtotal,
+        shipping_amount: shippingCost,
+        final_amount: total,
+        total_saving: totalSavings,
+        product_detail: cartItems,
+        shipping_address: finalData,
+        gateway_response: details,
+        payment_status: details.status,
+      };
+      try {
+        const response = await ApiHandler("/transaction_create.php", "POST", payload, token, dispatch, navigate);
+        if (response.data.status === "1") {
+          toast.success(response.data.msg);
+          dispatch(clearCart());
 
-    const payloadFinal = {
-      txn_id: "",
-      item_quantity: item_quantity,
-      sub_total: subtotal,
-      shipping_amount: 500,
-      final_amount: total,
-      total_saving: totalSavings,
-      product_detail: cartItems,
-      shipping_address: finalData,
+          const paymentResponse = {
+            ...payload,
+            payer: details.payer.name.given_name,
+            email: details.payer.email_address,
+          };
+
+          if (response.data.data === '1' || response.data.data === 1) {
+            navigate('/success', { state: paymentResponse });
+          } else {
+            navigate('/fail', { state: paymentResponse });
+          }
+
+        } else {
+          toast.error(response.data.msg);
+        }
+      } catch (error) {
+        toast.error("An error occurred. Please try again.");
+      }
+    } catch (err) {
+      console.error("Payment failed", err);
+
+      const failedResponse = {
+        gateway_transaction_id: null,
+        item_quantity: itemQuantity,
+        sub_total: subtotal,
+        shipping_amount: shippingCost,
+        final_amount: total,
+        total_saving: totalSavings,
+        product_detail: cartItems,
+        shipping_address: finalData,
+        gateway_response: null,
+        payment_status: "FAILED",
+        payer: null,
+        email: null,
+      };
+
+      navigate('/fail', {
+        state: { state: failedResponse }
+      });
+    } finally {
+      dispatch(clearCart());
+      setLoading(false);
     }
-    console.log("Purchase Data:", payloadFinal);
   };
 
   if (loading) return <Loading />;
@@ -268,11 +330,7 @@ const Checkouts = () => {
                 service
               </p>
 
-              <button className="w-full bg-[#1a1a2e] text-white font-semibold py-3 rounded mt-4"
-                onClick={handleCompletePurchase}
-              >
-                Complete Purchase
-              </button>
+              <Paypal handleApprove={handleApprove} amount={subtotal + shippingCost} />
             </div>
           </div>
 
@@ -298,8 +356,6 @@ const Checkouts = () => {
 };
 
 export default Checkouts;
-
-const shippingCost = 500;
 
 const OrderSummary = ({ cartItems }) => {
   const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
