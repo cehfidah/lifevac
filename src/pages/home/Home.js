@@ -6,7 +6,6 @@ import AntiChokingSteps from "./component/AntiChokingSteps";
 import Card from "./component/Card";
 import ChokingTimeline from "./component/ChokingTimeline";
 import ComparisonTable from "./component/ComparisonTable";
-import Demo from "./component/Demo";
 import FacebookTestimonials from "./component/FacebookTestimonials";
 import FAQSection from "./component/FAQSection";
 import ImageMarquee from "./component/ImageMarquee";
@@ -16,6 +15,7 @@ import StatsSection from "./component/StatsSection";
 import TestimonialCarousel from "./component/TestimonialCarousel";
 import TrustAirwaySection from "./component/TrustAirwaySection";
 import TrustedByFamilies from "./component/TrustedByFamilies";
+import ProductShowcase from "./component/ProductShowcase";
 
 const Home = () => {
   return (
@@ -29,7 +29,7 @@ const Home = () => {
         twitterTitle="AirwayClear | airwayclear.co"
         twitterDescription="Clean air solutions for everyone. Explore AirwayClear products."
       />
-      <Demo />
+      <ProductShowcase />
       <Card />
       <ChokingTimeline />
       <StatsSection />
