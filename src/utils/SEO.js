@@ -12,7 +12,7 @@ const SEO = ({
     keywords
 }) => {
     const location = useLocation();  // Get current page path dynamically
-    const canonicalUrl = `https://tezbikes.com${location.pathname}`; // Create full canonical URL
+    const canonicalUrl = `https://airwayclear.ffnewsupdater.xyz${location.pathname}`; // Create full canonical URL
 
     return (
         <Helmet>
