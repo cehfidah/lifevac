@@ -24,6 +24,7 @@ import DashboardLayout from "./components/dashboardlayout";
 import CartModal from "./components/cart-modal/CartModal";
 import Success from "./payment/Success";
 import Fail from "./payment/Fail";
+import OrderDetails from "./pages/orders/OrderDetails";
 
 const App = () => {
   const location = useLocation();
@@ -61,6 +62,7 @@ const App = () => {
             <Route path="/fail" element={<Fail />} />
             <Route path="/success" element={<Success />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="/orders/:id" element={<OrderDetails />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />
           </Route>
