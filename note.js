@@ -1,3 +1,4 @@
+// store/slice/cartSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -12,7 +13,6 @@ const cartSlice = createSlice({
         toggleCart: (state) => {
             state.cartOpen = !state.cartOpen;
         },
-
         addItemToCart: (state, action) => {
             const { id, guideIncluded } = action.payload;
 
@@ -23,12 +23,15 @@ const cartSlice = createSlice({
                 state.cartItems.push({ ...action.payload, quantity: 1 });
             }
 
-            // Handle guide addition
-            if (guideIncluded) {
-                const guideItem = state.cartItems.find(item => item.type === 'guide');
-                if (guideItem) {
-                    guideItem.quantity += 1;
-                } else {
+            // Count total quantity of all guideIncluded items
+            const guideIncludedCount = state.cartItems
+                .filter(i => i.guideIncluded)
+                .reduce((total, i) => total + i.quantity, 0);
+
+            let guideItem = state.cartItems.find(item => item.type === 'guide');
+
+            if (guideIncludedCount > 0) {
+                if (!guideItem) {
                     state.cartItems.push({
                         id: 'guide',
                         sectionTitle: 'Guide For Household Emergencies',
@@ -36,49 +39,52 @@ const cartSlice = createSlice({
                         price: 0,
                         originalPrice: 1200,
                         savings: "",
-                        quantity: 1,
-                        extraPrice: 1200, // Extra price for paid guides if more than 1
+                        quantity: guideIncludedCount,
                         image: "https://airwayclear.us/cdn/shop/files/Airwayclear.svg?v=1743450735&width=600",
                         title: "BUY ONE",
                         kits: "1× Full Kit",
+                        extraPrice: 1200
                     });
-                }
-            }
-        },
-
-        removeItemFromCart: (state, action) => {
-            const removedItem = state.cartItems.find(item => item.id === action.payload);
-            const wasGuideIncluded = removedItem?.guideIncluded;
-
-            // Remove item from cart
-            state.cartItems = state.cartItems.filter(item => item.id !== action.payload);
-
-            // Handle guide adjustment
-            const guideItem = state.cartItems.find(i => i.type === 'guide');
-            if (wasGuideIncluded && guideItem) {
-                guideItem.quantity -= 1;
-
-                const remainingGuideIncludedOffers = state.cartItems.filter(
-                    i => i.type !== 'guide' && i.guideIncluded
-                );
-
-                if (remainingGuideIncludedOffers.length === 0) {
-                    // No free guides should be available now
-                    guideItem.price = 1200;
-                    delete guideItem.extraPrice;
                 } else {
-                    // Keep first guide free, rest extra priced
+                    guideItem.quantity = Math.max(guideItem.quantity, guideIncludedCount);
                     guideItem.price = 0;
                     guideItem.extraPrice = 1200;
                 }
+            }
+        },
+        removeItemFromCart: (state, action) => {
+            const itemId = action.payload;
+            const itemToRemove = state.cartItems.find(item => item.id === itemId);
 
-                // If guide quantity becomes 0, remove it completely
-                if (guideItem.quantity <= 0) {
-                    state.cartItems = state.cartItems.filter(item => item.id !== 'guide');
+            if (!itemToRemove) return;
+
+            // Remove the item from cart
+            state.cartItems = state.cartItems.filter(item => item.id !== itemId);
+
+            // Check if item had guideIncluded
+            if (itemToRemove.guideIncluded) {
+                const guideItem = state.cartItems.find(i => i.type === 'guide');
+                if (guideItem) {
+                    // Decrease guide quantity
+                    guideItem.quantity -= itemToRemove.quantity;
+
+                    // If guide quantity drops to 0, remove it
+                    if (guideItem.quantity <= 0) {
+                        state.cartItems = state.cartItems.filter(i => i.id !== 'guide');
+                    } else {
+                        // Guide still present, but check if other items still have guideIncluded
+                        const stillHasGuideIncluded = state.cartItems.some(i => i.guideIncluded);
+                        if (stillHasGuideIncluded) {
+                            guideItem.price = 0;
+                            guideItem.extraPrice = 1200;
+                        } else {
+                            guideItem.price = 1200;
+                            delete guideItem.extraPrice;
+                        }
+                    }
                 }
             }
         },
-
         updateItemQuantity: (state, action) => {
             const { id, quantity } = action.payload;
             const item = state.cartItems.find(i => i.id === id);
@@ -87,25 +93,21 @@ const cartSlice = createSlice({
                 item.quantity = quantity;
 
                 if (item.type === 'guide') {
-                    const guideIncludedOffers = state.cartItems.filter(
-                        i => i.type !== 'guide' && i.guideIncluded
-                    );
+                    const mainItems = state.cartItems.filter(i => i.type !== 'guide');
+                    const hasOfferWithGuide = mainItems.some(i => i.guideIncluded);
 
-                    if (guideIncludedOffers.length > 0) {
+                    if (hasOfferWithGuide) {
+                        // First guide is free, rest are Rs. 1200
                         item.price = 0;
-                        item.extraPrice = 1200;
+                        item.extraPrice = 1200; // used later in subtotal calculation
                     } else {
+                        // No offers with guide left, all guides full price
                         item.price = 1200;
                         delete item.extraPrice;
-                    }
-
-                    if (item.quantity <= 0) {
-                        state.cartItems = state.cartItems.filter(i => i.id !== 'guide');
                     }
                 }
             }
         },
-
         clearCart: (state) => {
             state.cartItems = [];
         }
@@ -115,16 +117,6 @@ const cartSlice = createSlice({
 export const { toggleCart, addItemToCart, removeItemFromCart, updateItemQuantity, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
 
-
-
-// const subtotal = cartItems.reduce((total, item) => {
-//     if (item.type === 'guide' && item.extraPrice) {
-//         return total + (item.quantity - 1) * item.extraPrice;
-//     }
-//     return total + item.quantity * item.price;
-// }, 0);
-
-// some channge code in cart in logic update
 
 
 
