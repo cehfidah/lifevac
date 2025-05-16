@@ -22,6 +22,8 @@ import Login from "./pages/auth/Login";
 import OtpVerification from "./pages/auth/OtpVerification";
 import DashboardLayout from "./components/dashboardlayout";
 import CartModal from "./components/cart-modal/CartModal";
+import Success from "./Success";
+import Paypal from "./Paypal";
 
 const App = () => {
   const location = useLocation();
@@ -52,6 +54,9 @@ const App = () => {
           <Route path="/contact-information" element={<ContactInformation />} />
           <Route path="/collections" element={<Collections />} />
         </Route>
+
+        <Route path="/paypal" element={<Paypal />} />
+        <Route path="/success" element={<Success />} />
 
         <Route element={<AuthProtect />}>
           <Route path="/checkouts" element={<Checkouts />} />
