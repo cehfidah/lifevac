@@ -120,13 +120,30 @@ const Checkouts = () => {
   };
 
   const handleCompletePurchase = () => {
+    const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
+    const total = subtotal + shippingCost;
+    const totalSavings = cartItems.reduce((sum, item) => sum + (item.originalPrice - item.price || 0), 0);
+    const item_quantity = cartItems.reduce((s, i) => s + i.quantity, 0);
+
     const finalData = {
       ...formData,
       country: country?.label || "",
       state: selectedState?.label || "",
       phoneCode: phoneCode,
     };
-    console.log("Purchase Data:", finalData);
+
+
+    const payloadFinal = {
+      txn_id: "",
+      item_quantity: item_quantity,
+      sub_total: subtotal,
+      shipping_amount: 500,
+      final_amount: total,
+      total_saving: totalSavings,
+      product_detail: cartItems,
+      shipping_address: finalData,
+    }
+    console.log("Purchase Data:", payloadFinal);
   };
 
   if (loading) return <Loading />;

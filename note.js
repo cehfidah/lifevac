@@ -125,3 +125,134 @@ export default cartSlice.reducer;
 // }, 0);
 
 // some channge code in cart in logic update
+
+
+
+// import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+// import { useNavigate } from "react-router-dom";
+// import { toast } from "react-toastify";
+// import { ApiHandler } from "../helper/ApiHandler";
+// import { useDispatch, useSelector } from "react-redux";
+
+// export default function Paypal() {
+//     const navigate = useNavigate();
+//     const dispatch = useDispatch();
+
+//     const { token } = useSelector((state) => state.auth)
+
+//     const generateInvoiceId = () => `INV-${Date.now()}`;
+//     const generateCustomId = () => `USER-${Math.random().toString(36).substr(2, 9)}`;
+
+//      const [invoice_id, setInvoice_id] = useState("");
+//         const [custom_id, setCustom_id] = useState("");
+
+//     const handleApprove = async (data, actions) => {
+//         try {
+//             const details = await actions.order.capture();
+//             const transactionId = details.id;
+
+//             const payload = {
+//                transactionId: transactionId,
+//                 invoice_id: invoice_id,
+//                 custom_id: custom_id,
+//                 txn_id: details.id,
+//                 item_quantity: 3,
+//                 sub_total: 3474.64,
+//                 shipping_amount: 500,
+//                 final_amount: 3974.64,
+//                 total_saving: 2625.36,
+//                 product_detail: [
+//                     {
+//                         id: "offer1",
+//                         image: "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_3_300x300.svg?v=1737985220",
+//                         sectionTitle: "AirwayClear™-Antichoking Device:",
+//                         title: "BUY ONE",
+//                         kits: "1× Full Kit",
+//                         price: 3474.64,
+//                         originalPrice: 6100,
+//                         savings: 2625.36,
+//                         guideIncluded: false,
+//                         tag: false,
+//                         tagText: "",
+//                         quantity: 3
+//                     }
+//                 ],
+//                 shipping_address: {
+//                     firstName: "Doshi Kirtan",
+//                     lastName: "Rajnikant",
+//                     address: "47 Milap Nagar Main Road Shakti Nagar",
+//                     apt: "hjghbjb",
+//                     city: "Rajkot",
+//                     zip: "360005",
+//                     phone: "9512218936",
+//                     country: "India",
+//                     state: "Gujarat",
+//                     phoneCode: "91"
+//                 }
+//             };
+//             try {
+//                 const response = await ApiHandler("/", "POST", payload, token, dispatch, navigate);
+//                 if (response.data.status === "1") {
+//                     toast.success(response.data.msg);
+
+//                     const paymentResponse = {
+//                         payer: details.payer.name.given_name,
+//                         email: details.payer.email_address,
+//                         amount: details.purchase_units[0].amount.value,
+//                         currency: details.purchase_units[0].amount.currency_code,
+//                         status: details.status,
+//                         id: details.id,
+//                         backendMessage: backendResponse.data.message,
+//                     };
+
+//                     navigate('/success', { state: paymentResponse });
+//                 } else {
+//                     toast.error(response.data.msg);
+//                 }
+//             } catch (error) {
+//                 toast.error("An error occurred. Please try again.");
+//             }
+//         } catch (err) {
+//             console.error("Payment failed", err);
+//             navigate('/fail', {
+//                 state: {
+//                     message: "Payment failed. Please try again later."
+//                 }
+//             });
+//         } finally {
+//             setLoading(false);
+//         }
+//     };
+
+//     return (
+//         <PayPalScriptProvider
+//             options={{
+//                 "client-id": process.env.REACT_APP_PAYPAL_CLIENT_KEY
+//             }}>
+//             <div className="flex flex-col items-center justify-center h-screen">
+//                 <h1 className="text-2xl mb-4">Pay with PayPal</h1>
+//                 <PayPalButtons
+//                     style={{ layout: "vertical" }}
+//                     createOrder={(data, actions) => {
+//                          const invoiceId = generateInvoiceId();
+//                         const customId = generateCustomId();
+
+//                         setInvoice_id(invoiceId);
+//                         setCustom_id(customId);
+//                         return actions.order.create({
+//                             purchase_units: [{
+//                                 amount: {
+//                                     value: "899.00",
+//                                 },
+//                                 description: "Payment for order",
+//                                 invoice_id: invoiceId,
+//                                 custom_id: customId,
+//                             }]
+//                         });
+//                     }}
+//                     onApprove={handleApprove}
+//                 />
+//             </div>
+//         </PayPalScriptProvider>
+//     );
+// }
