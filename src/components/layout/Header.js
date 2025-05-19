@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { FaUser, FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
-import Container from '../Container';
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleCart } from '../../store/slice/cartSlice';
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { FaUser, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
+import Container from "../Container";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleCart } from "../../store/slice/cartSlice";
+import logo from "../../assest/logo2.avif";
 
 const Header = () => {
   const location = useLocation();
@@ -17,10 +18,10 @@ const Header = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   const navLinks = [
-    { name: 'Shipping Policy', path: '/shipping-policy' },
-    { name: 'Refund Policy', path: '/refund-policy' },
-    { name: 'Terms Of Service', path: '/terms-of-service' },
-    { name: 'Contact', path: '/contact' },
+    { name: "Shipping Policy", path: "/shipping-policy" },
+    { name: "Refund Policy", path: "/refund-policy" },
+    { name: "Terms Of Service", path: "/terms-of-service" },
+    { name: "Contact", path: "/contact" },
   ];
 
   // Scroll logic for sticky behavior
@@ -40,37 +41,49 @@ const Header = () => {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
   // Close menu on outside click
   useEffect(() => {
     const handleOutsideClick = (e) => {
-      if (mobileMenuOpen && menuRef.current && !menuRef.current.contains(e.target)) {
+      if (
+        mobileMenuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(e.target)
+      ) {
         setMobileMenuOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleOutsideClick);
-    return () => document.removeEventListener('mousedown', handleOutsideClick);
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, [mobileMenuOpen]);
 
   // Lock body scroll when menu open
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.classList.add('overflow-hidden');
+      document.body.classList.add("overflow-hidden");
     } else {
-      document.body.classList.remove('overflow-hidden');
+      document.body.classList.remove("overflow-hidden");
     }
     return () => {
-      document.body.classList.remove('overflow-hidden');
+      document.body.classList.remove("overflow-hidden");
     };
   }, [mobileMenuOpen]);
 
   return (
-    <header className={`bg-white border-b border-gray-200  z-50 font-harmonia transition-all duration-300 ${showStickyHeader ? 'fixed top-0 w-full shadow-md' : 'shadow-sm'}`}>
+    <header
+      className={`bg-white border-b border-gray-200  z-50 font-harmonia transition-all duration-300 ${
+        showStickyHeader ? "fixed top-0 w-full shadow-md" : "shadow-sm"
+      }`}
+    >
       <Container>
-        <div className={`paddingX ${showStickyHeader ? 'py-5' : 'py-3'} flex items-center justify-between`}>
+        <div
+          className={`paddingX ${
+            showStickyHeader ? "py-5" : "py-3"
+          } flex items-center justify-between`}
+        >
           {/* Icons & Mobile Toggle */}
           <button
             onClick={() => setMobileMenuOpen(true)}
@@ -80,16 +93,17 @@ const Header = () => {
           </button>
 
           {/* Desktop Nav */}
-          <div className='flex items-center gap-10'>
+          <div className="flex items-center gap-10">
             <nav className="hidden lg:flex gap-6 text-base font-medium text-[#121212]">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`px-3 py-1 rounded-md ${currentPath === link.path
-                    ? 'bg-[#0e2243] text-white font-bold'
-                    : 'hover:text-blue-600'
-                    }`}
+                  className={`px-3 py-1 rounded-md ${
+                    currentPath === link.path
+                      ? "bg-[#0e2243] text-white font-bold"
+                      : "hover:text-blue-600"
+                  }`}
                 >
                   {link.name}
                 </Link>
@@ -97,25 +111,32 @@ const Header = () => {
             </nav>
 
             {/* Logo */}
-            <Link to="/" className="text-xl font-bold text-black text-center flex items-center gap-1">
-              AirwayClear
-              <div className="h-5 w-1.5 bg-gray-800"></div>
-              <div className="h-5 w-1.5 bg-gray-800"></div>
-              <div className="h-5 w-1.5 bg-gray-800"></div>
+            <Link
+              to="/"
+              className="text-xl font-bold text-black text-center flex items-center gap-1"
+            >
+              <img width={200} src={logo} />
             </Link>
           </div>
 
           {/* Icons */}
           <div className="flex items-center gap-4">
-            {
-              token ? (
-                <Link to="/orders"> <FaUser className="text-xl text-gray-700 cursor-pointer" /></Link>
-              ) : (
-                <Link to="/login"> <FaUser className="text-xl text-gray-700 cursor-pointer" /></Link>
-              )
-            }
+            {token ? (
+              <Link to="/orders">
+                {" "}
+                <FaUser className="text-xl text-gray-700 cursor-pointer" />
+              </Link>
+            ) : (
+              <Link to="/login">
+                {" "}
+                <FaUser className="text-xl text-gray-700 cursor-pointer" />
+              </Link>
+            )}
 
-            <div className="relative cursor-pointer" onClick={() => dispatch(toggleCart())}>
+            <div
+              className="relative cursor-pointer"
+              onClick={() => dispatch(toggleCart())}
+            >
               <FaShoppingCart className="text-xl text-gray-700" />
               {cartItems.length > 0 && (
                 <span className="absolute -top-2 -right-2 bg-blue-800 text-white text-xs px-1.5 rounded-full">
@@ -134,12 +155,16 @@ const Header = () => {
         {/* Mobile Menu Drawer */}
         <div
           ref={menuRef}
-          className={`fixed top-0 left-0 h-screen bg-white w-4/5 max-w-sm z-50 transform ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-            } transition-transform duration-300 ease-in-out shadow-lg`}
+          className={`fixed top-0 left-0 h-screen bg-white w-4/5 max-w-sm z-50 transform ${
+            mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+          } transition-transform duration-300 ease-in-out shadow-lg`}
         >
           <div className="flex justify-between items-center paddingX py-4 border-b">
             <h2 className="text-lg font-bold">Menu</h2>
-            <button onClick={() => setMobileMenuOpen(false)} className="text-2xl text-gray-700">
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-2xl text-gray-700"
+            >
               <FaTimes />
             </button>
           </div>
@@ -148,10 +173,11 @@ const Header = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`py-2 px-6 ${currentPath === link.path
-                  ? 'bg-[#12121266] text-[#121212] font-bold'
-                  : 'hover:text-blue-600'
-                  }`}
+                className={`py-2 px-6 ${
+                  currentPath === link.path
+                    ? "bg-[#12121266] text-[#121212] font-bold"
+                    : "hover:text-blue-600"
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
@@ -161,10 +187,11 @@ const Header = () => {
             {!token && (
               <Link
                 to="/login"
-                className={`flex items-center gap-4 font-bold py-2 px-6 ${currentPath === "/login"
-                  ? 'bg-[#12121212] text-[#121212]'
-                  : 'hover:text-blue-600'
-                  }`}
+                className={`flex items-center gap-4 font-bold py-2 px-6 ${
+                  currentPath === "/login"
+                    ? "bg-[#12121212] text-[#121212]"
+                    : "hover:text-blue-600"
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <FaUser className="text-xl text-gray-700 cursor-pointer" />
