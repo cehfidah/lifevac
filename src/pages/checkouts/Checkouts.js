@@ -161,10 +161,6 @@ const Checkouts = () => {
     return requiredFields.every((field) => field && field.trim() !== "");
   };
 
-  // if (!validateForm()) {
-  //   toast.error("Please fill in all required shipping details before proceeding.");
-  //   return;
-  // }
   const handleApprove = async (data, actions) => {
     const subtotal = cartItems.reduce((sum, item) => {
       if (item.type === "guide") {
@@ -393,6 +389,14 @@ const Checkouts = () => {
                   free returns and 24/7 access to our award-winning customer
                   service
                 </p>
+
+                {/* <button
+                  type="button"
+                  onClick={checkInput}
+                  className="flex justify-center items-center w-full bg-[#162950] text-white text-base font-bold rounded-xl py-4"
+                >
+                  Complete Purchase
+                </button> */}
 
                 <Paypal handleApprove={handleApprove} amount={subtotal + shippingCost} />
               </div>
