@@ -24,7 +24,7 @@ const TrustAirwayClear = () => {
     <section className="bg-[#e6f6fd] py-16 px-4">
       <div className="max-w-6xl mx-auto text-center">
         {/* Heading */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0c1d3c] mb-12">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#162950] mb-12">
           Why you should trust Airway Clear™
         </h2>
 
@@ -33,7 +33,7 @@ const TrustAirwayClear = () => {
           {cards.map((card, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-[#0c1d3c]"
+              className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-[#162950]"
             >
               {card.icon}
               <h3 className="font-semibold mb-1 text-lg text-center">
@@ -52,7 +52,7 @@ const TrustAirwayClear = () => {
         </div>
 
         {/* Subtext */}
-        <p className="text-[#0c1d3c] text-sm font-bold tracking-wide">
+        <p className="text-[#162950] text-sm font-bold tracking-wide">
           100% MONEY BACK GUARANTEE
         </p>
       </div>

@@ -180,7 +180,7 @@ export default function ReviewGrid() {
         {/* Form */}
         {showForm && (
           <div className="border-t border-gray-300 pt-6 mb-8">
-            <h3 className="text-center text-lg font-semibold text-gray-700 mb-2">
+            <h3 className="text-center text-lg font-semibold text-[#162950] mb-2">
               Write a Review
             </h3>
             <div className="flex justify-center mb-4">
@@ -250,7 +250,7 @@ export default function ReviewGrid() {
             <div className="text-center">
               <button
                 onClick={handleSubmit}
-                className="bg-blue-900 text-white px-6 py-2 rounded text-sm"
+                className="bg-[#162950] text-white px-6 py-2 rounded text-sm"
                 disabled={loading}
               >
                 {loading ? "Submitting..." : "Submit review"}

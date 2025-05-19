@@ -55,7 +55,7 @@ const FAQSection = () => {
   return (
     <section className="bg-[#D9E9F0] py-16 px-4">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-[#0c1d3c] mb-10">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#162950] mb-10">
           FAQS
         </h2>
 
@@ -67,7 +67,7 @@ const FAQSection = () => {
             >
               <button
                 onClick={() => toggle(index)}
-                className="w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-[#0c1d3c] focus:outline-none"
+                className="w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-[#162950] focus:outline-none"
               >
                 <span>{faq.question}</span>
                 <span className="text-2xl font-bold">
@@ -76,7 +76,7 @@ const FAQSection = () => {
               </button>
 
               {openIndex === index && (
-                <div className="px-5 pb-4 text-sm text-[#0c1d3c] border-t border-gray-200 leading-relaxed">
+                <div className="px-5 pb-4 text-sm text-[#162950] border-t border-gray-200 leading-relaxed">
                   {isHTML(faq.answer) ? (
                     <div dangerouslySetInnerHTML={{ __html: faq.answer }} />
                   ) : (

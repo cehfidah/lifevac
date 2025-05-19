@@ -47,7 +47,7 @@ const ComparisonTable = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {/* Column Headers */}
           <div className="bg-white rounded-t-xl border border-[#162950] overflow-hidden">
-            <div className="bg-[#162950] text-white font-bold text-center py-3 text-sm tracking-wide uppercase">
+            <div className="bg-[#162950] text-[#3EBDE4] underline font-bold text-center py-3 text-sm tracking-wide uppercase">
               METHOD
             </div>
             {rows.map((row, i) => (
@@ -63,7 +63,7 @@ const ComparisonTable = () => {
           </div>
 
           <div className="bg-white rounded-t-xl border border-[#162950] overflow-hidden">
-            <div className="bg-[#162950] text-white font-bold text-center py-3 text-sm uppercase tracking-wide">
+            <div className="bg-[#162950] text-[#3EBDE4] underline font-bold text-center py-3 text-sm uppercase tracking-wide">
               TIME TO CLEAR AIRWAY <br />
               <span className="text-xs font-normal">(AVERAGE)</span>
             </div>
@@ -80,7 +80,7 @@ const ComparisonTable = () => {
           </div>
 
           <div className="bg-white rounded-t-xl border border-[#162950] overflow-hidden">
-            <div className="bg-[#162950] text-white font-bold text-center py-3 text-sm tracking-wide uppercase">
+            <div className="bg-[#162950] text-[#3EBDE4] underline font-bold text-center py-3 text-sm tracking-wide uppercase">
               RISK OF INJURY
             </div>
             {rows.map((row, i) => (
