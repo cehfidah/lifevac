@@ -150,8 +150,12 @@ const Checkouts = () => {
   //   return;
   // }
   const handleApprove = async (data, actions) => {
-
-    const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
+    const subtotal = cartItems.reduce((sum, item) => {
+      if (item.type === 'guide') {
+        return sum + Number(item.extraPrice || 0);
+      }
+      return sum + Number(item.price) * Number(item.quantity);
+    }, 0);
     const total = subtotal + shippingCost;
     const totalSavings = cartItems.reduce((sum, item) => sum + (item.originalPrice - item.price || 0), 0);
     const itemQuantity = cartItems.reduce((s, i) => s + i.quantity, 0);
@@ -377,7 +381,12 @@ const Checkouts = () => {
 export default Checkouts;
 
 const OrderSummary = ({ cartItems }) => {
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
+  const subtotal = cartItems.reduce((sum, item) => {
+    if (item.type === 'guide') {
+      return sum + Number(item.extraPrice || 0);
+    }
+    return sum + Number(item.price) * Number(item.quantity);
+  }, 0);
   const total = subtotal + shippingCost;
   const totalSavings = cartItems.reduce((sum, item) => sum + (item.originalPrice - item.price || 0), 0);
 

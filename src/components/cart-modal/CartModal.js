@@ -43,9 +43,8 @@ const CartModal = () => {
 
     const handleCheckout = () => {
         if (cartItems.length > 0) {
-            console.log(subtotal, cartItems, "subtotal, cartItems")
-            // dispatch(toggleCart());
-            // navigate('/checkouts', { state: { subtotal, cartItems } });
+            dispatch(toggleCart());
+            navigate('/checkouts', { state: { subtotal, cartItems } });
         }
     };
     return (
