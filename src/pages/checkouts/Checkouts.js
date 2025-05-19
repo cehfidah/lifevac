@@ -13,7 +13,9 @@ import { ApiHandler } from "../../helper/ApiHandler";
 import Loading from "../../components/Common/Loading";
 import Paypal from "../../payment/Paypal";
 import { clearCart } from "../../store/slice/cartSlice";
+import { IoBagHandleOutline } from "react-icons/io5";
 
+import logo from "../../assest/logo.webp";
 
 const shippingCost = 500;
 
@@ -63,10 +65,19 @@ const Checkouts = () => {
 
   const fetchData = async () => {
     try {
-      const getAddress = await ApiHandler("/get_address.php", "POST", undefined, token, dispatch, navigate);
+      const getAddress = await ApiHandler(
+        "/get_address.php",
+        "POST",
+        undefined,
+        token,
+        dispatch,
+        navigate
+      );
       if (getAddress.data.status === "1" && getAddress.data.data.length > 0) {
         setAddresses(getAddress.data.data);
-        const defaultAddress = getAddress.data.data.find((a) => a.is_default_address === "1") || getAddress.data.data[0];
+        const defaultAddress =
+          getAddress.data.data.find((a) => a.is_default_address === "1") ||
+          getAddress.data.data[0];
         setSelectedAddressId(defaultAddress.id);
         setFormDataFromAddress(defaultAddress);
       }
@@ -95,7 +106,11 @@ const Checkouts = () => {
     setCountry({ label: selectedCountryLabel, value: selectedCountryIso });
     setPhoneCode(phonecode);
     setStates(stateList.map((s) => ({ label: s.name, value: s.isoCode })));
-    setSelectedState(matchedState ? { label: matchedState.name, value: matchedState.isoCode } : null);
+    setSelectedState(
+      matchedState
+        ? { label: matchedState.name, value: matchedState.isoCode }
+        : null
+    );
 
     setFormData({
       firstName: addr.first_name || "",
@@ -151,13 +166,16 @@ const Checkouts = () => {
   // }
   const handleApprove = async (data, actions) => {
     const subtotal = cartItems.reduce((sum, item) => {
-      if (item.type === 'guide') {
+      if (item.type === "guide") {
         return sum + Number(item.extraPrice || 0);
       }
       return sum + Number(item.price) * Number(item.quantity);
     }, 0);
     const total = subtotal + shippingCost;
-    const totalSavings = cartItems.reduce((sum, item) => sum + (item.originalPrice - item.price || 0), 0);
+    const totalSavings = cartItems.reduce(
+      (sum, item) => sum + (item.originalPrice - item.price || 0),
+      0
+    );
     const itemQuantity = cartItems.reduce((s, i) => s + i.quantity, 0);
 
     const finalData = {
@@ -182,7 +200,14 @@ const Checkouts = () => {
         payment_status: details.status,
       };
       try {
-        const response = await ApiHandler("/transaction_create.php", "POST", payload, token, dispatch, navigate);
+        const response = await ApiHandler(
+          "/transaction_create.php",
+          "POST",
+          payload,
+          token,
+          dispatch,
+          navigate
+        );
         if (response.data.status === "1") {
           toast.success(response.data.msg);
 
@@ -192,12 +217,11 @@ const Checkouts = () => {
             email: details.payer.email_address,
           };
 
-          if (response.data.data === '1' || response.data.data === 1) {
-            navigate('/success', { state: paymentResponse });
+          if (response.data.data === "1" || response.data.data === 1) {
+            navigate("/success", { state: paymentResponse });
           } else {
-            navigate('/fail', { state: paymentResponse });
+            navigate("/fail", { state: paymentResponse });
           }
-
         } else {
           toast.error(response.data.msg);
         }
@@ -222,8 +246,8 @@ const Checkouts = () => {
         email: null,
       };
 
-      navigate('/fail', {
-        state: { state: failedResponse }
+      navigate("/fail", {
+        state: { state: failedResponse },
       });
     } finally {
       setLoading(false);
@@ -244,6 +268,21 @@ const Checkouts = () => {
         twitterDescription="Securely pay for your AirwayClear order."
       />
       <div className="min-h-screen bg-white text-black">
+        <header className="border-b shadow-sm px-6 sm:px-12 md:px-28 py-4 md:py-8 flex items-center justify-between bg-white">
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            <Link to="/">
+              <img
+                className="w-24 sm:w-32 md:w-auto lg:w-[30%]"
+                src={logo}
+                alt="Logo"
+              />
+            </Link>
+          </div>
+
+          <div>
+            <IoBagHandleOutline size={25} />
+          </div>
+        </header>
         <div className="max-w-7xl mx-auto p-4 md:p-8 grid md:grid-cols-3 gap-6">
           {/* Left Section */}
           <div className="md:col-span-2 space-y-6">
@@ -281,40 +320,44 @@ const Checkouts = () => {
 
               <div className="mb-4">
                 <p className="text-sm mb-1">Country/Region</p>
-                <Select options={countries} value={country} onChange={setCountry} />
+                <Select
+                  options={countries}
+                  value={country}
+                  onChange={setCountry}
+                />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <input
                   className="w-full border p-2 rounded"
                   placeholder="First name"
                   value={formData.firstName}
-                  onChange={e => handleChange("firstName", e.target.value)}
+                  onChange={(e) => handleChange("firstName", e.target.value)}
                 />
                 <input
                   className="w-full border p-2 rounded"
                   placeholder="Last name"
                   value={formData.lastName}
-                  onChange={e => handleChange("lastName", e.target.value)}
+                  onChange={(e) => handleChange("lastName", e.target.value)}
                 />
               </div>
               <input
                 className="w-full border p-2 mb-2 rounded"
                 placeholder="Address"
                 value={formData.address}
-                onChange={e => handleChange("address", e.target.value)}
+                onChange={(e) => handleChange("address", e.target.value)}
               />
               <input
                 className="w-full border p-2 mb-2 rounded"
                 placeholder="Apartment, suite, etc (optional)"
                 value={formData.apt}
-                onChange={e => handleChange("apt", e.target.value)}
+                onChange={(e) => handleChange("apt", e.target.value)}
               />
               <div className="grid grid-cols-3 gap-4">
                 <input
                   className="w-full border p-2 rounded"
                   placeholder="City"
                   value={formData.city}
-                  onChange={e => handleChange("city", e.target.value)}
+                  onChange={(e) => handleChange("city", e.target.value)}
                 />
                 <Select
                   className="w-full"
@@ -327,18 +370,20 @@ const Checkouts = () => {
                   className="w-full border p-2 rounded"
                   placeholder="ZIP code"
                   value={formData.zip}
-                  onChange={e => handleChange("zip", e.target.value)}
+                  onChange={(e) => handleChange("zip", e.target.value)}
                 />
               </div>
               <div className="mb-4">
                 <p className="text-sm mb-1">Phone</p>
                 <div className="flex items-center gap-2">
-                  <span className="border px-2 py-1 rounded bg-gray-100">+{phoneCode}</span>
+                  <span className="border px-2 py-1 rounded bg-gray-100">
+                    +{phoneCode}
+                  </span>
                   <input
                     className="w-full border p-2 rounded"
                     placeholder="Phone number"
                     value={formData.phone}
-                    onChange={e => handleChange("phone", e.target.value)}
+                    onChange={(e) => handleChange("phone", e.target.value)}
                   />
                 </div>
               </div>
@@ -353,7 +398,10 @@ const Checkouts = () => {
                 service
               </p>
 
-              <Paypal handleApprove={handleApprove} amount={subtotal + shippingCost} />
+              <Paypal
+                handleApprove={handleApprove}
+                amount={subtotal + shippingCost}
+              />
             </div>
           </div>
 
@@ -366,11 +414,21 @@ const Checkouts = () => {
         {/* Policy Links */}
         <footer className="mt-6 text-center py-6 text-sm text-gray-600 border-t">
           <div className="flex justify-center gap-4">
-            <Link to="/refund-policy" className="hover:underline">Refund policy</Link>
-            <Link to="/shipping-policy" className="hover:underline">Shipping policy</Link>
-            <Link to="/privacy-policy" className="hover:underline">Privacy policy</Link>
-            <Link to="/terms-of-service" className="hover:underline">Terms of service</Link>
-            <Link to="/contact-information" className="hover:underline">Contact information</Link>
+            <Link to="/refund-policy" className="hover:underline">
+              Refund policy
+            </Link>
+            <Link to="/shipping-policy" className="hover:underline">
+              Shipping policy
+            </Link>
+            <Link to="/privacy-policy" className="hover:underline">
+              Privacy policy
+            </Link>
+            <Link to="/terms-of-service" className="hover:underline">
+              Terms of service
+            </Link>
+            <Link to="/contact-information" className="hover:underline">
+              Contact information
+            </Link>
           </div>
         </footer>
       </div>
@@ -382,14 +440,16 @@ export default Checkouts;
 
 const OrderSummary = ({ cartItems }) => {
   const subtotal = cartItems.reduce((sum, item) => {
-    if (item.type === 'guide') {
+    if (item.type === "guide") {
       return sum + Number(item.extraPrice || 0);
     }
     return sum + Number(item.price) * Number(item.quantity);
   }, 0);
   const total = subtotal + shippingCost;
-  const totalSavings = cartItems.reduce((sum, item) => sum + (item.originalPrice - item.price || 0), 0);
-
+  const totalSavings = cartItems.reduce(
+    (sum, item) => sum + (item.originalPrice - item.price || 0),
+    0
+  );
 
   return (
     <div className="bg-gray-100 rounded-md border border-gray-200 p-6 text-sm font-sans space-y-4">
@@ -417,7 +477,8 @@ const OrderSummary = ({ cartItems }) => {
                 </div>
                 {item.savings && (
                   <p className="text-xs text-gray-500">
-                    {item.title} (−₹{(item.originalPrice - item.price).toFixed(2)})
+                    {item.title} (−₹
+                    {(item.originalPrice - item.price).toFixed(2)})
                   </p>
                 )}
               </div>
@@ -471,4 +532,4 @@ const OrderSummary = ({ cartItems }) => {
       </div>
     </div>
   );
-}
+};
