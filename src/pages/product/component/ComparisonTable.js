@@ -31,29 +31,29 @@ const ComparisonTable = () => {
   return (
     <section className="bg-[#e6f6fd] py-16 px-4">
       <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-[28px] sm:text-[32px] font-extrabold text-[#0c1d3c] mb-4">
+        <h2 className="text-[28px] sm:text-[32px] font-extrabold text-[#162950] mb-4">
           Airway Clear™ VS regular methods
         </h2>
-        <p className="text-[#0c1d3c] text-base font-medium mb-6 max-w-2xl mx-auto">
+        <p className="text-[#162950] text-base font-medium mb-6 max-w-2xl mx-auto">
           While traditional methods like the Heimlich maneuver or back blows
           require training and can fail in emergencies,{" "}
           <strong>Airway Clear™</strong> provides instant relief.
         </p>
-        <h3 className="text-lg sm:text-xl font-bold text-[#0c1d3c] underline mb-10">
+        <h3 className="text-lg sm:text-xl font-bold text-[#162950] underline mb-10">
           SEE EXACTLY HOW:
         </h3>
 
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {/* Column Headers */}
-          <div className="bg-white rounded-t-xl border border-[#0c1d3c] overflow-hidden">
-            <div className="bg-[#0c1d3c] text-white font-bold text-center py-3 text-sm tracking-wide uppercase">
+          <div className="bg-white rounded-t-xl border border-[#162950] overflow-hidden">
+            <div className="bg-[#162950] text-white font-bold text-center py-3 text-sm tracking-wide uppercase">
               METHOD
             </div>
             {rows.map((row, i) => (
               <div
                 key={i}
-                className={`px-4 py-4 text-[#0c1d3c] font-semibold text-center ${
+                className={`px-4 py-4 text-[#162950] font-semibold text-center ${
                   i % 2 !== 0 ? "bg-[#f2f2f2]" : ""
                 }`}
               >
@@ -62,15 +62,15 @@ const ComparisonTable = () => {
             ))}
           </div>
 
-          <div className="bg-white rounded-t-xl border border-[#0c1d3c] overflow-hidden">
-            <div className="bg-[#0c1d3c] text-white font-bold text-center py-3 text-sm uppercase tracking-wide">
+          <div className="bg-white rounded-t-xl border border-[#162950] overflow-hidden">
+            <div className="bg-[#162950] text-white font-bold text-center py-3 text-sm uppercase tracking-wide">
               TIME TO CLEAR AIRWAY <br />
               <span className="text-xs font-normal">(AVERAGE)</span>
             </div>
             {rows.map((row, i) => (
               <div
                 key={i}
-                className={`px-4 py-4 text-[#0c1d3c] font-medium text-center ${
+                className={`px-4 py-4 text-[#162950] font-medium text-center ${
                   i % 2 !== 0 ? "bg-[#f2f2f2]" : ""
                 }`}
               >
@@ -79,14 +79,14 @@ const ComparisonTable = () => {
             ))}
           </div>
 
-          <div className="bg-white rounded-t-xl border border-[#0c1d3c] overflow-hidden">
-            <div className="bg-[#0c1d3c] text-white font-bold text-center py-3 text-sm tracking-wide uppercase">
+          <div className="bg-white rounded-t-xl border border-[#162950] overflow-hidden">
+            <div className="bg-[#162950] text-white font-bold text-center py-3 text-sm tracking-wide uppercase">
               RISK OF INJURY
             </div>
             {rows.map((row, i) => (
               <div
                 key={i}
-                className={`px-4 py-4 text-[#0c1d3c] text-center ${
+                className={`px-4 py-4 text-[#162950] text-center ${
                   i % 2 !== 0 ? "bg-[#f2f2f2]" : ""
                 }`}
               >

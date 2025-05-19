@@ -8,12 +8,12 @@ function Card() {
         {/* Free Replacements Card */}
         <div className="flex-1 border-2 border-dotted border-gray-400 rounded-xl bg-[#E8F2F4] p-6">
           <div className="flex items-start gap-4">
-            <FaSyncAlt className="text-blue-900 text-3xl mt-1 shrink-0" />
+            <FaSyncAlt className="text-[#162950] text-3xl mt-1 shrink-0" />
             <div>
-              <h3 className="font-bold text-blue-900 text-lg md:text-xl">
+              <h3 className="font-bold text-[#162950] text-lg md:text-xl">
                 FREE LIFE-TIME REPLACEMENTS
               </h3>
-              <p className="text-sm md:text-base text-blue-900 mt-2">
+              <p className="text-sm md:text-base text-[#162950] mt-2">
                 If <span className="font-bold">AirwayClear™</span> is used in a
                 choking emergency, we will send you free replacement. Our
                 mission is to equip your home for life.

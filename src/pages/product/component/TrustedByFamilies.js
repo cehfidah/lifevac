@@ -61,14 +61,14 @@ export default function TrustedByFamilies() {
           {[...Array(5)].map((_, i) => (
             <FaStar key={i} className="text-green-500" />
           ))}
-          <span className="text-sm font-semibold">
+          <span className="text-sm font-semibold text-[#162950]">
             Excellent <strong>(4.7/5)</strong> Based on 100k+ Customers
           </span>
         </div>
 
-        <h2 className="text-2xl sm:text-3xl font-bold mb-8">
-          Trusted by <span className="text-blue-700">100,432+</span> families
-          around the world
+        <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-[#162950]">
+          Trusted by <span className="underline">100,432+</span> families around
+          the world
         </h2>
 
         <div className="relative">
@@ -90,7 +90,7 @@ export default function TrustedByFamilies() {
                   <p className="text-sm mb-4">"{t.text}"</p>
                   <p className="text-sm font-semibold">
                     {t.name}{" "}
-                    <span className="text-gray-500">● Verified Customer</span>
+                    <span className="text-[#162950]">● Verified Customer</span>
                   </p>
                 </div>
               </div>
@@ -117,7 +117,9 @@ export default function TrustedByFamilies() {
           TAKE ACTION TODAY
         </button>
 
-        <p className="text-sm font-semibold mt-4">100% MONEY BACK GUARANTEE</p>
+        <p className="text-sm font-semibold mt-4 text-[#162950]">
+          100% MONEY BACK GUARANTEE
+        </p>
       </div>
     </section>
   );

@@ -66,13 +66,13 @@ const TestimonialCarousel = () => {
                 <FaStar key={i} />
               ))}
           </div>
-          <p className="text-sm text-gray-700">
+          <p className="text-sm text-[#162950]">
             <span className="font-semibold">Excellent (4.7/5)</span> Based on
             100k+ Customers
           </p>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0c1d3c] mb-10">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#162950] mb-10">
           Actively protecting <span className="underline">100,432+</span>{" "}
           households
         </h2>
@@ -89,13 +89,13 @@ const TestimonialCarousel = () => {
                       <FaStar key={i} />
                     ))}
                 </div>
-                <h3 className="font-bold text-[#0c1d3c] mb-2">
+                <h3 className="font-bold text-[#162950] mb-2">
                   {testimonial.title}
                 </h3>
                 <p className="text-gray-800 text-sm mb-4">
                   “{testimonial.content}”
                 </p>
-                <p className="text-sm font-semibold text-[#0c1d3c]">
+                <p className="text-sm font-semibold text-[#162950]">
                   {testimonial.name}{" "}
                   <span className="text-gray-500">• {testimonial.role}</span>
                 </p>
@@ -107,13 +107,13 @@ const TestimonialCarousel = () => {
         {/* Unified Prev/Next buttons below slider for all screen sizes */}
         <div className="flex justify-center gap-4 mt-6">
           <button
-            className="flex items-center gap-1 bg-[#0c1d3c] text-white px-4 py-2 rounded-full"
+            className="flex items-center gap-1 bg-[#162950] text-white px-4 py-2 rounded-full"
             onClick={() => sliderRef.current.slickPrev()}
           >
             <FaArrowLeft /> Prev
           </button>
           <button
-            className="flex items-center gap-1 bg-[#0c1d3c] text-white px-4 py-2 rounded-full"
+            className="flex items-center gap-1 bg-[#162950] text-white px-4 py-2 rounded-full"
             onClick={() => sliderRef.current.slickNext()}
           >
             Next <FaArrowRight />

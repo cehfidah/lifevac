@@ -43,7 +43,7 @@ export default function ProductFeature() {
                   {feature.id}
                 </div>
               </div>
-              <h3 className="font-bold text-lg text-gray-800">
+              <h3 className="font-bold text-lg text-[#162950]">
                 {feature.title}
               </h3>
               <p className="text-sm text-gray-600 mt-1">
@@ -58,7 +58,7 @@ export default function ProductFeature() {
         <button className="bg-green-600 text-white px-6 py-3 rounded font-semibold hover:bg-green-700 transition">
           TAKE ACTION TODAY
         </button>
-        <p className="text-xs text-black font-bold mt-2">
+        <p className="text-xs text-[#162950] font-bold mt-2">
           100% MONEY BACK GUARANTEE
         </p>
       </div>

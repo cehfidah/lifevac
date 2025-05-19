@@ -11,6 +11,7 @@ import fifth from "../../../assest/image/firstsectionsecondimage.webp";
 import six from "../../../assest/image/firstsectionsevenimage.webp";
 import seven from "../../../assest/image/firstsectionsiximage.webp";
 import eaghit from "../../../assest/image/firstsectionthirdimage.png";
+import { IoCheckmarkCircleSharp } from "react-icons/io5";
 
 const ProductShowcase = () => {
   const images = [first, second, third, four, fifth, seven, eaghit, six];
@@ -179,7 +180,7 @@ const ProductShowcase = () => {
             </div>
           </div>
 
-          <div className="bg-blue-900 text-white text-center px-3 py-2 mt-4 font-bold rounded shadow-md text-xs md:text-sm w-full">
+          <div className="bg-[#162950] text-white text-center px-3 py-2 mt-4 font-bold rounded shadow-md text-xs md:text-sm w-full">
             FREE LIFE-TIME REPLACEMENTS WHEN USED IN EMERGENCY
           </div>
         </div>
@@ -193,32 +194,37 @@ const ProductShowcase = () => {
             </h2>
             <p className="mt-3 text-gray-800 text-lg">
               Prevent choking in <strong>under 20 seconds</strong> –{" "}
-              <span className="text-blue-600 font-bold">2,379</span> Lives Saved
+              <span className="text-[#162950] font-bold">2,379</span> Lives
+              Saved
             </p>
             <div className="bg-gray-50 border border-gray-300 rounded-xl mt-5 p-5 shadow-sm">
-              <h3 className="text-lg font-bold text-blue-900 mb-4 underline">
+              <h3 className="text-lg font-bold text-[#162950] mb-4 underline">
                 OVER 100,432+ SOLD, THIS IS WHY:
               </h3>
-              <ul className="space-y-3 text-gray-800 text-base">
-                <li>
-                  ✅ <strong>Saves Lives</strong> in Under 20 Seconds
+              <ul className="space-y-3 text-[#162950] text-base">
+                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950]">
+                  <IoCheckmarkCircleSharp /> <strong>Saves Lives</strong> in
+                  Under 20 Seconds
                 </li>
-                <li>
-                  ✅ No Training Needed – <strong>1-Step Operation</strong>
+                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950]">
+                  <IoCheckmarkCircleSharp /> No Training Needed –{" "}
+                  <strong>1-Step Operation</strong>
                 </li>
-                <li>
-                  ✅ <strong>Universal</strong> Design for{" "}
-                  <strong>Adults & Children</strong>
+                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950]">
+                  <IoCheckmarkCircleSharp /> <strong>Universal</strong> Design
+                  for <strong>Adults & Children</strong>
                 </li>
-                <li>
-                  ✅ <strong>Self-Applicable</strong> in a Crisis
+                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950]">
+                  <IoCheckmarkCircleSharp /> <strong>Self-Applicable</strong> in
+                  a Crisis
                 </li>
-                <li>
-                  ✅ Used in an Emergency? <strong>Get a Free One!</strong>
+                <li className="flex justify-start gap-2 items-center ">
+                  <IoCheckmarkCircleSharp /> Used in an Emergency?{" "}
+                  <strong>Get a Free One!</strong>
                 </li>
               </ul>
             </div>
-            <div className="bg-blue-800 text-white text-center mt-4 py-2 rounded font-medium text-sm md:text-base">
+            <div className="bg-[#162950] text-white text-center mt-4 py-2 rounded font-medium text-sm md:text-base">
               UPDATE: We are currently out of stock on Amazon <br />
               and are only available here for a limited time
             </div>

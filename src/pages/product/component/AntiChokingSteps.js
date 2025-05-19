@@ -22,7 +22,7 @@ const AntiChokingSteps = () => {
 
   return (
     <div className="bg-[#f0fbff] py-12 px-4 sm:px-8 lg:px-32">
-      <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#0d1a4a] mb-12">
+      <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#162950] mb-12">
         How to use Airway Clear™
       </h2>
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-start gap-10">
@@ -37,7 +37,7 @@ const AntiChokingSteps = () => {
             <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg w-full max-w-xs">
               TAKE ACTION TODAY
             </button>
-            <p className="text-start text-sm text-[#13283e] font-semibold mt-3">
+            <p className="text-start text-sm text-[#162950] font-semibold mt-3">
               100% MONEY BACK GUARANTEE
             </p>
           </div>
@@ -50,15 +50,15 @@ const AntiChokingSteps = () => {
               <div key={index} className="flex items-start relative pb-12">
                 {/* Line */}
                 {index !== steps.length - 1 && (
-                  <span className="absolute left-4 top-4 h-full w-px bg-[#001f3f] z-0" />
+                  <span className="absolute left-4 top-4 h-full w-px bg-[#162950] z-0" />
                 )}
 
                 {/* Dot */}
-                <span className="w-4 h-4 bg-[#001f3f] rounded-full z-10 absolute left-2 top-1.5" />
+                <span className="w-4 h-4 bg-[#162950] rounded-full z-10 absolute left-2 top-1.5" />
 
                 {/* Step Content */}
                 <div className="pl-10">
-                  <h3 className="font-bold text-[#001f3f] text-lg mb-1">
+                  <h3 className="font-bold text-[#162950] text-lg mb-1">
                     {step.title}
                   </h3>
                   <p className="text-gray-700 text-sm">{step.description}</p>

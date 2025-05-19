@@ -13,13 +13,13 @@ const AirwayClearHero = () => {
           <img
             src={video} // Replace with your actual image path
             alt="Man using Airway Clear"
-            className="rounded-xl w-full object-cover shadow-lg"
+            className="rounded-xl w-full object-cover shadow-lg border border-[#162950]"
           />
         </div>
 
         {/* Text Section */}
         <div className="bg-white rounded-xl p-6 shadow-lg max-w-xl">
-          <h3 className="text-xl md:text-2xl font-bold text-[#0d1a4a] mb-4">
+          <h3 className="text-xl md:text-2xl font-bold text-[#162950] mb-4">
             The Life-Saving Device You Can’t Afford to Be Without
           </h3>
           <p className="text-gray-700 mb-4">

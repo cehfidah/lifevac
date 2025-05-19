@@ -26,7 +26,7 @@ const StatsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           {stats.map((item, index) => (
             <div key={index} className="bg-white rounded-lg shadow-md">
-              <div className="bg-[#121212] text-cyan-400 text-4xl font-bold text-center py-6 rounded-t-lg">
+              <div className="bg-[#162950] text-cyan-400 text-4xl font-bold text-center py-6 rounded-t-lg">
                 {item.number}
               </div>
               <div className="p-4 text-center text-gray-700 text-sm md:text-base">
@@ -44,7 +44,7 @@ const StatsSection = () => {
         </div>
 
         {/* Guarantee Text */}
-        <div className="text-center mt-4 font-semibold text-blue-900 text-sm md:text-base">
+        <div className="text-center mt-4 font-semibold text-[#162950] text-sm md:text-base">
           100% MONEY BACK GUARANTEE
         </div>
       </div>

@@ -36,7 +36,7 @@ const FacebookBadge = () => (
       <FaFacebookF className="text-white text-sm" />
       VIRAL ON FACEBOOK RIGHT NOW
     </button>
-    <p className="mt-3 text-sm text-gray-700">
+    <p className="mt-3 text-sm text-[#162950]">
       <span className="inline-flex items-center gap-1">
         <FaThumbsUp className="text-[#1877F2] text-sm" />
         <FaHeart className="text-red-500 text-sm" />

@@ -34,7 +34,7 @@ const ChokingTimeline = () => {
   return (
     <div className="bg-blue-50 py-12 px-4 md:px-20 font-sans">
       {/* Main Headline */}
-      <h2 className="text-center text-2xl md:text-3xl font-bold text-blue-900 mb-12 leading-snug">
+      <h2 className="text-center text-2xl md:text-3xl font-bold text-[#162950] mb-12 leading-snug">
         Over 100,000 ER visits annually are due to
         <br className="hidden md:block" />
         choking incidents across the U.S
@@ -48,7 +48,7 @@ const ChokingTimeline = () => {
             <img
               src={video}
               alt="Choking incident animation"
-              className="rounded-xl border-[3px] border-blue-900 shadow-lg w-full max-w-xs md:max-w-lg mx-auto md:mx-0"
+              className="rounded-xl border-[3px] border-[#162950] shadow-lg w-full max-w-xs md:max-w-lg mx-auto md:mx-0"
             />
             <p className="text-sm mt-4 text-gray-700 max-w-md mx-auto md:mx-0">
               Children and adults are at high risk of choking on food, toys, and
@@ -64,7 +64,7 @@ const ChokingTimeline = () => {
         {/* Right Side – Timeline */}
         <div className="relative max-h-full w-full md:w-1/2 mt-10 md:mt-0  overflow-y-auto md:overflow-visible">
           {/* Title */}
-          <h3 className="text-xl md:text-2xl font-extrabold text-blue-900 mb-6">
+          <h3 className="text-xl md:text-2xl font-extrabold text-[#162950] mb-6">
             Here’s What Happens When
             <br className="hidden md:block" /> Choking Occurs...
           </h3>
@@ -83,7 +83,7 @@ const ChokingTimeline = () => {
 
                 {/* Step Content */}
                 <div className="bg-white rounded-lg pl-16 pr-4 py-4 shadow-md">
-                  <p className="text-xs font-bold text-white bg-blue-900 inline-block px-2 py-1 rounded mb-3">
+                  <p className="text-xs font-bold text-white bg-[#162950] inline-block px-2 py-1 rounded mb-3">
                     {step.time}
                   </p>
                   {step.title && (
