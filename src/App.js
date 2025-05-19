@@ -25,6 +25,7 @@ import CartModal from "./components/cart-modal/CartModal";
 import Success from "./payment/Success";
 import Fail from "./payment/Fail";
 import OrderDetails from "./pages/orders/OrderDetails";
+import EmergencyGuide from "./pages/EmergencyGuide";
 
 const App = () => {
   const location = useLocation();
@@ -54,6 +55,7 @@ const App = () => {
           <Route path="/shipping-policy" element={<ShippingPolicy />} />
           <Route path="/contact-information" element={<ContactInformation />} />
           <Route path="/product/airwayclear" element={<Product />} />
+          <Route path="/product/home-medic-a-guide-for-household-emergencies" element={<EmergencyGuide />} />
         </Route>
 
         <Route element={<AuthProtect />}>

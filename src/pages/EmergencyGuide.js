@@ -25,19 +25,19 @@ const EmergencyGuide = () => {
 
         {/* Right - Info */}
         <div>
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold text-[#162950] mb-4 tracking-wide">
             Guide For Household Emergencies
           </h2>
           <div className="flex items-center mb-4 space-x-3">
-            <span className="text-2xl font-semibold text-blue-700">
+            <span className="text-2xl font-semibold text-[#162950]">
               Rs. 1,200.00
             </span>
-            <span className="line-through text-gray-500">Rs. 4,400.00</span>
-            <span className="bg-blue-600 text-white text-sm font-medium px-2 py-1 rounded">
+            <span className="line-through text-[#162950]">Rs. 4,400.00</span>
+            <span className="bg-[#162950] text-white text-sm font-medium px-2 py-1 rounded">
               SAVE 72%
             </span>
           </div>
-          <button className="bg-blue-800 hover:bg-blue-900 text-white px-6 py-3 rounded font-semibold w-full  mb-6">
+          <button className="bg-[#162950] hover:bg-blue-900 text-white px-6 py-3 rounded font-semibold w-full  mb-6">
             ADD TO CART
           </button>
 
@@ -52,7 +52,7 @@ const EmergencyGuide = () => {
           </div>
 
           {/* Description */}
-          <div className="text-gray-700 text-sm space-y-3 leading-relaxed max-w-2xl">
+          <div className="text-[#162950] text-base space-y-3 max-w-2xl">
             <p>
               Introduction: As a paramedic, I've seen many situations where
               people were unsure if they needed to go to the hospital. Some
