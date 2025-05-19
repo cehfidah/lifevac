@@ -6,6 +6,7 @@ import Loading from "../../components/Common/Loading";
 import { ApiHandler } from "../../helper/ApiHandler";
 import { useDispatch } from "react-redux";
 import logo from "../../assest/logo.webp";
+import { setAuth } from "../../store/slice/authSlice";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -51,6 +52,33 @@ export default function Login() {
       setLoading(false);
     }
   };
+
+  const guestLogin = async () => {
+    setLoading(true);
+
+    try {
+      const response = await ApiHandler(
+        "/guest_login.php",
+        "POST",
+        undefined,
+        undefined,
+        dispatch,
+        navigate
+      );
+      if (response.data.status === "1") {
+        const tokenPass = response.data.data.token;
+        dispatch(setAuth(tokenPass));
+        toast.success(response.data.msg);
+        navigate("/");
+      } else {
+        toast.error(response.data.msg);
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   if (loading) return <Loading />;
 
@@ -112,16 +140,18 @@ export default function Login() {
             <button
               type="submit"
               disabled={!isEmailValid}
-              className={`w-full py-3 rounded-md font-medium transition ${
-                isEmailValid
-                  ? "bg-indigo-600 text-white hover:bg-indigo-700"
-                  : "bg-gray-200 text-gray-500 cursor-not-allowed"
-              }`}
+              className={`w-full py-3 rounded-md font-medium transition ${isEmailValid
+                ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                }`}
             >
               Continue
             </button>
-            <button className="w-full py-3 rounded-md font-medium transition bg-[#00083f] mt-4 text-white">
-              Gust
+            <button className="w-full py-3 rounded-md font-medium transition bg-[#00083f] mt-4 text-white"
+              type="button"
+              onClick={guestLogin}
+            >
+              Guest Login
             </button>
           </form>
 
