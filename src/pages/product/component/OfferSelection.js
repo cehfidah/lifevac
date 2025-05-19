@@ -187,8 +187,8 @@ const OtherDataShow = () => {
           <img src={paysaven} alt="Google Pay" />
           <img src={payeaight} alt="Google Pay" />
         </div>
-        <div className="text-start flex flex-col gap-4">
-          <p className="font-bold">
+        <div className="text-start flex flex-col gap-4 text-xl">
+          <p className="font-bold ">
             Meet Airway Clear™, the lifesaving device designed to instantly
             clear blocked airways, &nbsp;for toddlers, children and
             adults.&nbsp;

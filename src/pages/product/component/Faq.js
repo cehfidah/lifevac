@@ -199,13 +199,13 @@ export default function Faq() {
           <div key={index} className="border rounded mb-3 shadow-sm">
             <button
               onClick={() => toggleAccordion(index)}
-              className="w-full flex justify-between items-center px-4 py-3 text-left text-base font-semibold text-gray-900 bg-gray-100 hover:bg-gray-200"
+              className="w-full flex justify-between items-center px-4 py-3 text-left text-xl font-semibold text-gray-900 bg-gray-100 hover:bg-gray-200"
             >
               {faq.title}
               <span className="text-xl">{openIndex === index ? "−" : "+"}</span>
             </button>
             {openIndex === index && (
-              <div className="px-4 py-3 bg-white text-sm text-gray-700 leading-relaxed">
+              <div className="px-4 py-3 bg-white text-lg text-gray-700 leading-relaxed">
                 {faq.content}
               </div>
             )}
