@@ -120,14 +120,24 @@ const OfferSelection = () => {
                 </div>
                 <div>
                   <span className="font-semibold text-gray-800">
-                    Rs. {offer.price.toLocaleString("en-IN")}
+                    {offer?.price.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
                   </span>
                   <div className="text-sm line-through text-gray-400">
-                    Rs. {offer.originalPrice.toLocaleString("en-IN")}
+                    {offer?.originalPrice.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
                   </div>
                   {!offer.guideIncluded && (
                     <p className="bg-[#162950] text-white text-xs px-2 py-1 inline-block rounded mt-2">
-                      You Save Rs. {offer.savings}
+                      You Save &nbsp;
+                      {offer?.savings.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
                     </p>
                   )}
                 </div>
@@ -144,7 +154,11 @@ const OfferSelection = () => {
                     + <strong>FREE Home Medic Guide</strong>
                   </p>
                   <p className="bg-[#162950] text-white text-xs px-2 py-1 inline-block rounded">
-                    You Save Rs. {offer.savings}
+                    You Save &nbsp;
+                    {offer?.savings.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
                   </p>
                 </div>
               )}

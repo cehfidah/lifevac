@@ -4,6 +4,7 @@ import {
   logout
 } from "../store/slice/authSlice";
 import { apiBasePath } from "./basePath";
+import { clearCart } from "../store/slice/cartSlice";
 
 export const ApiHandler = async (
   url,
@@ -45,6 +46,7 @@ export const ApiHandler = async (
     ) {
       toast.error(result.msg || "Unauthorized. Please log in again.");
       dispatch(logout());
+      dispatch(clearCart());
       navigate("/login");
     } else if (
       response.status === 404 ||
@@ -60,6 +62,7 @@ export const ApiHandler = async (
     ) {
       toast.error("Something went wrong. Please try again.");
       dispatch(logout());
+      dispatch(clearCart());
       navigate("/500");
     }
 
@@ -78,6 +81,7 @@ export const ApiHandler = async (
     ) {
       toast.error(result?.msg || "Unauthorized. Please log in again.");
       dispatch(logout());
+      dispatch(clearCart());
       navigate("/login");
     } else if (
       error.response?.status === 404 ||
@@ -93,6 +97,7 @@ export const ApiHandler = async (
     ) {
       toast.error("Something went wrong. Please try again.");
       dispatch(logout());
+      dispatch(clearCart());
       navigate("/500");
     } else {
       toast.error(errorMessage);

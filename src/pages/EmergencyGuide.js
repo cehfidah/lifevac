@@ -30,9 +30,17 @@ const EmergencyGuide = () => {
           </h2>
           <div className="flex items-center mb-4 space-x-3">
             <span className="text-2xl font-semibold text-[#162950]">
-              Rs. 1,200.00
+              {(1200.00).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
             </span>
-            <span className="line-through text-[#162950]">Rs. 4,400.00</span>
+            <span className="line-through text-[#162950]">
+              {(4400.00).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </span>
             <span className="bg-[#162950] text-white text-sm font-medium px-2 py-1 rounded">
               SAVE 72%
             </span>

@@ -453,32 +453,37 @@ const OrderSummary = ({ cartItems }) => {
             <div className="flex space-x-3">
               <div className="relative">
                 <img
-                  src={item.image}
-                  alt={item.sectionTitle}
+                  src={item?.image}
+                  alt={item?.sectionTitle}
                   className="h-14 w-14 rounded-md object-cover bg-white"
                 />
                 <span className="absolute -top-2 -left-2 bg-black text-white text-xs px-1.5 py-0.5 rounded-full">
-                  {item.quantity}
+                  {item?.quantity}
                 </span>
               </div>
               <div className="space-y-1">
                 <p className="text-sm font-medium text-gray-900">
-                  {item.sectionTitle}
+                  {item?.sectionTitle}
                 </p>
-                {item.id !== 'guideStandalone' && (
+                {item?.id !== 'guideStandalone' && (
                   <p className="text-xs text-gray-500">
-                    {item.title} (−₹
-                    {(item.originalPrice - item.price).toFixed(2)})
+                    {item?.title} (−$
+                    {(item?.originalPrice - item?.price).toFixed(2)})
                   </p>
                 )}
               </div>
             </div>
             <div className="text-right">
               <p className="line-through text-gray-400 text-xs">
-                ₹{item.originalPrice.toFixed(2)}
+                {(Number(item?.originalPrice) || 0).toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
               </p>
               <p className="font-medium text-sm">
-                {item.price === 0 ? "FREE" : `₹${item.price.toFixed(2)}`}
+                {item.price === 0 ? "FREE" : `$${item.price.toFixed(2)}`}
               </p>
             </div>
           </div>
@@ -503,22 +508,51 @@ const OrderSummary = ({ cartItems }) => {
           <span className="text-gray-700">
             Subtotal · {cartItems.reduce((s, i) => s + i.quantity, 0)} items
           </span>
-          <span>₹{subtotal.toFixed(2)}</span>
+          <span>
+            {(Number(subtotal) || 0).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </span>
         </div>
         <div className="flex justify-between">
           <span className="text-gray-700">Shipping</span>
-          <span>₹{shippingCost.toFixed(2)}</span>
+          <span>
+            {(Number(shippingCost) || 0).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </span>
         </div>
         <div className="flex justify-between font-semibold text-base pt-2">
           <span>Total</span>
-          <span>INR ₹{total.toFixed(2)}</span>
+          <span>
+            {(Number(total) || 0).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </span>
         </div>
       </div>
 
       {/* Savings */}
       <div className="flex items-center space-x-2 text-green-600 font-semibold text-sm pt-1">
         <FaTag className="w-4 h-4" />
-        <span>TOTAL SAVINGS ₹{totalSavings.toFixed(2)}</span>
+        <span>
+          TOTAL SAVINGS &nbsp;
+          {(Number(totalSavings) || 0).toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}
+        </span>
       </div>
     </div>
   );

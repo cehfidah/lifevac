@@ -130,39 +130,39 @@ const CartModal = () => {
                 <div className="bg-white rounded-xl px-6 md:px-4 w-full">
                   {cartItems.map((item) => (
                     <div className="border-b py-4">
-                      <div key={item.id} className="flex gap-4">
+                      <div key={item?.id} className="flex gap-4">
                         <img
-                          src={item.image}
-                          alt={item.sectionTitle}
+                          src={item?.image}
+                          alt={item?.sectionTitle}
                           className="w-20 h-20 object-contain"
                         />
 
                         <div className="flex-1">
-                          {(item.type === 'guide' || item.id === 'guideStandalone') ? (
+                          {(item?.type === 'guide' || item?.id === 'guideStandalone') ? (
                             <Link
                               to="/product/home-medic-a-guide-for-household-emergencies"
                               className="font-semibold"
                               onClick={() => dispatch(toggleCart())}
                             >
-                              {item.sectionTitle}
+                              {item?.sectionTitle}
                             </Link>
                           ) : (
-                            <h3 className="font-semibold">{item.sectionTitle}</h3>
+                            <h3 className="font-semibold">{item?.sectionTitle}</h3>
                           )}
 
-                          {item.id !== "guideStandalone" && (
+                          {item?.id !== "guideStandalone" && (
                             <>
                               <div className="mt-1">
-                                {item.oneItemOriginalPrice && (
+                                {item?.oneItemOriginalPrice && (
                                   <span className="line-through text-gray-400 text-sm mr-2">
-                                    {item.oneItemOriginalPrice.toLocaleString(
+                                    {item?.oneItemOriginalPrice.toLocaleString(
                                       "en-US",
                                       { style: "currency", currency: "USD" }
                                     )}
                                   </span>
                                 )}
                                 <span className="text-sm font-semibold">
-                                  {item.oneItemPrice.toLocaleString("en-US", {
+                                  {item?.oneItemPrice.toLocaleString("en-US", {
                                     style: "currency",
                                     currency: "USD",
                                   })}
@@ -171,15 +171,15 @@ const CartModal = () => {
                             </>
                           )}
 
-                          {item.title && (
+                          {item?.title && (
                             <p className="text-sm mt-1 font-medium text-[#121212f3]">
                               Offer: Buy One
                             </p>
                           )}
 
-                          {item.title && (
+                          {item?.title && (
                             <div className="mt-1 text-xs font-medium flex items-center gap-1 text-[#121212f3]">
-                              <MdOutlineDiscount /> <span>{item.title}</span>
+                              <MdOutlineDiscount /> <span>{item?.title}</span>
                             </div>
                           )}
 
@@ -246,9 +246,9 @@ const CartModal = () => {
                         </div>
 
                         <div className="flex flex-col w-full items-end text-right">
-                          {item.id !== "guideStandalone" && (
+                          {item?.id !== "guideStandalone" && (
                             <>
-                              {item.originalPrice && (
+                              {item?.originalPrice && (
                                 <div className="line-through text-gray-400 text-sm">
                                   {(
                                     parseFloat(item.quantity) *
@@ -262,12 +262,18 @@ const CartModal = () => {
                             </>
                           )}
                           <div className="text-base font-semibold">
-                            {(
-                              parseFloat(item.quantity) * parseFloat(item.price)
-                            ).toLocaleString("en-US", {
-                              style: "currency",
-                              currency: "USD",
-                            })}
+                            {
+                              item?.price && (
+                                <>
+                                  {(
+                                    parseFloat(item.quantity) * parseFloat(item.price)
+                                  ).toLocaleString("en-US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                  })}
+                                </>
+                              )
+                            }
                           </div>
                         </div>
                       </div>
