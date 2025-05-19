@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import Loading from "../../components/Common/Loading";
 import { ApiHandler } from "../../helper/ApiHandler";
 import { useDispatch } from "react-redux";
+import logo from "../../assest/logo.webp";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -69,9 +70,9 @@ export default function Login() {
         <div className="bg-white w-full max-w-md p-8 rounded-lg shadow-md">
           <Link
             to="/"
-            className="block text-center text-2xl font-semibold mb-6"
+            className="flex justify-center items-center text-center text-2xl font-semibold mb-6"
           >
-            AirwayClear 🌀🌀🌀🌀
+            <img src={logo} width={300} />
           </Link>
 
           <h3 className="text-lg font-medium text-center mb-4">Log in</h3>
