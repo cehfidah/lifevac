@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito+Sans&family=Poppins&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 html,
 body,
@@ -15,8 +15,8 @@ body,
 }
 
 body {
-  /* font-family: "DM Sans", sans-serif; */
-  font-family: "Montserrat", sans-serif;
+  font-family: "DM Sans", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
   font-size: 15px;
   font-weight: 400;
   overflow-x: hidden;
@@ -35,13 +35,11 @@ body {
 }
 
 .animated-stripes {
-  background-image: repeating-linear-gradient(
-    45deg,
-    #121a2c 0px,
-    #1e2a44 10px,
-    #405281 10px,
-    #425078 20px
-  );
+  background-image: repeating-linear-gradient(45deg,
+      #121a2c 0px,
+      #1e2a44 10px,
+      #405281 10px,
+      #425078 20px);
   animation: move-stripes 2s linear infinite;
 }
 
@@ -49,6 +47,7 @@ body {
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: 30px 0;
   }
