@@ -40,6 +40,8 @@ const cartSlice = createSlice({
                         type: 'guide',
                         price: 0,
                         originalPrice: 1200,
+                        oneItemPrice: 0,
+                        oneItemOriginalPrice: 1200,
                         savings: "",
                         quantity: 1,
                         freeQty: 1,                  // NEW FIELD

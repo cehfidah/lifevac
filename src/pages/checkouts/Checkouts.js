@@ -16,6 +16,7 @@ import { clearCart } from "../../store/slice/cartSlice";
 import { IoBagHandleOutline } from "react-icons/io5";
 
 import logo from "../../assest/logo.webp";
+import Container from "../../components/Container";
 
 const shippingCost = 500;
 
@@ -272,7 +273,7 @@ const Checkouts = () => {
           <div className="flex items-center space-x-2 sm:space-x-4">
             <Link to="/">
               <img
-                className="w-24 sm:w-32 md:w-auto lg:w-[30%]"
+                width={250}
                 src={logo}
                 alt="Logo"
               />
@@ -283,133 +284,126 @@ const Checkouts = () => {
             <IoBagHandleOutline size={25} />
           </div>
         </header>
-        <div className="max-w-7xl mx-auto p-4 md:p-8 grid md:grid-cols-3 gap-6">
-          {/* Left Section */}
-          <div className="md:col-span-2 space-y-6">
-            <div className="space-y-4">
-              <div className="text-sm text-gray-600">Account</div>
-              <input
-                type="email"
-                className="w-full border border-gray-300 rounded px-4 py-2"
-                value="brijp6386@gmail.com"
-                readOnly
-              />
-              <label className="flex items-center space-x-2 text-sm">
-                <input type="checkbox" checked readOnly />
-                <span>Send me live tracking and order updates</span>
-              </label>
-            </div>
-
-            {/* Delivery */}
-            <div className="space-y-4">
-              <h2 className="text-lg font-semibold">Delivery</h2>
-              {/* Dropdown */}
-              {addresses.length > 0 && (
-                <select
+        <Container>
+          <div className="paddingX py-4 md:py-8 grid md:grid-cols-2 gap-6">
+            {/* Left Section */}
+            <div className="space-y-6">
+              <div className="space-y-4">
+                <div className="text-sm text-gray-600">Account</div>
+                <input
+                  type="email"
                   className="w-full border border-gray-300 rounded px-4 py-2"
-                  value={selectedAddressId}
-                  onChange={handleAddressChange}
-                >
-                  {addresses.map((addr) => (
-                    <option key={addr.id} value={addr.id}>
-                      {addr.first_name} {addr.last_name} - {addr.address}
-                    </option>
-                  ))}
-                </select>
-              )}
+                  value="brijp6386@gmail.com"
+                  readOnly
+                />
+                <label className="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" checked readOnly />
+                  <span>Send me live tracking and order updates</span>
+                </label>
+              </div>
 
-              <div className="mb-4">
-                <p className="text-sm mb-1">Country/Region</p>
-                <Select
-                  options={countries}
-                  value={country}
-                  onChange={setCountry}
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <input
-                  className="w-full border p-2 rounded"
-                  placeholder="First name"
-                  value={formData.firstName}
-                  onChange={(e) => handleChange("firstName", e.target.value)}
-                />
-                <input
-                  className="w-full border p-2 rounded"
-                  placeholder="Last name"
-                  value={formData.lastName}
-                  onChange={(e) => handleChange("lastName", e.target.value)}
-                />
-              </div>
-              <input
-                className="w-full border p-2 mb-2 rounded"
-                placeholder="Address"
-                value={formData.address}
-                onChange={(e) => handleChange("address", e.target.value)}
-              />
-              <input
-                className="w-full border p-2 mb-2 rounded"
-                placeholder="Apartment, suite, etc (optional)"
-                value={formData.apt}
-                onChange={(e) => handleChange("apt", e.target.value)}
-              />
-              <div className="grid grid-cols-3 gap-4">
-                <input
-                  className="w-full border p-2 rounded"
-                  placeholder="City"
-                  value={formData.city}
-                  onChange={(e) => handleChange("city", e.target.value)}
-                />
-                <Select
-                  className="w-full"
-                  options={states}
-                  value={selectedState}
-                  onChange={setSelectedState}
-                  placeholder="State"
-                />
-                <input
-                  className="w-full border p-2 rounded"
-                  placeholder="ZIP code"
-                  value={formData.zip}
-                  onChange={(e) => handleChange("zip", e.target.value)}
-                />
-              </div>
-              <div className="mb-4">
-                <p className="text-sm mb-1">Phone</p>
-                <div className="flex items-center gap-2">
-                  <span className="border px-2 py-1 rounded bg-gray-100">
-                    +{phoneCode}
-                  </span>
+              {/* Delivery */}
+              <div className="space-y-4">
+                <h2 className="text-lg font-semibold">Delivery</h2>
+                {/* Dropdown */}
+                {addresses.length > 0 && (
+                  <select
+                    className="w-full border border-gray-300 rounded px-4 py-2"
+                    value={selectedAddressId}
+                    onChange={handleAddressChange}
+                  >
+                    {addresses.map((addr) => (
+                      <option key={addr.id} value={addr.id}>
+                        {addr.first_name} {addr.last_name} - {addr.address}
+                      </option>
+                    ))}
+                  </select>
+                )}
+
+                <div className="mb-4">
+                  <p className="text-sm mb-1">Country/Region</p>
+                  <Select options={countries} value={country} onChange={setCountry} />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
                   <input
                     className="w-full border p-2 rounded"
-                    placeholder="Phone number"
-                    value={formData.phone}
-                    onChange={(e) => handleChange("phone", e.target.value)}
+                    placeholder="First name"
+                    value={formData.firstName}
+                    onChange={e => handleChange("firstName", e.target.value)}
+                  />
+                  <input
+                    className="w-full border p-2 rounded"
+                    placeholder="Last name"
+                    value={formData.lastName}
+                    onChange={e => handleChange("lastName", e.target.value)}
                   />
                 </div>
+                <input
+                  className="w-full border p-2 mb-2 rounded"
+                  placeholder="Address"
+                  value={formData.address}
+                  onChange={e => handleChange("address", e.target.value)}
+                />
+                <input
+                  className="w-full border p-2 mb-2 rounded"
+                  placeholder="Apartment, suite, etc (optional)"
+                  value={formData.apt}
+                  onChange={e => handleChange("apt", e.target.value)}
+                />
+                <div className="grid grid-cols-3 gap-4">
+                  <input
+                    className="w-full border p-2 rounded"
+                    placeholder="City"
+                    value={formData.city}
+                    onChange={e => handleChange("city", e.target.value)}
+                  />
+                  <Select
+                    className="w-full"
+                    options={states}
+                    value={selectedState}
+                    onChange={setSelectedState}
+                    placeholder="State"
+                  />
+                  <input
+                    className="w-full border p-2 rounded"
+                    placeholder="ZIP code"
+                    value={formData.zip}
+                    onChange={e => handleChange("zip", e.target.value)}
+                  />
+                </div>
+                <div className="mb-4">
+                  <p className="text-sm mb-1">Phone</p>
+                  <div className="flex items-center gap-2">
+                    <span className="border px-2 py-1 rounded bg-gray-100">+{phoneCode}</span>
+                    <input
+                      className="w-full border p-2 rounded"
+                      placeholder="Phone number"
+                      value={formData.phone}
+                      onChange={e => handleChange("phone", e.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Payment Section */}
+              <div className="space-y-4  mx-auto">
+                <h2 className="text-lg font-semibold">Secure Checkout</h2>
+                <p className="text-sm text-gray-600">
+                  All transactions are secure and encrypted. Your order includes
+                  free returns and 24/7 access to our award-winning customer
+                  service
+                </p>
+
+                <Paypal handleApprove={handleApprove} amount={subtotal + shippingCost} />
               </div>
             </div>
 
-            {/* Payment Section */}
-            <div className="space-y-4  mx-auto">
-              <h2 className="text-lg font-semibold">Secure Checkout</h2>
-              <p className="text-sm text-gray-600">
-                All transactions are secure and encrypted. Your order includes
-                free returns and 24/7 access to our award-winning customer
-                service
-              </p>
-
-              <Paypal
-                handleApprove={handleApprove}
-                amount={subtotal + shippingCost}
-              />
+            {/* Right Section (Order Summary) */}
+            <div className="">
+              <OrderSummary cartItems={cartItems} />
             </div>
           </div>
-
-          {/* Right Section (Order Summary) */}
-          <div className="">
-            <OrderSummary cartItems={cartItems} />
-          </div>
-        </div>
+        </Container>
 
         {/* Policy Links */}
         <footer className="mt-6 text-center py-6 text-sm text-gray-600 border-t">
@@ -453,7 +447,7 @@ const OrderSummary = ({ cartItems }) => {
 
   return (
     <div className="bg-gray-100 rounded-md border border-gray-200 p-6 text-sm font-sans space-y-4">
-      <div className="space-y-5">
+      <div className="space-y-5 h-[300px] overflow-y-auto px-6 py-6">
         {cartItems.map((item) => (
           <div key={item.id} className="flex justify-between items-start">
             <div className="flex space-x-3">
@@ -461,7 +455,7 @@ const OrderSummary = ({ cartItems }) => {
                 <img
                   src={item.image}
                   alt={item.sectionTitle}
-                  className="h-14 w-14 rounded-md object-cover"
+                  className="h-14 w-14 rounded-md object-cover bg-white"
                 />
                 <span className="absolute -top-2 -left-2 bg-black text-white text-xs px-1.5 py-0.5 rounded-full">
                   {item.quantity}
@@ -471,10 +465,6 @@ const OrderSummary = ({ cartItems }) => {
                 <p className="text-sm font-medium text-gray-900">
                   {item.sectionTitle}
                 </p>
-                <div className="text-xs text-gray-600 leading-tight">
-                  {item.title}
-                  {item.kits && <div>{item.kits}</div>}
-                </div>
                 {item.savings && (
                   <p className="text-xs text-gray-500">
                     {item.title} (−₹

@@ -19,7 +19,9 @@ const CartModal = () => {
             id: 'guideStandalone',
             sectionTitle: 'Guide For Household Emergencies',
             price: 1200,
-            originalPrice: 4400,
+            originalPrice: 1200,
+            oneItemPrice: 1200,
+            oneItemOriginalPrice: 4400,
             quantity: 1,
             image: 'https://airwayclear.us/cdn/shop/files/Airwayclear.svg?v=1743450735&width=600',
             guideIncluded: false,
@@ -76,25 +78,31 @@ const CartModal = () => {
                                     </button>
                                 </div>
                             ) : (
-                                <div className="bg-white rounded-xl px-6 max-w-md w-full">
+                                <div className="bg-white rounded-xl px-6 md:px-4 w-full">
                                     {cartItems.map((item) => (
-                                        <>
-                                            <div key={item.id} className="flex gap-4 border-b py-4">
+                                        <div className='border-b py-4'>
+                                            <div key={item.id} className="flex gap-4">
                                                 <img src={item.image} alt={item.sectionTitle} className="w-20 h-20 object-contain" />
 
                                                 <div className="flex-1">
                                                     <h3 className="font-semibold">{item.sectionTitle}</h3>
 
-                                                    <div className="mt-1">
-                                                        {item.originalPrice && (
-                                                            <span className="line-through text-gray-400 text-sm mr-2">
-                                                                {item.originalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-                                                            </span>
+                                                    {
+                                                        item.id !== 'guideStandalone' && (
+                                                            <>
+                                                                <div className="mt-1">
+                                                                    {item.oneItemOriginalPrice && (
+                                                                        <span className="line-through text-gray-400 text-sm mr-2">
+                                                                            {item.oneItemOriginalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                                                                        </span>
+                                                                    )}
+                                                                    <span className="text-sm font-semibold">
+                                                                        {item.oneItemPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                                                                    </span>
+                                                                </div>
+                                                            </>
                                                         )}
-                                                        <span className="text-lg font-semibold">
-                                                            {item.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-                                                        </span>
-                                                    </div>
+
 
                                                     {item.title && (
                                                         <p className="text-sm mt-1 font-medium text-[#121212f3]">Offer: Buy One</p>
@@ -149,15 +157,36 @@ const CartModal = () => {
                                                             🗑️
                                                         </button>
                                                     </div>
+                                                </div>
 
-                                                    {errorMessages[item.id] && (
-                                                        <div className="px-4 pb-2 text-red-600 font-medium text-sm">
-                                                            ⚠️ {errorMessages[item.id]}
-                                                        </div>
-                                                    )}
+                                                <div className="flex flex-col w-full items-end text-right">
+                                                    {
+                                                        item.id !== 'guideStandalone' && (
+                                                            <>
+                                                                {item.originalPrice && (
+                                                                    <div className="line-through text-gray-400 text-sm">
+                                                                        {(parseFloat(item.quantity) * parseFloat(item.originalPrice)).toLocaleString('en-US', {
+                                                                            style: 'currency',
+                                                                            currency: 'USD',
+                                                                        })}
+                                                                    </div>
+                                                                )}
+                                                            </>
+                                                        )}
+                                                    <div className="text-base font-semibold">
+                                                        {(parseFloat(item.quantity) * parseFloat(item.price)).toLocaleString('en-US', {
+                                                            style: 'currency',
+                                                            currency: 'USD',
+                                                        })}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </>
+                                            {errorMessages[item.id] && (
+                                                <div className="px-4 text-red-600 font-medium text-sm">
+                                                    ⚠️ {errorMessages[item.id]}
+                                                </div>
+                                            )}
+                                        </div>
                                     ))}
                                     {/* Suggest Guide if no guideIncluded exists */}
                                     {!hasGuideIncluded && (
