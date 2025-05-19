@@ -9,7 +9,7 @@ import {
   addItemToCart,
 } from "../../store/slice/cartSlice";
 import { FaTimes } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineDiscount } from "react-icons/md";
 import payone from "../../assest/image/payment1.svg";
 import paytwo from "../../assest/image/payment2.svg";
@@ -138,7 +138,17 @@ const CartModal = () => {
                         />
 
                         <div className="flex-1">
-                          <h3 className="font-semibold">{item.sectionTitle}</h3>
+                          {(item.type === 'guide' || item.id === 'guideStandalone') ? (
+                            <Link
+                              to="/product/home-medic-a-guide-for-household-emergencies"
+                              className="font-semibold"
+                              onClick={() => dispatch(toggleCart())}
+                            >
+                              {item.sectionTitle}
+                            </Link>
+                          ) : (
+                            <h3 className="font-semibold">{item.sectionTitle}</h3>
+                          )}
 
                           {item.id !== "guideStandalone" && (
                             <>
@@ -340,11 +350,10 @@ const CartModal = () => {
                     </span>
                   </div>
                   <button
-                    className={`w-full py-2 rounded-xl mt-4 transition font-bold text-lg ${
-                      cartItems.length === 0
-                        ? "bg-gray-400 text-white cursor-not-allowed"
-                        : "bg-[#162950] text-white"
-                    }`}
+                    className={`w-full py-2 rounded-xl mt-4 transition font-bold text-lg ${cartItems.length === 0
+                      ? "bg-gray-400 text-white cursor-not-allowed"
+                      : "bg-[#162950] text-white"
+                      }`}
                     onClick={handleCheckout}
                     disabled={cartItems.length === 0}
                   >
