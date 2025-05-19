@@ -48,14 +48,14 @@ const AirwayClearFeatures = () => {
       </div>
 
       {/* Call to Action Button */}
-      <div className="mb-4">
-        <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300">
+      <div className="mt-12 text-center">
+        <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
           TAKE ACTION TODAY
         </button>
+        <p className="text-xl font-semibold text-[#162950] mt-2">
+          100% MONEY BACK GUARANTEE
+        </p>
       </div>
-
-      {/* Guarantee Text */}
-      <p className="font-bold text-[#162950]">100% MONEY BACK GUARANTEE</p>
     </div>
   );
 };

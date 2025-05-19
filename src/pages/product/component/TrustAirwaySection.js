@@ -4,17 +4,17 @@ import { FaUsers, FaUserMd, FaShieldAlt } from "react-icons/fa";
 const TrustAirwayClear = () => {
   const cards = [
     {
-      icon: <FaUsers className="text-[#00b8f1] text-3xl mb-3" />,
+      icon: <FaUsers className="text-[#00b8f1] text-8xl mb-3" />,
       title: "Proven Track Record:",
       desc: "Trusted by over 11,000 families who prioritize safety.",
     },
     {
-      icon: <FaUserMd className="text-[#00b8f1] text-3xl mb-3" />,
+      icon: <FaUserMd className="text-[#00b8f1] text-8xl mb-3" />,
       title: "Expert Endorsements:",
       desc: "Backed by medical professionals advocating for choking prevention.",
     },
     {
-      icon: <FaShieldAlt className="text-[#00b8f1] text-3xl mb-3" />,
+      icon: <FaShieldAlt className="text-[#00b8f1] text-8xl mb-3" />,
       title: "Reliable Innovation:",
       desc: "Designed with the latest safety technology to provide peace of mind.",
     },
@@ -35,26 +35,26 @@ const TrustAirwayClear = () => {
               key={index}
               className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-[#162950]"
             >
-              {card.icon}
-              <h3 className="font-semibold mb-1 text-lg text-center">
-                {card.title}
-              </h3>
-              <p className="text-sm text-center">{card.desc}</p>
+              <div className="flex justify-center items-center gap-4">
+                {card.icon}
+                <h3 className="font-semibold mb-1 text-2xl text-start">
+                  {card.title}
+                </h3>
+              </div>
+              <p className="text-2xl text-start ">{card.desc}</p>
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="mb-4">
-          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold text-sm sm:text-base px-8 py-3 rounded shadow-md transition">
+        <div className="mt-12 text-center">
+          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
             TAKE ACTION TODAY
           </button>
+          <p className="text-xl font-semibold text-[#162950] mt-2">
+            100% MONEY BACK GUARANTEE
+          </p>
         </div>
-
-        {/* Subtext */}
-        <p className="text-[#162950] text-sm font-bold tracking-wide">
-          100% MONEY BACK GUARANTEE
-        </p>
       </div>
     </section>
   );

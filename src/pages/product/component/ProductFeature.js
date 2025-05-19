@@ -43,10 +43,10 @@ export default function ProductFeature() {
                   {feature.id}
                 </div>
               </div>
-              <h3 className="font-bold text-lg text-[#162950]">
+              <h3 className="font-bold text-2xl text-[#162950]">
                 {feature.title}
               </h3>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-xl text-gray-600 mt-1">
                 {feature.description}
               </p>
             </div>
@@ -54,11 +54,11 @@ export default function ProductFeature() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center mt-10">
-        <button className="bg-green-600 text-white px-6 py-3 rounded font-semibold hover:bg-green-700 transition">
+      <div className="mt-12 text-center">
+        <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
           TAKE ACTION TODAY
         </button>
-        <p className="text-xs text-[#162950] font-bold mt-2">
+        <p className="text-xl font-semibold text-[#162950] mt-2">
           100% MONEY BACK GUARANTEE
         </p>
       </div>

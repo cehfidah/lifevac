@@ -69,14 +69,14 @@ const FAQSection = () => {
                 onClick={() => toggle(index)}
                 className="w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-[#162950] focus:outline-none"
               >
-                <span>{faq.question}</span>
-                <span className="text-2xl font-bold">
+                <span className="text-xl">{faq.question}</span>
+                <span className=" font-bold">
                   {openIndex === index ? "–" : "+"}
                 </span>
               </button>
 
               {openIndex === index && (
-                <div className="px-5 pb-4 text-sm text-[#162950] border-t border-gray-200 leading-relaxed">
+                <div className="px-5 pb-4 text-lg text-[#162950] border-t border-gray-200 leading-relaxed">
                   {isHTML(faq.answer) ? (
                     <div dangerouslySetInnerHTML={{ __html: faq.answer }} />
                   ) : (

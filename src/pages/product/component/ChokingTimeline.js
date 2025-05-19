@@ -50,12 +50,12 @@ const ChokingTimeline = () => {
               alt="Choking incident animation"
               className="rounded-xl border-[3px] border-[#162950] shadow-lg w-full max-w-xs md:max-w-lg mx-auto md:mx-0"
             />
-            <p className="text-sm mt-4 text-gray-700 max-w-md mx-auto md:mx-0">
+            <p className="text-xl mt-7 text-gray-700 max-w-md mx-auto md:mx-0">
               Children and adults are at high risk of choking on food, toys, and
               small objects, which can lead to irreversible damage or death
               within minutes.
             </p>
-            <p className="text-sm text-red-600 italic mt-2 font-medium">
+            <p className="text-lg text-red-600 italic mt-4 font-medium">
               *Average emergency response time is 8-15 minutes
             </p>
           </div>
@@ -82,8 +82,8 @@ const ChokingTimeline = () => {
                 <span className="w-4 h-4 bg-[#001f3f] rounded-full z-10 absolute -left-8 top-1.5" />
 
                 {/* Step Content */}
-                <div className="bg-white rounded-lg pl-16 pr-4 py-4 shadow-md">
-                  <p className="text-xs font-bold text-white bg-[#162950] inline-block px-2 py-1 rounded mb-3">
+                <div className="bg-[#E4EEF2] rounded-lg pl-16 pr-4 py-4 shadow-md">
+                  <p className="text-xs font-bold text-white bg-[#162950] inline-block px-2 py-2 rounded mb-3">
                     {step.time}
                   </p>
                   {step.title && (
@@ -94,7 +94,7 @@ const ChokingTimeline = () => {
                   {step.content.map((line, i) => (
                     <p
                       key={i}
-                      className={`text-lg text-gray-700 ${i > 0 ? "mt-2" : ""}`}
+                      className={`text-xl text-gray-700 ${i > 0 ? "mt-2" : ""}`}
                     >
                       {line}
                     </p>
@@ -108,10 +108,10 @@ const ChokingTimeline = () => {
 
       {/* CTA */}
       <div className="mt-12 text-center">
-        <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg text-sm shadow-lg w-full sm:w-auto">
+        <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
           TAKE ACTION TODAY
         </button>
-        <p className="text-xs font-semibold text-green-700 mt-2">
+        <p className="text-xl font-semibold text-[#162950] mt-2">
           100% MONEY BACK GUARANTEE
         </p>
       </div>

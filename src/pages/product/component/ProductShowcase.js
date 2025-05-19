@@ -202,19 +202,19 @@ const ProductShowcase = () => {
                 OVER 100,432+ SOLD, THIS IS WHY:
               </h3>
               <ul className="space-y-3 text-[#162950] text-base">
-                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950]">
+                <li className="flex justify-start gap-2 items-center border-dotted  border-b border-[#162950] py-2">
                   <IoCheckmarkCircleSharp /> <strong>Saves Lives</strong> in
                   Under 20 Seconds
                 </li>
-                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950]">
+                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950] py-2">
                   <IoCheckmarkCircleSharp /> No Training Needed –{" "}
                   <strong>1-Step Operation</strong>
                 </li>
-                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950]">
+                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950] py-2">
                   <IoCheckmarkCircleSharp /> <strong>Universal</strong> Design
                   for <strong>Adults & Children</strong>
                 </li>
-                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950]">
+                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950] py-2">
                   <IoCheckmarkCircleSharp /> <strong>Self-Applicable</strong> in
                   a Crisis
                 </li>

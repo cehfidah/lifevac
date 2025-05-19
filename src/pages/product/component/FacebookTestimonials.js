@@ -56,9 +56,9 @@ const TestimonialCard = ({ name, text, reactions, time, image }) => (
         alt={name}
         className="w-6 h-6 rounded-sm object-cover border"
       />
-      <h3 className="text-blue-700 font-bold text-lg">{name}</h3>
+      <h3 className="text-blue-700 font-bold text-xl">{name}</h3>
     </div>
-    <p className="text-base text-gray-900 leading-relaxed mb-4">"{text}"</p>
+    <p className="text-lg text-gray-900 leading-relaxed mb-4">"{text}"</p>
     <div className="flex justify-between text-xs text-blue-600">
       <div className="flex gap-2">
         <span className="cursor-pointer">Like</span>
@@ -67,10 +67,10 @@ const TestimonialCard = ({ name, text, reactions, time, image }) => (
       <span className="text-gray-500">{time}</span>
     </div>
     <div className="absolute -bottom-3 left-0 bg-white rounded-full shadow px-2 py-0.5 flex items-center space-x-1">
-      <FaFaceLaughBeam className="text-yellow-400 text-xs" />
-      <FaHeart className="text-red-500 text-xs" />
-      <FaThumbsUp className="text-[#1877F2] text-xs" />
-      <span className="text-xs text-gray-600 pl-1">{reactions}</span>
+      <FaFaceLaughBeam className="text-yellow-400 text-lg" />
+      <FaHeart className="text-red-500 text-lg" />
+      <FaThumbsUp className="text-[#1877F2] text-lg" />
+      <span className="text-lg text-gray-600 pl-1">{reactions}</span>
     </div>
   </div>
 );

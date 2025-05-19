@@ -86,9 +86,11 @@ export default function TrustedByFamilies() {
                       <FaStar key={i} />
                     ))}
                   </div>
-                  <h3 className="font-semibold mb-1">{t.title}</h3>
-                  <p className="text-sm mb-4">"{t.text}"</p>
-                  <p className="text-sm font-semibold">
+                  <h3 className="font-medium mb-1 text-xl border-b py-4">
+                    {t.title}
+                  </h3>
+                  <p className="text-lg mb-4">"{t.text}"</p>
+                  <p className="text-sm font-normal">
                     {t.name}{" "}
                     <span className="text-[#162950]">● Verified Customer</span>
                   </p>
@@ -113,13 +115,14 @@ export default function TrustedByFamilies() {
           </div>
         </div>
 
-        <button className="bg-green-600 text-white px-6 py-3 rounded-md font-bold hover:bg-green-700 transition">
-          TAKE ACTION TODAY
-        </button>
-
-        <p className="text-sm font-semibold mt-4 text-[#162950]">
-          100% MONEY BACK GUARANTEE
-        </p>
+        <div className="mt-12 text-center">
+          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
+            TAKE ACTION TODAY
+          </button>
+          <p className="text-xl font-semibold text-[#162950] mt-2">
+            100% MONEY BACK GUARANTEE
+          </p>
+        </div>
       </div>
     </section>
   );
