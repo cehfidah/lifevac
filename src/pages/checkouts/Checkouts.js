@@ -145,13 +145,11 @@ const Checkouts = () => {
     return requiredFields.every((field) => field && field.trim() !== "");
   };
 
+  // if (!validateForm()) {
+  //   toast.error("Please fill in all required shipping details before proceeding.");
+  //   return;
+  // }
   const handleApprove = async (data, actions) => {
-    if (!validateForm()) {
-      toast.error("Please fill in all required shipping details before proceeding.");
-      return;
-    }
-
-    setLoading(true);
 
     const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
     const total = subtotal + shippingCost;
