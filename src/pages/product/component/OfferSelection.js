@@ -24,6 +24,8 @@ const OfferSelection = () => {
       kits: "1× Full Kit",
       price: 3474.64,
       originalPrice: 6100,
+      oneItemPrice: 3474.64,
+      oneItemOriginalPrice: 6100,
       savings: 2625.36,
       guideIncluded: false,
       tag: false,
@@ -36,6 +38,8 @@ const OfferSelection = () => {
       kits: "3× Full Kits",
       price: 6949.27,
       originalPrice: 18300,
+      oneItemPrice: 1737.23,
+      oneItemOriginalPrice: 6100,
       savings: 11350.73,
       tag: true,
       tagText: "MOST POPULAR",
@@ -50,6 +54,8 @@ const OfferSelection = () => {
       kits: "5× Full Kits",
       price: 8686.16,
       originalPrice: 30500,
+      oneItemPrice: 3474.64,
+      oneItemOriginalPrice: 6100,
       savings: 21813.84,
       tag: true,
       tagText: "MOST SAVINGS",
@@ -83,8 +89,8 @@ const OfferSelection = () => {
               {idx === 0
                 ? "Protection For Yourself And Your Kid:"
                 : idx === 1
-                ? "Protection For Your Close Family:"
-                : "Protection For Your Large Family:"}
+                  ? "Protection For Your Close Family:"
+                  : "Protection For Your Large Family:"}
             </h4>
             {offer.tag && (
               <div className="flex justify-end pr-1">
@@ -95,11 +101,10 @@ const OfferSelection = () => {
             )}
             <div
               onClick={() => handleSelectOffer(offer)}
-              className={`border rounded-xl text-left shadow-md mb-6 cursor-pointer ${
-                selectedId === offer.id
-                  ? "border-blue-900 bg-blue-50"
-                  : "hover:border-blue-400"
-              }`}
+              className={`border rounded-xl text-left shadow-md mb-6 cursor-pointer ${selectedId === offer.id
+                ? "border-blue-900 bg-blue-50"
+                : "hover:border-blue-400"
+                }`}
             >
               <div className="flex justify-between items-start gap-4 p-4">
                 <div className="flex items-center justify-center">
@@ -130,11 +135,10 @@ const OfferSelection = () => {
 
               {offer.guideIncluded && (
                 <div
-                  className={`${
-                    offer.id === "offer2"
-                      ? "bg-[#001532] text-white"
-                      : "bg-[#0015324d] text-black"
-                  } flex justify-between items-center px-2 py-2 mt-2 rounded-br-xl rounded-bl-xl`}
+                  className={`${offer.id === "offer2"
+                    ? "bg-[#001532] text-white"
+                    : "bg-[#0015324d] text-black"
+                    } flex justify-between items-center px-2 py-2 mt-2 rounded-br-xl rounded-bl-xl`}
                 >
                   <p className="text-sm mt-1">
                     + <strong>FREE Home Medic Guide</strong>
