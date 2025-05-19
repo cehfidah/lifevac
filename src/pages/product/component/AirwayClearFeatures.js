@@ -1,5 +1,8 @@
 import React from "react";
 import { FaExclamationTriangle, FaClock, FaShieldAlt } from "react-icons/fa";
+import worning from "../../../assest/thirdworning.svg";
+import timer from "../../../assest/secondtimer.svg";
+import shilde from "../../../assest/firstshilde.svg";
 
 const AirwayClearFeatures = () => {
   return (
@@ -9,24 +12,24 @@ const AirwayClearFeatures = () => {
         {/* Card 1 */}
         <div className="border-2 bg-white border-dashed border-gray-300 rounded-lg p-6">
           <div className="text-cyan-500 text-4xl mb-4 mx-auto flex justify-center items-center">
-            <FaExclamationTriangle />
+            <img src={worning} />
           </div>
-          <h3 className="text-lg font-semibold text-[#162950] mb-2">
+          <h3 className="text-2xl font-medium text-[#162950] mb-2">
             Take Control of Safety
           </h3>
-          <p className="text-gray-700">
+          <p className="text-gray-700 text-xl mt-4">
             Airway Clear™ allows you to swiftly remove choking hazards, making
             your home safer for everyone.
           </p>
         </div>
 
         {/* Card 2 - Highlighted */}
-        <div className="bg-gradient-to-b from-cyan-400 to-cyan-500 text-white rounded-lg p-6 shadow-md">
+        <div className="bg-gradient-to-b from-cyan-400 to-cyan-500 text-white rounded-lg p-6 shadow-lg">
           <div className="text-4xl mb-4 mx-auto flex justify-center items-center">
-            <FaClock />
+            <img src={timer} />
           </div>
-          <h3 className="text-lg font-semibold mb-2">Immediate Response</h3>
-          <p>
+          <h3 className="text-2xl font-semibold mb-2">Immediate Response</h3>
+          <p className="text-xl mt-4">
             This device enables quick action in choking situations, ensuring you
             can act confidently when it matters most.
           </p>
@@ -35,12 +38,12 @@ const AirwayClearFeatures = () => {
         {/* Card 3 */}
         <div className="border-2 border-dashed bg-white border-gray-300 rounded-lg p-6">
           <div className="text-cyan-500 text-4xl mb-4 mx-auto flex justify-center items-center">
-            <FaShieldAlt />
+            <img src={shilde} />
           </div>
-          <h3 className="text-lg font-semibold text-[#162950] mb-2">
+          <h3 className="text-2xl font-semibold text-[#162950] mb-2">
             Feel Secure
           </h3>
-          <p className="text-gray-700">
+          <p className="text-gray-700 text-xl mt-4">
             With Airway Clear™, you’ll enjoy peace of mind, knowing you’re ready
             to handle emergencies effectively.
           </p>
