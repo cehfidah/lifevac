@@ -465,7 +465,7 @@ const OrderSummary = ({ cartItems }) => {
                 <p className="text-sm font-medium text-gray-900">
                   {item.sectionTitle}
                 </p>
-                {item.savings && (
+                {item.id !== 'guideStandalone' && (
                   <p className="text-xs text-gray-500">
                     {item.title} (−₹
                     {(item.originalPrice - item.price).toFixed(2)})
