@@ -32,23 +32,27 @@ export default function ProductFeature() {
           <img src={ProductFeaturew} alt="Product" className="w-full" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-20 max-w-xl">
           {features.map((feature) => (
             <div
               key={feature.id}
-              className="bg-white p-4 rounded shadow text-center"
+              className="bg-white p-4 rounded shadow text-center relative"
             >
-              <div className="flex justify-center items-center mb-2">
-                <div className="bg-blue-500 text-white w-8 h-8 text-sm font-bold rounded-full flex items-center justify-center">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="w-14 md:w-16 h-14 md:h-16 rounded-full text-white flex items-center justify-center text-2xl font-bold shadow-md"
+                  style={{ backgroundImage: 'linear-gradient(270deg, #3CBBF2 0%, #4DC5F6 47%, #64D3FC 100%)' }}
+                >
                   {feature.id}
                 </div>
               </div>
-              <h3 className="font-bold text-2xl text-[#162950]">
-                {feature.title}
-              </h3>
-              <p className="text-xl text-[#162950] mt-1">
-                {feature.description}
-              </p>
+              <div className="mt-10">
+                <h3 className="font-bold text-2xl text-[#162950]">
+                  {feature.title}
+                </h3>
+                <p className="text-base text-[#162950] mt-1 font-normal">
+                  {feature.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
