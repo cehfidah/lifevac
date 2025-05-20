@@ -34,7 +34,7 @@ const ChokingTimeline = () => {
   return (
     <div className="bg-blue-50 py-12 px-4 md:px-20 font-sans">
       {/* Main Headline */}
-      <h2 className="text-center text-2xl md:text-3xl font-bold text-[#162950] mb-12 leading-snug">
+      <h2 className="text-center text-2xl md:text-4xl font-bold text-[#162950] mb-12 tracking-wider leading-relaxed">
         Over 100,000 ER visits annually are due to
         <br className="hidden md:block" />
         choking incidents across the U.S
@@ -82,7 +82,7 @@ const ChokingTimeline = () => {
                 <span className="w-4 h-4 bg-[#001f3f] rounded-full z-10 absolute -left-8 top-1.5" />
 
                 {/* Step Content */}
-                <div className="bg-[#E4EEF2] rounded-lg pl-16 pr-4 py-4 shadow-md">
+                <div className="bg-[#E4EEF2] rounded-lg px-4 py-4 shadow-md">
                   <p className="text-xs font-bold text-white bg-[#162950] inline-block px-2 py-2 rounded mb-3">
                     {step.time}
                   </p>
