@@ -1,9 +1,22 @@
-import React, { useState } from "react";
-import { FaCreditCard } from "react-icons/fa";
-import { FaPaypal } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaCreditCard, FaPaypal } from "react-icons/fa";
 
-const PayWithPayPalModal = () => {
+const PayWithPayPalModal = ({ amount = 49.99 }) => {
   const [open, setOpen] = useState(false);
+
+  // Prevent background scroll when modal is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    // Cleanup when component unmounts
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
@@ -18,10 +31,25 @@ const PayWithPayPalModal = () => {
       {/* Modal */}
       {open && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
-            <h2 className="text-xl font-semibold text-center mb-6">
+          <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
+            {/* Top Close Button */}
+            <button
+              onClick={() => setOpen(false)}
+              aria-label="Close modal"
+              className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl font-bold transition"
+            >
+              &times;
+            </button>
+
+            <h2 className="text-xl font-semibold text-center mb-2">
               Pay with PayPal
             </h2>
+
+            {/* Amount Display */}
+            <p className="text-center text-2xl font-bold text-gray-800 mb-6">
+              Amount:{" "}
+              <span className="text-green-600">${amount.toFixed(2)}</span>
+            </p>
 
             {/* PayPal Button */}
             <button className="w-full bg-yellow-400 hover:bg-yellow-500 transition text-blue-900 font-semibold py-2 rounded-lg flex justify-center items-center space-x-1 mb-3">
@@ -44,7 +72,7 @@ const PayWithPayPalModal = () => {
               no account required.
             </p>
 
-            {/* Close Button */}
+            {/* Bottom Close Button */}
             <button
               onClick={() => setOpen(false)}
               className="mt-6 w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 rounded-lg transition"
