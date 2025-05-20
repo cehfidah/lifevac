@@ -451,7 +451,7 @@ const OrderSummary = ({ cartItems }) => {
 
   return (
     <div className="bg-gray-100 rounded-md border border-gray-200 p-6 text-sm font-sans space-y-4">
-      <div className="space-y-5 h-[300px] overflow-y-auto px-6 py-6">
+      <div className="space-y-5 max-h-[300px] overflow-y-auto px-6 py-6">
         {cartItems.map((item) => (
           <div key={item.id} className="flex justify-between items-start">
             <div className="flex space-x-3">
