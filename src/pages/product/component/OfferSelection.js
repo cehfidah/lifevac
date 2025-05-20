@@ -115,7 +115,7 @@ const OfferSelection = () => {
                   />
                 </div>
                 <div>
-                  <span className="font-bold text-xl">{offer.title}</span>
+                  <span className="font-bold text-base md:text-xl">{offer.title}</span>
                   <div className="text-sm text-gray-600 mb-1">{offer.kits}</div>
                 </div>
                 <div>
@@ -191,7 +191,7 @@ export default OfferSelection;
 const OtherDataShow = () => {
   return (
     <>
-      <div className="bg-[#f8fbff] px-4 py-4 rounded-lg mt-8 text-center shadow-sm border border-gray-200">
+      <div className="md:bg-[#f8fbff] px-4 py-4 rounded-lg mt-8 text-center shadow-sm border border-gray-200">
         <p className="font-bold text-[#162950] uppercase tracking-wider mb-3">
           SSL Encrypted & Secure Payment With
         </p>
@@ -205,7 +205,7 @@ const OtherDataShow = () => {
           <img src={paysaven} alt="Google Pay" />
           <img src={payeaight} alt="Google Pay" />
         </div>
-        <div className="text-start flex flex-col gap-4 text-lg tracking-wider">
+        <div className="text-start flex flex-col gap-4 text-base md:text-lg tracking-wider">
           <p className="font-semibold">
             Meet Airway Clear™, the lifesaving device designed to instantly
             clear blocked airways, &nbsp;for toddlers, children and

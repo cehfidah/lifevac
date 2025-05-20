@@ -93,7 +93,7 @@ const ProductShowcase = () => {
   }, [images.length, isMobile]);
 
   return (
-    <div className="bg-white p-6 lg:p-10 font-sans max-w-screen-xl mx-auto">
+    <div className="bg-white px-2 py-6 lg:p-10 font-sans max-w-screen-xl mx-auto">
       <div className="flex flex-col md:flex-row gap-8">
         {/* Left Image Panel */}
         <div className="md:sticky md:top-6 md:self-start w-full md:w-1/2">
