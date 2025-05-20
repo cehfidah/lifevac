@@ -16,7 +16,6 @@ import TestimonialCarousel from "./component/TestimonialCarousel";
 import TrustAirwaySection from "./component/TrustAirwaySection";
 import TrustedByFamilies from "./component/TrustedByFamilies";
 import ProductShowcase from "./component/ProductShowcase";
-import Demo from "./component/Demo";
 
 const Home = () => {
   return (
@@ -46,7 +45,6 @@ const Home = () => {
       <TrustAirwaySection />
       <FAQSection />
       <ReviewGrid />
-      <Demo />
     </>
   );
 };

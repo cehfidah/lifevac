@@ -47,15 +47,14 @@ const ComparisonTable = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {/* Column Headers */}
           <div className="bg-white rounded-t-xl border border-[#162950] overflow-hidden">
-            <div className="bg-[#162950] text-[#3EBDE4] underline font-bold text-center py-3 text-3xl tracking-wide uppercase">
+            <div className="bg-[#162950] text-[#3EBDE4] font-bold text-center py-3 text-2xl tracking-wide uppercase">
               METHOD
             </div>
             {rows.map((row, i) => (
               <div
                 key={i}
-                className={`px-4 py-5 text-[#162950] font-semibold text-center text-2xl ${
-                  i % 2 !== 0 ? "bg-[#f2f2f2]" : ""
-                }`}
+                className={`px-4 py-5 text-[#162950] font-semibold text-center text-2xl ${i % 2 !== 0 ? "bg-[#f2f2f2]" : ""
+                  }`}
               >
                 {row.method}
               </div>
@@ -63,16 +62,15 @@ const ComparisonTable = () => {
           </div>
 
           <div className="bg-white rounded-t-xl border border-[#162950] overflow-hidden">
-            <div className="bg-[#162950] text-[#3EBDE4] underline font-bold text-center py-3 text-3xl uppercase tracking-wide">
+            <div className="bg-[#162950] text-[#3EBDE4] font-bold text-center py-3 text-2xl uppercase tracking-wide">
               TIME TO CLEAR AIRWAY <br />
               <span className="text-xl font-normal">(AVERAGE)</span>
             </div>
             {rows.map((row, i) => (
               <div
                 key={i}
-                className={`px-4 py-5 text-[#162950] font-medium text-center ${
-                  i % 2 !== 0 ? "bg-[#f2f2f2]" : ""
-                }`}
+                className={`px-4 py-5 text-[#162950] font-medium text-center ${i % 2 !== 0 ? "bg-[#f2f2f2]" : ""
+                  }`}
               >
                 <span className="text-2xl"> {row.time}</span>
               </div>
@@ -80,15 +78,14 @@ const ComparisonTable = () => {
           </div>
 
           <div className="bg-white rounded-t-xl border border-[#162950] overflow-hidden">
-            <div className="bg-[#162950] text-[#3EBDE4] underline font-bold text-center py-3 text-3xl tracking-wide uppercase">
+            <div className="bg-[#162950] text-[#3EBDE4] font-bold text-center py-3 text-2xl tracking-wide uppercase">
               RISK OF INJURY
             </div>
             {rows.map((row, i) => (
               <div
                 key={i}
-                className={`px-4 py-5 text-[#162950] text-center ${
-                  i % 2 !== 0 ? "bg-[#f2f2f2]" : ""
-                }`}
+                className={`px-4 py-5 text-[#162950] text-center ${i % 2 !== 0 ? "bg-[#f2f2f2]" : ""
+                  }`}
               >
                 <span className="font-bold text-2xl">{row.risk}</span>
                 {row.riskNote && (
