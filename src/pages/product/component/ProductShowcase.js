@@ -105,10 +105,11 @@ const ProductShowcase = () => {
                   key={index}
                   src={img}
                   alt={`thumb-${index}`}
-                  className={`w-16 h-16 object-cover rounded shadow cursor-pointer border-2 ${mainImageIndex === index
-                    ? "border-blue-600"
-                    : "border-transparent"
-                    }`}
+                  className={`w-16 h-16 object-cover rounded shadow cursor-pointer border-2 ${
+                    mainImageIndex === index
+                      ? "border-blue-600"
+                      : "border-transparent"
+                  }`}
                   onClick={() => setMainImageIndex(index)}
                 />
               ))}
@@ -168,10 +169,11 @@ const ProductShowcase = () => {
                   key={index}
                   src={img}
                   alt={`thumb-${index}`}
-                  className={`w-16 h-16 object-cover rounded flex-shrink-0 cursor-pointer border-2 ${mainImageIndex === index
-                    ? "border-blue-600"
-                    : "border-transparent"
-                    }`}
+                  className={`w-16 h-16 object-cover rounded flex-shrink-0 cursor-pointer border-2 ${
+                    mainImageIndex === index
+                      ? "border-blue-600"
+                      : "border-transparent"
+                  }`}
                   onClick={() => setMainImageIndex(index)}
                 />
               ))}
@@ -187,13 +189,13 @@ const ProductShowcase = () => {
         <div className="flex flex-col gap-6 pr-2 overflow-y-auto md:overflow-visible max-h-full w-full md:w-1/2">
           <div className="pb-8">
             {/* star */}
-            <div className="flex items-center space-x-2 text-sm sm:text-base text-gray-800">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm sm:text-base md:text-lg text-gray-800">
               {/* Star rating icons */}
               <div className="flex space-x-0.5 text-green-500">
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className="w-5 h-5 fill-current"
+                    className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 fill-current"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -203,7 +205,7 @@ const ProductShowcase = () => {
               </div>
 
               {/* Review text */}
-              <p className="text-lg">
+              <p className="text-sm sm:text-base md:text-lg">
                 Excellent <strong>(4.7/5)</strong> Based on 10k+ Reviews
               </p>
             </div>
@@ -241,10 +243,11 @@ const ProductShowcase = () => {
                 ].map(([highlight, extra], i) => (
                   <li
                     key={i}
-                    className={`flex items-start gap-3 ${i < 4
-                      ? "border-b border-dotted border-[#162950] pb-3"
-                      : ""
-                      }`}
+                    className={`flex items-start gap-3 ${
+                      i < 4
+                        ? "border-b border-dotted border-[#162950] pb-3"
+                        : ""
+                    }`}
                   >
                     <IoCheckmarkCircleSharp className="min-w-[20px] text-lg sm:text-xl mt-0.5 shrink-0" />
                     <span>
