@@ -87,12 +87,18 @@ const CartModal = () => {
             </div>
             <div className="w-full max-w-xl mx-auto pb-6 px-4 border-b">
               {/* Message */}
-              <p className="text-sm font-semibold text-gray-800 mb-2">
+              {/* <p className="text-sm font-semibold text-gray-800 mb-2">
                 Congrats! You get{" "}
                 <span className="text-black font-bold">
                   FREE lifetime replacement!!
                 </span>{" "}
                 🎉
+              </p> */}
+              <p className="text-base font-semibold text-gray-800 mb-2 text-center">
+                Spend $45 more to get{" "}
+                <span className="text-black font-bold">
+                  FREE lifetime replacement!!
+                </span>
               </p>
 
               {/* Progress bar container with positioned tag */}
