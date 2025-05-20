@@ -17,7 +17,7 @@ const AirwayClearFeatures = () => {
           <h3 className="text-2xl font-medium text-[#162950] mb-2">
             Take Control of Safety
           </h3>
-          <p className="text-gray-700 text-xl mt-4">
+          <p className="text-[#162950] text-xl mt-4">
             Airway Clear™ allows you to swiftly remove choking hazards, making
             your home safer for everyone.
           </p>

@@ -61,7 +61,7 @@ const AntiChokingSteps = () => {
                   <h3 className="font-bold text-[#162950] text-2xl mb-1">
                     {step.title}
                   </h3>
-                  <p className="text-gray-700 text-xl">{step.description}</p>
+                  <p className="text-[#162950] text-xl">{step.description}</p>
                 </div>
               </div>
             ))}

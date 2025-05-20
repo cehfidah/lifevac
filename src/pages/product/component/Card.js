@@ -30,7 +30,7 @@ function Card() {
               <h3 className="font-bold text-blue-900 text-lg md:text-xl">
                 100% MONEY BACK GUARANTEE
               </h3>
-              <p className="text-sm md:text-base text-blue-900 mt-2">
+              <p className="text-sm md:text-base text-[#162950] mt-2">
                 If within 30 days of receiving your package, you are not
                 satisfied with your purchase, you may return it for a full
                 refund.

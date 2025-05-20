@@ -50,7 +50,7 @@ const ChokingTimeline = () => {
               alt="Choking incident animation"
               className="rounded-xl border-[3px] border-[#162950] shadow-lg w-full max-w-xs md:max-w-lg mx-auto md:mx-0"
             />
-            <p className="text-xl mt-7 text-gray-700 max-w-md mx-auto md:mx-0">
+            <p className="text-xl mt-7 text-[#162950] max-w-md mx-auto md:mx-0">
               Children and adults are at high risk of choking on food, toys, and
               small objects, which can lead to irreversible damage or death
               within minutes.

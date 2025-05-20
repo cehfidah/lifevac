@@ -97,7 +97,7 @@ const TestimonialCarousel = () => {
                 </p>
                 <p className="text-sm font-semibold text-[#162950]">
                   {testimonial.name}{" "}
-                  <span className="text-gray-500">• {testimonial.role}</span>
+                  <span className="text-[#162950]">• {testimonial.role}</span>
                 </p>
               </div>
             </div>

@@ -46,7 +46,7 @@ export default function ProductFeature() {
               <h3 className="font-bold text-2xl text-[#162950]">
                 {feature.title}
               </h3>
-              <p className="text-xl text-gray-600 mt-1">
+              <p className="text-xl text-[#162950] mt-1">
                 {feature.description}
               </p>
             </div>
