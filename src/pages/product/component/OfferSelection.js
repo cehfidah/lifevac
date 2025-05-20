@@ -11,6 +11,7 @@ import paysaven from "../../../assest/image/payment7.svg";
 import payeaight from "../../../assest/image/payment8.svg";
 import { FaTruck } from "react-icons/fa6";
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
 
 const OfferSelection = () => {
   const dispatch = useDispatch();
@@ -162,9 +163,16 @@ const OfferSelection = () => {
                     : "bg-[#0015324d] text-black"
                     } flex justify-between items-center px-2 py-2 mt-2 rounded-br-xl rounded-bl-xl`}
                 >
-                  <p className="text-sm mt-1">
+                  <div className="flex gap-2 items-center text-sm mt-1">
+                    <Link to="/product/home-medic-a-guide-for-household-emergencies">
+                      <img
+                        src="https://airwayclear.us/cdn/shop/files/Airwayclear.svg?v=1743450735&width=600"
+                        alt="Guide"
+                        className="w-8 h-8 object-contain"
+                      />
+                    </Link>
                     + <strong>FREE Home Medic Guide</strong>
-                  </p>
+                  </div>
                   <p className="bg-[#162950] text-white text-xs px-2 py-1 inline-block rounded">
                     You Save &nbsp;
                     {offer?.savings.toLocaleString("en-US", {

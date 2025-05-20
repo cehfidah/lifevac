@@ -7,9 +7,13 @@ import four from "../../assest/image/payment4.svg";
 import five from "../../assest/image/payment5.svg";
 import six from "../../assest/image/payment6.svg";
 import seven from "../../assest/image/payment7.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const location = useLocation(); // ✅ Get current route
+  const isGuidePage =
+    location.pathname === "/product/home-medic-a-guide-for-household-emergencies";
+
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -34,7 +38,10 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#0e2243] text-white pt-10 px-4">
+    <footer
+      className={`bg-[#0e2243] text-white pt-10 px-4 ${isGuidePage ? "pb-40" : ""
+        }`}
+    >
       <div className="max-w-sm mx-auto text-center">
         <h2 className="text-2xl font-black mb-4">Subscribe to our emails</h2>
         <p className="text-base mb-6 text-gray-300">

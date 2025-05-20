@@ -85,35 +85,38 @@ const CartModal = () => {
                 <FaTimes className="text-xl text-gray-700" />
               </button>
             </div>
-            <div className="w-full max-w-xl mx-auto pb-6 px-4 border-b">
-              {/* Message */}
-              {/* <p className="text-sm font-semibold text-gray-800 mb-2">
+            {
+              cartItems.length !== 0 && (
+                <div className="w-full max-w-xl mx-auto pb-6 px-4 border-b">
+                  {/* Message */}
+                  {/* <p className="text-sm font-semibold text-gray-800 mb-2">
                 Congrats! You get{" "}
                 <span className="text-black font-bold">
                   FREE lifetime replacement!!
                 </span>{" "}
                 🎉
               </p> */}
-              <p className="text-base font-semibold text-gray-800 mb-2 text-center">
-                Spend $45 more to get{" "}
-                <span className="text-black font-bold">
-                  FREE lifetime replacement!!
-                </span>
-              </p>
+                  <p className="text-base font-semibold text-gray-800 mb-2 text-center">
+                    Spend $45 more to get{" "}
+                    <span className="text-black font-bold">
+                      FREE lifetime replacement!!
+                    </span>
+                  </p>
 
-              {/* Progress bar container with positioned tag */}
-              <div className="relative">
-                {/* Tag above the right end */}
-                <div className="absolute -top-2 -right-3 bg-white border rounded-full p-1 shadow-md border-black">
-                  <Tag className="w-4 h-4 text-gray-500" />
-                </div>
+                  {/* Progress bar container with positioned tag */}
+                  <div className="relative">
+                    {/* Tag above the right end */}
+                    <div className="absolute -top-2 -right-3 bg-white border rounded-full p-1 shadow-md border-black">
+                      <Tag className="w-4 h-4 text-gray-500" />
+                    </div>
 
-                {/* Progress bar */}
-                <div className="h-3 w-full bg-gray-200 rounded-md overflow-hidden">
-                  <div className="animated-stripes h-full w-full " />
+                    {/* Progress bar */}
+                    <div className="h-3 w-full bg-gray-200 rounded-md overflow-hidden">
+                      <div className="animated-stripes h-full w-full " />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              )}
 
             {/* Cart Content */}
             <div className="flex-1 px-1 py-4 space-y-4">
@@ -372,18 +375,19 @@ const CartModal = () => {
                     Checkout
                   </button>
                 </div>
+                <div className="flex justify-center items-center flex-wrap gap-2 mb-6">
+                  <img src={payone} alt="Visa" />
+                  <img src={paytwo} alt="Amex" />
+                  <img src={paythird} alt="MasterCard" />
+                  <img src={payfour} alt="PayPal" />
+                  <img src={payfifth} alt="DPay" />
+                  <img src={paysix} alt="Apple Pay" />
+                  <img src={paysaven} alt="Google Pay" />
+                  <img src={payeaight} alt="Google Pay" />
+                </div>
               </>
             )}
-            <div className="flex justify-center items-center flex-wrap gap-2 mb-6">
-              <img src={payone} alt="Visa" />
-              <img src={paytwo} alt="Amex" />
-              <img src={paythird} alt="MasterCard" />
-              <img src={payfour} alt="PayPal" />
-              <img src={payfifth} alt="DPay" />
-              <img src={paysix} alt="Apple Pay" />
-              <img src={paysaven} alt="Google Pay" />
-              <img src={payeaight} alt="Google Pay" />
-            </div>
+
           </div>
         </>
       )}

@@ -7,9 +7,11 @@ import tow from "./../assest/image/payment2.svg";
 import third from "./../assest/image/payment3.svg";
 import four from "./../assest/image/payment4.svg";
 import five from "./../assest/image/payment5.svg";
+import { useDispatch } from "react-redux";
+import { addItemToCart, toggleCart } from "../store/slice/cartSlice";
 
 // Bottom Sticky Footer (conditionally visible)
-const StickyFooter = ({ show }) => {
+const StickyFooter = ({ show, handleAddCart }) => {
   if (!show) return null;
 
   return (
@@ -41,7 +43,7 @@ const StickyFooter = ({ show }) => {
         </div>
 
         {/* Right Button */}
-        <div className="text-center sm:text-right">
+        <div className="text-center sm:text-right" onClick={handleAddCart}>
           <button className="w-full sm:w-auto bg-[#162950] hover:bg-blue-900 text-white text-lg font-semibold px-12 py-3 rounded">
             Add to cart
           </button>
@@ -52,6 +54,7 @@ const StickyFooter = ({ show }) => {
 };
 
 const EmergencyGuide = () => {
+  const dispatch = useDispatch();
   const [showSticky, setShowSticky] = useState(false);
 
   useEffect(() => {
@@ -63,82 +66,105 @@ const EmergencyGuide = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleAddCart = () => {
+    dispatch(
+      addItemToCart({
+        id: "guideStandalone",
+        sectionTitle: "Guide For Household Emergencies",
+        price: 1200,
+        originalPrice: 1200,
+        oneItemPrice: 1200,
+        oneItemOriginalPrice: 4400,
+        quantity: 1,
+        image:
+          "https://airwayclear.us/cdn/shop/files/Airwayclear.svg?v=1743450735&width=600",
+        guideIncluded: false,
+        freeQty: 0,
+        extraPrice: 0,
+      })
+    ); // Only dispatch here
+    dispatch(toggleCart());
+  };
+
   return (
-    <div className="w-full bg-white pb-24 pt-16">
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-        <div className="flex flex-col items-center lg:items-start">
-          <div className="flex justify-center mb-4">
-            <img src={medic} alt="Home Medic Icon" />
+    <>
+      <div className="w-full bg-white pb-24 pt-16">
+        {/* Main Content */}
+        <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <div className="flex flex-col items-center">
+            <div className="flex justify-center items-center mb-4">
+              <img src={medic} alt="Home Medic Icon" width={500} className="rounded-[25px]" />
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#162950] mb-4 tracking-wide">
+              Guide For Household Emergencies
+            </h2>
+            <div className="flex items-center mb-4 space-x-3">
+              <span className="text-2xl font-semibold text-[#162950]">
+                {(1200.0).toLocaleString("en-US",
+                  { style: "currency", currency: "USD" }
+                )}
+              </span>
+              <span className="line-through text-[#162950]">
+                {(4400.0).toLocaleString("en-US",
+                  {
+                    style: "currency", currency: "USD"
+                  })}
+              </span>
+              <span className="bg-[#162950] text-white text-sm font-medium px-2 py-1 rounded flex items-center gap-1">
+                <PiTagChevronFill size={14} />
+                SAVE 72%
+              </span>
+            </div>
+
+            <button
+              onClick={handleAddCart}
+              className="bg-[#162950] text-white px-6 py-3 rounded font-semibold w-full mb-6">
+              ADD TO CART
+            </button>
+
+            <div className="flex items-center gap-2 flex-wrap mb-6">
+              <img src={one} alt="Amazon" className="h-6" />
+              <img src={tow} alt="Visa" className="h-6" />
+              <img src={third} alt="Mastercard" className="h-6" />
+              <img src={four} alt="Discover" className="h-6" />
+              <img src={five} alt="GPay" className="h-6" />
+            </div>
+
+            <div className="text-[#162950] text-base space-y-3 max-w-2xl">
+              <p>
+                Introduction: As a paramedic, I've seen many situations where
+                people were unsure if they needed to go to the hospital. Some
+                going for minor issues, while others stay home when they really
+                need help.
+              </p>
+              <p>
+                I believe everyone should have the basic knowledge to keep
+                themselves and their loved ones safe in an emergency. This guide
+                is designed to help you recognize symptoms, understand what
+                actions to take, and know when it's time to seek professional
+                care. I hope that Home Medic can be a helpful tool in those
+                critical moments.
+              </p>
+              <p>
+                I encourage you to read through this guide now, before an
+                emergency. By familiarizing yourself with the information here,
+                you'll be more prepared and able to think clearly when you need it
+                most.
+              </p>
+              <p>
+                This guide is not a substitute for professional medical care, but
+                a resource to help you navigate emergencies until help arrives.
+              </p>
+            </div>
           </div>
         </div>
 
-        <div>
-          <h2 className="text-3xl md:text-5xl font-bold text-[#162950] mb-4 tracking-wide">
-            Guide For Household Emergencies
-          </h2>
-          <div className="flex items-center mb-4 space-x-3">
-            <span className="text-2xl font-semibold text-[#162950]">
-              {(1200.0).toLocaleString("en-IN", {
-                style: "currency",
-                currency: "INR",
-              })}
-            </span>
-            <span className="line-through text-[#162950]">
-              {(4400.0).toLocaleString("en-IN", {
-                style: "currency",
-                currency: "INR",
-              })}
-            </span>
-            <span className="bg-[#162950] text-white text-sm font-medium px-2 py-1 rounded flex items-center gap-1">
-              <PiTagChevronFill size={14} />
-              SAVE 72%
-            </span>
-          </div>
-
-          <button className="bg-[#162950] text-white px-6 py-3 rounded font-semibold w-full mb-6">
-            ADD TO CART
-          </button>
-
-          <div className="flex items-center gap-2 flex-wrap mb-6">
-            <img src={one} alt="Amazon" className="h-6" />
-            <img src={tow} alt="Visa" className="h-6" />
-            <img src={third} alt="Mastercard" className="h-6" />
-            <img src={four} alt="Discover" className="h-6" />
-            <img src={five} alt="GPay" className="h-6" />
-          </div>
-
-          <div className="text-[#162950] text-base space-y-3 max-w-2xl">
-            <p>
-              Introduction: As a paramedic, I've seen many situations where
-              people were unsure if they needed to go to the hospital. Some
-              going for minor issues, while others stay home when they really
-              need help.
-            </p>
-            <p>
-              I believe everyone should have the basic knowledge to keep
-              themselves and their loved ones safe in an emergency. This guide
-              is designed to help you recognize symptoms, understand what
-              actions to take, and know when it's time to seek professional
-              care. I hope that Home Medic can be a helpful tool in those
-              critical moments.
-            </p>
-            <p>
-              I encourage you to read through this guide now, before an
-              emergency. By familiarizing yourself with the information here,
-              you'll be more prepared and able to think clearly when you need it
-              most.
-            </p>
-            <p>
-              This guide is not a substitute for professional medical care, but
-              a resource to help you navigate emergencies until help arrives.
-            </p>
-          </div>
-        </div>
       </div>
-
-      <StickyFooter show={showSticky} />
-    </div>
+      <StickyFooter show={showSticky} handleAddCart={handleAddCart} />
+    </>
   );
 };
 
