@@ -17,7 +17,7 @@ export default function EditAddressModal({ onClose, mode = "add", addressData = 
         value: c.isoCode,
     }));
 
-    const [country, setCountry] = useState({ label: "India", value: "IN" });
+    const [country, setCountry] = useState({ label: "United States", value: "US" });
     const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState(null);
     const [phoneCode, setPhoneCode] = useState("91");

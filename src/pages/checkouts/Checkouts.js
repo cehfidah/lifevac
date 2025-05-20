@@ -45,7 +45,7 @@ const Checkouts = () => {
     value: c.isoCode,
   }));
 
-  const [country, setCountry] = useState({ label: "India", value: "IN" });
+  const [country, setCountry] = useState({ label: "United States", value: "US" });
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",

@@ -4,13 +4,14 @@ import SEO from "../../utils/SEO";
 import { toast } from "react-toastify";
 import Loading from "../../components/Common/Loading";
 import { ApiHandler } from "../../helper/ApiHandler";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assest/logo.webp";
 import { setAuth } from "../../store/slice/authSlice";
 
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { cartItems } = useSelector((state) => state.cart);
 
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -56,6 +57,13 @@ export default function Login() {
   const guestLogin = async () => {
     setLoading(true);
 
+    const subtotal = cartItems.reduce((sum, item) => {
+      if (item.type === "guide") {
+        return sum + Number(item.extraPrice || 0);
+      }
+      return sum + Number(item.price) * Number(item.quantity);
+    }, 0);
+
     try {
       const response = await ApiHandler(
         "/guest_login.php",
@@ -69,7 +77,7 @@ export default function Login() {
         const tokenPass = response.data.data.token;
         dispatch(setAuth(tokenPass));
         toast.success(response.data.msg);
-        navigate("/");
+        navigate("/checkouts", { state: { subtotal, cartItems } });
       } else {
         toast.error(response.data.msg);
       }
@@ -108,19 +116,6 @@ export default function Login() {
             Choose how you’d like to log in
           </p>
 
-          <button
-            type="button"
-            className="w-full bg-indigo-600 text-white py-3 rounded-md hover:bg-indigo-700 transition mb-4 font-medium"
-          >
-            Sign in with shop
-          </button>
-
-          <div className="flex items-center my-4">
-            <hr className="flex-grow border-gray-300" />
-            <span className="mx-3 text-gray-500 text-sm">or</span>
-            <hr className="flex-grow border-gray-300" />
-          </div>
-
           <form onSubmit={handleSendOtp}>
             <input
               type="email"
@@ -147,6 +142,13 @@ export default function Login() {
             >
               Continue
             </button>
+
+            <div className="flex items-center my-4">
+              <hr className="flex-grow border-gray-300" />
+              <span className="mx-3 text-gray-500 text-sm">or</span>
+              <hr className="flex-grow border-gray-300" />
+            </div>
+
             <button className="w-full py-3 rounded-md font-medium transition bg-[#00083f] mt-4 text-white"
               type="button"
               onClick={guestLogin}
