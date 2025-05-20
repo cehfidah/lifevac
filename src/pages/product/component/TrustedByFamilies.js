@@ -55,15 +55,20 @@ export default function TrustedByFamilies() {
   };
 
   return (
-    <section className="bg-[#e6f1fb] py-12 px-4 text-center">
+    <section className="bg-[#e6f1fb] md:py-12 px-4 text-center">
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-center gap-2 mb-4">
-          {[...Array(5)].map((_, i) => (
-            <FaStar key={i} className="text-green-500" />
-          ))}
-          <span className="text-sm font-semibold text-[#162950]">
-            Excellent <strong>(4.7/5)</strong> Based on 100k+ Customers
-          </span>
+        <div className="flex flex-col md:flex-row justify-center items-center gap-2 mb-2">
+          <div className="flex text-green-500">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <FaStar key={i} />
+              ))}
+          </div>
+          <p className="text-sm text-[#162950]">
+            <span className="font-semibold">Excellent (4.7/5)</span> Based on
+            100k+ Customers
+          </p>
         </div>
 
         <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-[#162950]">
@@ -89,7 +94,7 @@ export default function TrustedByFamilies() {
                   <h3 className="font-medium mb-1 text-xl border-b py-4">
                     {t.title}
                   </h3>
-                  <p className="text-lg mb-4">"{t.text}"</p>
+                  <p className="text-sm md:text-lg mb-4">"{t.text}"</p>
                   <p className="text-sm font-normal">
                     {t.name}{" "}
                     <span className="text-[#162950]">● Verified Customer</span>
@@ -116,7 +121,7 @@ export default function TrustedByFamilies() {
         </div>
 
         <div className="mt-12 text-center">
-          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
+          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold md:px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
             TAKE ACTION TODAY
           </button>
           <p className="text-xl font-semibold text-[#162950] mt-2">

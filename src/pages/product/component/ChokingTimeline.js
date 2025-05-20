@@ -50,12 +50,12 @@ const ChokingTimeline = () => {
               alt="Choking incident animation"
               className="rounded-xl border-[3px] border-[#162950] shadow-lg w-full max-w-xs md:max-w-lg mx-auto md:mx-0"
             />
-            <p className="text-xl mt-7 text-[#162950] max-w-md mx-auto md:mx-0">
+            <p className="text-start text-base md:text-xl mt-7 text-[#162950] max-w-md mx-auto md:mx-0">
               Children and adults are at high risk of choking on food, toys, and
               small objects, which can lead to irreversible damage or death
               within minutes.
             </p>
-            <p className="text-lg text-red-600 italic mt-4 font-medium">
+            <p className="text-start text-sm md:text-lg text-red-600 italic mt-4 font-medium">
               *Average emergency response time is 8-15 minutes
             </p>
           </div>
@@ -94,7 +94,7 @@ const ChokingTimeline = () => {
                   {step.content.map((line, i) => (
                     <p
                       key={i}
-                      className={`text-xl text-gray-700 ${i > 0 ? "mt-2" : ""}`}
+                      className={`text-base tracking-wide md:text-xl text-gray-700 ${i > 0 ? "mt-2" : ""}`}
                     >
                       {line}
                     </p>
@@ -107,8 +107,8 @@ const ChokingTimeline = () => {
       </div>
 
       {/* CTA */}
-      <div className="mt-12 text-center">
-        <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
+      <div className="md:mt-12 text-center">
+        <button className="bg-green-600 hover:bg-green-700 text-white font-semibold md:px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
           TAKE ACTION TODAY
         </button>
         <p className="text-xl font-semibold text-[#162950] mt-2">

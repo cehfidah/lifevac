@@ -18,15 +18,15 @@ const AirwayClearHero = () => {
         </div>
 
         {/* Text Section */}
-        <div className="bg-white rounded-xl p-6 shadow-lg max-w-xl">
+        <div className="md:bg-white md:rounded-xl md:p-6 md:shadow-lg max-w-xl">
           <h3 className="text-xl md:text-3xl font-bold text-[#162950] mb-4">
             The Life-Saving Device You Can’t Afford to Be Without
           </h3>
-          <p className="text-gray-700 mb-4 text-xl">
+          <p className="text-gray-700 mb-4 text-lg md:text-xl">
             Choking poses a grave risk to people of all ages, but taking swift,
             proactive measures can mean the difference between life and death.
           </p>
-          <p className="text-gray-700 text-xl">
+          <p className="text-gray-700 text-lg md:text-xl">
             With <strong>Airway Clear™</strong>, you hold the power to protect
             your loved ones from this silent, often fatal threat—transforming a
             potential tragedy into a life-saving moment.

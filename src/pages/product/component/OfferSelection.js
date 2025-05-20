@@ -191,7 +191,7 @@ export default OfferSelection;
 const OtherDataShow = () => {
   return (
     <>
-      <div className="md:bg-[#f8fbff] px-4 py-4 rounded-lg mt-8 text-center shadow-sm border border-gray-200">
+      <div className="md:bg-[#f8fbff] md:px-4 py-4 rounded-lg mt-4 text-center md:shadow-sm md:border border-gray-200">
         <p className="font-bold text-[#162950] uppercase tracking-wider mb-3">
           SSL Encrypted & Secure Payment With
         </p>

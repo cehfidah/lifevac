@@ -93,7 +93,7 @@ const ProductShowcase = () => {
   }, [images.length, isMobile]);
 
   return (
-    <div className="bg-white px-2 py-6 lg:p-10 font-sans max-w-screen-xl mx-auto">
+    <div className="bg-white px-4 py-6 lg:p-10 font-sans max-w-screen-xl mx-auto">
       <div className="flex flex-col md:flex-row gap-8">
         {/* Left Image Panel */}
         <div className="md:sticky md:top-6 md:self-start w-full md:w-1/2">
@@ -105,11 +105,10 @@ const ProductShowcase = () => {
                   key={index}
                   src={img}
                   alt={`thumb-${index}`}
-                  className={`w-16 h-16 object-cover rounded shadow cursor-pointer border-2 ${
-                    mainImageIndex === index
-                      ? "border-blue-600"
-                      : "border-transparent"
-                  }`}
+                  className={`w-16 h-16 object-cover rounded shadow cursor-pointer border-2 ${mainImageIndex === index
+                    ? "border-blue-600"
+                    : "border-transparent"
+                    }`}
                   onClick={() => setMainImageIndex(index)}
                 />
               ))}
@@ -169,11 +168,10 @@ const ProductShowcase = () => {
                   key={index}
                   src={img}
                   alt={`thumb-${index}`}
-                  className={`w-16 h-16 object-cover rounded flex-shrink-0 cursor-pointer border-2 ${
-                    mainImageIndex === index
-                      ? "border-blue-600"
-                      : "border-transparent"
-                  }`}
+                  className={`w-16 h-16 object-cover rounded flex-shrink-0 cursor-pointer border-2 ${mainImageIndex === index
+                    ? "border-blue-600"
+                    : "border-transparent"
+                    }`}
                   onClick={() => setMainImageIndex(index)}
                 />
               ))}
@@ -229,7 +227,7 @@ const ProductShowcase = () => {
             </p>
 
             {/* Feature List */}
-            <div className="rounded-xl mt-6 p-5 sm:p-6 shadow-xl">
+            <div className="rounded-xl mt-6 p-2 sm:p-6 shadow-xl">
               <h3 className="text-base sm:text-lg font-bold text-[#162950] mb-4 underline">
                 OVER 100,432+ SOLD, THIS IS WHY:
               </h3>
@@ -243,11 +241,10 @@ const ProductShowcase = () => {
                 ].map(([highlight, extra], i) => (
                   <li
                     key={i}
-                    className={`flex items-start gap-3 ${
-                      i < 4
-                        ? "border-b border-dotted border-[#162950] pb-3"
-                        : ""
-                    }`}
+                    className={`flex items-start gap-3 ${i < 4
+                      ? "border-b border-dotted border-[#162950] pb-3"
+                      : ""
+                      }`}
                   >
                     <IoCheckmarkCircleSharp className="min-w-[20px] text-lg sm:text-xl mt-0.5 shrink-0" />
                     <span>

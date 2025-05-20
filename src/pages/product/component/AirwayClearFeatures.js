@@ -6,7 +6,7 @@ import shilde from "../../../assest/firstshilde.svg";
 
 const AirwayClearFeatures = () => {
   return (
-    <div className="bg-[#eaf6fc] py-16 px-4 md:px-8 text-center">
+    <div className="bg-[#eaf6fc] px-4 md:px-8 text-center">
       {/* Feature Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-10">
         {/* Card 1 */}
@@ -17,7 +17,7 @@ const AirwayClearFeatures = () => {
           <h3 className="text-2xl font-medium text-[#162950] mb-2">
             Take Control of Safety
           </h3>
-          <p className="text-[#162950] text-xl mt-4">
+          <p className="text-[#162950] text-base md:text-xl mt-4">
             Airway Clear™ allows you to swiftly remove choking hazards, making
             your home safer for everyone.
           </p>
@@ -29,7 +29,7 @@ const AirwayClearFeatures = () => {
             <img src={timer} />
           </div>
           <h3 className="text-2xl font-semibold mb-2">Immediate Response</h3>
-          <p className="text-xl mt-4">
+          <p className="text-base md:text-xl mt-4">
             This device enables quick action in choking situations, ensuring you
             can act confidently when it matters most.
           </p>
@@ -43,7 +43,7 @@ const AirwayClearFeatures = () => {
           <h3 className="text-2xl font-semibold text-[#162950] mb-2">
             Feel Secure
           </h3>
-          <p className="text-gray-700 text-xl mt-4">
+          <p className="text-[#162950] text-base md:text-xl mt-4">
             With Airway Clear™, you’ll enjoy peace of mind, knowing you’re ready
             to handle emergencies effectively.
           </p>
@@ -52,7 +52,7 @@ const AirwayClearFeatures = () => {
 
       {/* Call to Action Button */}
       <div className="mt-12 text-center">
-        <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
+        <button className="bg-green-600 hover:bg-green-700 text-white font-semibold md:px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
           TAKE ACTION TODAY
         </button>
         <p className="text-xl font-semibold text-[#162950] mt-2">

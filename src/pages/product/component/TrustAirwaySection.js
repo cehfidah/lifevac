@@ -4,17 +4,17 @@ import { FaUsers, FaUserMd, FaShieldAlt } from "react-icons/fa";
 const TrustAirwayClear = () => {
   const cards = [
     {
-      icon: <FaUsers className="text-[#00b8f1] text-8xl mb-3" />,
+      icon: <FaUsers className="text-[#00b8f1] text-6xl md:text-8xl md:mb-3" />,
       title: "Proven Track Record:",
       desc: "Trusted by over 11,000 families who prioritize safety.",
     },
     {
-      icon: <FaUserMd className="text-[#00b8f1] text-8xl mb-3" />,
+      icon: <FaUserMd className="text-[#00b8f1] text-6xl md:text-8xl md:mb-3" />,
       title: "Expert Endorsements:",
       desc: "Backed by medical professionals advocating for choking prevention.",
     },
     {
-      icon: <FaShieldAlt className="text-[#00b8f1] text-8xl mb-3" />,
+      icon: <FaShieldAlt className="text-[#00b8f1] text-6xl md:text-8xl md:mb-3" />,
       title: "Reliable Innovation:",
       desc: "Designed with the latest safety technology to provide peace of mind.",
     },
@@ -36,19 +36,22 @@ const TrustAirwayClear = () => {
               className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-[#162950]"
             >
               <div className="flex justify-center items-center gap-4">
-                {card.icon}
-                <h3 className="font-semibold mb-1 text-2xl text-start">
+                <p className="hidden md:inline">{card.icon}</p>
+                <h3 className="font-semibold mb-1 text-xl md:text-2xl text-start">
                   {card.title}
                 </h3>
               </div>
-              <p className="text-2xl text-start ">{card.desc}</p>
+              <div className="flex items-center justify-between gap-4">
+                <p className="block md:hidden">{card.icon}</p>
+                <p className="text-base md:text-xl text-start">{card.desc}</p>
+              </div>
             </div>
           ))}
         </div>
 
         {/* CTA */}
         <div className="mt-12 text-center">
-          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
+          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold md:px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
             TAKE ACTION TODAY
           </button>
           <p className="text-xl font-semibold text-[#162950] mt-2">

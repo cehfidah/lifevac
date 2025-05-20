@@ -165,7 +165,7 @@ export default function ReviewGrid() {
     <section className="p-6 bg-white">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-4">
           <div className="text-gray-700">
             ⭐ 4.8 average based on 78 reviews
           </div>
@@ -190,11 +190,10 @@ export default function ReviewGrid() {
                   onClick={() => setSelectedStars(star)}
                   onMouseEnter={() => setHoveredStar(star)}
                   onMouseLeave={() => setHoveredStar(0)}
-                  className={`w-6 h-6 cursor-pointer ${
-                    star <= (hoveredStar || selectedStars)
+                  className={`w-6 h-6 cursor-pointer ${star <= (hoveredStar || selectedStars)
                       ? "text-yellow-400"
                       : "text-gray-300"
-                  }`}
+                    }`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -288,9 +287,8 @@ export default function ReviewGrid() {
                   {[...Array(5)].map((_, i) => (
                     <svg
                       key={i}
-                      className={`w-4 h-4 ${
-                        i < review.rating ? "text-yellow-400" : "text-gray-300"
-                      }`}
+                      className={`w-4 h-4 ${i < review.rating ? "text-yellow-400" : "text-gray-300"
+                        }`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >

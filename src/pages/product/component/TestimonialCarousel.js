@@ -58,7 +58,7 @@ const TestimonialCarousel = () => {
     <section className="bg-[#f2fcff] py-12 px-4 text-center">
       <div className="max-w-6xl mx-auto relative">
         {/* Header */}
-        <div className="flex justify-center items-center gap-2 mb-2">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-2 mb-2">
           <div className="flex text-green-500">
             {Array(5)
               .fill(0)
@@ -92,7 +92,7 @@ const TestimonialCarousel = () => {
                 <h3 className="font-bold text-[#162950] mb-2 text-xl">
                   {testimonial.title}
                 </h3>
-                <p className="text-gray-800 text-lg mb-4">
+                <p className="text-[#162950] text-base md:text-lg mb-4">
                   “{testimonial.content}”
                 </p>
                 <p className="text-sm font-semibold text-[#162950]">

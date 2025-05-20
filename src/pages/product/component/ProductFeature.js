@@ -55,7 +55,7 @@ export default function ProductFeature() {
       </div>
 
       <div className="mt-12 text-center">
-        <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
+        <button className="bg-green-600 hover:bg-green-700 text-white font-semibold md:px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
           TAKE ACTION TODAY
         </button>
         <p className="text-xl font-semibold text-[#162950] mt-2">

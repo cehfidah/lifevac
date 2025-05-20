@@ -29,7 +29,7 @@ const ComparisonTable = () => {
   ];
 
   return (
-    <section className="bg-[#e6f6fd] py-16 px-4">
+    <section className="bg-[#e6f6fd] md:py-16 px-4">
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-[28px] sm:text-[32px] font-extrabold text-[#162950] mb-4">
           Airway Clear™ VS regular methods
@@ -47,13 +47,13 @@ const ComparisonTable = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {/* Column Headers */}
           <div className="bg-white rounded-t-xl border border-[#162950] overflow-hidden">
-            <div className="bg-[#162950] text-[#3EBDE4] font-bold text-center py-3 text-2xl tracking-wide uppercase">
+            <div className="bg-[#162950] text-[#3EBDE4] font-bold text-center py-3 text-lg md:text-2xl tracking-wide uppercase">
               METHOD
             </div>
             {rows.map((row, i) => (
               <div
                 key={i}
-                className={`px-4 py-5 text-[#162950] font-semibold text-center text-2xl ${i % 2 !== 0 ? "bg-[#f2f2f2]" : ""
+                className={`px-4 py-5 text-[#162950] font-semibold text-center text-base md:text-2xl ${i % 2 !== 0 ? "bg-[#f2f2f2]" : ""
                   }`}
               >
                 {row.method}
@@ -62,7 +62,7 @@ const ComparisonTable = () => {
           </div>
 
           <div className="bg-white rounded-t-xl border border-[#162950] overflow-hidden">
-            <div className="bg-[#162950] text-[#3EBDE4] font-bold text-center py-3 text-2xl uppercase tracking-wide">
+            <div className="bg-[#162950] text-[#3EBDE4] font-bold text-center py-3 text-lg md:text-2xl uppercase tracking-wide">
               TIME TO CLEAR AIRWAY <br />
               <span className="text-xl font-normal">(AVERAGE)</span>
             </div>
@@ -72,13 +72,13 @@ const ComparisonTable = () => {
                 className={`px-4 py-5 text-[#162950] font-medium text-center ${i % 2 !== 0 ? "bg-[#f2f2f2]" : ""
                   }`}
               >
-                <span className="text-2xl"> {row.time}</span>
+                <span className="text-base md:text-2xl"> {row.time}</span>
               </div>
             ))}
           </div>
 
           <div className="bg-white rounded-t-xl border border-[#162950] overflow-hidden">
-            <div className="bg-[#162950] text-[#3EBDE4] font-bold text-center py-3 text-2xl tracking-wide uppercase">
+            <div className="bg-[#162950] text-[#3EBDE4] font-bold text-center py-3 text-lg md:text-2xl tracking-wide uppercase">
               RISK OF INJURY
             </div>
             {rows.map((row, i) => (
@@ -87,7 +87,7 @@ const ComparisonTable = () => {
                 className={`px-4 py-5 text-[#162950] text-center ${i % 2 !== 0 ? "bg-[#f2f2f2]" : ""
                   }`}
               >
-                <span className="font-bold text-2xl">{row.risk}</span>
+                <span className="font-bold text-base md:text-2xl">{row.risk}</span>
                 {row.riskNote && (
                   <span className="text-sm block mt-1 text-gray-700 italic">
                     ({row.riskNote})

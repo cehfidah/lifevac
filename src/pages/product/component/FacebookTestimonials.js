@@ -36,8 +36,8 @@ const FacebookBadge = () => (
       <FaFacebookF className="text-white text-sm" />
       VIRAL ON FACEBOOK RIGHT NOW
     </button>
-    <p className="mt-3 text-sm text-[#162950]">
-      <span className="inline-flex items-center gap-1">
+    <p className="md:mt-3 text-sm text-[#162950]">
+      <span className="hidden md:inline-flex items-center gap-1">
         <FaThumbsUp className="text-[#1877F2] text-sm" />
         <FaHeart className="text-red-500 text-sm" />
         <FaFaceLaughBeam className="text-yellow-400 text-sm" />
@@ -58,13 +58,13 @@ const TestimonialCard = ({ name, text, reactions, time, image }) => (
       />
       <h3 className="text-blue-700 font-bold text-xl">{name}</h3>
     </div>
-    <p className="text-lg text-gray-900 leading-relaxed mb-4">"{text}"</p>
+    <p className="text-sm md:text-lg text-[#162950] leading-relaxed mb-4">"{text}"</p>
     <div className="flex justify-between text-xs text-blue-600">
       <div className="flex gap-2">
         <span className="cursor-pointer">Like</span>
         <span className="cursor-pointer">Reply</span>
       </div>
-      <span className="text-gray-500">{time}</span>
+      <span className="text-[#162950]">{time}</span>
     </div>
     <div className="absolute -bottom-3 left-0 bg-white rounded-full shadow px-2 py-0.5 flex items-center space-x-1">
       <FaFaceLaughBeam className="text-yellow-400 text-lg" />

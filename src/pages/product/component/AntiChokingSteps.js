@@ -21,7 +21,7 @@ const AntiChokingSteps = () => {
   ];
 
   return (
-    <div className="bg-[#f0fbff] py-12 px-4 sm:px-8 lg:px-32">
+    <div className="bg-[#f0fbff] px-4 sm:px-8 lg:px-32">
       <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#162950] mb-12">
         How to use Airway Clear™
       </h2>
@@ -58,10 +58,10 @@ const AntiChokingSteps = () => {
 
                 {/* Step Content */}
                 <div className="pl-10">
-                  <h3 className="font-bold text-[#162950] text-2xl mb-1">
+                  <h3 className="font-bold text-[#162950] text-xl md:text-2xl mb-1">
                     {step.title}
                   </h3>
-                  <p className="text-[#162950] text-xl">{step.description}</p>
+                  <p className="text-[#162950] text-base md:text-xl">{step.description}</p>
                 </div>
               </div>
             ))}
