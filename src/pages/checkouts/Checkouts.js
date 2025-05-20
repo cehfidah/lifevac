@@ -268,11 +268,7 @@ const Checkouts = () => {
         <header className="border-b shadow-sm px-6 sm:px-12 md:px-28 py-4 md:py-8 flex items-center justify-between bg-white">
           <div className="flex items-center space-x-2 sm:space-x-4">
             <Link to="/">
-              <img
-                width={250}
-                src={logo}
-                alt="Logo"
-              />
+              <img width={250} src={logo} alt="Logo" />
             </Link>
           </div>
 
@@ -285,7 +281,7 @@ const Checkouts = () => {
             {/* Left Section */}
             <div className="space-y-6">
               <div className="space-y-4">
-                <div className="text-sm text-gray-600">Account</div>
+                <div className="text-sm text-[#162950]">Account</div>
                 <input
                   type="email"
                   className="w-full border border-gray-300 rounded px-4 py-2"
@@ -318,40 +314,44 @@ const Checkouts = () => {
 
                 <div className="mb-4">
                   <p className="text-sm mb-1">Country/Region</p>
-                  <Select options={countries} value={country} onChange={setCountry} />
+                  <Select
+                    options={countries}
+                    value={country}
+                    onChange={setCountry}
+                  />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <input
                     className="w-full border p-2 rounded"
                     placeholder="First name"
                     value={formData.firstName}
-                    onChange={e => handleChange("firstName", e.target.value)}
+                    onChange={(e) => handleChange("firstName", e.target.value)}
                   />
                   <input
                     className="w-full border p-2 rounded"
                     placeholder="Last name"
                     value={formData.lastName}
-                    onChange={e => handleChange("lastName", e.target.value)}
+                    onChange={(e) => handleChange("lastName", e.target.value)}
                   />
                 </div>
                 <input
                   className="w-full border p-2 mb-2 rounded"
                   placeholder="Address"
                   value={formData.address}
-                  onChange={e => handleChange("address", e.target.value)}
+                  onChange={(e) => handleChange("address", e.target.value)}
                 />
                 <input
                   className="w-full border p-2 mb-2 rounded"
                   placeholder="Apartment, suite, etc (optional)"
                   value={formData.apt}
-                  onChange={e => handleChange("apt", e.target.value)}
+                  onChange={(e) => handleChange("apt", e.target.value)}
                 />
                 <div className="grid grid-cols-3 gap-4">
                   <input
                     className="w-full border p-2 rounded"
                     placeholder="City"
                     value={formData.city}
-                    onChange={e => handleChange("city", e.target.value)}
+                    onChange={(e) => handleChange("city", e.target.value)}
                   />
                   <Select
                     className="w-full"
@@ -364,18 +364,20 @@ const Checkouts = () => {
                     className="w-full border p-2 rounded"
                     placeholder="ZIP code"
                     value={formData.zip}
-                    onChange={e => handleChange("zip", e.target.value)}
+                    onChange={(e) => handleChange("zip", e.target.value)}
                   />
                 </div>
                 <div className="mb-4">
                   <p className="text-sm mb-1">Phone</p>
                   <div className="flex items-center gap-2">
-                    <span className="border px-2 py-1 rounded bg-gray-100">+{phoneCode}</span>
+                    <span className="border px-2 py-1 rounded bg-gray-100">
+                      +{phoneCode}
+                    </span>
                     <input
                       className="w-full border p-2 rounded"
                       placeholder="Phone number"
                       value={formData.phone}
-                      onChange={e => handleChange("phone", e.target.value)}
+                      onChange={(e) => handleChange("phone", e.target.value)}
                     />
                   </div>
                 </div>
@@ -384,7 +386,7 @@ const Checkouts = () => {
               {/* Payment Section */}
               <div className="space-y-4  mx-auto">
                 <h2 className="text-lg font-semibold">Secure Checkout</h2>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-[#162950]">
                   All transactions are secure and encrypted. Your order includes
                   free returns and 24/7 access to our award-winning customer
                   service
@@ -398,7 +400,10 @@ const Checkouts = () => {
                   Complete Purchase
                 </button> */}
 
-                <Paypal handleApprove={handleApprove} amount={subtotal + shippingCost} />
+                <Paypal
+                  handleApprove={handleApprove}
+                  amount={subtotal + shippingCost}
+                />
               </div>
             </div>
 
@@ -410,7 +415,7 @@ const Checkouts = () => {
         </Container>
 
         {/* Policy Links */}
-        <footer className="mt-6 text-center py-6 text-sm text-gray-600 border-t">
+        <footer className="mt-6 text-center py-6 text-sm text-[#162950] border-t">
           <div className="flex justify-center gap-4">
             <Link to="/refund-policy" className="hover:underline">
               Refund policy
@@ -466,10 +471,10 @@ const OrderSummary = ({ cartItems }) => {
                 </span>
               </div>
               <div className="space-y-1">
-                <p className="text-sm font-medium text-gray-900">
+                <p className="text-sm font-medium text-[#162950]">
                   {item?.sectionTitle}
                 </p>
-                {item?.id !== 'guideStandalone' && (
+                {item?.id !== "guideStandalone" && (
                   <p className="text-xs text-gray-500">
                     {item?.title} (−$
                     {(item?.originalPrice - item?.price).toFixed(2)})
