@@ -10,9 +10,9 @@ export default function Paypal({ handleApprove, amount }) {
                 "client-id": process.env.REACT_APP_PAYPAL_CLIENT_KEY
             }}>
             <div className="flex flex-col items-center justify-center">
-                <h1 className="text-2xl mb-4">Pay with PayPal</h1>
                 <PayPalButtons
-                    style={{ layout: "vertical" }}
+                    style={{ layout: "vertical", color: "gold", label: "pay", height: 45 }}
+                    className="w-full"
                     createOrder={(data, actions) => {
                         const invoiceId = generateInvoiceId();
                         const customId = generateCustomId();

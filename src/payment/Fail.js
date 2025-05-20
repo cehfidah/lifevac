@@ -27,7 +27,7 @@ export default function Fail() {
                                 {state?.gateway_transaction_id}
                             </p>
                             <p>
-                                <span className="font-medium">Amount:</span> {state?.final_amount} {state?.gateway_response?.currency}
+                                <span className="font-medium">Amount:</span> {parseFloat(state?.final_amount || 0).toFixed(2)}  {state?.gateway_response?.currency}
                             </p>
                             <p
                                 className={`text-red-600 font-medium`}

@@ -1,6 +1,6 @@
 // Imports
-import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { Country, State } from "country-state-city";
@@ -13,10 +13,11 @@ import { ApiHandler } from "../../helper/ApiHandler";
 import Loading from "../../components/Common/Loading";
 import Paypal from "../../payment/Paypal";
 import { clearCart } from "../../store/slice/cartSlice";
-import { IoBagHandleOutline } from "react-icons/io5";
 
-import logo from "../../assest/logo.webp";
 import Container from "../../components/Container";
+import CheckOutHead from "./CheckOutHead";
+import CheckOutFooter from "./CheckOutFooter";
+import OrderSummary from "./OrderSummary";
 
 const shippingCost = 500;
 
@@ -35,6 +36,9 @@ const Checkouts = () => {
   const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState(null);
   const [phoneCode, setPhoneCode] = useState("91");
+  const [showModal, setShowModal] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
+  const inputRefs = useRef({});
 
   const countries = Country.getAllCountries().map((c) => ({
     label: c.name,
@@ -63,6 +67,20 @@ const Checkouts = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  // Prevent background scroll when modal is open
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    // Cleanup when component unmounts
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showModal]);
 
   const fetchData = async () => {
     try {
@@ -135,6 +153,7 @@ const Checkouts = () => {
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormErrors((prev) => ({ ...prev, [field]: null }));
   };
 
   const handleAddressChange = (e) => {
@@ -147,19 +166,39 @@ const Checkouts = () => {
   };
 
   const validateForm = () => {
-    const requiredFields = [
-      formData.firstName,
-      formData.lastName,
-      formData.address,
-      formData.city,
-      formData.zip,
-      formData.phone,
-      country?.label,
-      selectedState?.label,
-    ];
-
-    return requiredFields.every((field) => field && field.trim() !== "");
+    const errors = {};
+    if (!formData.firstName.trim()) errors.firstName = "First name is required";
+    if (!formData.lastName.trim()) errors.lastName = "Last name is required";
+    if (!formData.address.trim()) errors.address = "Address is required";
+    if (!formData.city.trim()) errors.city = "City is required";
+    if (!formData.zip.trim()) errors.zip = "ZIP code is required";
+    if (!formData.phone.trim()) errors.phone = "Phone number is required";
+    if (!country?.label) errors.country = "Country is required";
+    if (!selectedState?.label) errors.state = "State is required";
+    return errors;
   };
+
+  const scrollToFirstError = (errors) => {
+    const firstErrorKey = Object.keys(errors)[0];
+    const ref = inputRefs.current[firstErrorKey];
+    if (ref && ref.scrollIntoView) {
+      ref.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
+
+  const checkInput = (e) => {
+    e.preventDefault();
+
+    const errors = validateForm();
+    setFormErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      scrollToFirstError(errors);
+      return;
+    }
+    setShowModal(true);
+  };
+
+  const closeModal = () => setShowModal(false);
 
   const handleApprove = async (data, actions) => {
     const subtotal = cartItems.reduce((sum, item) => {
@@ -249,7 +288,10 @@ const Checkouts = () => {
     } finally {
       setLoading(false);
       dispatch(clearCart());
+      closeModal();
     }
+
+    closeModal();
   };
 
   if (loading) return <Loading />;
@@ -265,304 +307,202 @@ const Checkouts = () => {
         twitterDescription="Securely pay for your AirwayClear order."
       />
       <div className="min-h-screen bg-white text-black">
-        <header className="border-b shadow-sm px-6 sm:px-12 md:px-28 py-4 md:py-8 flex items-center justify-between bg-white">
-          <div className="flex items-center space-x-2 sm:space-x-4">
-            <Link to="/">
-              <img width={250} src={logo} alt="Logo" />
-            </Link>
-          </div>
-
-          <div>
-            <IoBagHandleOutline size={25} />
-          </div>
-        </header>
+        <CheckOutHead />
         <Container>
           <div className="paddingX py-4 md:py-8 grid md:grid-cols-2 gap-6">
             {/* Left Section */}
             <div className="space-y-6">
-              <div className="space-y-4">
-                <div className="text-sm text-[#162950]">Account</div>
-                <input
-                  type="email"
-                  className="w-full border border-gray-300 rounded px-4 py-2"
-                  value="brijp6386@gmail.com"
-                  readOnly
-                />
-                <label className="flex items-center space-x-2 text-sm">
-                  <input type="checkbox" checked readOnly />
-                  <span>Send me live tracking and order updates</span>
-                </label>
-              </div>
+              <form onSubmit={checkInput}>
+                {/* Delivery */}
+                <div className="space-y-4">
+                  <h2 className="text-lg font-semibold">Shipping Address</h2>
+                  {/* Dropdown */}
+                  {addresses.length > 0 && (
+                    <select
+                      className="w-full border border-gray-300 rounded px-4 py-2"
+                      value={selectedAddressId}
+                      onChange={handleAddressChange}
+                    >
+                      {addresses.map((addr) => (
+                        <option key={addr.id} value={addr.id}>
+                          {addr.first_name} {addr.last_name} - {addr.address}
+                        </option>
+                      ))}
+                    </select>
+                  )}
 
-              {/* Delivery */}
-              <div className="space-y-4">
-                <h2 className="text-lg font-semibold">Delivery</h2>
-                {/* Dropdown */}
-                {addresses.length > 0 && (
-                  <select
-                    className="w-full border border-gray-300 rounded px-4 py-2"
-                    value={selectedAddressId}
-                    onChange={handleAddressChange}
-                  >
-                    {addresses.map((addr) => (
-                      <option key={addr.id} value={addr.id}>
-                        {addr.first_name} {addr.last_name} - {addr.address}
-                      </option>
-                    ))}
-                  </select>
-                )}
-
-                <div className="mb-4">
-                  <p className="text-sm mb-1">Country/Region</p>
-                  <Select
-                    options={countries}
-                    value={country}
-                    onChange={setCountry}
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <input
-                    className="w-full border p-2 rounded"
-                    placeholder="First name"
-                    value={formData.firstName}
-                    onChange={(e) => handleChange("firstName", e.target.value)}
-                  />
-                  <input
-                    className="w-full border p-2 rounded"
-                    placeholder="Last name"
-                    value={formData.lastName}
-                    onChange={(e) => handleChange("lastName", e.target.value)}
-                  />
-                </div>
-                <input
-                  className="w-full border p-2 mb-2 rounded"
-                  placeholder="Address"
-                  value={formData.address}
-                  onChange={(e) => handleChange("address", e.target.value)}
-                />
-                <input
-                  className="w-full border p-2 mb-2 rounded"
-                  placeholder="Apartment, suite, etc (optional)"
-                  value={formData.apt}
-                  onChange={(e) => handleChange("apt", e.target.value)}
-                />
-                <div className="grid grid-cols-3 gap-4">
-                  <input
-                    className="w-full border p-2 rounded"
-                    placeholder="City"
-                    value={formData.city}
-                    onChange={(e) => handleChange("city", e.target.value)}
-                  />
-                  <Select
-                    className="w-full"
-                    options={states}
-                    value={selectedState}
-                    onChange={setSelectedState}
-                    placeholder="State"
-                  />
-                  <input
-                    className="w-full border p-2 rounded"
-                    placeholder="ZIP code"
-                    value={formData.zip}
-                    onChange={(e) => handleChange("zip", e.target.value)}
-                  />
-                </div>
-                <div className="mb-4">
-                  <p className="text-sm mb-1">Phone</p>
-                  <div className="flex items-center gap-2">
-                    <span className="border px-2 py-1 rounded bg-gray-100">
-                      +{phoneCode}
-                    </span>
-                    <input
-                      className="w-full border p-2 rounded"
-                      placeholder="Phone number"
-                      value={formData.phone}
-                      onChange={(e) => handleChange("phone", e.target.value)}
+                  <div className="mb-4">
+                    <p className="text-sm mb-1">Country/Region</p>
+                    <Select
+                      options={countries}
+                      value={country}
+                      onChange={setCountry}
                     />
                   </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <input
+                        ref={(el) => (inputRefs.current.firstName = el)}
+                        className={`w-full border p-2 rounded ${formErrors.firstName ? "border-red-500" : ""}`}
+                        placeholder="First name"
+                        value={formData.firstName}
+                        onChange={(e) => handleChange("firstName", e.target.value)}
+                      />
+                      {formErrors.firstName && <p className="text-red-500 text-sm">{formErrors.firstName}</p>}
+                    </div>
+                    <div>
+                      <input
+                        ref={(el) => (inputRefs.current.lastName = el)}
+                        className={`w-full border p-2 rounded ${formErrors.lastName ? "border-red-500" : ""}`}
+                        placeholder="Last name"
+                        value={formData.lastName}
+                        onChange={(e) => handleChange("lastName", e.target.value)}
+                      />
+                      {formErrors.lastName && <p className="text-red-500 text-sm">{formErrors.lastName}</p>}
+                    </div>
+                  </div>
+                  <div>
+                    <input
+                      ref={(el) => (inputRefs.current.address = el)}
+                      className={`w-full border p-2 rounded ${formErrors.address ? "border-red-500" : ""}`}
+                      placeholder="Address"
+                      value={formData.address}
+                      onChange={(e) => handleChange("address", e.target.value)}
+                    />
+                    {formErrors.address && <p className="text-red-500 text-sm">{formErrors.address}</p>}
+                  </div>
+                  <div>
+                    <input
+                      className="w-full border p-2 mb-2 rounded"
+                      placeholder="Apartment, suite, etc (optional)"
+                      value={formData.apt}
+                      onChange={(e) => handleChange("apt", e.target.value)}
+                    />
+                  </div>
+                  <div className="grid grid-cols-3 gap-4">
+                    <div>
+                      <input
+                        ref={(el) => (inputRefs.current.city = el)}
+                        className={`w-full border p-2 rounded ${formErrors.city ? "border-red-500" : ""}`}
+                        placeholder="City"
+                        value={formData.city}
+                        onChange={(e) => handleChange("city", e.target.value)}
+                      />
+                      {formErrors.city && <p className="text-red-500 text-sm">{formErrors.city}</p>}
+                    </div>
+                    <Select
+                      className="w-full"
+                      options={states}
+                      value={selectedState}
+                      onChange={setSelectedState}
+                      placeholder="State"
+                    />
+                    <div>
+                      <input
+                        ref={(el) => (inputRefs.current.zip = el)}
+                        className={`w-full border p-2 rounded ${formErrors.zip ? "border-red-500" : ""}`}
+                        placeholder="ZIP code"
+                        value={formData.zip}
+                        onChange={(e) => handleChange("zip", e.target.value)}
+                      />
+                      {formErrors.zip && <p className="text-red-500 text-sm">{formErrors.zip}</p>}
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <p className="text-sm mb-1">Phone</p>
+                    <div className="flex items-center gap-2">
+                      <span className="border px-2 py-1 rounded bg-gray-100">
+                        +{phoneCode}
+                      </span>
+                      <input
+                        ref={(el) => (inputRefs.current.phone = el)}
+                        className={`w-full border p-2 rounded ${formErrors.phone ? "border-red-500" : ""}`}
+                        placeholder="Phone number"
+                        value={formData.phone}
+                        onChange={(e) => handleChange("phone", e.target.value)}
+                      />
+                    </div>
+                    {formErrors.phone && <p className="text-red-500 text-sm">{formErrors.phone}</p>}
+                  </div>
                 </div>
-              </div>
 
-              {/* Payment Section */}
-              <div className="space-y-4  mx-auto">
-                <h2 className="text-lg font-semibold">Secure Checkout</h2>
-                <p className="text-sm text-[#162950]">
-                  All transactions are secure and encrypted. Your order includes
-                  free returns and 24/7 access to our award-winning customer
-                  service
-                </p>
+                {/* Payment Section */}
+                <div className="space-y-2 mx-auto mt-4">
+                  <h2 className="text-lg font-semibold">Secure Checkout</h2>
+                  <p className="text-sm text-[#162950]">
+                    All transactions are secure and encrypted. Your order includes
+                    free returns and 24/7 access to our award-winning customer
+                    service
+                  </p>
 
-                {/* <button
-                  type="button"
-                  onClick={checkInput}
-                  className="flex justify-center items-center w-full bg-[#162950] text-white text-base font-bold rounded-xl py-4"
-                >
-                  Complete Purchase
-                </button> */}
+                  <button
+                    type="submit"
+                    className="flex justify-center items-center w-full bg-[#162950] text-white text-base font-bold rounded-xl py-4"
+                  >
+                    Complete Purchase
+                  </button>
 
-                <Paypal
-                  handleApprove={handleApprove}
-                  amount={subtotal + shippingCost}
-                />
-              </div>
+                </div>
+              </form>
+
             </div>
-
-            {/* Right Section (Order Summary) */}
-            <div className="">
-              <OrderSummary cartItems={cartItems} />
+            <div className="md:sticky md:top-6 md:self-start w-full">
+              <OrderSummary cartItems={cartItems} shippingCost={shippingCost} />
             </div>
           </div>
         </Container>
 
-        {/* Policy Links */}
-        <footer className="mt-6 text-center py-6 text-sm text-[#162950] border-t">
-          <div className="flex justify-center gap-4">
-            <Link to="/refund-policy" className="hover:underline">
-              Refund policy
-            </Link>
-            <Link to="/shipping-policy" className="hover:underline">
-              Shipping policy
-            </Link>
-            <Link to="/privacy-policy" className="hover:underline">
-              Privacy policy
-            </Link>
-            <Link to="/terms-of-service" className="hover:underline">
-              Terms of service
-            </Link>
-            <Link to="/contact-information" className="hover:underline">
-              Contact information
-            </Link>
-          </div>
-        </footer>
+        <CheckOutFooter />
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
+            {/* Top Close Button */}
+            <button
+              onClick={closeModal}
+              aria-label="Close modal"
+              className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl font-bold transition"
+            >
+              &times;
+            </button>
+
+            <h2 className="text-xl font-semibold text-center mb-2">
+              Pay with PayPal
+            </h2>
+
+            {/* Amount Display */}
+            <p className="text-center text-2xl font-bold text-gray-800 mb-6">
+              Amount:{" "}
+              <span className="text-green-600">${(subtotal + shippingCost).toFixed(2)}</span>
+            </p>
+
+            <Paypal
+              handleApprove={handleApprove}
+              amount={subtotal + shippingCost}
+            />
+
+            <p className="text-sm text-gray-500 text-center mt-4 italic leading-relaxed">
+              Secure payments processed through{" "}
+              <span className="text-blue-600 font-semibold">PayPal</span>. You
+              can pay using your PayPal account or any major debit/credit card —
+              no account required.
+            </p>
+
+            <button
+              onClick={closeModal}
+              className="mt-6 w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 rounded-lg transition"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };
 
 export default Checkouts;
 
-const OrderSummary = ({ cartItems }) => {
-  const subtotal = cartItems.reduce((sum, item) => {
-    if (item.type === "guide") {
-      return sum + Number(item.extraPrice || 0);
-    }
-    return sum + Number(item.price) * Number(item.quantity);
-  }, 0);
-  const total = subtotal + shippingCost;
-  const totalSavings = cartItems.reduce(
-    (sum, item) => sum + (item.originalPrice - item.price || 0),
-    0
-  );
 
-  return (
-    <div className="bg-gray-100 rounded-md border border-gray-200 p-6 text-sm font-sans space-y-4">
-      <div className="space-y-5 max-h-[300px] overflow-y-auto px-6 py-6">
-        {cartItems.map((item) => (
-          <div key={item.id} className="flex justify-between items-start">
-            <div className="flex space-x-3">
-              <div className="relative">
-                <img
-                  src={item?.image}
-                  alt={item?.sectionTitle}
-                  className="h-14 w-14 rounded-md object-cover bg-white"
-                />
-                <span className="absolute -top-2 -left-2 bg-black text-white text-xs px-1.5 py-0.5 rounded-full">
-                  {item?.quantity}
-                </span>
-              </div>
-              <div className="space-y-1">
-                <p className="text-sm font-medium text-[#162950]">
-                  {item?.sectionTitle}
-                </p>
-                {item?.id !== "guideStandalone" && (
-                  <p className="text-xs text-gray-500">
-                    {item?.title} (−$
-                    {(item?.originalPrice - item?.price).toFixed(2)})
-                  </p>
-                )}
-              </div>
-            </div>
-            <div className="text-right">
-              <p className="line-through text-gray-400 text-xs">
-                {(Number(item?.originalPrice) || 0).toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
-              </p>
-              <p className="font-medium text-sm">
-                {item.price === 0 ? "FREE" : `$${item.price.toFixed(2)}`}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Discount Code Input */}
-      <div className="flex items-center space-x-2">
-        <input
-          type="text"
-          placeholder="Discount code"
-          className="flex-1 border border-gray-300 px-3 py-2 rounded-md text-sm"
-        />
-        <button className="px-4 py-2 bg-gray-200 rounded-md font-medium text-sm">
-          Apply
-        </button>
-      </div>
-
-      {/* Price Summary */}
-      <div className="space-y-1 text-sm">
-        <div className="flex justify-between">
-          <span className="text-gray-700">
-            Subtotal · {cartItems.reduce((s, i) => s + i.quantity, 0)} items
-          </span>
-          <span>
-            {(Number(subtotal) || 0).toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}
-          </span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-700">Shipping</span>
-          <span>
-            {(Number(shippingCost) || 0).toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}
-          </span>
-        </div>
-        <div className="flex justify-between font-semibold text-base pt-2">
-          <span>Total</span>
-          <span>
-            {(Number(total) || 0).toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}
-          </span>
-        </div>
-      </div>
-
-      {/* Savings */}
-      <div className="flex items-center space-x-2 text-green-600 font-semibold text-sm pt-1">
-        <FaTag className="w-4 h-4" />
-        <span>
-          TOTAL SAVINGS &nbsp;
-          {(Number(totalSavings) || 0).toLocaleString("en-US", {
-            style: "currency",
-            currency: "USD",
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          })}
-        </span>
-      </div>
-    </div>
-  );
-};

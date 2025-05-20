@@ -115,7 +115,7 @@ const OrderSummary = ({ transaction }) => {
                 </span>
             </div>
             <p className="text-sm text-gray-600">Quantity: {transaction.item_quantity}</p>
-            <p className="text-sm text-gray-600">Final Amount: ${transaction.final_amount}</p>
+            <p className="text-sm text-gray-600">Final Amount: ${parseFloat(transaction.final_amount).toFixed(2)}</p>
             <p className="text-sm text-gray-500 mt-1">
                 Date: {new Date(transaction.created_date).toLocaleString()}
             </p>

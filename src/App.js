@@ -26,7 +26,6 @@ import Success from "./payment/Success";
 import Fail from "./payment/Fail";
 import OrderDetails from "./pages/orders/OrderDetails";
 import EmergencyGuide from "./pages/EmergencyGuide";
-import Demoo from "./pages/Demoo";
 
 const App = () => {
   const location = useLocation();
@@ -71,7 +70,6 @@ const App = () => {
             <Route path="/orders/:id" element={<OrderDetails />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />{" "}
-            <Route path="/demoo" element={<Demoo />} />
           </Route>
         </Route>
       </Routes>
