@@ -187,46 +187,57 @@ const ProductShowcase = () => {
 
         {/* Right Product Info */}
         <div className="flex flex-col gap-6 pr-2 overflow-y-auto md:overflow-visible max-h-full w-full md:w-1/2">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug">
-              AirwayClear™ -<br />
+          <div className="max-w-3xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+            {/* Title */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug">
+              AirwayClear™ -<br className="hidden sm:block" />
               Antichoking Device
             </h2>
-            <p className="mt-3 text-gray-800 text-lg">
+
+            {/* Subheading */}
+            <p className="mt-4 text-gray-800 text-base sm:text-lg">
               Prevent choking in <strong>under 20 seconds</strong> –{" "}
               <span className="text-[#162950] font-bold">2,379</span> Lives
               Saved
             </p>
-            <div className="bg-gray-50 border border-gray-300 rounded-xl mt-5 p-5 shadow-sm">
-              <h3 className="text-lg font-bold text-[#162950] mb-4 underline">
+
+            {/* Feature List */}
+            <div className="bg-gray-50 border border-gray-300 rounded-xl mt-6 p-5 sm:p-6 shadow-sm">
+              <h3 className="text-base sm:text-lg font-bold text-[#162950] mb-4 underline">
                 OVER 100,432+ SOLD, THIS IS WHY:
               </h3>
-              <ul className="space-y-3 text-[#162950] text-base">
-                <li className="flex justify-start gap-2 items-center border-dotted  border-b border-[#162950] py-2">
-                  <IoCheckmarkCircleSharp /> <strong>Saves Lives</strong> in
-                  Under 20 Seconds
-                </li>
-                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950] py-2">
-                  <IoCheckmarkCircleSharp /> No Training Needed –{" "}
-                  <strong>1-Step Operation</strong>
-                </li>
-                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950] py-2">
-                  <IoCheckmarkCircleSharp /> <strong>Universal</strong> Design
-                  for <strong>Adults & Children</strong>
-                </li>
-                <li className="flex justify-start gap-2 items-center border-dotted border-b border-[#162950] py-2">
-                  <IoCheckmarkCircleSharp /> <strong>Self-Applicable</strong> in
-                  a Crisis
-                </li>
-                <li className="flex justify-start gap-2 items-center ">
-                  <IoCheckmarkCircleSharp /> Used in an Emergency?{" "}
-                  <strong>Get a Free One!</strong>
-                </li>
+              <ul className="space-y-4 text-[#162950] text-sm sm:text-base">
+                {[
+                  ["Saves Lives", "in Under 20 Seconds"],
+                  ["No Training Needed", "1-Step Operation"],
+                  ["Universal Design", "for Adults & Children"],
+                  ["Self-Applicable", "in a Crisis"],
+                  ["Used in an Emergency?", "Get a Free One!"],
+                ].map(([highlight, extra], i) => (
+                  <li
+                    key={i}
+                    className={`flex items-start gap-3 ${
+                      i < 4
+                        ? "border-b border-dotted border-[#162950] pb-3"
+                        : ""
+                    }`}
+                  >
+                    <IoCheckmarkCircleSharp className="min-w-[20px] text-lg sm:text-xl mt-0.5 shrink-0" />
+                    <span>
+                      <strong>{highlight}</strong> {extra}
+                    </span>
+                  </li>
+                ))}
               </ul>
             </div>
-            <div className="bg-[#162950] text-white text-center mt-4 py-2 rounded font-medium text-sm md:text-base">
-              UPDATE: We are currently out of stock on Amazon <br />
-              and are only available here for a limited time
+
+            {/* Update Notice */}
+            <div className="bg-[#162950] text-white text-center mt-6 py-3 px-4 rounded-md font-medium text-sm sm:text-base">
+              <p>
+                UPDATE: We are currently out of stock on Amazon
+                <br className="hidden sm:block" />
+                and are only available here for a limited time
+              </p>
             </div>
           </div>
 
