@@ -187,9 +187,36 @@ const ProductShowcase = () => {
 
         {/* Right Product Info */}
         <div className="flex flex-col gap-6 pr-2 overflow-y-auto md:overflow-visible max-h-full w-full md:w-1/2">
-          <div className="max-w-3xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto px-4 pb-8 sm:px-6 lg:px-8">
+            {/* star */}
+            <div className="flex items-center space-x-2 text-sm sm:text-base text-gray-800">
+              {/* Star rating icons */}
+              <div className="flex space-x-0.5 text-green-500">
+                {[...Array(5)].map((_, i) => (
+                  <svg
+                    key={i}
+                    className="w-5 h-5 fill-current"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M10 15l-5.878 3.09L5.64 12.18.76 7.91l6.17-.9L10 1l3.07 6.01 6.17.9-4.88 4.27 1.52 5.91z" />
+                  </svg>
+                ))}
+              </div>
+
+              {/* Review text */}
+              <p className="text-lg">
+                Excellent <strong>(4.7/5)</strong> Based on 10k+ Reviews
+              </p>
+            </div>
+
             {/* Title */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug">
+            <h2
+              className="text-3xl md:text-[40px] tracking-wide font-black text-gray-900 leading-snug mt-4"
+              style={{
+                lineHeight: "2.5rem",
+              }}
+            >
               AirwayClear™ -<br className="hidden sm:block" />
               Antichoking Device
             </h2>
@@ -202,7 +229,7 @@ const ProductShowcase = () => {
             </p>
 
             {/* Feature List */}
-            <div className="bg-gray-50 border border-gray-300 rounded-xl mt-6 p-5 sm:p-6 shadow-sm">
+            <div className="rounded-xl mt-6 p-5 sm:p-6 shadow-xl">
               <h3 className="text-base sm:text-lg font-bold text-[#162950] mb-4 underline">
                 OVER 100,432+ SOLD, THIS IS WHY:
               </h3>
