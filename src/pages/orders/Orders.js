@@ -49,7 +49,7 @@ const Orders = () => {
             />
 
             <Container>
-                <div className="bg-gray-100 min-h-screen paddingX py-10">
+                <div className="bg-gray-100 paddingX py-10">
                     <h1 className="text-2xl font-semibold mb-6">Orders</h1>
 
                     {/* Skeleton Loader */}
