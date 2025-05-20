@@ -11,7 +11,8 @@ export default function Paypal({ handleApprove, amount }) {
             }}>
             <div className="flex flex-col items-center justify-center">
                 <PayPalButtons
-                    style={{ layout: "vertical", color: "gold", label: "pay", height: 45 }}
+                    fundingSource="paypal" // only show PayPal (no cards)
+                    style={{ layout: "vertical", color: "gold", label: "pay", height: 45, label: "paypal" }}
                     className="w-full"
                     createOrder={(data, actions) => {
                         const invoiceId = generateInvoiceId();
