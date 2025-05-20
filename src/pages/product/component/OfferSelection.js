@@ -9,6 +9,8 @@ import payfifth from "../../../assest/image/payment5.svg";
 import paysix from "../../../assest/image/payment6.svg";
 import paysaven from "../../../assest/image/payment7.svg";
 import payeaight from "../../../assest/image/payment8.svg";
+import { FaTruck } from "react-icons/fa6";
+import { format } from "date-fns";
 
 const OfferSelection = () => {
   const dispatch = useDispatch();
@@ -78,6 +80,16 @@ const OfferSelection = () => {
       }
     }
   };
+
+  const today = new Date();
+  const startDate = new Date(today);
+  startDate.setDate(today.getDate() + 5); // 5 days from today
+
+  const endDate = new Date(today);
+  endDate.setDate(today.getDate() + 8); // 8 days from today (3 day gap)
+
+  const formatDate = (date) =>
+    `${format(date, "MMM")} (${format(date, "dd")})`;
   return (
     <>
       <div className="text-center">
@@ -166,14 +178,30 @@ const OfferSelection = () => {
           </div>
         ))}
 
-        <div className="border border-dashed border-black text-sm text-gray-700 p-3 mb-4 rounded">
-          🛫 Be prepared and get it between <strong>May (18) - May (21)</strong>
+        <div className="border border-dashed border-black mb-4  rounded-md py-4 px-8 bg-[#f7fbff] flex items-center gap-5 text-[#1b2e4b]">
+          <FaTruck size={48} />
+          <div>
+            <p className="text-lg text-left">
+              Be prepared and get it between{" "}
+            </p>
+            <p className="text-lg text-left font-bold">
+              <span className="font-semibold">{formatDate(startDate)}</span> -{" "}
+              <span className="font-semibold">{formatDate(endDate)}</span>
+            </p>
+          </div>
         </div>
+
+        {!selectedId && (
+          <p className="text-red-600 font-medium text-sm mb-2">Please select an offer before adding to cart.</p>
+        )}
 
         <button
           type="button"
           onClick={handleAddCart}
-          className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded text-lg"
+          className={`w-full text-white font-bold py-3 rounded text-lg transition-colors duration-200 ${selectedId
+            ? "bg-green-600 hover:bg-green-700"
+            : "bg-gray-400 cursor-not-allowed"
+            }`}
           disabled={!selectedId}
         >
           ✅ ADD TO CART
