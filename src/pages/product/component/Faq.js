@@ -19,7 +19,7 @@ export default function Faq() {
       title: "What is this Airway Clear™?",
       content: (
         <>
-          <div className="text-start">
+          <div className="text-start space-y-2">
             <p>
               <strong>
                 Airway Clear™ is your first defense in choking emergencies.
@@ -64,7 +64,7 @@ export default function Faq() {
       ),
     },
     {
-      title: "How does Airway Clear™ compare to traditional methods?",
+      title: "Why does it exist & why is it the best ?",
       content: (
         <>
           <p className="text-start font-semibold">
@@ -76,7 +76,7 @@ export default function Faq() {
             require training and can fail in emergencies, Airway Clear™ provides
             instant relief without risk.
           </p>
-          <div className="mt-4 bg-gray-100 p-4 rounded-lg shadow-inner text-sm">
+          <div className="mt-4 bg-gray-100 p-4 rounded-lg shadow-inner text-sm space-y-2">
             <p className="font-semibold text-center mb-3 text-blue-800">
               How Airway Clear™ Saves Lives Faster
             </p>
@@ -116,7 +116,7 @@ export default function Faq() {
     {
       title: "Isn’t CPR better?",
       content: (
-        <p className="text-start">
+        <p className="text-start space-y-2">
           Unlike CPR or back blows, which require training and can be difficult
           to execute correctly in an emergency, <strong>Airway Clear™</strong>{" "}
           works instantly, removing the obstruction with a single pull, saving
@@ -194,18 +194,17 @@ export default function Faq() {
   return (
     <div>
       <div className="mt-8">
-        <h2 className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
         {faqs.map((faq, index) => (
           <div key={index} className="border rounded mb-3 shadow-sm">
             <button
               onClick={() => toggleAccordion(index)}
-              className="w-full flex justify-between items-center px-4 py-3 text-left text-xl font-semibold text-gray-900 bg-gray-100 hover:bg-gray-200"
+              className="w-full flex justify-between items-center px-4 py-3 text-left text-xl font-bold text-[#162950] bg-gray-100 hover:bg-gray-200 tracking-wider leading-relaxed"
             >
               {faq.title}
               <span className="text-xl">{openIndex === index ? "−" : "+"}</span>
             </button>
             {openIndex === index && (
-              <div className="px-4 py-3 bg-white text-lg text-gray-700 leading-relaxed">
+              <div className="px-4 py-3 bg-white text-base text-[#162950] leading-relaxed tracking-wider">
                 {faq.content}
               </div>
             )}

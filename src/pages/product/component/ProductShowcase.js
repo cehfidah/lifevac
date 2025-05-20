@@ -105,11 +105,10 @@ const ProductShowcase = () => {
                   key={index}
                   src={img}
                   alt={`thumb-${index}`}
-                  className={`w-16 h-16 object-cover rounded shadow cursor-pointer border-2 ${
-                    mainImageIndex === index
-                      ? "border-blue-600"
-                      : "border-transparent"
-                  }`}
+                  className={`w-16 h-16 object-cover rounded shadow cursor-pointer border-2 ${mainImageIndex === index
+                    ? "border-blue-600"
+                    : "border-transparent"
+                    }`}
                   onClick={() => setMainImageIndex(index)}
                 />
               ))}
@@ -169,11 +168,10 @@ const ProductShowcase = () => {
                   key={index}
                   src={img}
                   alt={`thumb-${index}`}
-                  className={`w-16 h-16 object-cover rounded flex-shrink-0 cursor-pointer border-2 ${
-                    mainImageIndex === index
-                      ? "border-blue-600"
-                      : "border-transparent"
-                  }`}
+                  className={`w-16 h-16 object-cover rounded flex-shrink-0 cursor-pointer border-2 ${mainImageIndex === index
+                    ? "border-blue-600"
+                    : "border-transparent"
+                    }`}
                   onClick={() => setMainImageIndex(index)}
                 />
               ))}
@@ -187,7 +185,7 @@ const ProductShowcase = () => {
 
         {/* Right Product Info */}
         <div className="flex flex-col gap-6 pr-2 overflow-y-auto md:overflow-visible max-h-full w-full md:w-1/2">
-          <div className="max-w-3xl mx-auto px-4 pb-8 sm:px-6 lg:px-8">
+          <div className="pb-8">
             {/* star */}
             <div className="flex items-center space-x-2 text-sm sm:text-base text-gray-800">
               {/* Star rating icons */}
@@ -243,11 +241,10 @@ const ProductShowcase = () => {
                 ].map(([highlight, extra], i) => (
                   <li
                     key={i}
-                    className={`flex items-start gap-3 ${
-                      i < 4
-                        ? "border-b border-dotted border-[#162950] pb-3"
-                        : ""
-                    }`}
+                    className={`flex items-start gap-3 ${i < 4
+                      ? "border-b border-dotted border-[#162950] pb-3"
+                      : ""
+                      }`}
                   >
                     <IoCheckmarkCircleSharp className="min-w-[20px] text-lg sm:text-xl mt-0.5 shrink-0" />
                     <span>

@@ -192,7 +192,7 @@ const OtherDataShow = () => {
   return (
     <>
       <div className="bg-[#f8fbff] px-4 py-4 rounded-lg mt-8 text-center shadow-sm border border-gray-200">
-        <p className="font-bold text-gray-700 uppercase tracking-wider mb-3">
+        <p className="font-bold text-[#162950] uppercase tracking-wider mb-3">
           SSL Encrypted & Secure Payment With
         </p>
         <div className="flex justify-center items-center flex-wrap gap-2 mb-6">
@@ -205,7 +205,7 @@ const OtherDataShow = () => {
           <img src={paysaven} alt="Google Pay" />
           <img src={payeaight} alt="Google Pay" />
         </div>
-        <div className="text-start flex flex-col gap-4 text-lg">
+        <div className="text-start flex flex-col gap-4 text-lg tracking-wider">
           <p className="font-semibold">
             Meet Airway Clear™, the lifesaving device designed to instantly
             clear blocked airways, &nbsp;for toddlers, children and
