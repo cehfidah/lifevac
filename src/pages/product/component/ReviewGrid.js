@@ -8,8 +8,29 @@ const ratingsBreakdown = [
   { stars: 2, count: 0 },
   { stars: 1, count: 0 },
 ];
+const ratingCounts = {
+  5: 69,
+  4: 6,
+  3: 3,
+  2: 0,
+  1: 0,
+};
 
 export default function ReviewGrid() {
+  const totalReviews = 78;
+
+  const renderProgress = (count) => {
+    const percent = (count / totalReviews) * 100;
+    return (
+      <div className="w-64 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+        <div
+          className="h-full bg-[#0A2342] rounded-full"
+          style={{ width: `${percent}%` }}
+        ></div>
+      </div>
+    );
+  };
+
   const [reviews, setReviews] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [selectedStars, setSelectedStars] = useState(5);
@@ -165,16 +186,46 @@ export default function ReviewGrid() {
     <section className="p-6 bg-white">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-          <div className="text-gray-700">
-            ⭐ 4.8 average based on 78 reviews
+        <div className="flex flex-col md:flex-row justify-between items-start gap-6 md:gap-10 mb-4 p-4 bg-white rounded-md">
+          {/* Rating Summary */}
+          <div className="flex flex-col gap-6 w-full md:w-4/5">
+            {/* Left: Rating Box */}
+            <div className="flex items-center gap-6">
+              <div className="bg-[#162950] text-white p-4 rounded-md w-20 h-20 flex flex-col items-center justify-center">
+                <span className="text-2xl font-bold">4.8</span>
+                <span className="text-xs">out of 5</span>
+              </div>
+              <p className="text-sm text-[#162950] pt-1">
+                Based on {totalReviews} reviews
+              </p>
+            </div>
+
+            {/* Middle: Stars Breakdown */}
+            <div className="space-y-2">
+              {[5, 4, 3, 2, 1].map((star) => (
+                <div key={star} className="flex items-center gap-2 text-sm">
+                  <div className="text-[#162950] min-w-[60px]">
+                    {"★".repeat(star)}
+                    {"☆".repeat(5 - star)}
+                  </div>
+                  {renderProgress(ratingCounts[star])}
+                  <div className="w-6 text-right text-[#162950] font-medium ">
+                    ({ratingCounts[star]})
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <button
-            onClick={() => setShowForm(!showForm)}
-            className="bg-blue-900 text-white px-4 py-2 rounded text-sm"
-          >
-            {showForm ? "Close Form" : "Write a Review"}
-          </button>
+
+          {/* Button */}
+          <div className="w-full md:w-1/5 flex justify-start md:justify-end">
+            <button
+              onClick={() => setShowForm(!showForm)}
+              className="bg-[#162950] text-white px-4 py-2 w-full md:w-auto rounded text-sm"
+            >
+              {showForm ? "Close Form" : "Write a Review"}
+            </button>
+          </div>
         </div>
 
         {/* Form */}
@@ -190,10 +241,11 @@ export default function ReviewGrid() {
                   onClick={() => setSelectedStars(star)}
                   onMouseEnter={() => setHoveredStar(star)}
                   onMouseLeave={() => setHoveredStar(0)}
-                  className={`w-6 h-6 cursor-pointer ${star <= (hoveredStar || selectedStars)
+                  className={`w-6 h-6 cursor-pointer ${
+                    star <= (hoveredStar || selectedStars)
                       ? "text-yellow-400"
                       : "text-gray-300"
-                    }`}
+                  }`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -287,8 +339,9 @@ export default function ReviewGrid() {
                   {[...Array(5)].map((_, i) => (
                     <svg
                       key={i}
-                      className={`w-4 h-4 ${i < review.rating ? "text-yellow-400" : "text-gray-300"
-                        }`}
+                      className={`w-4 h-4 ${
+                        i < review.rating ? "text-yellow-400" : "text-gray-300"
+                      }`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
