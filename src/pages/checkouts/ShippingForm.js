@@ -35,8 +35,28 @@ const ShippingForm = ({
     handleApplyCoupon,
     couponLoading,
     couponError,
-    couponSuccess
+    couponSuccess,
+    setFormErrors
 }) => {
+    const customSelectStyles = {
+        control: (base, state) => ({
+            ...base,
+            borderColor: formErrors.selectedState ? "red" : base.borderColor,
+            "&:hover": {
+                borderColor: formErrors.selectedState ? "red" : base.borderColor,
+            },
+            boxShadow: formErrors.selectedState ? "0 0 0 1px red" : base.boxShadow,
+        }),
+    };
+
+    const handleStateChange = (option) => {
+        setSelectedState(option);
+
+        setFormErrors((prevErrors) => {
+            const { selectedState, ...rest } = prevErrors; // remove selectedState only
+            return rest;
+        });
+    };
     return (
         <>
             <Container>
@@ -52,6 +72,7 @@ const ShippingForm = ({
                                     <p className="text-sm mb-1">Email</p>
                                     <input
                                         ref={(el) => (inputRefs.current.email = el)}
+                                        autocomplete={true}
                                         className={`w-full border p-2 rounded ${formErrors.email ? "border-red-500" : ""}`}
                                         placeholder="First name"
                                         value={formData.email}
@@ -89,6 +110,7 @@ const ShippingForm = ({
                                     <div>
                                         <input
                                             ref={(el) => (inputRefs.current.firstName = el)}
+                                            autocomplete={true}
                                             className={`w-full border p-2 rounded ${formErrors.firstName ? "border-red-500" : ""}`}
                                             placeholder="First name"
                                             value={formData.firstName}
@@ -100,6 +122,7 @@ const ShippingForm = ({
                                     <div>
                                         <input
                                             ref={(el) => (inputRefs.current.lastName = el)}
+                                            autocomplete={true}
                                             className={`w-full border p-2 rounded ${formErrors.lastName ? "border-red-500" : ""}`}
                                             placeholder="Last name"
                                             value={formData.lastName}
@@ -112,6 +135,7 @@ const ShippingForm = ({
                                 <div>
                                     <input
                                         ref={(el) => (inputRefs.current.address = el)}
+                                        autocomplete={true}
                                         className={`w-full border p-2 rounded ${formErrors.address ? "border-red-500" : ""}`}
                                         placeholder="Address"
                                         value={formData.address}
@@ -129,10 +153,11 @@ const ShippingForm = ({
                                         type="text"
                                     />
                                 </div>
-                                <div className="grid grid-cols-3 gap-4">
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <div>
                                         <input
                                             ref={(el) => (inputRefs.current.city = el)}
+                                            autocomplete={true}
                                             className={`w-full border p-2 rounded ${formErrors.city ? "border-red-500" : ""}`}
                                             placeholder="City"
                                             value={formData.city}
@@ -141,16 +166,21 @@ const ShippingForm = ({
                                         />
                                         {formErrors.city && <p className="text-red-500 text-sm">{formErrors.city}</p>}
                                     </div>
-                                    <Select
-                                        className="w-full"
-                                        options={states}
-                                        value={selectedState}
-                                        onChange={setSelectedState}
-                                        placeholder="State"
-                                    />
+                                    <div>
+                                        <Select
+                                            ref={(el) => (inputRefs.current.selectedState = el)}
+                                            styles={customSelectStyles}
+                                            options={states}
+                                            value={selectedState}
+                                            onChange={handleStateChange}
+                                            placeholder="State"
+                                        />
+                                        {formErrors.selectedState && <p className="text-red-500 text-sm">{formErrors.selectedState}</p>}
+                                    </div>
                                     <div>
                                         <input
                                             ref={(el) => (inputRefs.current.zip = el)}
+                                            autocomplete={true}
                                             className={`w-full border p-2 rounded ${formErrors.zip ? "border-red-500" : ""}`}
                                             placeholder="ZIP code"
                                             value={formData.zip}
@@ -168,6 +198,7 @@ const ShippingForm = ({
                                         </span>
                                         <input
                                             ref={(el) => (inputRefs.current.phone = el)}
+                                            autocomplete={true}
                                             className={`w-full border p-2 rounded ${formErrors.phone ? "border-red-500" : ""}`}
                                             placeholder="Phone number"
                                             value={formData.phone}

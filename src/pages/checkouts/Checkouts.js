@@ -204,7 +204,7 @@ const Checkouts = () => {
     if (!formData.zip.trim()) errors.zip = "ZIP code is required";
     if (!formData.phone.trim()) errors.phone = "Phone number is required";
     if (!country?.label) errors.country = "Country is required";
-    if (!selectedState?.label) errors.state = "State is required";
+    if (!selectedState?.label) errors.selectedState = "State is required";
     return errors;
   };
 
@@ -425,6 +425,7 @@ const Checkouts = () => {
         couponLoading={couponLoading}
         couponError={couponError}
         couponSuccess={couponSuccess}
+        setFormErrors={setFormErrors}
       />
 
       <CheckOutFooter />
