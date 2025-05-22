@@ -7,31 +7,34 @@ export default function Paypal({ handleApprove, amount }) {
     return (
         <PayPalScriptProvider
             options={{
-                "client-id": process.env.REACT_APP_PAYPAL_CLIENT_KEY
+                "client-id": process.env.REACT_APP_PAYPAL_CLIENT_KEY,
+                'disable-funding': 'paylater',
+                vault: 'true',
+                intent: 'capture'
             }}>
-            <div className="flex flex-col items-center justify-center">
-                <PayPalButtons
-                    fundingSource="paypal" // only show PayPal (no cards)
-                    style={{ layout: "vertical", color: "gold", label: "pay", height: 45, label: "paypal" }}
-                    className="w-full"
-                    createOrder={(data, actions) => {
-                        const invoiceId = generateInvoiceId();
-                        const customId = generateCustomId();
+            <PayPalButtons
+                style={{
+                    shape: 'rect',
+                    layout: 'vertical'
+                }}
+                className="w-full"
+                createOrder={(data, actions) => {
+                    const invoiceId = generateInvoiceId();
+                    const customId = generateCustomId();
 
-                        return actions.order.create({
-                            purchase_units: [{
-                                amount: {
-                                    value: amount.toFixed(2),
-                                },
-                                description: "Payment for order",
-                                invoice_id: invoiceId,
-                                custom_id: customId,
-                            }]
-                        });
-                    }}
-                    onApprove={handleApprove}
-                />
-            </div>
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: amount.toFixed(2),
+                            },
+                            description: "Payment for order",
+                            invoice_id: invoiceId,
+                            custom_id: customId,
+                        }]
+                    });
+                }}
+                onApprove={handleApprove}
+            />
         </PayPalScriptProvider>
     );
 }
