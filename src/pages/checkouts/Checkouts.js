@@ -2,10 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Select from "react-select";
 import { Country, State } from "country-state-city";
 import { toast } from "react-toastify";
-import { FaTag } from "react-icons/fa";
 
 // Utils & Components
 import SEO from "../../utils/SEO";
@@ -14,12 +12,30 @@ import Loading from "../../components/Common/Loading";
 import Paypal from "../../payment/Paypal";
 import { clearCart } from "../../store/slice/cartSlice";
 
-import Container from "../../components/Container";
 import CheckOutHead from "./CheckOutHead";
 import CheckOutFooter from "./CheckOutFooter";
-import OrderSummary from "./OrderSummary";
+import ShippingForm from "./ShippingForm";
 
-const shippingCost = 500;
+const shippingOptions = [
+  {
+    id: "normal",
+    label: "Standard Shipping (5–7 business days)",
+    description: "Tracking number provided",
+    price: 500,
+  },
+  {
+    id: "fast",
+    label: "Fast Shipping (2–3 business days)",
+    description: "Tracking number provided",
+    price: 600,
+  },
+  {
+    id: "express",
+    label: "Express Shipping (1 business day)",
+    description: "Tracking number provided",
+    price: 1000,
+  },
+];
 
 const Checkouts = () => {
   const location = useLocation();
@@ -29,6 +45,7 @@ const Checkouts = () => {
 
   const subtotal = location.state?.subtotal || 0;
   const cartItems = location.state?.cartItems || [];
+  const inputRefs = useRef({});
 
   const [loading, setLoading] = useState(true);
   const [addresses, setAddresses] = useState([]);
@@ -38,8 +55,12 @@ const Checkouts = () => {
   const [phoneCode, setPhoneCode] = useState("91");
   const [showModal, setShowModal] = useState(false);
   const [formErrors, setFormErrors] = useState({});
-  const inputRefs = useRef({});
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState("normal");
+
+  const selectedOption = shippingOptions.find((opt) => opt.id === selected);
+  console.log(selectedOption.price, "selectedOption")
   const countries = Country.getAllCountries().map((c) => ({
     label: c.name,
     value: c.isoCode,
@@ -54,6 +75,7 @@ const Checkouts = () => {
     city: "",
     zip: "",
     phone: "",
+    email: "",
   });
 
   useEffect(() => {
@@ -139,6 +161,7 @@ const Checkouts = () => {
       city: addr.city || "",
       zip: addr.zip_code || "",
       phone: addr.phone || "",
+      email: "",
     });
   };
 
@@ -171,6 +194,7 @@ const Checkouts = () => {
     if (!formData.lastName.trim()) errors.lastName = "Last name is required";
     if (!formData.address.trim()) errors.address = "Address is required";
     if (!formData.city.trim()) errors.city = "City is required";
+    if (!formData.email.trim()) errors.email = "Email is required";
     if (!formData.zip.trim()) errors.zip = "ZIP code is required";
     if (!formData.phone.trim()) errors.phone = "Phone number is required";
     if (!country?.label) errors.country = "Country is required";
@@ -207,7 +231,7 @@ const Checkouts = () => {
       }
       return sum + Number(item.price) * Number(item.quantity);
     }, 0);
-    const total = subtotal + shippingCost;
+    const total = subtotal + selectedOption.price;
     const totalSavings = cartItems.reduce(
       (sum, item) => sum + (item.originalPrice - item.price || 0),
       0
@@ -227,7 +251,7 @@ const Checkouts = () => {
         gateway_transaction_id: details.id,
         item_quantity: itemQuantity,
         sub_total: subtotal,
-        shipping_amount: shippingCost,
+        shipping_amount: selectedOption.price,
         final_amount: total,
         total_saving: totalSavings,
         product_detail: cartItems,
@@ -271,7 +295,7 @@ const Checkouts = () => {
         gateway_transaction_id: null,
         item_quantity: itemQuantity,
         sub_total: subtotal,
-        shipping_amount: shippingCost,
+        shipping_amount: selectedOption.price,
         final_amount: total,
         total_saving: totalSavings,
         product_detail: cartItems,
@@ -306,154 +330,35 @@ const Checkouts = () => {
         twitterTitle="Checkout - AirwayClear"
         twitterDescription="Securely pay for your AirwayClear order."
       />
-      <div className="min-h-screen bg-white text-black">
-        <CheckOutHead />
-        <Container>
-          <div className="paddingX py-4 md:py-8 grid md:grid-cols-2 gap-6">
-            {/* Left Section */}
-            <div className="space-y-6">
-              <form onSubmit={checkInput}>
-                {/* Delivery */}
-                <div className="space-y-4">
-                  <h2 className="text-lg font-semibold">Shipping Address</h2>
-                  {/* Dropdown */}
-                  {addresses.length > 0 && (
-                    <select
-                      className="w-full border border-gray-300 rounded px-4 py-2"
-                      value={selectedAddressId}
-                      onChange={handleAddressChange}
-                    >
-                      {addresses.map((addr) => (
-                        <option key={addr.id} value={addr.id}>
-                          {addr.first_name} {addr.last_name} - {addr.address}
-                        </option>
-                      ))}
-                    </select>
-                  )}
 
-                  <div className="mb-4">
-                    <p className="text-sm mb-1">Country/Region</p>
-                    <Select
-                      options={countries}
-                      value={country}
-                      onChange={setCountry}
-                    />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <input
-                        ref={(el) => (inputRefs.current.firstName = el)}
-                        className={`w-full border p-2 rounded ${formErrors.firstName ? "border-red-500" : ""}`}
-                        placeholder="First name"
-                        value={formData.firstName}
-                        onChange={(e) => handleChange("firstName", e.target.value)}
-                      />
-                      {formErrors.firstName && <p className="text-red-500 text-sm">{formErrors.firstName}</p>}
-                    </div>
-                    <div>
-                      <input
-                        ref={(el) => (inputRefs.current.lastName = el)}
-                        className={`w-full border p-2 rounded ${formErrors.lastName ? "border-red-500" : ""}`}
-                        placeholder="Last name"
-                        value={formData.lastName}
-                        onChange={(e) => handleChange("lastName", e.target.value)}
-                      />
-                      {formErrors.lastName && <p className="text-red-500 text-sm">{formErrors.lastName}</p>}
-                    </div>
-                  </div>
-                  <div>
-                    <input
-                      ref={(el) => (inputRefs.current.address = el)}
-                      className={`w-full border p-2 rounded ${formErrors.address ? "border-red-500" : ""}`}
-                      placeholder="Address"
-                      value={formData.address}
-                      onChange={(e) => handleChange("address", e.target.value)}
-                    />
-                    {formErrors.address && <p className="text-red-500 text-sm">{formErrors.address}</p>}
-                  </div>
-                  <div>
-                    <input
-                      className="w-full border p-2 mb-2 rounded"
-                      placeholder="Apartment, suite, etc (optional)"
-                      value={formData.apt}
-                      onChange={(e) => handleChange("apt", e.target.value)}
-                    />
-                  </div>
-                  <div className="grid grid-cols-3 gap-4">
-                    <div>
-                      <input
-                        ref={(el) => (inputRefs.current.city = el)}
-                        className={`w-full border p-2 rounded ${formErrors.city ? "border-red-500" : ""}`}
-                        placeholder="City"
-                        value={formData.city}
-                        onChange={(e) => handleChange("city", e.target.value)}
-                      />
-                      {formErrors.city && <p className="text-red-500 text-sm">{formErrors.city}</p>}
-                    </div>
-                    <Select
-                      className="w-full"
-                      options={states}
-                      value={selectedState}
-                      onChange={setSelectedState}
-                      placeholder="State"
-                    />
-                    <div>
-                      <input
-                        ref={(el) => (inputRefs.current.zip = el)}
-                        className={`w-full border p-2 rounded ${formErrors.zip ? "border-red-500" : ""}`}
-                        placeholder="ZIP code"
-                        value={formData.zip}
-                        onChange={(e) => handleChange("zip", e.target.value)}
-                      />
-                      {formErrors.zip && <p className="text-red-500 text-sm">{formErrors.zip}</p>}
-                    </div>
-                  </div>
-                  <div className="mb-4">
-                    <p className="text-sm mb-1">Phone</p>
-                    <div className="flex items-center gap-2">
-                      <span className="border px-2 py-1 rounded bg-gray-100">
-                        +{phoneCode}
-                      </span>
-                      <input
-                        ref={(el) => (inputRefs.current.phone = el)}
-                        className={`w-full border p-2 rounded ${formErrors.phone ? "border-red-500" : ""}`}
-                        placeholder="Phone number"
-                        value={formData.phone}
-                        onChange={(e) => handleChange("phone", e.target.value)}
-                      />
-                    </div>
-                    {formErrors.phone && <p className="text-red-500 text-sm">{formErrors.phone}</p>}
-                  </div>
-                </div>
+      <CheckOutHead />
+      <ShippingForm
+        onSubmitForm={checkInput}
+        inputRefs={inputRefs}
+        formErrors={formErrors}
+        formData={formData}
+        onChnage={handleChange}
+        addresses={addresses}
+        selectedAddressId={selectedAddressId}
+        handleAddressChange={handleAddressChange}
+        countries={countries}
+        country={country}
+        setCountry={setCountry}
+        states={states}
+        selectedState={selectedState}
+        setSelectedState={setSelectedState}
+        phoneCode={phoneCode}
+        setIsOpen={setIsOpen}
+        isOpen={isOpen}
+        selectedOption={selectedOption}
+        shippingOptions={shippingOptions}
+        selected={selected}
+        setSelected={setSelected}
+        cartItems={cartItems}
+        shippingCost={selectedOption.price}
+      />
 
-                {/* Payment Section */}
-                <div className="space-y-2 mx-auto mt-4">
-                  <h2 className="text-lg font-semibold">Secure Checkout</h2>
-                  <p className="text-sm text-[#162950]">
-                    All transactions are secure and encrypted. Your order includes
-                    free returns and 24/7 access to our award-winning customer
-                    service
-                  </p>
-
-                  <button
-                    type="submit"
-                    className="flex justify-center items-center w-full bg-[#162950] text-white text-base font-bold rounded-xl py-4"
-                  >
-                    Complete Purchase
-                  </button>
-
-                </div>
-              </form>
-
-            </div>
-            <div className="md:sticky md:top-6 md:self-start w-full">
-              <OrderSummary cartItems={cartItems} shippingCost={shippingCost} />
-            </div>
-          </div>
-        </Container>
-
-        <CheckOutFooter />
-      </div>
+      <CheckOutFooter />
 
       {/* Modal */}
       {showModal && (
@@ -475,12 +380,12 @@ const Checkouts = () => {
             {/* Amount Display */}
             <p className="text-center text-2xl font-bold text-gray-800 mb-6">
               Amount:{" "}
-              <span className="text-green-600">${(subtotal + shippingCost).toFixed(2)}</span>
+              <span className="text-green-600">${(subtotal + selectedOption.price).toFixed(2)}</span>
             </p>
 
             <Paypal
               handleApprove={handleApprove}
-              amount={subtotal + shippingCost}
+              amount={subtotal + selectedOption.price}
             />
 
             <p className="text-sm text-gray-500 text-center mt-4 italic leading-relaxed">
