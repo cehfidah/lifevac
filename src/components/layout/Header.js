@@ -74,15 +74,13 @@ const Header = () => {
 
   return (
     <header
-      className={`bg-white border-b border-gray-200  z-50 font-harmonia transition-all duration-300 ${
-        showStickyHeader ? "fixed top-0 w-full shadow-md" : "shadow-sm"
-      }`}
+      className={`bg-white border-b border-gray-200  z-50 font-harmonia transition-all duration-300 ${showStickyHeader ? "fixed top-0 w-full shadow-md" : "shadow-sm"
+        }`}
     >
       <Container>
         <div
-          className={`paddingX ${
-            showStickyHeader ? "py-5" : "py-3"
-          } flex items-center justify-between`}
+          className={`paddingX ${showStickyHeader ? "py-5" : "py-3"
+            } flex items-center justify-between`}
         >
           {/* Icons & Mobile Toggle */}
           <button
@@ -99,11 +97,10 @@ const Header = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`px-3 py-1 rounded-md ${
-                    currentPath === link.path
-                      ? "bg-[#0e2243] text-white font-bold"
-                      : "hover:text-blue-600"
-                  }`}
+                  className={`px-3 py-1 rounded-md ${currentPath === link.path
+                    ? "bg-[#0e2243] text-white font-bold"
+                    : "hover:text-blue-600"
+                    }`}
                 >
                   {link.name}
                 </Link>
@@ -155,11 +152,10 @@ const Header = () => {
         {/* Mobile Menu Drawer */}
         <div
           ref={menuRef}
-          className={`fixed top-0 left-0 h-screen bg-white w-4/5 max-w-sm z-50 transform ${
-            mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } transition-transform duration-300 ease-in-out shadow-lg`}
+          className={`fixed top-0 left-0 h-screen bg-white w-4/5 max-w-sm z-50 transform ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+            } transition-transform duration-300 ease-in-out shadow-lg`}
         >
-          <div className="flex justify-between items-center paddingX py-4 border-b">
+          <div className="flex justify-between items-center border-b py-4 px-6 text-[#121212] w-full">
             <h2 className="text-lg font-bold">Menu</h2>
             <button
               onClick={() => setMobileMenuOpen(false)}
@@ -173,11 +169,10 @@ const Header = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`py-2 px-6 ${
-                  currentPath === link.path
-                    ? "bg-[#12121266] text-[#121212] font-bold"
-                    : "hover:text-blue-600"
-                }`}
+                className={`py-2 px-6 ${currentPath === link.path
+                  ? "bg-[#12121266] text-[#121212] font-bold"
+                  : "hover:text-blue-600"
+                  }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
@@ -187,11 +182,10 @@ const Header = () => {
             {!token && (
               <Link
                 to="/login"
-                className={`flex items-center gap-4 font-bold py-2 px-6 ${
-                  currentPath === "/login"
-                    ? "bg-[#12121212] text-[#121212]"
-                    : "hover:text-blue-600"
-                }`}
+                className={`flex items-center gap-4 font-bold py-2 px-6 ${currentPath === "/login"
+                  ? "bg-[#12121212] text-[#121212]"
+                  : "hover:text-blue-600"
+                  }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <FaUser className="text-xl text-gray-700 cursor-pointer" />
