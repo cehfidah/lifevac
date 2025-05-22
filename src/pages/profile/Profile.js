@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApiHandler } from "../../helper/ApiHandler";
 import { toast } from "react-toastify";
 import Loading from "../../components/Common/Loading";
+import { setUserData } from "../../store/slice/authSlice";
 
 export default function ProfilePage() {
     const navigate = useNavigate();
@@ -31,6 +32,7 @@ export default function ProfilePage() {
             const getProfile = await ApiHandler("/get_profile.php", "POST", undefined, token, dispatch, navigate);
             if (getProfile.data.status === "1" && getProfile.data.data.length > 0) {
                 setGetProfileData(getProfile.data.data[0]);
+                dispatch(setUserData(getProfile.data.data[0]));
             }
 
             const getAddress = await ApiHandler("/get_address.php", "POST", undefined, token, dispatch, navigate);

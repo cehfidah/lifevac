@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import Loading from '../../components/Common/Loading';
 import { ApiHandler } from '../../helper/ApiHandler';
 import { useDispatch } from 'react-redux';
-import { setAuth } from '../../store/slice/authSlice';
+import { setAuth, setUserData } from '../../store/slice/authSlice';
 
 export default function VerifyOtp() {
     const location = useLocation();
@@ -34,8 +34,12 @@ export default function VerifyOtp() {
             if (response.data.status === "1") {
                 const tokenPass = response.data.data.token;
                 dispatch(setAuth(tokenPass));
-                toast.success(response.data.msg);
-                navigate('/');
+                const getProfile = await ApiHandler("/get_profile.php", "POST", undefined, tokenPass, dispatch, navigate);
+                if (getProfile.data.status === "1" && getProfile.data.data.length > 0) {
+                    dispatch(setUserData(getProfile.data.data[0]));
+                    toast.success(response.data.msg);
+                    navigate('/');
+                }
             } else {
                 toast.error(response.data.msg);
             }

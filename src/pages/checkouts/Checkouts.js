@@ -41,7 +41,7 @@ const Checkouts = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.auth);
+  const { token, user } = useSelector((state) => state.auth);
 
   const subtotal = location.state?.subtotal || 0;
   const cartItems = location.state?.cartItems || [];
@@ -167,7 +167,7 @@ const Checkouts = () => {
       city: addr.city || "",
       zip: addr.zip_code || "",
       phone: addr.phone || "",
-      email: "",
+      email: user?.email || "",
     });
   };
 
@@ -178,7 +178,7 @@ const Checkouts = () => {
       const code = Country.getCountryByCode(country.value)?.phonecode;
       setPhoneCode(code || "91");
     }
-  }, [country]);
+  }, [country, user]);
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -313,7 +313,8 @@ const Checkouts = () => {
         gateway_response: details,
         payment_status: details.status,
         coupon_code: couponCode,
-        coupon_discount_amount: discountAmount
+        coupon_discount_amount: discountAmount,
+        user_email: formData.email
       };
       try {
         const response = await ApiHandler(
