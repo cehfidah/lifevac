@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Tag } from "lucide-react";
+import { LuTag } from "react-icons/lu";
 
 import {
   toggleCart,
@@ -88,14 +88,6 @@ const CartModal = () => {
             {
               cartItems.length !== 0 && (
                 <div className="w-full max-w-xl mx-auto pb-6 px-4 border-b">
-                  {/* Message */}
-                  {/* <p className="text-sm font-semibold text-gray-800 mb-2">
-                Congrats! You get{" "}
-                <span className="text-black font-bold">
-                  FREE lifetime replacement!!
-                </span>{" "}
-                🎉
-              </p> */}
                   <p className="text-base font-semibold text-gray-800 mb-2 text-center">
                     Spend $45 more to get{" "}
                     <span className="text-black font-bold">
@@ -106,8 +98,8 @@ const CartModal = () => {
                   {/* Progress bar container with positioned tag */}
                   <div className="relative">
                     {/* Tag above the right end */}
-                    <div className="absolute -top-2 -right-3 bg-white border rounded-full p-1 shadow-md border-black">
-                      <Tag className="w-4 h-4 text-gray-500" />
+                    <div className="absolute -top-2 -right-2 bg-white border rounded-full p-1 shadow-md border-black">
+                      <LuTag className="w-4 h-4 text-gray-500" />
                     </div>
 
                     {/* Progress bar */}

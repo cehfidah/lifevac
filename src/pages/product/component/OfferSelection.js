@@ -12,6 +12,8 @@ import payeaight from "../../../assest/image/payment8.svg";
 import { FaTruck } from "react-icons/fa6";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
+import { HiShieldCheck } from "react-icons/hi2";
+
 
 const OfferSelection = () => {
   const dispatch = useDispatch();
@@ -212,7 +214,7 @@ const OfferSelection = () => {
             }`}
           disabled={!selectedId}
         >
-          ✅ ADD TO CART
+          <p className="flex items-center justify-center gap-4"><HiShieldCheck size={24} /> ADD TO CART</p>
         </button>
 
         {/* Payment Logos */}

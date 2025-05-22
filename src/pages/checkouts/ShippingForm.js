@@ -1,6 +1,6 @@
 import Container from "../../components/Container";
 import Select from "react-select";
-import { ChevronDown, ChevronUp } from "lucide-react"; // Optional icon lib
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import OrderSummary from "./OrderSummary";
 
 
@@ -195,9 +195,9 @@ const ShippingForm = ({
                                     </div>
                                     <div className="pt-1">
                                         {isOpen ? (
-                                            <ChevronUp className="w-4 h-4 text-gray-400" />
+                                            <IoIosArrowUp className="w-5 h-5 text-gray-600" />
                                         ) : (
-                                            <ChevronDown className="w-4 h-4 text-gray-400" />
+                                            <IoIosArrowDown className="w-5 h-5 text-gray-600" />
                                         )}
                                     </div>
                                 </div>
