@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import first from "../../../assest/image/imageone.jpeg";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { ApiHandler } from "../../../helper/ApiHandler";
+import Slider from "react-slick";
 
-const ratingsBreakdown = [
-  { stars: 5, count: 69 },
-  { stars: 4, count: 6 },
-  { stars: 3, count: 3 },
-  { stars: 2, count: 0 },
-  { stars: 1, count: 0 },
-];
+
 const ratingCounts = {
   5: 69,
   4: 6,
@@ -31,18 +29,20 @@ export default function ReviewGrid() {
     );
   };
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [reviews, setReviews] = useState([]);
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(true);
   const [selectedStars, setSelectedStars] = useState(5);
   const [hoveredStar, setHoveredStar] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImages, setSelectedImages] = useState([]);
   const [sortType, setSortType] = useState("date");
-  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
   const perPage = 8;
   const [hasMore, setHasMore] = useState(true);
@@ -59,15 +59,8 @@ export default function ReviewGrid() {
         toDate: "",
       };
 
-      const response = await fetch(
-        "https://airwayclear.ffnewsupdater.xyz/api/v1/GKdjjhsjhdKdSNd/rest_api/get_rating.php",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
-      );
-      const result = await response.json();
+      const response = await ApiHandler("/get_rating.php", "POST", payload, undefined, dispatch, navigate);
+      const result = await response.data;
       if (result && Array.isArray(result.data)) {
         const formatted = result.data.map((r, idx) => ({
           id: idx + 1 + currentPage * perPage,
@@ -77,7 +70,7 @@ export default function ReviewGrid() {
           rating: parseInt(r.rating),
           date: r.created_at?.split(" ")[0] || "",
           content: r.message,
-          image: r.image ? r.image : first,
+          images: r.image && Array.isArray(r.image) ? r.image : [], // updated
         }));
 
         if (isAppending) {
@@ -112,33 +105,45 @@ export default function ReviewGrid() {
   };
 
   const handleImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setSelectedImage(e.target.files[0]);
+    if (e.target.files) {
+      const filesArray = Array.from(e.target.files);
+      setSelectedImages((prev) => [...prev, ...filesArray]);
     }
   };
 
+  const handleRemoveImage = (index) => {
+    setSelectedImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const sliderSettings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+
   const handleSubmit = async () => {
-    if (
-      !formData.name ||
-      !formData.email ||
-      !formData.message ||
-      selectedStars === 0
-    )
-      return;
+    if (!formData.name || !formData.email || !formData.message || selectedStars === 0) return;
 
     try {
       setLoading(true);
-      let imageName = "";
+      let uploadedImageNames = [];
 
-      if (selectedImage) {
+      for (const image of selectedImages) {
         const formDataImage = new FormData();
-        formDataImage.append("upload_file", selectedImage);
+        formDataImage.append("upload_file", image);
+
         const imageRes = await fetch(
           "https://airwayclear.ffnewsupdater.xyz/api/v1/GKdjjhsjhdKdSNd/rest_api/upload.php",
           { method: "POST", body: formDataImage }
         );
+
         const imageData = await imageRes.json();
-        imageName = imageData.data;
+        if (imageData?.data) {
+          uploadedImageNames.push(imageData.data);
+        }
       }
 
       const reviewData = {
@@ -146,22 +151,15 @@ export default function ReviewGrid() {
         email: formData.email,
         message: formData.message,
         rating: selectedStars,
-        image: imageName,
+        image: uploadedImageNames,
       };
 
-      await fetch(
-        "https://airwayclear.ffnewsupdater.xyz/api/v1/GKdjjhsjhdKdSNd/rest_api/rating.php",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(reviewData),
-        }
-      );
+      await ApiHandler("/rating.php", "POST", reviewData, undefined, dispatch, navigate);
 
       setFormData({ name: "", email: "", message: "" });
-      setSelectedStars(0);
+      setSelectedStars(5);
       setHoveredStar(0);
-      setSelectedImage(null);
+      setSelectedImages([]);
       setShowForm(false);
 
       await fetchReviews(); // Refresh after submit
@@ -176,6 +174,10 @@ export default function ReviewGrid() {
     switch (sortType) {
       case "rate":
         return b.rating - a.rating;
+      case "content":
+        return a.content.localeCompare(b.content);
+      case "content-desc":
+        return b.content.localeCompare(a.content);
       case "date":
       default:
         return new Date(b.date) - new Date(a.date);
@@ -241,11 +243,10 @@ export default function ReviewGrid() {
                   onClick={() => setSelectedStars(star)}
                   onMouseEnter={() => setHoveredStar(star)}
                   onMouseLeave={() => setHoveredStar(0)}
-                  className={`w-6 h-6 cursor-pointer ${
-                    star <= (hoveredStar || selectedStars)
-                      ? "text-yellow-400"
-                      : "text-gray-300"
-                  }`}
+                  className={`w-6 h-6 cursor-pointer ${star <= (hoveredStar || selectedStars)
+                    ? "text-yellow-400"
+                    : "text-gray-300"
+                    }`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -280,22 +281,38 @@ export default function ReviewGrid() {
             ></textarea>
 
             <div className="border border-dashed border-gray-300 px-4 py-2 rounded text-center text-sm text-gray-500 mb-4">
-              <label className="cursor-pointer flex items-center gap-1 mx-auto">
-                <svg
-                  className="w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
+              <label className="cursor-pointer flex items-center justify-center gap-1 mx-auto">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm0 2h12v10H4V5zm3 3v4l4-2-4-2z" />
                 </svg>
-                <span>{selectedImage ? selectedImage.name : "Add photo"}</span>
+                <span>Add photo</span>
                 <input
                   type="file"
                   accept="image/*"
+                  multiple
                   onChange={handleImageChange}
                   className="hidden"
                 />
               </label>
+            </div>
+
+            <div className="flex flex-wrap gap-4 mb-4 justify-center">
+              {selectedImages.map((img, idx) => (
+                <div key={idx} className="relative w-20 h-20 border rounded overflow-hidden">
+                  <img
+                    src={URL.createObjectURL(img)}
+                    alt="preview"
+                    className="w-full h-full object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveImage(idx)}
+                    className="absolute top-0 right-0 bg-white text-red-500 rounded-full px-1 text-xs hover:bg-red-100"
+                  >
+                    ✕
+                  </button>
+                </div>
+              ))}
             </div>
 
             <div className="text-center">
@@ -319,6 +336,8 @@ export default function ReviewGrid() {
           >
             <option value="date">Sort by Date</option>
             <option value="rate">Sort by Rating</option>
+            <option value="content">Sort by Content (A–Z)</option>
+            <option value="content-desc">Sort by Content (Z–A)</option>
           </select>
         </div>
 
@@ -329,19 +348,36 @@ export default function ReviewGrid() {
               key={review.id}
               className="border rounded-xl shadow-sm overflow-hidden"
             >
-              <img
-                src={review.image}
-                alt="Review"
-                className="w-full h-48 object-cover"
-              />
+
+              {/* Image carousel using react-slick */}
+              {review.images.length > 1 ? (
+                <div className="">
+                  <Slider {...sliderSettings}>
+                    {review.images.map((imgSrc, index) => (
+                      <div key={index}>
+                        <img
+                          src={`https://airwayclear.ffnewsupdater.xyz/assets/${imgSrc}`}
+                          alt={`Review image ${index + 1}`}
+                          className="w-full h-40 object-cover rounded"
+                        />
+                      </div>
+                    ))}
+                  </Slider>
+                </div>
+              ) : (
+                <img
+                  src={`https://airwayclear.ffnewsupdater.xyz/assets/${review?.images[0]}`}
+                  alt="Review"
+                  className="w-full h-40 object-cover rounded"
+                />
+              )}
               <div className="p-4">
                 <div className="flex gap-1 mb-2">
                   {[...Array(5)].map((_, i) => (
                     <svg
                       key={i}
-                      className={`w-4 h-4 ${
-                        i < review.rating ? "text-yellow-400" : "text-gray-300"
-                      }`}
+                      className={`w-4 h-4 ${i < review.rating ? "text-yellow-400" : "text-gray-300"
+                        }`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
