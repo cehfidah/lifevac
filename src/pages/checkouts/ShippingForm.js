@@ -56,6 +56,7 @@ const ShippingForm = ({
                                         placeholder="First name"
                                         value={formData.email}
                                         onChange={(e) => onChnage("email", e.target.value)}
+                                        type="email"
                                     />
                                     {formErrors.email && <p className="text-red-500 text-sm">{formErrors.email}</p>}
                                 </div>
@@ -92,6 +93,7 @@ const ShippingForm = ({
                                             placeholder="First name"
                                             value={formData.firstName}
                                             onChange={(e) => onChnage("firstName", e.target.value)}
+                                            type="text"
                                         />
                                         {formErrors.firstName && <p className="text-red-500 text-sm">{formErrors.firstName}</p>}
                                     </div>
@@ -102,6 +104,7 @@ const ShippingForm = ({
                                             placeholder="Last name"
                                             value={formData.lastName}
                                             onChange={(e) => onChnage("lastName", e.target.value)}
+                                            type="text"
                                         />
                                         {formErrors.lastName && <p className="text-red-500 text-sm">{formErrors.lastName}</p>}
                                     </div>
@@ -113,6 +116,7 @@ const ShippingForm = ({
                                         placeholder="Address"
                                         value={formData.address}
                                         onChange={(e) => onChnage("address", e.target.value)}
+                                        type="text"
                                     />
                                     {formErrors.address && <p className="text-red-500 text-sm">{formErrors.address}</p>}
                                 </div>
@@ -122,6 +126,7 @@ const ShippingForm = ({
                                         placeholder="Apartment, suite, etc (optional)"
                                         value={formData.apt}
                                         onChange={(e) => onChnage("apt", e.target.value)}
+                                        type="text"
                                     />
                                 </div>
                                 <div className="grid grid-cols-3 gap-4">
@@ -132,6 +137,7 @@ const ShippingForm = ({
                                             placeholder="City"
                                             value={formData.city}
                                             onChange={(e) => onChnage("city", e.target.value)}
+                                            type="text"
                                         />
                                         {formErrors.city && <p className="text-red-500 text-sm">{formErrors.city}</p>}
                                     </div>
@@ -149,6 +155,7 @@ const ShippingForm = ({
                                             placeholder="ZIP code"
                                             value={formData.zip}
                                             onChange={(e) => onChnage("zip", e.target.value)}
+                                            type="text"
                                         />
                                         {formErrors.zip && <p className="text-red-500 text-sm">{formErrors.zip}</p>}
                                     </div>
@@ -165,6 +172,7 @@ const ShippingForm = ({
                                             placeholder="Phone number"
                                             value={formData.phone}
                                             onChange={(e) => onChnage("phone", e.target.value)}
+                                            type="text"
                                         />
                                     </div>
                                     {formErrors.phone && <p className="text-red-500 text-sm">{formErrors.phone}</p>}
