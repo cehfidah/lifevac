@@ -28,6 +28,14 @@ const ShippingForm = ({
     setSelected,
     cartItems,
     shippingCost,
+    discountAmount,
+    discountPercent,
+    couponCode,
+    setCouponCode,
+    handleApplyCoupon,
+    couponLoading,
+    couponError,
+    couponSuccess
 }) => {
     return (
         <>
@@ -236,7 +244,18 @@ const ShippingForm = ({
 
                     </div>
                     <div className="md:sticky md:top-6 md:self-start w-full">
-                        <OrderSummary cartItems={cartItems} shippingCost={shippingCost} />
+                        <OrderSummary
+                            cartItems={cartItems}
+                            shippingCost={shippingCost}
+                            discountAmount={discountAmount}
+                            discountPercent={discountPercent}
+                            couponCode={couponCode}
+                            setCouponCode={setCouponCode}
+                            handleApplyCoupon={handleApplyCoupon}
+                            couponLoading={couponLoading}
+                            couponError={couponError}
+                            couponSuccess={couponSuccess}
+                        />
                     </div>
                 </div>
             </Container>

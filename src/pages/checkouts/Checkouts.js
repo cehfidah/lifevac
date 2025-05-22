@@ -55,12 +55,18 @@ const Checkouts = () => {
   const [phoneCode, setPhoneCode] = useState("91");
   const [showModal, setShowModal] = useState(false);
   const [formErrors, setFormErrors] = useState({});
+  const [couponCode, setCouponCode] = useState("");
+  const [couponLoading, setCouponLoading] = useState(false);
+  const [couponError, setCouponError] = useState("");
+  const [couponSuccess, setCouponSuccess] = useState("");
+  const [discountPercent, setDiscountPercent] = useState(0);
+  const [discountAmount, setDiscountAmount] = useState(0);
 
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("normal");
 
   const selectedOption = shippingOptions.find((opt) => opt.id === selected);
-  console.log(selectedOption.price, "selectedOption")
+
   const countries = Country.getAllCountries().map((c) => ({
     label: c.name,
     value: c.isoCode,
@@ -224,6 +230,50 @@ const Checkouts = () => {
 
   const closeModal = () => setShowModal(false);
 
+  const handleApplyCoupon = async () => {
+    if (!couponCode.trim()) {
+      setCouponError("Please enter a coupon code.");
+      setCouponSuccess("");
+      return;
+    }
+
+    setCouponLoading(true);
+    setCouponError("");
+    setCouponSuccess("");
+
+    try {
+      const response = await ApiHandler(
+        "/coupon_is_vaild.php",
+        "POST",
+        { code: couponCode },
+        token,
+        dispatch,
+        navigate
+      );
+
+      if (response.data.status === "1") {
+        const discount = Number(response.data.data.discount || 0);
+        setDiscountPercent(discount);
+
+        // Calculate based on subtotal + shipping
+        const baseAmount = subtotal + selectedOption.price;
+        const discountAmt = (baseAmount * discount) / 100;
+
+        setDiscountAmount(discountAmt);
+
+        setCouponSuccess(`Coupon applied! You saved ₹${discountAmt.toFixed(2)} (${discount}%)`);
+      } else {
+        setCouponError(response.data.msg || "Invalid coupon code.");
+        setDiscountAmount(0);
+        setDiscountPercent(0);
+      }
+    } catch (err) {
+      setCouponError("Something went wrong. Please try again.");
+    } finally {
+      setCouponLoading(false);
+    }
+  };
+
   const handleApprove = async (data, actions) => {
     const subtotal = cartItems.reduce((sum, item) => {
       if (item.type === "guide") {
@@ -231,7 +281,11 @@ const Checkouts = () => {
       }
       return sum + Number(item.price) * Number(item.quantity);
     }, 0);
-    const total = subtotal + selectedOption.price;
+
+    const baseAmount = subtotal + selectedOption.price;
+    const discountAmt = discountPercent > 0 ? (baseAmount * discountPercent) / 100 : 0;
+    const total = baseAmount - discountAmt;
+
     const totalSavings = cartItems.reduce(
       (sum, item) => sum + (item.originalPrice - item.price || 0),
       0
@@ -258,6 +312,8 @@ const Checkouts = () => {
         shipping_address: finalData,
         gateway_response: details,
         payment_status: details.status,
+        coupon_code: couponCode,
+        coupon_discount_amount: discountAmount
       };
       try {
         const response = await ApiHandler(
@@ -318,6 +374,10 @@ const Checkouts = () => {
     closeModal();
   };
 
+  const baseAmount = subtotal + selectedOption.price;
+  const discountAmt = discountPercent > 0 ? (baseAmount * discountPercent) / 100 : 0;
+  const finalAmount = baseAmount - discountAmt;
+
   if (loading) return <Loading />;
   return (
     <>
@@ -356,6 +416,14 @@ const Checkouts = () => {
         setSelected={setSelected}
         cartItems={cartItems}
         shippingCost={selectedOption.price}
+        discountAmount={discountAmount}
+        discountPercent={discountPercent}
+        couponCode={couponCode}
+        setCouponCode={setCouponCode}
+        handleApplyCoupon={handleApplyCoupon}
+        couponLoading={couponLoading}
+        couponError={couponError}
+        couponSuccess={couponSuccess}
       />
 
       <CheckOutFooter />
@@ -380,12 +448,12 @@ const Checkouts = () => {
             {/* Amount Display */}
             <p className="text-center text-2xl font-bold text-gray-800 mb-6">
               Amount:{" "}
-              <span className="text-green-600">${(subtotal + selectedOption.price).toFixed(2)}</span>
+              <span className="text-green-600">${(finalAmount).toFixed(2)}</span>
             </p>
 
             <Paypal
               handleApprove={handleApprove}
-              amount={subtotal + selectedOption.price}
+              amount={finalAmount}
             />
 
             <p className="text-sm text-gray-500 text-center mt-4 italic leading-relaxed">
