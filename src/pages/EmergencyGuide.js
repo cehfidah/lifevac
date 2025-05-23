@@ -77,7 +77,7 @@ const EmergencyGuide = () => {
         oneItemOriginalPrice: 4400,
         quantity: 1,
         image:
-          "https://airwayclear.us/cdn/shop/files/Airwayclear.svg?v=1743450735&width=600",
+          "Airwayclear.svg",
         guideIncluded: false,
         freeQty: 0,
         extraPrice: 0,

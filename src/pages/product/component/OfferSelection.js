@@ -168,7 +168,7 @@ const OfferSelection = () => {
                   <div className="flex gap-2 items-center text-sm mt-1">
                     <Link to="/product/home-medic-a-guide-for-household-emergencies">
                       <img
-                        src="https://airwayclear.us/cdn/shop/files/Airwayclear.svg?v=1743450735&width=600"
+                        src="Airwayclear.svg"
                         alt="Guide"
                         className="w-8 h-8 object-contain"
                       />

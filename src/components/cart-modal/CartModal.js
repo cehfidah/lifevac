@@ -39,8 +39,7 @@ const CartModal = () => {
         oneItemPrice: 1200,
         oneItemOriginalPrice: 4400,
         quantity: 1,
-        image:
-          "https://airwayclear.us/cdn/shop/files/Airwayclear.svg?v=1743450735&width=600",
+        image:"Airwayclear.svg",
         guideIncluded: false,
         freeQty: 0,
         extraPrice: 0,
@@ -299,7 +298,7 @@ const CartModal = () => {
                       >
                         <div className="flex gap-4 items-start">
                           <img
-                            src="https://airwayclear.us/cdn/shop/files/Airwayclear.svg?v=1743450735&width=600"
+                            src="Airwayclear.svg"
                             alt="Guide"
                             className="w-16 h-16 object-contain"
                           />

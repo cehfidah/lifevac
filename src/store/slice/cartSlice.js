@@ -46,7 +46,7 @@ const cartSlice = createSlice({
                         quantity: 1,
                         freeQty: 1,                  // NEW FIELD
                         extraPrice: 0,               // NEW FIELD, updated in subtotal logic
-                        image: "https://airwayclear.us/cdn/shop/files/Airwayclear.svg?v=1743450735&width=600",
+                        image: "Airwayclear.svg",
                         title: title,
                         kits: kits,
                     });

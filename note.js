@@ -40,7 +40,7 @@ const cartSlice = createSlice({
                         originalPrice: 1200,
                         savings: "",
                         quantity: guideIncludedCount,
-                        image: "https://airwayclear.us/cdn/shop/files/Airwayclear.svg?v=1743450735&width=600",
+                        image: "Airwayclear.svg",
                         title: "BUY ONE",
                         kits: "1× Full Kit",
                         extraPrice: 1200
