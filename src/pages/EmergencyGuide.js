@@ -77,7 +77,7 @@ const EmergencyGuide = () => {
         oneItemOriginalPrice: 4400,
         quantity: 1,
         image:
-          "Airwayclear.svg",
+          "/Airwayclear.svg",
         guideIncluded: false,
         freeQty: 0,
         extraPrice: 0,

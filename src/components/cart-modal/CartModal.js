@@ -39,7 +39,7 @@ const CartModal = () => {
         oneItemPrice: 1200,
         oneItemOriginalPrice: 4400,
         quantity: 1,
-        image:"Airwayclear.svg",
+        image:"/Airwayclear.svg",
         guideIncluded: false,
         freeQty: 0,
         extraPrice: 0,

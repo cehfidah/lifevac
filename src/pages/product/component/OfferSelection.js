@@ -108,10 +108,10 @@ const OfferSelection = () => {
                   : "Protection For Your Large Family:"}
             </h4>
             {offer.tag && (
-              <div className="flex justify-end pr-1">
+         <div className="flex justify-end pr-1">
                 <div className=" bg-[#001532] text-white text-xs font-bold px-2 py-1 rounded-tl-md rounded-tr-md">
                   {offer.tagText}
-                </div>
+                </div> 
               </div>
             )}
             <div
@@ -165,16 +165,16 @@ const OfferSelection = () => {
                     : "bg-[#0015324d] text-black"
                     } flex justify-between items-center px-2 py-2 mt-2 rounded-br-xl rounded-bl-xl`}
                 >
-                  <div className="flex gap-2 items-center text-sm mt-1">
+                 {/* <div className="flex gap-2 items-center text-sm mt-1">
                     <Link to="/product/home-medic-a-guide-for-household-emergencies">
                       <img
-                        src="Airwayclear.svg"
+                        src="/Airwayclear.svg"
                         alt="Guide"
                         className="w-8 h-8 object-contain"
                       />
                     </Link>
                     + <strong>FREE Home Medic Guide</strong>
-                  </div>
+                  </div> */}
                   <p className="bg-[#162950] text-white text-xs px-2 py-1 inline-block rounded">
                     You Save &nbsp;
                     {offer?.savings.toLocaleString("en-US", {

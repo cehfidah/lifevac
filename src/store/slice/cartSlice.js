@@ -46,7 +46,7 @@ const cartSlice = createSlice({
                         quantity: 1,
                         freeQty: 1,                  // NEW FIELD
                         extraPrice: 0,               // NEW FIELD, updated in subtotal logic
-                        image: "Airwayclear.svg",
+                        image: "/Airwayclear.svg",
                         title: title,
                         kits: kits,
                     });
