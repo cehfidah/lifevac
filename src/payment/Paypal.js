@@ -1,7 +1,7 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 export default function Paypal({ handleApprove, amount }) {
-    const generateInvoiceId = () => `INV-${Date.now()}`;
+    const generateInvoiceId = () => `USD-${Date.now()}`;
     const generateCustomId = () => `USER-${Math.random().toString(36).substr(2, 9)}`;
 
     return (
