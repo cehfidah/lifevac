@@ -91,7 +91,15 @@ const ProductShowcase = () => {
       }
     };
   }, [images.length, isMobile]);
-
+// Function to get the date for the next day, formatted as "Month Day, Year"
+const getNextDayFormatted = () => {
+const today = new Date();
+const tomorrow = new Date(today);
+ tomorrow.setDate(tomorrow.getDate() + 1);
+ const options = { year: 'numeric', month: 'long', day: 'numeric' };
+ return tomorrow.toLocaleDateString('en-US', options);
+ };
+ const nextDayFormatted = getNextDayFormatted();
   return (
     <div className="bg-white px-4 py-6 lg:p-10 font-sans max-w-screen-xl mx-auto">
       <div className="flex flex-col md:flex-row gap-8">
@@ -257,11 +265,8 @@ const ProductShowcase = () => {
 
             {/* Update Notice */}
             <div className="bg-[#162950] text-white text-center mt-6 py-3 px-4 rounded-md font-medium text-sm sm:text-base">
-              <p>
-                UPDATE: We are currently out of stock on Amazon
-                <br className="hidden sm:block" />
-                and are only available here for a limited time
-              </p>
+ <p>PRICE RETURNS TO $69.99 PER UNIT STARTING {nextDayFormatted}</p>
+
             </div>
           </div>
 

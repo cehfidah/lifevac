@@ -1,3 +1,5 @@
+// Checkouts.js
+
 // Imports
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -16,26 +18,33 @@ import CheckOutHead from "./CheckOutHead";
 import CheckOutFooter from "./CheckOutFooter";
 import ShippingForm from "./ShippingForm";
 
-const shippingOptions = [
+// Define the base shipping options. The 'normal' price will be updated dynamically.
+const baseShippingOptions = [
   {
     id: "normal",
     label: "Standard Shipping (5–7 business days)",
     description: "Tracking number provided",
-    price: 500,
+    price: 5.99, // Default price for the United States
   },
   {
     id: "fast",
     label: "Fast Shipping (2–3 business days)",
     description: "Tracking number provided",
-    price: 600,
+    price: 7.5,
   },
   {
     id: "express",
     label: "Express Shipping (1 business day)",
     description: "Tracking number provided",
-    price: 1000,
+    price: 12,
   },
 ];
+
+// Helper function to format the price
+const formatPrice = (price) => {
+  const formatted = parseFloat(price).toFixed(2);
+  return formatted.endsWith(".00") ? formatted.slice(0, -3) : formatted;
+};
 
 const Checkouts = () => {
   const location = useLocation();
@@ -63,6 +72,7 @@ const Checkouts = () => {
   const [discountAmount, setDiscountAmount] = useState(0);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [shippingOptions, setShippingOptions] = useState(baseShippingOptions);
   const [selected, setSelected] = useState("normal");
 
   const selectedOption = shippingOptions.find((opt) => opt.id === selected);
@@ -91,12 +101,10 @@ const Checkouts = () => {
     }
   }, [cartItems, navigate]);
 
-  // Fetch addresses from API
   useEffect(() => {
     fetchData();
   }, []);
 
-  // Prevent background scroll when modal is open
   useEffect(() => {
     if (showModal) {
       document.body.style.overflow = "hidden";
@@ -104,7 +112,6 @@ const Checkouts = () => {
       document.body.style.overflow = "";
     }
 
-    // Cleanup when component unmounts
     return () => {
       document.body.style.overflow = "";
     };
@@ -172,13 +179,38 @@ const Checkouts = () => {
   };
 
   useEffect(() => {
+    // Determine which options to display based on the country
+    let newOptions;
+    if (country?.value === "US") {
+        newOptions = baseShippingOptions;
+    } else {
+        // For non-US, only show the 'normal' option
+        newOptions = baseShippingOptions.filter(option => option.id === "normal");
+    }
+
+    // Map over the filtered options to update prices and format them
+    const updatedOptions = newOptions.map(option => {
+        const newOption = { ...option };
+        if (newOption.id === "normal" && country?.value !== "US") {
+            newOption.price = 15;
+        }
+        return newOption;
+    });
+
+    setShippingOptions(updatedOptions);
+
+    // If a non-US country is selected, make sure 'normal' is selected
+    if (country?.value !== "US" && selected !== "normal") {
+      setSelected("normal");
+    }
+
     if (country?.value) {
       const stateList = State.getStatesOfCountry(country.value);
       setStates(stateList.map((s) => ({ label: s.name, value: s.isoCode })));
       const code = Country.getCountryByCode(country.value)?.phonecode;
       setPhoneCode(code || "+1");
     }
-  }, [country, user]);
+  }, [country, user, selected, setSelected]);
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -255,13 +287,12 @@ const Checkouts = () => {
         const discount = Number(response.data.data.discount || 0);
         setDiscountPercent(discount);
 
-        // Calculate based on subtotal + shipping
-        const baseAmount = subtotal + selectedOption.price;
+        const baseAmount = subtotal + (selectedOption?.price || 0);
         const discountAmt = (baseAmount * discount) / 100;
 
         setDiscountAmount(discountAmt);
 
-        setCouponSuccess(`Coupon applied! You saved ₹${discountAmt.toFixed(2)} (${discount}%)`);
+        setCouponSuccess(`Coupon applied! You saved ₹${formatPrice(discountAmt)} (${discount}%)`);
       } else {
         setCouponError(response.data.msg || "Invalid coupon code.");
         setDiscountAmount(0);
@@ -282,7 +313,7 @@ const Checkouts = () => {
       return sum + Number(item.price) * Number(item.quantity);
     }, 0);
 
-    const baseAmount = subtotal + selectedOption.price;
+    const baseAmount = subtotal + (selectedOption?.price || 0);
     const discountAmt = discountPercent > 0 ? (baseAmount * discountPercent) / 100 : 0;
     const total = baseAmount - discountAmt;
 
@@ -305,7 +336,7 @@ const Checkouts = () => {
         gateway_transaction_id: details.id,
         item_quantity: itemQuantity,
         sub_total: subtotal,
-        shipping_amount: selectedOption.price,
+        shipping_amount: (selectedOption?.price || 0),
         final_amount: total,
         total_saving: totalSavings,
         product_detail: cartItems,
@@ -314,7 +345,7 @@ const Checkouts = () => {
         payment_status: details.status,
         coupon_code: couponCode,
         coupon_discount_amount: discountAmount,
-        user_email: formData.email
+        user_email: formData.email,
       };
       try {
         const response = await ApiHandler(
@@ -352,7 +383,7 @@ const Checkouts = () => {
         gateway_transaction_id: null,
         item_quantity: itemQuantity,
         sub_total: subtotal,
-        shipping_amount: selectedOption.price,
+        shipping_amount: (selectedOption?.price || 0),
         final_amount: total,
         total_saving: totalSavings,
         product_detail: cartItems,
@@ -375,22 +406,22 @@ const Checkouts = () => {
     closeModal();
   };
 
-  const baseAmount = subtotal + selectedOption.price;
+  const baseAmount = subtotal + (selectedOption?.price || 0);
   const discountAmt = discountPercent > 0 ? (baseAmount * discountPercent) / 100 : 0;
   const finalAmount = baseAmount - discountAmt;
 
   if (loading) return <Loading />;
   return (
     <>
-   <SEO
-  title="Secure LifeVac Checkout | Complete Your Order Now"
-  description="Finalize your official LifeVac purchase with our secure and encrypted checkout. We guarantee safe payment, fast shipping, and a trusted, authentic device."
-  keywords="LifeVac checkout, secure payment, buy LifeVac, choking device, life-saving device, trusted purchase"
-  ogTitle="LifeVac Checkout | Your Order is Secure"
-  ogDescription="Complete your order for the official LifeVac kit. Our checkout is 100% secure, fast, and easy to use. Peace of mind is just one click away."
-  twitterTitle="LifeVac Checkout | Secure & Fast"
-  twitterDescription="Ready to buy? Our secure checkout makes it easy to get your official LifeVac kit delivered fast. Your safety is our priority."
-/>
+      <SEO
+        title="Secure LifeVac Checkout | Complete Your Order Now"
+        description="Finalize your official LifeVac purchase with our secure and encrypted checkout. We guarantee safe payment, fast shipping, and a trusted, authentic device."
+        keywords="LifeVac checkout, secure payment, buy LifeVac, choking device, life-saving device, trusted purchase"
+        ogTitle="LifeVac Checkout | Your Order is Secure"
+        ogDescription="Complete your order for the official LifeVac kit. Our checkout is 100% secure, fast, and easy to use. Peace of mind is just one click away."
+        twitterTitle="LifeVac Checkout | Secure & Fast"
+        twitterDescription="Ready to buy? Our secure checkout makes it easy to get your official LifeVac kit delivered fast. Your safety is our priority."
+      />
 
       <CheckOutHead />
       <ShippingForm
@@ -412,11 +443,14 @@ const Checkouts = () => {
         setIsOpen={setIsOpen}
         isOpen={isOpen}
         selectedOption={selectedOption}
-        shippingOptions={shippingOptions}
+        shippingOptions={shippingOptions.map(option => ({
+          ...option,
+          formattedPrice: formatPrice(option.price),
+        }))}
         selected={selected}
         setSelected={setSelected}
         cartItems={cartItems}
-        shippingCost={selectedOption.price}
+        shippingCost={selectedOption?.price}
         discountAmount={discountAmount}
         discountPercent={discountPercent}
         couponCode={couponCode}
@@ -450,7 +484,7 @@ const Checkouts = () => {
             {/* Amount Display */}
             <p className="text-center text-2xl font-bold text-gray-800 mb-6">
               Amount:{" "}
-              <span className="text-green-600">${(finalAmount).toFixed(2)}</span>
+              <span className="text-green-600">${formatPrice(finalAmount)}</span>
             </p>
 
             <Paypal
@@ -479,5 +513,3 @@ const Checkouts = () => {
 };
 
 export default Checkouts;
-
-

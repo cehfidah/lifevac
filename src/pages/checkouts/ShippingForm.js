@@ -220,7 +220,7 @@ const ShippingForm = ({
                                         <h4 className="text-lg font-semibold">Shipping method</h4>
                                         <p className="text-sm font-medium text-black mt-1">
                                             {selectedOption.label} ·{" "}
-                                            <span className="font-bold">${selectedOption.price}.00</span>
+                                            <span className="font-bold">${selectedOption.price}</span>
                                         </p>
                                         <p className="text-sm text-gray-500">{selectedOption.description}</p>
                                     </div>
@@ -246,7 +246,7 @@ const ShippingForm = ({
                                                     <span className="text-sm text-gray-500">{option.description}</span>
                                                 </div>
                                                 <div className="flex items-center gap-3">
-                                                    <span className="text-sm font-semibold text-black">${option.price}.00</span>
+                                                    <span className="text-sm font-semibold text-black">${option.price}</span>
                                                     <input
                                                         type="radio"
                                                         name="shipping"

@@ -19,57 +19,56 @@ const OfferSelection = () => {
   const dispatch = useDispatch();
   const [selectedId, setSelectedId] = useState(null);
 
-  const offers = [
+ const offers = [
     {
-      id: "offer1",
-      image:
-        "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_3_300x300.svg?v=1737985220",
-      sectionTitle: "LifeVac™-Antichoking Device:",
-      title: "BUY ONE",
-      kits: "1× Full Kit",
-      price: 3474.64,
-      originalPrice: 6100,
-      oneItemPrice: 3474.64,
-      oneItemOriginalPrice: 6100,
-      savings: 2625.36,
-      guideIncluded: false,
-      tag: false,
-      tagText: "",
+        id: "offer1",
+        image:
+            "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_3_300x300.svg?v=1737985220",
+        sectionTitle: "LifeVac™-Antichoking Device:",
+        title: "BUY ONE",
+        kits: "1x Full Kits",
+        price: 29.94,
+        originalPrice: 53.00,
+        oneItemPrice: 29.94,
+        oneItemOriginalPrice: 53.00,
+        savings: 23.06,
+        guideIncluded: false,
+        tag: false,
+        tagText: "",
     },
     {
-      id: "offer2",
-      sectionTitle: "LifeVac™-Antichoking Device",
-      title: "BUY 2 GET 1 FREE",
-      kits: "3× Full Kits",
-      price: 6949.27,
-      originalPrice: 18300,
-      oneItemPrice: 1737.23,
-      oneItemOriginalPrice: 6100,
-      savings: 11350.73,
-      tag: true,
-      tagText: "MOST POPULAR",
-      guideIncluded: true,
-      image:
-        "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_2_300x300.svg?v=1737985180",
+        id: "offer2",
+        sectionTitle: "LifeVac™-Antichoking Device",
+        title: "BUY 2 GET 1 FREE",
+        kits: "3x Full Kits",
+        price: 59.87,
+        originalPrice: 159.00,
+        oneItemPrice: 19.96, // (59.87 / 3)
+        oneItemOriginalPrice: 53.00, // (159.00 / 3)
+        savings: 99.13,
+        tag: true,
+        tagText: "MOST POPULAR",
+        guideIncluded: true,
+        image:
+            "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_2_300x300.svg?v=1737985180",
     },
     {
-      id: "offer3",
-      sectionTitle: "LifeVac™-Antichoking Device",
-      title: "BUY 3 GET 2 FREE",
-      kits: "5× Full Kits",
-      price: 8686.16,
-      originalPrice: 30500,
-      oneItemPrice: 3474.64,
-      oneItemOriginalPrice: 6100,
-      savings: 21813.84,
-      tag: true,
-      tagText: "MOST SAVINGS",
-      guideIncluded: true,
-      image:
-        "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_4_300x300.svg?v=1737985322",
+        id: "offer3",
+        sectionTitle: "LifeVac™-Antichoking Device",
+        title: "BUY 3 GET 2 FREE",
+        kits: "5x Full Kits",
+        price: 74.83,
+        originalPrice: 265.00,
+        oneItemPrice: 14.97, // (74.83 / 5)
+        oneItemOriginalPrice: 53.00, // (265.00 / 5)
+        savings: 190.17,
+        tag: true,
+        tagText: "MOST SAVINGS",
+        guideIncluded: true,
+        image:
+            "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_4_300x300.svg?v=1737985322",
     },
-  ];
-
+];
   const handleSelectOffer = (offer) => {
     setSelectedId(offer.id);
   };
@@ -96,8 +95,12 @@ const OfferSelection = () => {
   return (
     <>
       <div className="text-center">
-        <p className="font-semibold text-sm mb-1">8 Left In Stock</p>
-
+<div class="flex items-center">
+  <div class="flex-grow border-t border-gray-400"></div>
+  <span class="flex-shrink mx-4 text-center text-lg font-bold">8 Left In Stock</span>
+  <div class="flex-grow border-t border-gray-400"></div>
+</div>
+<br></br>
         {offers.map((offer, idx) => (
           <div key={offer.id} className="relative">
             <h4 className="text-sm font-bold text-[#162950] mb-2 uppercase text-start">
@@ -131,8 +134,7 @@ const OfferSelection = () => {
                 </div>
                 <div>
                   <span className="font-bold text-base md:text-xl">{offer.title}</span>
-                  <div className="text-sm text-gray-600 mb-1">{offer.kits}</div>
-                </div>
+<div class="text-sm border-2 border-gray-300 rounded-full px-3 py-1 font-bold bg-[#0085ff1a]">{offer.kits}</div>                </div>
                 <div>
                   <span className="font-semibold text-gray-800">
                     {offer?.price.toLocaleString("en-US", {
