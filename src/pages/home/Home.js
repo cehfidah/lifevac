@@ -2,7 +2,7 @@ import React from "react";
 import SEO from "../../utils/SEO";
 import { useNavigate } from "react-router-dom";
 import Container from "../../components/Container";
-import collections_img from "../../assest/collections_img.webp";
+import collections_img from "../../assest/lifevac.png";
 
 const Home = () => {
   const navigate = useNavigate();
