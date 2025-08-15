@@ -118,7 +118,7 @@ const CartModal = () => {
                   </h2>
                   <button
                     onClick={() => {
-                      navigate("/product/airwayclear");
+                      navigate("/product/lifevac");
                       dispatch(toggleCart());
                     }}
                     className="bg-[#0d1b39] text-white px-6 py-2 rounded font-semibold text-sm"
@@ -284,7 +284,7 @@ const CartModal = () => {
                       )}
                     </div>
                   ))}
-                  {/* Suggest Guide if no guideIncluded exists */}
+                  {/* Suggest Guide if no guideIncluded exists 
                   {!hasGuideIncluded && (
                     <>
                       <h3 className="font-bold text-lg mt-4 mb-2 px-4 text-[#121212e6]">
@@ -337,6 +337,7 @@ const CartModal = () => {
                       </div>
                     </>
                   )}
+                    */}
                 </div>
               )}
             </div>

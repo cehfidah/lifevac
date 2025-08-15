@@ -157,7 +157,7 @@ export default cartSlice.reducer;
 //                     {
 //                         id: "offer1",
 //                         image: "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_3_300x300.svg?v=1737985220",
-//                         sectionTitle: "AirwayClear™-Antichoking Device:",
+//                         sectionTitle: "LifeVac™-Antichoking Device:",
 //                         title: "BUY ONE",
 //                         kits: "1× Full Kit",
 //                         price: 3474.64,

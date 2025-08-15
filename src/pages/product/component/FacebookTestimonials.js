@@ -11,7 +11,7 @@ const testimonials = [
     name: "Mary Thompson",
     time: "11h",
     reactions: 193,
-    text: `Airway Clear gives us the peace of mind we never knew we needed. With small kids at home, choking is always a worry, but having this on hand makes me feel ready for anything. It’s an absolute must for every household!`,
+    text: `LifeVac gives us the peace of mind we never knew we needed. With small kids at home, choking is always a worry, but having this on hand makes me feel ready for anything. It’s an absolute must for every household!`,
     image: "https://i.pravatar.cc/150?img=50",
   },
   {

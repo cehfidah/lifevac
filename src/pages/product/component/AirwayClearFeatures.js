@@ -18,7 +18,7 @@ const AirwayClearFeatures = () => {
             Take Control of Safety
           </h3>
           <p className="text-[#162950] text-base md:text-xl mt-4">
-            Airway Clear™ allows you to swiftly remove choking hazards, making
+            LifeVac™ allows you to swiftly remove choking hazards, making
             your home safer for everyone.
           </p>
         </div>
@@ -44,7 +44,7 @@ const AirwayClearFeatures = () => {
             Feel Secure
           </h3>
           <p className="text-[#162950] text-base md:text-xl mt-4">
-            With Airway Clear™, you’ll enjoy peace of mind, knowing you’re ready
+            With LifeVac™, you’ll enjoy peace of mind, knowing you’re ready
             to handle emergencies effectively.
           </p>
         </div>

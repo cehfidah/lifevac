@@ -24,7 +24,7 @@ const OfferSelection = () => {
       id: "offer1",
       image:
         "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_3_300x300.svg?v=1737985220",
-      sectionTitle: "AirwayClear™-Antichoking Device:",
+      sectionTitle: "LifeVac™-Antichoking Device:",
       title: "BUY ONE",
       kits: "1× Full Kit",
       price: 3474.64,
@@ -38,7 +38,7 @@ const OfferSelection = () => {
     },
     {
       id: "offer2",
-      sectionTitle: "AirwayClear™-Antichoking Device",
+      sectionTitle: "LifeVac™-Antichoking Device",
       title: "BUY 2 GET 1 FREE",
       kits: "3× Full Kits",
       price: 6949.27,
@@ -54,7 +54,7 @@ const OfferSelection = () => {
     },
     {
       id: "offer3",
-      sectionTitle: "AirwayClear™-Antichoking Device",
+      sectionTitle: "LifeVac™-Antichoking Device",
       title: "BUY 3 GET 2 FREE",
       kits: "5× Full Kits",
       price: 8686.16,
@@ -245,7 +245,7 @@ const OtherDataShow = () => {
         </div>
         <div className="text-start flex flex-col gap-4 text-base md:text-lg tracking-wider">
           <p className="font-semibold">
-            Meet Airway Clear™, the lifesaving device designed to instantly
+            Meet LifeVac™, the lifesaving device designed to instantly
             clear blocked airways, &nbsp;for toddlers, children and
             adults.&nbsp;
           </p>
@@ -255,7 +255,7 @@ const OtherDataShow = () => {
             you in the heat of the moment.
           </p>
           <p>
-            With <strong className="font-semibold">Airway Clear™</strong> you can
+            With <strong className="font-semibold">LifeVac™</strong> you can
             act confidently, offering an intuitive, no-training-needed solution
             to prevent tragic outcomes.
           </p>

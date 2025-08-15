@@ -16,20 +16,20 @@ export default function Faq() {
   };
   const faqs = [
     {
-      title: "What is this Airway Clear™?",
+      title: "What is this LifeVac™?",
       content: (
         <>
           <div className="text-start space-y-2">
             <p>
               <strong>
-                Airway Clear™ is your first defense in choking emergencies.
+                LifeVac™ is your first defense in choking emergencies.
               </strong>{" "}
               It’s a powerful, easy-to-use device designed to clear airways in
               seconds.
             </p>
             <p>
               <strong>Life-Saving Help for All Ages:</strong> Whether it’s for
-              adults or children, Airway Clear™ provides critical, life-saving
+              adults or children, LifeVac™ provides critical, life-saving
               help when you need it most.
             </p>
             <p>
@@ -73,18 +73,18 @@ export default function Faq() {
           </p>
           <p className="text-start">
             While traditional methods like the Heimlich maneuver or back blows
-            require training and can fail in emergencies, Airway Clear™ provides
+            require training and can fail in emergencies, LifeVac™ provides
             instant relief without risk.
           </p>
           <div className="mt-4 bg-gray-100 p-4 rounded-lg shadow-inner text-sm space-y-2">
             <p className="font-semibold text-center mb-3 text-blue-800">
-              How Airway Clear™ Saves Lives Faster
+              How LifeVac™ Saves Lives Faster
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 text-center text-xs font-medium gap-3">
               <div className="bg-white p-3 rounded border shadow-sm">
                 <div className="text-blue-600 font-bold mb-2">METHOD</div>
                 <div className="space-y-1">
-                  <div>Airway Clear™</div>
+                  <div>LifeVac™</div>
                   <div>Heimlich</div>
                   <div>Back Blows</div>
                   <div>Emergency Wait</div>
@@ -118,7 +118,7 @@ export default function Faq() {
       content: (
         <p className="text-start space-y-2">
           Unlike CPR or back blows, which require training and can be difficult
-          to execute correctly in an emergency, <strong>Airway Clear™</strong>{" "}
+          to execute correctly in an emergency, <strong>LifeVac™</strong>{" "}
           works instantly, removing the obstruction with a single pull, saving
           precious seconds and preventing potential brain damage or worse.
         </p>
@@ -129,7 +129,7 @@ export default function Faq() {
       content: (
         <div className="text-start space-y-2">
           <p>
-            ✔️ <strong>1 x Airway Clear™</strong> Device with a patented one-way
+            ✔️ <strong>1 x LifeVac™</strong> Device with a patented one-way
             valve
           </p>
           <p>

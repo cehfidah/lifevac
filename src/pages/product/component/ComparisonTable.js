@@ -3,7 +3,7 @@ import React from "react";
 const ComparisonTable = () => {
   const rows = [
     {
-      method: "Airway Clear™",
+      method: "LifeVac™",
       time: "Under 20 seconds",
       risk: "No risk",
       riskNote: "",
@@ -32,12 +32,12 @@ const ComparisonTable = () => {
     <section className="bg-[#e6f6fd] md:py-16 px-4">
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-[28px] sm:text-[32px] font-extrabold text-[#162950] mb-4">
-          Airway Clear™ VS regular methods
+          LifeVac™ VS regular methods
         </h2>
         <p className="text-[#162950] text-base font-medium mb-6 max-w-2xl mx-auto">
           While traditional methods like the Heimlich maneuver or back blows
           require training and can fail in emergencies,{" "}
-          <strong>Airway Clear™</strong> provides instant relief.
+          <strong>LifeVac™</strong> provides instant relief.
         </p>
         <h3 className="text-lg sm:text-xl font-bold text-[#162950] underline mb-10">
           SEE EXACTLY HOW:

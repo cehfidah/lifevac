@@ -16,14 +16,14 @@ const AntiChokingSteps = () => {
     {
       title: "Step 3: Position And Activate",
       description:
-        "Place AirwayClear™ over the mouth and nose and press down to create a seal. Pull the handle firmly to deliver a thrust. Repeat if necessary until the obstruction is cleared.",
+        "Place LifeVac™ over the mouth and nose and press down to create a seal. Pull the handle firmly to deliver a thrust. Repeat if necessary until the obstruction is cleared.",
     },
   ];
 
   return (
     <div className="bg-[#f0fbff] px-4 sm:px-8 lg:px-32">
       <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#162950] mb-12">
-        How to use Airway Clear™
+        How to use LifeVac™
       </h2>
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-start gap-10">
         {/* Left: Image and CTA */}

@@ -2,34 +2,34 @@ import React, { useState } from "react";
 
 const faqs = [
   {
-    question: "What is this Airway Clear™?",
+    question: "What is this LifeVac™?",
     answer:
-      "Airway Clear™ is an emergency choking device designed to instantly remove blockages from the airways of children and adults. It’s a simple, easy-to-use tool that could mean the difference between life and death in choking situations.",
+      "LifeVac™ is an emergency choking device designed to instantly remove blockages from the airways of children and adults. It’s a simple, easy-to-use tool that could mean the difference between life and death in choking situations.",
   },
   {
     question: "Why does it exist?",
     answer:
-      "Choking is one of the leading causes of preventable death among children. Airway Clear™ was created to give parents and caregivers a fast, effective way to clear airways when traditional methods, like the Heimlich maneuver, aren’t enough.",
+      "Choking is one of the leading causes of preventable death among children. LifeVac™ was created to give parents and caregivers a fast, effective way to clear airways when traditional methods, like the Heimlich maneuver, aren’t enough.",
   },
   {
     question: "Why would I need it?",
     answer:
-      "Airway Clear™ gives you peace of mind by ensuring that you’re prepared to handle a choking emergency at any moment. Having this device means your home is safer for your child, offering protection against the unthinkable.",
+      "LifeVac™ gives you peace of mind by ensuring that you’re prepared to handle a choking emergency at any moment. Having this device means your home is safer for your child, offering protection against the unthinkable.",
   },
   {
-    question: "Why should I choose Airway Clear™?",
+    question: "Why should I choose LifeVac™?",
     answer:
-      "Unlike CPR or back blows, which require training and can be difficult to execute correctly in an emergency, Airway Clear™ works instantly, removing the obstruction with a single pull, saving precious seconds and preventing potential brain damage or worse.",
+      "Unlike CPR or back blows, which require training and can be difficult to execute correctly in an emergency, LifeVac™ works instantly, removing the obstruction with a single pull, saving precious seconds and preventing potential brain damage or worse.",
   },
   {
     question: "How soon can I get it?",
     answer:
-      "<p>We offer&nbsp;fast and reliable shipping, so you can have Airway Clear™ in your home within&nbsp;<strong>3-5 business days.</strong> For even faster protection, choose our&nbsp;express shipping&nbsp;option to get it within&nbsp;<strong>1-2 days.</strong></p>",
+      "<p>We offer&nbsp;fast and reliable shipping, so you can have LifeVac™ in your home within&nbsp;<strong>3-5 business days.</strong> For even faster protection, choose our&nbsp;express shipping&nbsp;option to get it within&nbsp;<strong>1-2 days.</strong></p>",
   },
   {
     question: "Can it force air into the throat?",
     answer:
-      "Absolutely not. AirwayClear™ has a one way valve system that releases air out of the handle when you press in and creates a suction through the mask when you pull.",
+      "Absolutely not. LifeVac™ has a one way valve system that releases air out of the handle when you press in and creates a suction through the mask when you pull.",
   },
   {
     question: "Can I return it?",

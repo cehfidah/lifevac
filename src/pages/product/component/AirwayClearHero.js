@@ -5,14 +5,14 @@ const AirwayClearHero = () => {
   return (
     <div className="bg-[#eaf6fc] py-12 px-4 md:px-16">
       <h2 className="text-3xl md:text-5xl font-extrabold text-center text-[#0d1a4a] mb-12">
-        Airway Clear™
+        LifeVac™
       </h2>
       <div className="flex flex-col md:flex-row items-center justify-center gap-10">
         {/* Image Section */}
         <div className="max-w-md w-full">
           <img
             src={video} // Replace with your actual image path
-            alt="Man using Airway Clear"
+            alt="Man using LifeVac"
             className="rounded-xl w-full object-cover shadow-lg border border-[#162950]"
           />
         </div>
@@ -27,7 +27,7 @@ const AirwayClearHero = () => {
             proactive measures can mean the difference between life and death.
           </p>
           <p className="text-gray-700 text-lg md:text-xl">
-            With <strong>Airway Clear™</strong>, you hold the power to protect
+            With <strong>LifeVac™</strong>, you hold the power to protect
             your loved ones from this silent, often fatal threat—transforming a
             potential tragedy into a life-saving moment.
           </p>

@@ -215,7 +215,7 @@ const ProductShowcase = () => {
                 lineHeight: "2.5rem",
               }}
             >
-              AirwayClear™ -<br className="hidden sm:block" />
+              LifeVac™ -<br className="hidden sm:block" />
               Antichoking Device
             </h2>
 

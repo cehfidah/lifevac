@@ -20,15 +20,15 @@ import ProductShowcase from "./component/ProductShowcase";
 const Home = () => {
   return (
     <>
-      <SEO
-        title="AirwayClear - Innovative Air Solutions for Your Space"
-        description="Discover AirwayClear’s advanced air purification systems. Clean air technology for homes, businesses, and industries. Breathe better today."
-        keywords="Air purifier, AirwayClear, clean air systems, air filtration, home air cleaner"
-        ogTitle="AirwayClear - Innovative Air Solutions"
-        ogDescription="Explore advanced clean air technology with AirwayClear. Healthier air for your home and workspace."
-        twitterTitle="AirwayClear | airwayclear.co"
-        twitterDescription="Clean air solutions for everyone. Explore AirwayClear products."
-      />
+  <SEO
+  title="LifeVac Choking Rescue Device | A Must-Have for Every Home"
+  description="Discover the official LifeVac, a non-invasive choking rescue device. Protect your loved ones with this proven, life-saving solution for all ages. Shop now for peace of mind."
+  keywords="LifeVac, choking rescue device, anti-choking device, buy LifeVac, life-saving device, choking help for adults, choking help for kids, home safety, emergency preparedness"
+  ogTitle="LifeVac: The Official Choking Rescue Device"
+  ogDescription="Equip your family with the official LifeVac kit. Our patented suction device is a vital tool in any choking emergency. Get yours today for ultimate home safety."
+  twitterTitle="LifeVac: The Official Choking Rescue Device"
+  twitterDescription="Don't wait for a choking emergency. The LifeVac device is a simple, effective solution to protect your family. Get your official kit now."
+/>
       <ProductShowcase />
       <Card />
       <ChokingTimeline />

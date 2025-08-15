@@ -14,7 +14,7 @@ function Card() {
                 FREE LIFE-TIME REPLACEMENTS
               </h3>
               <p className="text-sm md:text-base text-[#162950] mt-2">
-                If <span className="font-bold">AirwayClear™</span> is used in a
+                If <span className="font-bold">LifeVac™</span> is used in a
                 choking emergency, we will send you free replacement. Our
                 mission is to equip your home for life.
               </p>

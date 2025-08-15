@@ -6,12 +6,12 @@ const PrivacyPolicy = () => {
     return (
         <>
             <SEO
-                title="Privacy Policy - AirwayClear"
-                description="Review how AirwayClear handles your personal information, data collection, and privacy rights."
-                keywords="AirwayClear privacy, data policy, personal data"
+                title="Privacy Policy - LifeVac"
+                description="Review how LifeVac handles your personal information, data collection, and privacy rights."
+                keywords="LifeVac privacy, data policy, personal data"
                 ogTitle="Privacy Policy"
-                ogDescription="Learn how we protect and use your data at AirwayClear."
-                twitterTitle="Privacy Policy - AirwayClear"
+                ogDescription="Learn how we protect and use your data at LifeVac."
+                twitterTitle="Privacy Policy - LifeVac"
                 twitterDescription="Read about your privacy rights and our responsibilities."
             />
 
@@ -19,7 +19,7 @@ const PrivacyPolicy = () => {
                 <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">Privacy policy</h1>
 
                 <p className="mb-6">
-                    This Privacy Policy describes how Whitts Sales And Marketing LLC &nbsp; <span className='text-[10px]'>(the " Site, we, us, or our") collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from airwayclear.us (the " Site ") or otherwise communicate with us (collectively, the " Services "). For purposes of this Privacy Policy, " you " and " your " means you as the user of the Services, whether you are a customer, website visitor, or another individual whose information we have collected pursuant to this Privacy Policy.</span>
+                    This Privacy Policy describes how Whitts Sales And Marketing LLC &nbsp; <span className='text-[10px]'>(the " Site, we, us, or our") collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from Lifevacdevices.com (the " Site ") or otherwise communicate with us (collectively, the " Services "). For purposes of this Privacy Policy, " you " and " your " means you as the user of the Services, whether you are a customer, website visitor, or another individual whose information we have collected pursuant to this Privacy Policy.</span>
                 </p>
 
                 <p className="mb-6">
