@@ -176,7 +176,7 @@ const Checkouts = () => {
       const stateList = State.getStatesOfCountry(country.value);
       setStates(stateList.map((s) => ({ label: s.name, value: s.isoCode })));
       const code = Country.getCountryByCode(country.value)?.phonecode;
-      setPhoneCode(code || "91");
+      setPhoneCode(code || "+1");
     }
   }, [country, user]);
 
@@ -382,15 +382,15 @@ const Checkouts = () => {
   if (loading) return <Loading />;
   return (
     <>
-      <SEO
-        title="Secure Checkout - AirwayClear"
-        description="Complete your purchase with AirwayClear's secure checkout process. Fast, reliable, and protected."
-        keywords="AirwayClear checkout, secure payment, purchase"
-        ogTitle="AirwayClear Checkout"
-        ogDescription="Finalize your AirwayClear purchase securely."
-        twitterTitle="Checkout - AirwayClear"
-        twitterDescription="Securely pay for your AirwayClear order."
-      />
+   <SEO
+  title="Secure LifeVac Checkout | Complete Your Order Now"
+  description="Finalize your official LifeVac purchase with our secure and encrypted checkout. We guarantee safe payment, fast shipping, and a trusted, authentic device."
+  keywords="LifeVac checkout, secure payment, buy LifeVac, choking device, life-saving device, trusted purchase"
+  ogTitle="LifeVac Checkout | Your Order is Secure"
+  ogDescription="Complete your order for the official LifeVac kit. Our checkout is 100% secure, fast, and easy to use. Peace of mind is just one click away."
+  twitterTitle="LifeVac Checkout | Secure & Fast"
+  twitterDescription="Ready to buy? Our secure checkout makes it easy to get your official LifeVac kit delivered fast. Your safety is our priority."
+/>
 
       <CheckOutHead />
       <ShippingForm

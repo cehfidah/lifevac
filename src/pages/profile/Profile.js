@@ -60,15 +60,15 @@ export default function ProfilePage() {
 
     return (
         <>
-            <SEO
-                title="Your Profile - AirwayClear"
-                description="Manage your AirwayClear profile, account settings, and view your saved preferences."
-                keywords="AirwayClear profile, account dashboard, user settings"
-                ogTitle="Profile Page - AirwayClear"
-                ogDescription="Edit your profile and view account information."
-                twitterTitle="Profile - AirwayClear"
-                twitterDescription="Manage your AirwayClear account and personal data."
-            />
+           <SEO
+  title="Your Profile - LifeVac Account Settings"
+  description="Manage your LifeVac account, update your personal information, and review your communication preferences. Your profile data is secure and easy to manage."
+  keywords="LifeVac profile, account dashboard, user settings, edit profile, change password"
+  ogTitle="LifeVac Profile Page"
+  ogDescription="Access your LifeVac profile to manage account details and preferences. Your personal information is protected."
+  twitterTitle="LifeVac Profile | Account Management"
+  twitterDescription="Easily manage your personal data and account settings for your LifeVac profile."
+/>
 
             <div className="bg-[#f3f3f3]">
                 <Container>

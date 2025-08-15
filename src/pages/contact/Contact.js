@@ -67,14 +67,14 @@ const Contact = () => {
   return (
     <>
       <SEO
-        title="Contact Us - AirwayClear"
-        description="Get in touch with AirwayClear support and sales teams. We’re here to help with any inquiries about our products or services."
-        keywords="AirwayClear contact, customer support, air purifier help"
-        ogTitle="Contact AirwayClear"
-        ogDescription="Reach out to the AirwayClear team for support, questions, or collaboration opportunities."
-        twitterTitle="Contact AirwayClear"
-        twitterDescription="Speak to our support team or send us feedback."
-      />
+  title="Contact Us - LifeVac Devices"
+  description="Get in touch with the official LifeVac team. We're here to help with any inquiries about our life-saving devices, orders, or customer support."
+  keywords="LifeVac contact, LifeVac customer service, choking rescue device support, official LifeVac help, product inquiries"
+  ogTitle="Contact LifeVac - Your Life-Saving Device Support"
+  ogDescription="Reach out to the LifeVac team for support, questions, or product information. We're here to help you breathe easier."
+  twitterTitle="Contact LifeVac"
+  twitterDescription="Speak to our support team about your LifeVac device or any questions you may have."
+/>
 
       <div className="min-h-screen bg-white px-4 py-12 flex flex-col items-center text-center">
         <h1 className="text-3xl font-bold mb-4">Questions? We Have Answers!</h1>

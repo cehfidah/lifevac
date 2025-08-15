@@ -54,15 +54,15 @@ export default function VerifyOtp() {
 
     return (
         <>
-            <SEO
-                title="Verify OTP - AirwayClear"
-                description="Enter the verification code sent to your email."
-                keywords="verify otp, email code, AirwayClear authentication"
-                ogTitle="OTP Verification"
-                ogDescription="Enter the code we sent to continue."
-                twitterTitle="OTP - AirwayClear"
-                twitterDescription="Securely login to AirwayClear using the OTP sent to your email."
-            />
+           <SEO
+  title="Verify OTP | LifeVac - Secure Account Access"
+  description="Enter the verification code sent to your email to securely access your LifeVac account. Your safety and security are our top priority."
+  keywords="LifeVac verify OTP, email code, two-factor authentication, secure login"
+  ogTitle="LifeVac Account Verification"
+  ogDescription="Enter the code to securely continue to your LifeVac account."
+  twitterTitle="LifeVac OTP Verification"
+  twitterDescription="Securely login to your LifeVac account using the one-time passcode sent to your email."
+/>
 
             <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
                 <div className="bg-white w-full max-w-md p-8 rounded-lg shadow-md">

@@ -92,15 +92,15 @@ export default function Login() {
 
   return (
     <>
-      <SEO
-        title="Login - AirwayClear"
-        description="Sign in to your AirwayClear account to access your orders, profile settings, and more."
-        keywords="AirwayClear login, sign in, user access"
-        ogTitle="Login to AirwayClear"
-        ogDescription="Access your dashboard and order information."
-        twitterTitle="Login - AirwayClear"
-        twitterDescription="Enter your credentials to sign in."
-      />
+   <SEO
+  title="Secure Login to Your LifeVac Account"
+  description="Sign in to your LifeVac account to access your order history, shipping details, and profile settings. Your information is protected with our secure login."
+  keywords="LifeVac login, sign in, secure user access, my orders, order history"
+  ogTitle="Login to Your LifeVac Account"
+  ogDescription="Access your LifeVac dashboard and manage your orders. Your account is protected by our secure login."
+  twitterTitle="LifeVac Login | Secure Account Access"
+  twitterDescription="Sign in to your account with confidence. Your LifeVac profile and order history are waiting for you."
+/>
 
       <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
         <div className="bg-white w-full max-w-md p-8 rounded-lg shadow-md">

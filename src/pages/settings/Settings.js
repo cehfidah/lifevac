@@ -16,15 +16,15 @@ const Settings = () => {
 
   return (
     <>
-      <SEO
-        title="User Settings - AirwayClear"
-        description="Manage your AirwayClear account settings including preferences, notifications, and profile details."
-        keywords="AirwayClear settings, user preferences, profile management"
-        ogTitle="AirwayClear Account Settings"
-        ogDescription="Update and personalize your AirwayClear account."
-        twitterTitle="Account Settings - AirwayClear"
-        twitterDescription="Modify your AirwayClear account settings."
-      />
+     <SEO
+  title="User Settings - LifeVac Account Management"
+  description="Manage your LifeVac account settings, communication preferences, and personal information. Your privacy and security are our top priority."
+  keywords="LifeVac settings, account preferences, profile management, change password, user dashboard"
+  ogTitle="LifeVac Account Settings"
+  ogDescription="Update your profile, personal data, and communication preferences for your LifeVac account."
+  twitterTitle="LifeVac Settings | Account Management"
+  twitterDescription="Modify your LifeVac account settings and manage your profile with confidence."
+/>
 
       <div className="paddingX py-10">
         <Container>

@@ -4,15 +4,15 @@ import SEO from "../../utils/SEO";
 const RefundPolicy = () => {
   return (
     <>
-      <SEO
-        title="Refund Policy - AirwayClear"
-        description="Learn about our refund policy, return conditions, and how to request a refund for AirwayClear purchases."
-        keywords="AirwayClear refund, return policy, product returns"
-        ogTitle="AirwayClear Refund Policy"
-        ogDescription="View our full refund and return policy."
-        twitterTitle="Refund Policy - AirwayClear"
-        twitterDescription="Understand how refunds work with AirwayClear."
-      />
+     <SEO
+  title="Refund Policy - LifeVac | Returns & Replacements"
+  description="Learn about our official LifeVac refund and return policy. We offer a free replacement if your device is used to save a life. Find out how to request a refund or return."
+  keywords="LifeVac refund, LifeVac return policy, free replacement, LifeVac returns, product returns"
+  ogTitle="LifeVac Refund & Return Policy"
+  ogDescription="Understand our transparent refund policy and our promise to replace any LifeVac kit used to save a life."
+  twitterTitle="LifeVac Refund Policy"
+  twitterDescription="Learn about our free replacement policy and how to request a refund for a LifeVac purchase."
+/>
 
       <div className="max-w-2xl mx-auto px-4 py-10 text-base text-[#162950] leading-relaxed">
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">

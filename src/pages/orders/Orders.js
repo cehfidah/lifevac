@@ -38,15 +38,15 @@ const Orders = () => {
 
     return (
         <>
-            <SEO
-                title="Your Orders - AirwayClear"
-                description="View your past orders, delivery statuses, and order history with AirwayClear."
-                keywords="AirwayClear orders, order history, purchase status"
-                ogTitle="Order History - AirwayClear"
-                ogDescription="Track your orders and view order details."
-                twitterTitle="Orders - AirwayClear"
-                twitterDescription="Manage your AirwayClear order history."
-            />
+     <SEO
+  title="Your LifeVac Orders | Order History & Tracking"
+  description="View your past and current LifeVac orders, track delivery status, and access purchase history. Your order details are secure and ready for you to review."
+  keywords="LifeVac orders, order history, track my order, purchase status, shipping status"
+  ogTitle="LifeVac Order History"
+  ogDescription="Track and manage your LifeVac orders. See shipping updates and review your purchase details."
+  twitterTitle="Your Orders - LifeVac"
+  twitterDescription="Easily track your LifeVac order and view your complete purchase history."
+/>
 
             <Container>
                 <div className="bg-gray-100 paddingX py-10">

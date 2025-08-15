@@ -4,15 +4,15 @@ import SEO from '../../utils/SEO';
 const TermsOfService = () => {
     return (
         <>
-            <SEO
-                title="Terms of Service - AirwayClear"
-                description="Read AirwayClear’s Terms of Service to understand how we operate, your responsibilities, and the rules of use."
-                keywords="AirwayClear terms, terms of service, site rules, policies"
-                ogTitle="Terms of Service"
-                ogDescription="AirwayClear terms and conditions for using our services."
-                twitterTitle="AirwayClear Terms of Service"
-                twitterDescription="Review the terms before using our products."
-            />
+         <SEO
+  title="Terms of Service - LifeVac"
+  description="Read the official LifeVac Terms of Service to understand our policies, your rights, and the terms of use for our products and website."
+  keywords="LifeVac terms of service, site policies, legal terms, product use, official terms"
+  ogTitle="LifeVac Terms & Conditions"
+  ogDescription="Review the terms and conditions for using our life-saving devices and website."
+  twitterTitle="LifeVac Terms of Service"
+  twitterDescription="Understand our official terms before using our products and services."
+/>
 
             <div className="bg-white flex flex-col items-center  max-w-2xl mx-auto px-4 py-10 text-base text-gray-800 leading-relaxed">
                 <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">Terms of service</h1>

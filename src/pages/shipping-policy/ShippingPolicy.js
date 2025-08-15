@@ -3,15 +3,15 @@ import SEO from '../../utils/SEO';
 const ShippingPolicy = () => {
     return (
         <>
-            <SEO
-                title="Shipping Policy - AirwayClear"
-                description="Details about our shipping methods, delivery timelines, and available regions for AirwayClear product delivery."
-                keywords="AirwayClear shipping, delivery information, shipping times"
-                ogTitle="Shipping Policy - AirwayClear"
-                ogDescription="Everything you need to know about our delivery process."
-                twitterTitle="Shipping Policy - AirwayClear"
-                twitterDescription="Learn about how and where we ship products."
-            />
+           <SEO
+  title="Shipping Policy - LifeVac | Fast & Reliable Delivery"
+  description="Find detailed information on our fast and reliable shipping methods, estimated delivery timelines, and available regions for your LifeVac order. Your life-saving device will arrive quickly."
+  keywords="LifeVac shipping, choking rescue device delivery, shipping times, delivery information, fast shipping"
+  ogTitle="LifeVac Shipping Policy"
+  ogDescription="Everything you need to know about our fast and reliable delivery process for your LifeVac device."
+  twitterTitle="LifeVac Shipping Info"
+  twitterDescription="Learn about how we ship your life-saving device and track your order every step of the way."
+/>
             <div className="bg-white flex flex-col items-center  max-w-2xl mx-auto px-4 py-10 text-base text-gray-800 leading-relaxed">
                 <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">
                     Shipping policy
