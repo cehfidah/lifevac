@@ -1,8 +1,11 @@
+import React, { useEffect, useRef } from "react";
+import { useLoadScript, Autocomplete } from "@react-google-maps/api";
 import Container from "../../components/Container";
 import Select from "react-select";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import OrderSummary from "./OrderSummary";
 
+const libraries = ["places"];
 
 const ShippingForm = ({
     onSubmitForm,
@@ -36,8 +39,67 @@ const ShippingForm = ({
     couponLoading,
     couponError,
     couponSuccess,
-    setFormErrors
+    setFormErrors,
 }) => {
+    // Correctly load the Google Maps script and places library
+    const { isLoaded, loadError } = useLoadScript({
+        googleMapsApiKey: "AIzaSyCYPR_qRKAwf1zEaffWeIeGkzJhN86bTew", // Replace with your actual Google Maps API Key
+        libraries: libraries,
+    });
+
+    const autocompleteRef = useRef(null);
+
+    const onPlaceChanged = () => {
+        if (autocompleteRef.current) {
+            const place = autocompleteRef.current.getPlace();
+            if (place.address_components) {
+                let address = "";
+                let city = "";
+                let state = "";
+                let zip = "";
+                let countryCode = "";
+
+                for (const component of place.address_components) {
+                    const type = component.types[0];
+                    if (type === "street_number" || type === "route") {
+                        address += component.long_name + " ";
+                    } else if (type === "locality") {
+                        city = component.long_name;
+                    } else if (type === "administrative_area_level_1") {
+                        state = component.short_name;
+                    } else if (type === "postal_code") {
+                        zip = component.long_name;
+                    } else if (type === "country") {
+                        countryCode = component.short_name;
+                    }
+                }
+
+                onChnage("address", address.trim());
+                onChnage("city", city);
+                onChnage("zip", zip);
+
+                const selectedCountryOption = countries.find(c => c.value === countryCode);
+                if (selectedCountryOption) {
+                    setCountry(selectedCountryOption);
+                }
+
+                const selectedStateOption = states.find(s => s.value === state);
+                if (selectedStateOption) {
+                    setSelectedState(selectedStateOption);
+                }
+
+                setFormErrors(prevErrors => {
+                    const newErrors = { ...prevErrors };
+                    delete newErrors.address;
+                    delete newErrors.city;
+                    delete newErrors.zip;
+                    delete newErrors.selectedState;
+                    return newErrors;
+                });
+            }
+        }
+    };
+
     const customSelectStyles = {
         control: (base, state) => ({
             ...base,
@@ -51,12 +113,16 @@ const ShippingForm = ({
 
     const handleStateChange = (option) => {
         setSelectedState(option);
-
         setFormErrors((prevErrors) => {
-            const { selectedState, ...rest } = prevErrors; // remove selectedState only
+            const { selectedState, ...rest } = prevErrors;
             return rest;
         });
     };
+
+    // Show a loading message while the API script is loading
+    if (loadError) return <div>Error loading Google Maps API</div>;
+    if (!isLoaded) return <div>Loading...</div>;
+
     return (
         <>
             <Container>
@@ -64,26 +130,28 @@ const ShippingForm = ({
                     {/* Left Section */}
                     <div className="space-y-6">
                         <form onSubmit={onSubmitForm}>
-                            {/* Delivery */}
+                            {/* Contact and Shipping Information */}
                             <div className="space-y-4">
-                                <h2 className="text-lg font-semibold">Account</h2>
-
+                                {/* Changed from "Account" to a more friendly title */}
+                                <h2 className="text-lg font-semibold">Contact & Shipping Information</h2>
                                 <div>
                                     <p className="text-sm mb-1">Email</p>
                                     <input
                                         ref={(el) => (inputRefs.current.email = el)}
-                                        autocomplete={true}
                                         className={`w-full border p-2 rounded ${formErrors.email ? "border-red-500" : ""}`}
-                                        placeholder="First name"
+                                        // Changed placeholder to "Email" for clarity
+                                        placeholder="Email"
                                         value={formData.email}
                                         onChange={(e) => onChnage("email", e.target.value)}
                                         type="email"
                                     />
                                     {formErrors.email && <p className="text-red-500 text-sm">{formErrors.email}</p>}
+                                    {/* Added a friendly sub-text to reassure guest users */}
+                                    <p className="text-xs text-gray-500 mt-1">
+                                        We'll use this email to send you updates about your order.
+                                    </p>
                                 </div>
-
                                 <h2 className="text-lg font-semibold">Shipping Address</h2>
-                                {/* Dropdown */}
                                 {addresses.length > 0 && (
                                     <select
                                         className="w-full border border-gray-300 rounded px-4 py-2"
@@ -97,7 +165,6 @@ const ShippingForm = ({
                                         ))}
                                     </select>
                                 )}
-
                                 <div className="mb-4">
                                     <p className="text-sm mb-1">Country/Region</p>
                                     <Select
@@ -110,7 +177,6 @@ const ShippingForm = ({
                                     <div>
                                         <input
                                             ref={(el) => (inputRefs.current.firstName = el)}
-                                            autocomplete={true}
                                             className={`w-full border p-2 rounded ${formErrors.firstName ? "border-red-500" : ""}`}
                                             placeholder="First name"
                                             value={formData.firstName}
@@ -122,7 +188,6 @@ const ShippingForm = ({
                                     <div>
                                         <input
                                             ref={(el) => (inputRefs.current.lastName = el)}
-                                            autocomplete={true}
                                             className={`w-full border p-2 rounded ${formErrors.lastName ? "border-red-500" : ""}`}
                                             placeholder="Last name"
                                             value={formData.lastName}
@@ -133,15 +198,19 @@ const ShippingForm = ({
                                     </div>
                                 </div>
                                 <div>
-                                    <input
-                                        ref={(el) => (inputRefs.current.address = el)}
-                                        autocomplete={true}
-                                        className={`w-full border p-2 rounded ${formErrors.address ? "border-red-500" : ""}`}
-                                        placeholder="Address"
-                                        value={formData.address}
-                                        onChange={(e) => onChnage("address", e.target.value)}
-                                        type="text"
-                                    />
+                                    <Autocomplete
+                                        onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
+                                        onPlaceChanged={onPlaceChanged}
+                                        options={{ types: ['address'] }}
+                                    >
+                                        <input
+                                            className={`w-full border p-2 rounded ${formErrors.address ? "border-red-500" : ""}`}
+                                            placeholder="Address"
+                                            value={formData.address}
+                                            onChange={(e) => onChnage("address", e.target.value)}
+                                            type="text"
+                                        />
+                                    </Autocomplete>
                                     {formErrors.address && <p className="text-red-500 text-sm">{formErrors.address}</p>}
                                 </div>
                                 <div>
@@ -157,7 +226,6 @@ const ShippingForm = ({
                                     <div>
                                         <input
                                             ref={(el) => (inputRefs.current.city = el)}
-                                            autocomplete={true}
                                             className={`w-full border p-2 rounded ${formErrors.city ? "border-red-500" : ""}`}
                                             placeholder="City"
                                             value={formData.city}
@@ -180,7 +248,6 @@ const ShippingForm = ({
                                     <div>
                                         <input
                                             ref={(el) => (inputRefs.current.zip = el)}
-                                            autocomplete={true}
                                             className={`w-full border p-2 rounded ${formErrors.zip ? "border-red-500" : ""}`}
                                             placeholder="ZIP code"
                                             value={formData.zip}
@@ -198,7 +265,6 @@ const ShippingForm = ({
                                         </span>
                                         <input
                                             ref={(el) => (inputRefs.current.phone = el)}
-                                            autocomplete={true}
                                             className={`w-full border p-2 rounded ${formErrors.phone ? "border-red-500" : ""}`}
                                             placeholder="Phone number"
                                             value={formData.phone}
@@ -209,9 +275,7 @@ const ShippingForm = ({
                                     {formErrors.phone && <p className="text-red-500 text-sm">{formErrors.phone}</p>}
                                 </div>
                             </div>
-
                             <div className="w-full border-b border-gray-200 pb-2 my-6">
-                                {/* Toggle Header */}
                                 <div
                                     className="flex justify-between items-start cursor-pointer"
                                     onClick={() => setIsOpen(!isOpen)}
@@ -219,8 +283,7 @@ const ShippingForm = ({
                                     <div>
                                         <h4 className="text-lg font-semibold">Shipping method</h4>
                                         <p className="text-sm font-medium text-black mt-1">
-                                            {selectedOption.label} ·{" "}
-                                            <span className="font-bold">${selectedOption.price}</span>
+                                            {selectedOption.label} · <span className="font-bold">Free</span>
                                         </p>
                                         <p className="text-sm text-gray-500">{selectedOption.description}</p>
                                     </div>
@@ -232,8 +295,6 @@ const ShippingForm = ({
                                         )}
                                     </div>
                                 </div>
-
-                                {/* Dropdown List */}
                                 {isOpen && (
                                     <div className="mt-4 space-y-2">
                                         {shippingOptions.map((option) => (
@@ -261,8 +322,6 @@ const ShippingForm = ({
                                     </div>
                                 )}
                             </div>
-
-                            {/* Payment Section */}
                             <div className="space-y-2 mx-auto mt-4">
                                 <h2 className="text-lg font-semibold">Secure Checkout</h2>
                                 <p className="text-sm text-[#162950]">
@@ -270,17 +329,14 @@ const ShippingForm = ({
                                     free returns and 24/7 access to our award-winning customer
                                     service
                                 </p>
-
                                 <button
                                     type="submit"
                                     className="flex justify-center items-center w-full bg-[#162950] text-white text-base font-bold rounded-xl py-4"
                                 >
                                     Complete Purchase
                                 </button>
-
                             </div>
                         </form>
-
                     </div>
                     <div className="md:sticky md:top-6 md:self-start w-full">
                         <OrderSummary
@@ -299,7 +355,7 @@ const ShippingForm = ({
                 </div>
             </Container>
         </>
-    )
-}
+    );
+};
 
 export default ShippingForm;

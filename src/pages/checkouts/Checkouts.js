@@ -22,21 +22,21 @@ import ShippingForm from "./ShippingForm";
 const baseShippingOptions = [
   {
     id: "normal",
-    label: "Standard Shipping (5–7 business days)",
+    label: "Standard Shipping (4–6 business days)",
     description: "Tracking number provided",
-    price: 5.99, // Default price for the United States
+    price: 0, // Default price for the United States
   },
   {
     id: "fast",
-    label: "Fast Shipping (2–3 business days)",
+    label: "Fast Shipping (2–4 business days)",
     description: "Tracking number provided",
-    price: 7.5,
+    price: 7.99,
   },
   {
     id: "express",
     label: "Express Shipping (1 business day)",
     description: "Tracking number provided",
-    price: 12,
+    price: 14,
   },
 ];
 
@@ -150,9 +150,9 @@ const Checkouts = () => {
         c.isoCode === addr.country_code
     );
 
-    const selectedCountryIso = selectedCountry?.isoCode || "IN";
-    const selectedCountryLabel = selectedCountry?.name || "India";
-    const phonecode = selectedCountry?.phonecode || "91";
+    const selectedCountryIso = selectedCountry?.isoCode || "US";
+    const selectedCountryLabel = selectedCountry?.name || "United States";
+    const phonecode = selectedCountry?.phonecode || "1";
 
     const stateList = State.getStatesOfCountry(selectedCountryIso);
     const matchedState = stateList.find((s) => s.name === addr.state);

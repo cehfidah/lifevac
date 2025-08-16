@@ -5,16 +5,15 @@ import OfferSelection from "./OfferSelection";
 // Import images
 import first from "../../../assest/image/firstsectioneaightimage.webp";
 import second from "../../../assest/image/firstsectionfifthimage.webp";
-import third from "../../../assest/image/firstsectionfirstimga.png";
+import third from "../../../assest/lifevac.png";
 import four from "../../../assest/image/firstsectionfourimage.webp";
 import fifth from "../../../assest/image/firstsectionsecondimage.webp";
 import six from "../../../assest/image/firstsectionsevenimage.webp";
 import seven from "../../../assest/image/firstsectionsiximage.webp";
-import eaghit from "../../../assest/image/firstsectionthirdimage.png";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 
 const ProductShowcase = () => {
-  const images = [first, second, third, four, fifth, seven, eaghit, six];
+  const images = [first, second, third, four, fifth, seven, six];
   const [mainImageIndex, setMainImageIndex] = useState(images.indexOf(six));
   const mainImageRef = useRef(null);
   const isDragging = useRef(false);
@@ -265,7 +264,7 @@ const tomorrow = new Date(today);
 
             {/* Update Notice */}
             <div className="bg-[#162950] text-white text-center mt-6 py-3 px-4 rounded-md font-medium text-sm sm:text-base">
- <p>PRICE RETURNS TO $69.99 PER UNIT STARTING {nextDayFormatted}</p>
+ <p>PRICE RETURNS TO $79.99 PER UNIT STARTING {nextDayFormatted}</p>
 
             </div>
           </div>
