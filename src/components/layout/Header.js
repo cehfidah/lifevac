@@ -18,7 +18,7 @@ const Header = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   const navLinks = [
-    { name: "Shipping Policy", path: "/shipping-policy" },
+    { name: "Track Your Order", path: "/track-order" },
     { name: "Refund Policy", path: "/refund-policy" },
     { name: "Terms Of Service", path: "/terms-of-service" },
     { name: "Contact", path: "/contact" },
