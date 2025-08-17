@@ -4,7 +4,7 @@ import { FaUser, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import Container from "../Container";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleCart } from "../../store/slice/cartSlice";
-import logo from "../../assest/logo2.avif";
+import logo from "../../assest/logo.png";
 
 const Header = () => {
   const location = useLocation();

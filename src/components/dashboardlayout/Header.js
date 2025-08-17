@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Container from "../Container";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/slice/authSlice";
-import logo from "../../assest/logo2.avif";
+import logo from "../../assest/logo.png";
 import { clearCart } from "../../store/slice/cartSlice";
 
 export default function Header() {

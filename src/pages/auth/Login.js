@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import Loading from "../../components/Common/Loading";
 import { ApiHandler } from "../../helper/ApiHandler";
 import { useDispatch, useSelector } from "react-redux";
-import logo from "../../assest/logo.webp";
+import logo from "../../assest/logo.png";
 import { setCredentials } from "../../store/slice/authSlice";
 
 export default function Login() {

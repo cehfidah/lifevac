@@ -7,7 +7,7 @@ import { ApiHandler } from '../../helper/ApiHandler';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from "../../store/slice/authSlice";
 import OtpInput from 'react-otp-input';
-import logo from "../../assest/logo.webp";
+import logo from "../../assest/logo.png";
 
 export default function VerifyOtp() {
     const location = useLocation();

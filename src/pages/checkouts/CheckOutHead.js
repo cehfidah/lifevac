@@ -1,6 +1,6 @@
 import { IoBagHandleOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
-import logo from "../../assest/logo.webp";
+import logo from "../../assest/logo.png";
 
 const CheckOutHead = () => {
     return (
