@@ -1,1 +1,1 @@
-export const apiBasePath = "https://lifevacdevice.com/api/v1/GKdjjhsjhdKdSNd/rest_api";
+export const apiBasePath = "https://api.lifevacdevice.com/api/v1/GKdjjhsjhdKdSNd/rest_api";

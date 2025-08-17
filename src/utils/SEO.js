@@ -12,7 +12,7 @@ const SEO = ({
     keywords
 }) => {
     const location = useLocation();  // Get current page path dynamically
-    const canonicalUrl = `https://lifevacdevice.com${location.pathname}`; // Create full canonical URL
+    const canonicalUrl = `https://api.lifevacdevice.com${location.pathname}`; // Create full canonical URL
 
     return (
         <Helmet>
