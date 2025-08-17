@@ -1,7 +1,7 @@
 import React from "react";
 import video from "../../../assest/image/video3.webp";
 
-const AntiChokingSteps = () => {
+const AntiChokingSteps = ({ onTakeAction }) => {
   const steps = [
     {
       title: "Step 1: Familiarize Yourself",
@@ -34,7 +34,9 @@ const AntiChokingSteps = () => {
             className="rounded-xl shadow-md w-full max-w-md"
           />
           <div className="mt-8 w-full flex flex-col items-center md:items-start">
-            <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg w-full max-w-xs">
+            <button 
+            onClick={onTakeAction}
+            className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg w-full max-w-xs">
               TAKE ACTION TODAY
             </button>
             <p className="text-start text-sm text-[#162950] font-semibold mt-3">

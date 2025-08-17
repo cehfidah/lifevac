@@ -1,4 +1,4 @@
-// src/data/offersData.js (new file)
+// src/data/offersData.js
 
 const offers = [
     {
@@ -15,6 +15,7 @@ const offers = [
         guideIncluded: false,
         tag: true,
         tagText: "BEST VALUE",
+        bestSeller: false, // Mark which one is the default for "Take Action"
     },
     {
         id: "offer2",
@@ -24,12 +25,13 @@ const offers = [
         kits: "1x Home + Travel Kit",
         price: 119.99,
         originalPrice: 159.99,
-        oneItemPrice: 59.99,
-        oneItemOriginalPrice: 71.99,
+        oneItemPrice: 119.99,
+        oneItemOriginalPrice: 159.99,
         savings: 40,
         guideIncluded: false,
         tag: true,
         tagText: "MOST POPULAR",
+        bestSeller: true, // This will be added to the cart by the "Take Action" button
     },
     {
         id: "offer3",
@@ -45,8 +47,8 @@ const offers = [
         guideIncluded: false,
         tag: true,
         tagText: "BEST VALUE",
+        bestSeller: false,
     },
 ];
-
 
 export default offers;

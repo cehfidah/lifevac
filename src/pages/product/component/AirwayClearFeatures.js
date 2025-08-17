@@ -4,7 +4,7 @@ import worning from "../../../assest/thirdworning.svg";
 import timer from "../../../assest/secondtimer.svg";
 import shilde from "../../../assest/firstshilde.svg";
 
-const AirwayClearFeatures = () => {
+const AirwayClearFeatures =({ onTakeAction }) => {
   return (
     <div className="bg-[#eaf6fc] px-4 md:px-8 text-center">
       {/* Feature Cards */}
@@ -52,7 +52,9 @@ const AirwayClearFeatures = () => {
 
       {/* Call to Action Button */}
       <div className="mt-12 text-center">
-        <button className="bg-green-600 hover:bg-green-700 text-white font-semibold md:px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
+        <button 
+        onClick={onTakeAction}
+        className="bg-green-600 hover:bg-green-700 text-white font-semibold md:px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
           TAKE ACTION TODAY
         </button>
         <p className="text-xl font-semibold text-[#162950] mt-2">

@@ -292,7 +292,7 @@ const Checkouts = () => {
 
         setDiscountAmount(discountAmt);
 
-        setCouponSuccess(`Coupon applied! You saved ₹${formatPrice(discountAmt)} (${discount}%)`);
+        setCouponSuccess(`Coupon applied! You saved $${formatPrice(discountAmt)} (${discount}%)`);
       } else {
         setCouponError(response.data.msg || "Invalid coupon code.");
         setDiscountAmount(0);

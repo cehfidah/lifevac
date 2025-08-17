@@ -147,11 +147,7 @@ const CartModal = () => {
                             </>
                           )}
 
-                          {item?.title && (
-                            <p className="text-sm mt-1 font-medium text-[#121212f3]">
-                              Offer: Buy One
-                            </p>
-                          )}
+                         
 
                           {item?.title && (
                             <div className="mt-1 text-xs font-medium flex items-center gap-1 text-[#121212f3]">

@@ -1,7 +1,8 @@
 import React from "react";
 import { FaUsers, FaUserMd, FaShieldAlt } from "react-icons/fa";
 
-const TrustAirwayClear = () => {
+// **MODIFIED**: Accept 'onTakeAction' as a prop
+const TrustAirwaySection = ({ onTakeAction }) => { 
   const cards = [
     {
       icon: <FaUsers className="text-[#00b8f1] text-6xl md:text-8xl md:mb-3" />,
@@ -51,7 +52,11 @@ const TrustAirwayClear = () => {
 
         {/* CTA */}
         <div className="mt-12 text-center">
-          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold md:px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
+          {/* **MODIFIED**: Added the onClick handler to the button */}
+          <button
+            onClick={onTakeAction}
+            className="bg-green-600 hover:bg-green-700 text-white font-semibold md:px-24 py-4 rounded-lg text-lg shadow-lg w-full sm:w-auto transition-transform transform active:scale-95"
+          >
             TAKE ACTION TODAY
           </button>
           <p className="text-xl font-semibold text-[#162950] mt-2">
@@ -63,4 +68,4 @@ const TrustAirwayClear = () => {
   );
 };
 
-export default TrustAirwayClear;
+export default TrustAirwaySection; // Changed name to match your Product.js import

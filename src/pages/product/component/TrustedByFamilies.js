@@ -28,7 +28,8 @@ const testimonials = [
   },
 ];
 
-export default function TrustedByFamilies() {
+// **FIXED**: Accept 'onTakeAction' as a prop
+export default function TrustedByFamilies({ onTakeAction }) {
   const sliderRef = useRef(null);
 
   const settings = {
@@ -80,7 +81,7 @@ export default function TrustedByFamilies() {
           <Slider ref={sliderRef} {...settings} className="mb-8">
             {testimonials.map((t, i) => (
               <div key={i} className="px-2">
-                <div className="bg-white rounded-xl shadow-md text-left p-4 h-full">
+                <div className="bg-white rounded-xl shadow-md text-left p-4 h-full flex flex-col">
                   <img
                     src={t.image}
                     alt="testimonial"
@@ -91,13 +92,13 @@ export default function TrustedByFamilies() {
                       <FaStar key={i} />
                     ))}
                   </div>
-                  <h3 className="font-medium mb-1 text-xl border-b py-4">
+                  <h3 className="font-medium mb-1 text-xl border-b pb-2">
                     {t.title}
                   </h3>
-                  <p className="text-sm md:text-lg mb-4">"{t.text}"</p>
+                  <p className="text-sm md:text-base mb-4 pt-2 flex-grow">"{t.text}"</p>
                   <p className="text-sm font-normal">
                     {t.name}{" "}
-                    <span className="text-[#162950]">● Verified Customer</span>
+                    <span className="text-green-600 font-semibold">● Verified Customer</span>
                   </p>
                 </div>
               </div>
@@ -107,13 +108,13 @@ export default function TrustedByFamilies() {
           <div className="flex justify-center gap-4 mb-8">
             <button
               onClick={() => sliderRef.current?.slickPrev()}
-              className="bg-white text-black px-4 py-2 rounded-full shadow hover:bg-gray-100"
+              className="bg-white text-black px-4 py-2 rounded-full shadow hover:bg-gray-100 transition"
             >
               Prev
             </button>
             <button
               onClick={() => sliderRef.current?.slickNext()}
-              className="bg-white text-black px-4 py-2 rounded-full shadow hover:bg-gray-100"
+              className="bg-white text-black px-4 py-2 rounded-full shadow hover:bg-gray-100 transition"
             >
               Next
             </button>
@@ -121,7 +122,11 @@ export default function TrustedByFamilies() {
         </div>
 
         <div className="mt-12 text-center">
-          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold md:px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
+          {/* **FIXED**: Added the onClick handler and improved styling */}
+          <button 
+            onClick={onTakeAction}
+            className="bg-green-600 hover:bg-green-700 text-white font-semibold md:px-24 py-4 rounded-lg text-lg shadow-lg w-full sm:w-auto transition-transform transform active:scale-95"
+          >
             TAKE ACTION TODAY
           </button>
           <p className="text-xl font-semibold text-[#162950] mt-2">

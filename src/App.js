@@ -31,6 +31,8 @@ import AdminLogin from './pages/admin/AdminLogin';
 import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ManageOrders from './pages/admin/ManageOrders';
+import ManageUsers from './pages/admin/ManageUsers';
+import ManageCoupons from './pages/admin/ManageCoupons';
 const App = () => {
   const location = useLocation();
 
@@ -71,6 +73,8 @@ const App = () => {
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="orders" element={<ManageOrders />} />
+           <Route path="users" element={<ManageUsers />} />      {/* Add this line */}
+    <Route path="coupons" element={<ManageCoupons />} />  
           {/* Redirect /admin to dashboard */}
           <Route index element={<Navigate to="/admin/dashboard" />} />
         </Route>

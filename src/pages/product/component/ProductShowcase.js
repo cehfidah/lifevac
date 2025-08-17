@@ -12,7 +12,8 @@ import six from "../../../assest/image/firstsectionsevenimage.webp";
 import seven from "../../../assest/image/firstsectionsiximage.webp";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 
-const ProductShowcase = () => {
+// **FIXED**: Accept 'onTakeAction' as a prop
+const ProductShowcase = ({ onTakeAction }) => {
   const images = [first, second, third, four, fifth, seven, six];
   const [mainImageIndex, setMainImageIndex] = useState(images.indexOf(six));
   const mainImageRef = useRef(null);
@@ -90,21 +91,21 @@ const ProductShowcase = () => {
       }
     };
   }, [images.length, isMobile]);
-// Function to get the date for the next day, formatted as "Month Day, Year"
-const getNextDayFormatted = () => {
-const today = new Date();
-const tomorrow = new Date(today);
- tomorrow.setDate(tomorrow.getDate() + 1);
- const options = { year: 'numeric', month: 'long', day: 'numeric' };
- return tomorrow.toLocaleDateString('en-US', options);
- };
- const nextDayFormatted = getNextDayFormatted();
+
+  const getNextDayFormatted = () => {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return tomorrow.toLocaleDateString('en-US', options);
+  };
+  const nextDayFormatted = getNextDayFormatted();
+
   return (
     <div className="bg-white px-4 py-6 lg:p-10 font-sans max-w-screen-xl mx-auto">
       <div className="flex flex-col md:flex-row gap-8">
         {/* Left Image Panel */}
         <div className="md:sticky md:top-6 md:self-start w-full md:w-1/2">
-          {/* Desktop (md+): Thumbnails + Main Image */}
           <div className="hidden md:flex flex-col md:flex-row items-start gap-4">
             <div className="hidden md:flex flex-col gap-2 overflow-y-auto max-h-[500px] pr-2">
               {images.map((img, index) => (
@@ -112,10 +113,7 @@ const tomorrow = new Date(today);
                   key={index}
                   src={img}
                   alt={`thumb-${index}`}
-                  className={`w-16 h-16 object-cover rounded shadow cursor-pointer border-2 ${mainImageIndex === index
-                    ? "border-blue-600"
-                    : "border-transparent"
-                    }`}
+                  className={`w-16 h-16 object-cover rounded shadow cursor-pointer border-2 ${mainImageIndex === index ? "border-blue-600" : "border-transparent"}`}
                   onClick={() => setMainImageIndex(index)}
                 />
               ))}
@@ -123,10 +121,7 @@ const tomorrow = new Date(today);
             <div
               ref={mainImageRef}
               className="relative w-full overflow-x-auto"
-              style={{
-                touchAction: "none",
-                cursor: isMobile ? "default" : "grab",
-              }}
+              style={{ touchAction: "none", cursor: isMobile ? "default" : "grab" }}
               onMouseDown={handleMouseDown}
               onMouseLeave={handleMouseLeave}
               onMouseUp={handleMouseUp}
@@ -139,18 +134,10 @@ const tomorrow = new Date(today);
                 draggable={false}
               />
               <div className="absolute top-[-30px] left-[-30px] bg-blue-700 text-white text-center rounded-full w-24 h-24 flex items-center justify-center shadow-md text-xs font-extrabold leading-tight">
-                <div>
-                  30
-                  <br />
-                  DAY MONEY
-                  <br />
-                  GUARANTEE
-                </div>
+                <div>30<br />DAY MONEY<br />GUARANTEE</div>
               </div>
             </div>
           </div>
-
-          {/* Mobile (md-): Main image + horizontal thumbnails */}
           <div className="md:hidden flex flex-col gap-2">
             <div className="relative w-full">
               <img
@@ -160,13 +147,7 @@ const tomorrow = new Date(today);
                 draggable={false}
               />
               <div className="absolute top-[-20px] left-[-20px] bg-blue-700 text-white text-center rounded-full w-20 h-20 flex items-center justify-center shadow-md text-[10px] font-extrabold leading-tight">
-                <div>
-                  30
-                  <br />
-                  DAY MONEY
-                  <br />
-                  GUARANTEE
-                </div>
+                <div>30<br />DAY MONEY<br />GUARANTEE</div>
               </div>
             </div>
             <div className="flex overflow-x-auto gap-2 mt-2 pb-1">
@@ -175,16 +156,12 @@ const tomorrow = new Date(today);
                   key={index}
                   src={img}
                   alt={`thumb-${index}`}
-                  className={`w-16 h-16 object-cover rounded flex-shrink-0 cursor-pointer border-2 ${mainImageIndex === index
-                    ? "border-blue-600"
-                    : "border-transparent"
-                    }`}
+                  className={`w-16 h-16 object-cover rounded flex-shrink-0 cursor-pointer border-2 ${mainImageIndex === index ? "border-blue-600" : "border-transparent"}`}
                   onClick={() => setMainImageIndex(index)}
                 />
               ))}
             </div>
           </div>
-
           <div className="bg-[#162950] text-white text-center px-3 py-2 mt-4 font-bold rounded shadow-md text-xs md:text-sm w-full">
             FREE LIFE-TIME REPLACEMENTS WHEN USED IN EMERGENCY
           </div>
@@ -193,47 +170,29 @@ const tomorrow = new Date(today);
         {/* Right Product Info */}
         <div className="flex flex-col gap-6 pr-2 overflow-y-auto md:overflow-visible max-h-full w-full md:w-1/2">
           <div className="pb-8">
-            {/* star */}
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm sm:text-base md:text-lg text-gray-800">
-              {/* Star rating icons */}
               <div className="flex space-x-0.5 text-green-500">
                 {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 fill-current"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                  <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 15l-5.878 3.09L5.64 12.18.76 7.91l6.17-.9L10 1l3.07 6.01 6.17.9-4.88 4.27 1.52 5.91z" />
                   </svg>
                 ))}
               </div>
-
-              {/* Review text */}
               <p className="text-sm sm:text-base md:text-lg">
                 Excellent <strong>(4.7/5)</strong> Based on 10k+ Reviews
               </p>
             </div>
-
-            {/* Title */}
             <h2
               className="text-3xl md:text-[40px] tracking-wide font-black text-gray-900 leading-snug mt-4"
-              style={{
-                lineHeight: "2.5rem",
-              }}
+              style={{ lineHeight: "2.5rem" }}
             >
               LifeVac™ -<br className="hidden sm:block" />
               Antichoking Device
             </h2>
-
-            {/* Subheading */}
             <p className="mt-4 text-gray-800 text-base sm:text-lg">
               Prevent choking in <strong>under 20 seconds</strong> –{" "}
-              <span className="text-[#162950] font-bold">2,379</span> Lives
-              Saved
+              <span className="text-[#162950] font-bold">2,379</span> Lives Saved
             </p>
-
-            {/* Feature List */}
             <div className="rounded-xl mt-6 p-2 sm:p-6 shadow-xl">
               <h3 className="text-base sm:text-lg font-bold text-[#162950] mb-4 underline">
                 OVER 100,432+ SOLD, THIS IS WHY:
@@ -246,33 +205,30 @@ const tomorrow = new Date(today);
                   ["Self-Applicable", "in a Crisis"],
                   ["Used in an Emergency?", "Get a Free One!"],
                 ].map(([highlight, extra], i) => (
-                  <li
-                    key={i}
-                    className={`flex items-start gap-3 ${i < 4
-                      ? "border-b border-dotted border-[#162950] pb-3"
-                      : ""
-                      }`}
-                  >
+                  <li key={i} className={`flex items-start gap-3 ${i < 4 ? "border-b border-dotted border-[#162950] pb-3" : ""}`}>
                     <IoCheckmarkCircleSharp className="min-w-[20px] text-lg sm:text-xl mt-0.5 shrink-0" />
-                    <span>
-                      <strong>{highlight}</strong> {extra}
-                    </span>
+                    <span><strong>{highlight}</strong> {extra}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Update Notice */}
-            <div className="bg-[#162950] text-white text-center mt-6 py-3 px-4 rounded-md font-medium text-sm sm:text-base">
- <p>PRICE RETURNS TO $79.99 PER UNIT STARTING {nextDayFormatted}</p>
+            {/* **FIXED**: Added a functional "TAKE ACTION TODAY" button 
+            <div className="mt-6 text-center">
+                <button 
+                    onClick={onTakeAction}
+                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-lg text-lg shadow-lg transition-transform transform active:scale-95"
+                >
+                    TAKE ACTION TODAY
+                </button>
+            </div>
+            */}
 
+            <div className="bg-[#162950] text-white text-center mt-6 py-3 px-4 rounded-md font-medium text-sm sm:text-base">
+              <p>PRICE RETURNS TO $79.99 PER UNIT STARTING {nextDayFormatted}</p>
             </div>
           </div>
-
-          {/* Offers */}
           <OfferSelection />
-
-          {/* FAQ */}
           <Faq />
         </div>
       </div>

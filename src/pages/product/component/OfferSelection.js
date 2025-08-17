@@ -17,7 +17,7 @@ import offers from "../../../pages/product/component/offersData.js"; // Import t
 
 const OfferSelection = () => {
     const dispatch = useDispatch();
-    const [selectedId, setSelectedId] = useState(null);
+    const [selectedId, setSelectedId] = useState("offer2"); // Default to the most popular
 
     const handleSelectOffer = (offer) => {
         setSelectedId(offer.id);

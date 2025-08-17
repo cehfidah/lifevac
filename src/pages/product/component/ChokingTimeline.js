@@ -29,8 +29,8 @@ const timelineData = [
     ],
   },
 ];
+const ChokingTimeline = ({ onTakeAction }) => {
 
-const ChokingTimeline = () => {
   return (
     <div className="bg-blue-50 py-12 px-4 md:px-20 font-sans">
       {/* Main Headline */}
@@ -106,16 +106,20 @@ const ChokingTimeline = () => {
         </div>
       </div>
 
-      {/* CTA */}
-      <div className="md:mt-12 text-center">
-        <button className="bg-green-600 hover:bg-green-700 text-white font-semibold md:px-24 py-4 rounded-lg text-sm shadow-lg w-full sm:w-auto">
-          TAKE ACTION TODAY
-        </button>
-        <p className="text-xl font-semibold text-[#162950] mt-2">
-          100% MONEY BACK GUARANTEE
-        </p>
-      </div>
-    </div>
+       {/* CTA */}
+            <div className="md:mt-12 text-center">
+                {/* **FIXED**: The button now correctly uses the 'onTakeAction' prop */}
+                <button
+                    onClick={onTakeAction}
+                    className="bg-green-600 hover:bg-green-700 text-white font-semibold md:px-24 py-4 rounded-lg text-lg shadow-lg w-full sm:w-auto transition-transform transform active:scale-95"
+                >
+                    TAKE ACTION TODAY
+                </button>
+                <p className="text-xl font-semibold text-[#162950] mt-2">
+                    100% MONEY BACK GUARANTEE
+                </p>
+            </div>
+        </div>
   );
 };
 

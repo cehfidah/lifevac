@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Navigate, Outlet, useNavigate } from 'react-router-dom';
-import { FaTachometerAlt, FaBox, FaSignOutAlt } from 'react-icons/fa';
+import { FaTachometerAlt, FaBox, FaSignOutAlt, FaUsers , FaTags } from 'react-icons/fa';
 import { logout } from '../../store/slice/authSlice'; // We will create this action
 
 const AdminLayout = () => {
@@ -49,6 +49,20 @@ const AdminLayout = () => {
                         <FaBox className="mr-3" />
                         Manage Orders
                     </NavLink>
+                    <NavLink
+    to="/admin/users"
+    className={({ isActive }) => `flex items-center py-4 px-6 ...`}
+>
+    <FaUsers className="mr-3" />
+    Manage Users
+</NavLink>
+<NavLink
+    to="/admin/coupons"
+    className={({ isActive }) => `flex items-center py-4 px-6 ...`}
+>
+    <FaTags className="mr-3" />
+    Manage Coupons
+</NavLink>
                 </nav>
                 <div className="p-4 border-t border-gray-700">
                     <button

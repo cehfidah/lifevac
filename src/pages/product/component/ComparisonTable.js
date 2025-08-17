@@ -1,6 +1,6 @@
 import React from "react";
 
-const ComparisonTable = () => {
+const ComparisonTable = ({ onTakeAction }) => {
   const rows = [
     {
       method: "LifeVac™",
