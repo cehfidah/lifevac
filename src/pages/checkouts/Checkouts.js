@@ -425,42 +425,42 @@ const Checkouts = () => {
 
       <CheckOutHead />
       <ShippingForm
-        onSubmitForm={checkInput}
-        inputRefs={inputRefs}
-        formErrors={formErrors}
-        formData={formData}
-        onChnage={handleChange}
-        addresses={addresses}
-        selectedAddressId={selectedAddressId}
-        handleAddressChange={handleAddressChange}
-        countries={countries}
-        country={country}
-        setCountry={setCountry}
-        states={states}
-        selectedState={selectedState}
-        setSelectedState={setSelectedState}
-        phoneCode={phoneCode}
-        setIsOpen={setIsOpen}
-        isOpen={isOpen}
-        selectedOption={selectedOption}
-        shippingOptions={shippingOptions.map(option => ({
-          ...option,
-          formattedPrice: formatPrice(option.price),
-        }))}
-        selected={selected}
-        setSelected={setSelected}
-        cartItems={cartItems}
-        shippingCost={selectedOption?.price}
-        discountAmount={discountAmount}
-        discountPercent={discountPercent}
-        couponCode={couponCode}
-        setCouponCode={setCouponCode}
-        handleApplyCoupon={handleApplyCoupon}
-        couponLoading={couponLoading}
-        couponError={couponError}
-        couponSuccess={couponSuccess}
-        setFormErrors={setFormErrors}
-      />
+  onSubmitForm={checkInput}
+  inputRefs={inputRefs}
+  formErrors={formErrors}
+  formData={formData}
+  onChnage={handleChange}
+  addresses={addresses}
+  selectedAddressId={selectedAddressId}
+  handleAddressChange={handleAddressChange}
+  countries={countries}
+  country={country}
+  setCountry={setCountry}
+  states={states}
+  selectedState={selectedState}
+  setSelectedState={setSelectedState}
+  phoneCode={phoneCode}
+  setIsOpen={setIsOpen}
+  isOpen={isOpen}
+  selectedOption={selectedOption}
+  shippingOptions={shippingOptions.map(option => ({
+    ...option,
+    formattedPrice: formatPrice(option.price),
+  }))}
+  selected={selected}
+  setSelected={setSelected}
+  cartItems={cartItems}
+  shippingCost={selectedOption?.price}
+  discountAmount={discountAmount}
+  discountPercent={discountPercent}
+  couponCode={couponCode}
+  setCouponCode={setCouponCode}
+  handleApplyCoupon={handleApplyCoupon}
+  couponLoading={couponLoading}
+  couponError={couponError}
+  couponSuccess={couponSuccess}
+  setFormErrors={setFormErrors}
+/>
 
       <CheckOutFooter />
 
@@ -487,10 +487,15 @@ const Checkouts = () => {
               <span className="text-green-600">${formatPrice(finalAmount)}</span>
             </p>
 
-            <Paypal
-              handleApprove={handleApprove}
-              amount={finalAmount}
-            />
+<Paypal
+  handleApprove={handleApprove}
+  amount={finalAmount} // ✅ Fixed: Use the calculated amount
+  formData={formData}
+  selectedState={selectedState}
+  country={country}
+  shippingOption={shippingOptions.find(opt => opt.id === selected)}
+/>
+
 
             <p className="text-sm text-gray-500 text-center mt-4 italic leading-relaxed">
               Secure payments processed through{" "}
