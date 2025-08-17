@@ -13,10 +13,10 @@ const Home = () => {
   return (
     <>
  <SEO
- title="LifeVac Devices | Official Choking Rescue Device"
+ title="Lifevac Device | Official Choking Rescue Device"
  description="Shop the official LifeVac choking rescue device. Trusted by thousands for use on adults, children, and toddlers. Get your genuine, life-saving device today."
 keywords="LifeVac, choking rescue device, lifevac home, anti-choking device, choke device, device for choking babies, child life vac, choking machine, life saving device"
-ogTitle="LifeVac Devices - The Official Choking Rescue Kit"
+ogTitle="Lifevac Device - The Official Choking Rescue Kit"
 ogDescription="Secure a genuine LifeVac device for your family. We offer kits for all ages, backed by our promise of authenticity and fast shipping."
 twitterTitle="LifeVac Choking Rescue Devices"
  twitterDescription="Shop official LifeVac kits for all ages. Protect your family from a choking emergency."

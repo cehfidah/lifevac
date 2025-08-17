@@ -19,7 +19,7 @@ const PrivacyPolicy = () => {
                 <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">Privacy policy</h1>
 
                 <p className="mb-6">
-                    This Privacy Policy describes how Whitts Sales And Marketing LLC &nbsp; <span className='text-[10px]'>(the " Site, we, us, or our") collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from Lifevacdevices.com (the " Site ") or otherwise communicate with us (collectively, the " Services "). For purposes of this Privacy Policy, " you " and " your " means you as the user of the Services, whether you are a customer, website visitor, or another individual whose information we have collected pursuant to this Privacy Policy.</span>
+                    This Privacy Policy describes how Whitts Sales And Marketing LLC &nbsp; <span className='text-[10px]'>(the " Site, we, us, or our") collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from lifevacdevice.com (the " Site ") or otherwise communicate with us (collectively, the " Services "). For purposes of this Privacy Policy, " you " and " your " means you as the user of the Services, whether you are a customer, website visitor, or another individual whose information we have collected pursuant to this Privacy Policy.</span>
                 </p>
 
                 <p className="mb-6">

@@ -28,7 +28,7 @@ const ReviewModal = ({ review, onClose }) => {
                                 {review.images.map((imgSrc, index) => (
                                     <div key={index}>
                                         <img
-                                            src={`https://airwayclear.ffnewsupdater.xyz/assets/${imgSrc}`}
+                                            src={`https://lifevacdevice.com/assets/${imgSrc}`}
                                             alt={`Review image ${index + 1}`}
                                             className="w-full h-64 object-cover"
                                         />
@@ -38,7 +38,7 @@ const ReviewModal = ({ review, onClose }) => {
                         </div>
                     ) : (
                         <img
-                            src={`https://airwayclear.ffnewsupdater.xyz/assets/${review?.images[0]}`}
+                            src={`https://lifevacdevice.com/assets/${review?.images[0]}`}
                             alt="Review"
                             className="w-full h-64 object-cover"
                         />

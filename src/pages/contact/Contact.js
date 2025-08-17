@@ -68,7 +68,7 @@ const Contact = () => {
     return (
         <>
             <SEO
-                title="Contact Us - LifeVac Devices"
+                title="Contact Us - Lifevac Device"
                 description="Get in touch with the official LifeVac team. We're here to help with any inquiries about our life-saving devices, orders, or customer support."
                 keywords="LifeVac contact, LifeVac customer service, choking rescue device support, official LifeVac help, product inquiries"
                 ogTitle="Contact LifeVac - Your Life-Saving Device Support"

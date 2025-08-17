@@ -1,1 +1,1 @@
-export const apiBasePath = "https://airwayclear.ffnewsupdater.xyz/api/v1/GKdjjhsjhdKdSNd/rest_api";
+export const apiBasePath = "https://lifevacdevice.com/api/v1/GKdjjhsjhdKdSNd/rest_api";
