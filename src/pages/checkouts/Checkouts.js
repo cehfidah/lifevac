@@ -405,6 +405,17 @@ const Checkouts = () => {
 
     closeModal();
   };
+    // **NEW FUNCTION**: Logic to handle abandoned cart
+    const handleEmailBlur = (e) => {
+        const email = e.target.value;
+        if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && cartItems.length > 0) {
+            const payload = {
+                email: email,
+                cart_items: cartItems,
+            };
+            ApiHandler("/capture_abandoned_cart.php", "POST", payload, undefined, dispatch, navigate);
+        }
+    };
 
   const baseAmount = subtotal + (selectedOption?.price || 0);
   const discountAmt = discountPercent > 0 ? (baseAmount * discountPercent) / 100 : 0;
@@ -460,6 +471,8 @@ const Checkouts = () => {
   couponError={couponError}
   couponSuccess={couponSuccess}
   setFormErrors={setFormErrors}
+   handleEmailBlur={handleEmailBlur} // **MODIFIED**: Pass the function as a prop
+
 />
 
       <CheckOutFooter />
