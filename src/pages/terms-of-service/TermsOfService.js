@@ -316,7 +316,7 @@ const TermsOfService = () => {
                     <section>
                         <h2 className="text-lg md:text-xl font-semibold mb-2">SECTION 21 - CONTACT INFORMATION</h2>
                         <p className="leading-relaxed">
-                            Questions about the Terms of Service should be sent to us at info@airwayclear.us
+                            Questions about the Terms of Service should be sent to us at help@lifevacdevice.com
                         </p>
                         <br />
                         <p className="leading-relaxed">

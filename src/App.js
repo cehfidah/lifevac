@@ -27,7 +27,10 @@ import Fail from "./payment/Fail";
 import OrderDetails from "./pages/orders/OrderDetails";
 import EmergencyGuide from "./pages/EmergencyGuide";
 import TrackOrder from "./pages/track-order/TrackOrder";
-
+import AdminLogin from './pages/admin/AdminLogin';
+import AdminLayout from './pages/admin/AdminLayout';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import ManageOrders from './pages/admin/ManageOrders';
 const App = () => {
   const location = useLocation();
 
@@ -63,7 +66,14 @@ const App = () => {
             element={<EmergencyGuide />}
           />
         </Route>
-
+   {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="orders" element={<ManageOrders />} />
+          {/* Redirect /admin to dashboard */}
+          <Route index element={<Navigate to="/admin/dashboard" />} />
+        </Route>
         <Route element={<AuthProtect />}>
           <Route path="/checkouts" element={<Checkouts />} />
           <Route element={<DashboardLayout />}>

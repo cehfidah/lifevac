@@ -6,7 +6,7 @@ import Loading from "../../components/Common/Loading";
 import { ApiHandler } from "../../helper/ApiHandler";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assest/logo.webp";
-import { setAuth } from "../../store/slice/authSlice";
+import { setCredentials } from "../../store/slice/authSlice";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -75,7 +75,8 @@ export default function Login() {
       );
       if (response.data.status === "1") {
         const tokenPass = response.data.data.token;
-        dispatch(setAuth(tokenPass));
+        // **FIXED**: Use setCredentials with a placeholder user for guests
+        dispatch(setCredentials({ token: tokenPass, user: { firstName: 'Guest', lastName: '' } }));
         toast.success(response.data.msg);
         navigate("/checkouts", { state: { subtotal, cartItems } });
       } else {
@@ -108,7 +109,7 @@ export default function Login() {
             to="/"
             className="flex justify-center items-center text-center text-2xl font-semibold mb-6"
           >
-            <img src={logo} width={300} />
+            <img src={logo} width={300} alt="LifeVac Logo"/>
           </Link>
 
           <h3 className="text-lg font-medium text-center mb-4">Log in</h3>

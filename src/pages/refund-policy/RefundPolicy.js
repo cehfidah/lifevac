@@ -1,108 +1,113 @@
-import React from "react";
-import SEO from "../../utils/SEO";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import SEO from '../../utils/SEO';
+import { FaUndo, FaHeartbeat, FaEnvelope, FaQuestionCircle } from 'react-icons/fa';
 
 const RefundPolicy = () => {
-  return (
-    <>
-     <SEO
-  title="Refund Policy - LifeVac | Returns & Replacements"
-  description="Learn about our official LifeVac refund and return policy. We offer a free replacement if your device is used to save a life. Find out how to request a refund or return."
-  keywords="LifeVac refund, LifeVac return policy, free replacement, LifeVac returns, product returns"
-  ogTitle="LifeVac Refund & Return Policy"
-  ogDescription="Understand our transparent refund policy and our promise to replace any LifeVac kit used to save a life."
-  twitterTitle="LifeVac Refund Policy"
-  twitterDescription="Learn about our free replacement policy and how to request a refund for a LifeVac purchase."
-/>
+    return (
+        <>
+            <SEO
+                title="Refund Policy - LifeVac | Returns & Replacements"
+                description="Learn about our official LifeVac refund and return policy. We offer a free replacement if your device is used to save a life. Find out how to request a refund or return."
+                keywords="LifeVac refund, LifeVac return policy, free replacement, LifeVac returns, product returns"
+                ogTitle="LifeVac Refund & Return Policy"
+                ogDescription="Understand our transparent refund policy and our promise to replace any LifeVac kit used to save a life."
+                twitterTitle="LifeVac Refund Policy"
+                twitterDescription="Learn about our free replacement policy and how to request a refund for a LifeVac purchase."
+            />
 
-      <div className="max-w-2xl mx-auto px-4 py-10 text-base text-[#162950] leading-relaxed">
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">
-          Refund policy
-        </h1>
+            <div className="bg-gray-50">
+                <div className="max-w-5xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+                    {/* Header Section */}
+                    <div className="text-center mb-12">
+                        <FaUndo className="mx-auto h-12 w-12 text-blue-600" />
+                        <h1 className="mt-4 text-4xl font-extrabold text-[#162950] sm:text-5xl">
+                            Refund & Return Policy
+                        </h1>
+                        <p className="mt-4 text-lg text-gray-600">
+                            Your satisfaction and peace of mind are our top priorities. Here’s how we handle returns and replacements.
+                        </p>
+                    </div>
 
-        <p className="mb-6">
-          We have a 30-day return policy, which means you have 30 days after
-          receiving your item to request a return.
-        </p>
-        <p className="mb-6">
-          To be eligible for a return, your item must be in the same condition
-          that you received it, unworn or unused, with tags, and in its original
-          packaging. You’ll also need the receipt or proof of purchase.
-        </p>
-        <p className="mb-6">
-          To start a return, you can contact us at info@airwayclear.us
-        </p>
-        <p className="mb-6">
-          stating you would like to return your order. We will send you return
-          instructions.
-        </p>
-        <p>
-          <br />
-          If your return is accepted, we’ll send you instructions on how and
-          where to send your package. Items sent back to us without first
-          requesting a return will not be accepted. <br />
-          <br />
-          You can always contact us for any return question at
-          info@airwayclear.us
-        </p>
+                    <div className="space-y-10">
+                        {/* 30-Day Return Policy Section */}
+                        <InfoCard
+                            icon={<FaUndo className="h-8 w-8 text-blue-600" />}
+                            title="30-Day Satisfaction Guarantee"
+                        >
+                            <p>We have a 30-day return policy, which means you have <strong>30 days</strong> after receiving your item to request a return if you are not satisfied.</p>
+                            <p className="mt-4"><strong>Eligibility for a Return:</strong></p>
+                            <ul className="list-disc list-inside mt-2 space-y-1 text-gray-500">
+                                <li>The item must be in the same condition that you received it: unused and in its original packaging.</li>
+                                <li>You will need the receipt or proof of purchase.</li>
+                                <li>Items sent back to us without first requesting a return will not be accepted.</li>
+                            </ul>
+                        </InfoCard>
 
-        <h5 className="mb-2 font-bold">Damages and issues</h5>
-        <p className="mb-6">
-          Please inspect your order upon reception and contact us immediately if
-          the item is defective, damaged or if you receive the wrong item, so
-          that we can evaluate the issue and make it right.
-        </p>
+                        {/* Life-Saving Replacement Section */}
+                        <div className="bg-blue-600 text-white p-8 rounded-lg shadow-lg text-center">
+                            <FaHeartbeat className="mx-auto h-12 w-12" />
+                            <h2 className="mt-4 text-2xl font-bold">Used LifeVac in an Emergency?</h2>
+                            <p className="mt-2 max-w-2xl mx-auto">If you ever use your LifeVac device to save a life, we will replace it for <strong>FREE</strong>. Simply contact us and share your story. It's our way of ensuring you're always prepared.</p>
+                             <a href="mailto:info@airwayclear.us" className="mt-6 inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">
+                                Report a Life Saved
+                             </a>
+                        </div>
 
-        <h5 className="mb-2 font-bold">Exceptions / non-returnable items</h5>
-        <p className="mb-6">
-          Certain types of items cannot be returned, like perishable goods (such
-          as food, flowers, or plants), custom products (such as special orders
-          or personalized items), and personal care goods (such as beauty
-          products). We also do not accept returns for hazardous materials,
-          flammable liquids, or gases. Please get in touch if you have questions
-          or concerns about your specific item.
-        </p>
-        <p className="mb-6">
-          Unfortunately, we cannot accept returns on sale items or gift cards.
-        </p>
+                        {/* How to Start a Return Section */}
+                        <InfoCard
+                            icon={<FaEnvelope className="h-8 w-8 text-blue-600" />}
+                            title="How to Start a Return"
+                        >
+                            <p>To start a return, please contact us at our dedicated support email. We will guide you through the process and provide you with all the necessary instructions.</p>
+                             <a href="mailto:info@airwayclear.us" className="mt-4 inline-block text-blue-600 font-semibold hover:underline">
+                                Email: info@airwayclear.us
+                             </a>
+                        </InfoCard>
 
-        <h5 className="mb-2 font-bold">Exchanges</h5>
-        <p className="mb-6">
-          The fastest way to ensure you get what you want is to return the item
-          you have, and once the return is accepted, make a separate purchase
-          for the new item.
-        </p>
-
-        <h5 className="mb-2 font-bold">
-          European Union 14 day cooling off period
-        </h5>
-        <p className="mb-6">
-          Notwithstanding the above, if the merchandise is being shipped into
-          the European Union, you have the right to cancel or return your order
-          within 14 days, for any reason and without a justification. As above,
-          your item must be in the same condition that you received it, unworn
-          or unused, with tags, and in its original packaging. You’ll also need
-          the receipt or proof of purchase.
-        </p>
-
-        <h5 className="mb-2 font-bold">Refunds</h5>
-        <p className="mb-6">
-          We will notify you once we’ve received and inspected your return, and
-          let you know if the refund was approved or not. If approved, you’ll be
-          automatically refunded on your original payment method within 10
-          business days. Please remember it can take some time for your bank or
-          credit card company to process and post the refund too.
-        </p>
-        <p className="mb-6">
-          If more than 15 business days have passed since we’ve approved your
-          return, please contact us at
-        </p>
-
-        <div title="info@versafind.shop" class="truncate">
-          info@airwayclear.us
-        </div>
-      </div>
-    </>
-  );
+                        {/* FAQs Section */}
+                        <div className="bg-white p-8 rounded-lg shadow-lg">
+                            <h2 className="text-2xl font-bold text-[#162950] mb-6 flex items-center"><FaQuestionCircle className="mr-3 text-blue-600" />Frequently Asked Questions</h2>
+                            <div className="space-y-4">
+                                <FAQItem title="What if my item is damaged or I received the wrong product?">
+                                    Please inspect your order upon reception and contact us immediately if the item is defective, damaged, or if you receive the wrong item, so that we can evaluate the issue and make it right.
+                                </FAQItem>
+                                <FAQItem title="Are there any non-returnable items?">
+                                    Yes, we cannot accept returns on gift cards or sale items. If you have questions about a specific item, please get in touch.
+                                </FAQItem>
+                                <FAQItem title="How long do refunds take?">
+                                    We will notify you once we’ve received and inspected your return. If approved, you’ll be automatically refunded on your original payment method within 10 business days. Please remember it can take some time for your bank or credit card company to process the refund. If more than 15 business days have passed since approval, please contact us.
+                                </FAQItem>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 };
+
+// Reusable component for info cards
+const InfoCard = ({ icon, title, children }) => (
+    <div className="bg-white p-8 rounded-lg shadow-lg flex items-start space-x-6">
+        <div className="flex-shrink-0">
+            {icon}
+        </div>
+        <div>
+            <h2 className="text-2xl font-bold text-[#162950] mb-2">{title}</h2>
+            <div className="text-gray-600 space-y-4">{children}</div>
+        </div>
+    </div>
+);
+
+// Reusable component for FAQ items
+const FAQItem = ({ title, children }) => (
+    <details className="p-4 border rounded-lg bg-gray-50">
+        <summary className="font-semibold cursor-pointer">{title}</summary>
+        <div className="mt-2 text-gray-600">
+            {children}
+        </div>
+    </details>
+);
 
 export default RefundPolicy;
