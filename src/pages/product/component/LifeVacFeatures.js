@@ -4,7 +4,7 @@ import worning from "../../../assest/thirdworning.svg";
 import timer from "../../../assest/secondtimer.svg";
 import shilde from "../../../assest/firstshilde.svg";
 
-const AirwayClearFeatures =({ onTakeAction }) => {
+const LifeVacFeatures =({ onTakeAction }) => {
   return (
     <div className="bg-[#eaf6fc] px-4 md:px-8 text-center">
       {/* Feature Cards */}
@@ -65,4 +65,4 @@ const AirwayClearFeatures =({ onTakeAction }) => {
   );
 };
 
-export default AirwayClearFeatures;
+export default LifeVacFeatures;

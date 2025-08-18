@@ -29,7 +29,7 @@ const AntiChokingSteps = ({ onTakeAction }) => {
         <div className="flex flex-col justify-center items-center md:items-start">
           <img
             src={video}
-            alt="AirwayClear Device"
+            alt="LifeVac Device"
             className="rounded-xl shadow-md w-full max-w-md"
           />
           <div className="mt-8 w-full flex flex-col items-center md:items-start">

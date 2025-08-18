@@ -73,7 +73,7 @@ const ShippingPolicy = () => {
                             title="International Shipping"
                         >
                             <p>We offer international shipping to most countries. Shipping charges and delivery times for your order will be calculated and displayed at checkout.</p>
-                            <p className="mt-4 italic">Please note: Your order may be subject to import duties and taxes (including VAT), which are incurred once a shipment reaches your destination country. <strong>airwayclear.us</strong> is not responsible for these charges if they are applied; they are your responsibility as the customer.</p>
+                            <p className="mt-4 italic">Please note: Your order may be subject to import duties and taxes (including VAT), which are incurred once a shipment reaches your destination country. <strong>lifevacdevice.com</strong> is not responsible for these charges if they are applied; they are your responsibility as the customer.</p>
                         </InfoCard>
 
                         {/* Order Tracking Section */}

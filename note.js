@@ -40,7 +40,7 @@ const cartSlice = createSlice({
                         originalPrice: 1200,
                         savings: "",
                         quantity: guideIncludedCount,
-                        image: "Airwayclear.svg",
+                        image: "lifevacdevice.svg",
                         title: "BUY ONE",
                         kits: "1× Full Kit",
                         extraPrice: 1200

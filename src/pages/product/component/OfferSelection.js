@@ -122,7 +122,7 @@ const OfferSelection = () => {
                                     {/* <div className="flex gap-2 items-center text-sm mt-1">
                                     <Link to="/product/home-medic-a-guide-for-household-emergencies">
                                       <img
-                                        src="/Airwayclear.svg"
+                                        src="/lifevacdevice.svg"
                                         alt="Guide"
                                         className="w-8 h-8 object-contain"
                                       />

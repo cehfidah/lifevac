@@ -13,7 +13,7 @@ const third = "https://ik.imagekit.io/g2qcghvoj/lifevac.png?updatedAt=1755523615
 const four = "https://ik.imagekit.io/g2qcghvoj/firstsectioneaightimage.webp?updatedAt=1755523907681";
 const fifth = "https://ik.imagekit.io/g2qcghvoj/firstsectionsecondimage.webp?updatedAt=1755523907655";
 const six = "https://ik.imagekit.io/g2qcghvoj/firstsectionfourimage.webp?updatedAt=1755523907939";
-const seven = "https://ik.imagekit.io/g2qcghvoj/firstsectionsiximage.webp?updatedAt=1755523907812";
+const seven = "https://ik.imagekit.io/g2qcghvoj/firstsectionsiximage.jpg?updatedAt=1755525946084";
   const images = [first, second, third, four, fifth, seven, six];
   const [mainImageIndex, setMainImageIndex] = useState(images.indexOf(six));
   const mainImageRef = useRef(null);
@@ -171,13 +171,25 @@ const seven = "https://ik.imagekit.io/g2qcghvoj/firstsectionsiximage.webp?update
         <div className="flex flex-col gap-6 pr-2 overflow-y-auto md:overflow-visible max-h-full w-full md:w-1/2">
           <div className="pb-8">
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm sm:text-base md:text-lg text-gray-800">
-              <div className="flex space-x-0.5 text-green-500">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 15l-5.878 3.09L5.64 12.18.76 7.91l6.17-.9L10 1l3.07 6.01 6.17.9-4.88 4.27 1.52 5.91z" />
-                  </svg>
-                ))}
-              </div>
+       <div className="flex space-x-0.5 text-green-500">
+  {[...Array(5)].map((_, i) => (
+    <svg
+      key={i}
+      className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
+      viewBox="0 0 24 24" // Using a 24x24 viewBox for a standard, well-proportioned star
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Green square background. "currentColor" uses the text-green-500 from the parent div. */}
+      <rect width="24" height="24" fill="currentColor" />
+
+      {/* White star path on top of the square */}
+      <path
+        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+        fill="white"
+      />
+    </svg>
+  ))}
+</div>
               <p className="text-sm sm:text-base md:text-lg">
                 Excellent <strong>(4.7/5)</strong> Based on 10k+ Reviews
               </p>

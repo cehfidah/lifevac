@@ -6,8 +6,8 @@ import SEO from "../../utils/SEO";
 import { addItemToCart, toggleCart } from "../../store/slice/cartSlice"; 
 
 // COMPONENT IMPORTS
-import AirwayClearHero from "./component/AirwayClearHero";
-import AirwayClearFeatures from "./component/AirwayClearFeatures";
+import LifeVacHero from "./component/LifeVacHero";
+import LifeVacFeatures from "./component/LifeVacFeatures";
 import ChokingTimeline from "./component/ChokingTimeline";
 import StatsSection from "./component/StatsSection";
 import AntiChokingSteps from "./component/AntiChokingSteps";
@@ -63,8 +63,8 @@ const Product = () => {
                 <Card onTakeAction={handleTakeAction} /> 
                 <ChokingTimeline onTakeAction={handleTakeAction}/> 
                 <StatsSection onTakeAction={handleTakeAction} />
-                <AirwayClearHero onTakeAction={handleTakeAction} /> 
-                <AirwayClearFeatures onTakeAction={handleTakeAction} />
+                <LifeVacHero onTakeAction={handleTakeAction} /> 
+                <LifeVacFeatures onTakeAction={handleTakeAction} />
                 <AntiChokingSteps onTakeAction={handleTakeAction} /> 
                 <ProductFeature onTakeAction={handleTakeAction} /> 
                 <ImageMarquee onTakeAction={handleTakeAction} />

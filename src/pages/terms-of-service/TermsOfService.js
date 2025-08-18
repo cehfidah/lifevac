@@ -240,14 +240,14 @@ const TermsOfService = () => {
                         </p>
                         <br />
                         <p className="leading-relaxed">
-                            In no case shall  airwayclear.us, our directors, officers, employees, affiliates, agents, contractors, interns, suppliers, Service providers or licensors be liable for any injury, death, loss, claim, or any direct, indirect, incidental, punitive, special, or consequential damages of any kind, including, without limitation lost profits, lost revenue, lost savings, loss of data, replacement costs, or any similar damages, whether based in contract, tort (including negligence), strict liability or otherwise, arising from your use of any of the Service or any products procured using the Products or Services, or for any other claim related in any way to your use of the Service or any product, including, but not limited to, any errors or omissions in any content, or any loss or damage of any kind incurred as a result of the use of the Service or any content (or product) posted, transmitted, or otherwise made available via the Service, even if advised of their possibility. Because some states or jurisdictions do not allow the exclusion or the limitation of liability for consequential or incidental damages, in such states or jurisdictions, our liability shall be limited to the maximum extent permitted by law.
+                            In no case shall  lifevacdevice.com, our directors, officers, employees, affiliates, agents, contractors, interns, suppliers, Service providers or licensors be liable for any injury, death, loss, claim, or any direct, indirect, incidental, punitive, special, or consequential damages of any kind, including, without limitation lost profits, lost revenue, lost savings, loss of data, replacement costs, or any similar damages, whether based in contract, tort (including negligence), strict liability or otherwise, arising from your use of any of the Service or any products procured using the Products or Services, or for any other claim related in any way to your use of the Service or any product, including, but not limited to, any errors or omissions in any content, or any loss or damage of any kind incurred as a result of the use of the Service or any content (or product) posted, transmitted, or otherwise made available via the Service, even if advised of their possibility. Because some states or jurisdictions do not allow the exclusion or the limitation of liability for consequential or incidental damages, in such states or jurisdictions, our liability shall be limited to the maximum extent permitted by law.
                         </p>
                     </section>
 
                     <section>
                         <h2 className="text-lg md:text-xl font-semibold mb-2">SECTION 14 - INDEMNIFICATION</h2>
                         <p className="leading-relaxed">
-                            You agree to indemnify, defend and hold harmless <span>airwayclear.us </span> and our parent, subsidiaries, affiliates, partners, officers, directors, agents, contractors, licensors, Service providers, subcontractors, suppliers, interns and employees, harmless from any claim or demand, including attorneys’ fees, made by any third-party due to or arising out of your breach of these Terms of Service or the documents they incorporate by reference, or your violation of any law or the rights of a third-party.
+                            You agree to indemnify, defend and hold harmless <span>lifevacdevice.com </span> and our parent, subsidiaries, affiliates, partners, officers, directors, agents, contractors, licensors, Service providers, subcontractors, suppliers, interns and employees, harmless from any claim or demand, including attorneys’ fees, made by any third-party due to or arising out of your breach of these Terms of Service or the documents they incorporate by reference, or your violation of any law or the rights of a third-party.
                         </p>
                     </section>
 
@@ -332,7 +332,7 @@ const TermsOfService = () => {
                         </p>
                         <br />
                         <p className="leading-relaxed">
-                            For any questions, please text HELP to the number you received the messages from. You can also contact us at info@<span>airwayclear.us</span> for more information.
+                            For any questions, please text HELP to the number you received the messages from. You can also contact us at info@<span>lifevacdevice.com</span> for more information.
                         </p>
                         <br />
                         <p className="leading-relaxed">

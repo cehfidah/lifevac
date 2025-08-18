@@ -8,7 +8,7 @@ const testimonials = [
   {
     title: "My son is alive because of this",
     content:
-      "My 1 year old choked on a grape a few weeks ago. I tried backblows which didn't work, I grabbed the airway device and it sucked the grape right out. This device saved his life.",
+      "My 1 year old choked on a grape a few weeks ago. I tried backblows which didn't work, I grabbed the lifevac device and it sucked the grape right out. This device saved his life.",
     name: "Libbie Dobbs",
     role: "Verified Customer",
   },

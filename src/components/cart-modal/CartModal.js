@@ -39,7 +39,7 @@ const CartModal = () => {
         oneItemPrice: 1200,
         oneItemOriginalPrice: 4400,
         quantity: 1,
-        image:"/Airwayclear.svg",
+        image:"/lifevacdevice.svg",
         guideIncluded: false,
         freeQty: 0,
         extraPrice: 0,
@@ -270,7 +270,7 @@ const CartModal = () => {
                       >
                         <div className="flex gap-4 items-start">
                           <img
-                            src="Airwayclear.svg"
+                            src="lifevacdevice.svg"
                             alt="Guide"
                             className="w-16 h-16 object-contain"
                           />

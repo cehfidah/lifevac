@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PiTagChevronFill } from "react-icons/pi";
 
-import medic from "./../assest/image/Airwayclear.svg";
+import medic from "./../assest/image/lifevacdevice.svg";
 import one from "./../assest/image/payment1.svg";
 import tow from "./../assest/image/payment2.svg";
 import third from "./../assest/image/payment3.svg";
@@ -77,7 +77,7 @@ const EmergencyGuide = () => {
         oneItemOriginalPrice: 4400,
         quantity: 1,
         image:
-          "/Airwayclear.svg",
+          "/lifevacdevice.svg",
         guideIncluded: false,
         freeQty: 0,
         extraPrice: 0,

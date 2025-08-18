@@ -2,8 +2,8 @@ import { Helmet } from "react-helmet";
 import { useLocation } from "react-router-dom";
 
 const SEO = ({
-    title,
-    description = "Find the best used bikes at AirwayClear - trusted respiratory solutions for healthier breathing.",
+    title = "LifeVac - The Leading Anti-Choking and Airway Clearance Device",
+    description = "LifeVac is a non-invasive, life-saving airway clearance device for choking emergencies. Safe and effective for all ages. Be prepared to save a life.",
     ogTitle,
     ogDescription,
     twitterTitle,
@@ -11,7 +11,7 @@ const SEO = ({
     image = "",
     keywords
 }) => {
-    const location = useLocation();  // Get current page path dynamically
+    const location = useLocation(); // Get current page path dynamically
     const canonicalUrl = `https://lifevacdevice.com${location.pathname}`; // Create full canonical URL
 
     return (
@@ -19,12 +19,12 @@ const SEO = ({
             <meta charSet="utf-8" />
             <title>{title}</title>
             <meta name="description" content={description} />
-            <meta property="category" content="Auto" />
+            <meta property="category" content="Health" />
             <meta name="language" content="en" />
-            <link rel="canonical" href={canonicalUrl} /> {/* Correct Canonical URL */}
+            <link rel="canonical" href={canonicalUrl} />
             <meta property="og:title" content={ogTitle || title} />
             <meta property="og:type" content="website" />
-            <meta property="og:site_name" content="AirwayClear" />
+            <meta property="og:site_name" content="LifeVac" />
             <meta property="og:image" content={image} />
             <meta property="og:url" content={canonicalUrl} />
             <meta property="og:description" content={ogDescription || description} />
@@ -32,7 +32,7 @@ const SEO = ({
             <meta name="twitter:description" content={twitterDescription || description} />
             <meta name="twitter:url" content={canonicalUrl} />
             <meta name="keywords"
-                content={`${keywords}, AirwayClear, respiratory health, asthma, nebulizer, COPD, breathing solutions`} />
+                  content={`${keywords}, LifeVac, anti-choking device, choking rescue device, airway clearance, choking first aid, baby choking, child choking, emergency choking device, dechoker`} />
         </Helmet>
     );
 };

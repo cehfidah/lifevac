@@ -146,8 +146,8 @@ const Contact = () => {
                                 icon={<FaEnvelope className="text-white" size={24} />}
                                 title="Email Us"
                                 description="For support, sales, or general inquiries."
-                                contactInfo="info@airwayclear.us"
-                                link="mailto:info@airwayclear.us"
+                                contactInfo="info@lifevacdevice.com"
+                                link="mailto:info@lifevacdevice.com"
                             />
                             <div className="bg-white p-6 rounded-lg shadow-lg">
                                 <h3 className="text-xl font-semibold text-[#162950] mb-3">Business Hours</h3>

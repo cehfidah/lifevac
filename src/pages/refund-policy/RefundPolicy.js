@@ -49,7 +49,7 @@ const RefundPolicy = () => {
                             <FaHeartbeat className="mx-auto h-12 w-12" />
                             <h2 className="mt-4 text-2xl font-bold">Used LifeVac in an Emergency?</h2>
                             <p className="mt-2 max-w-2xl mx-auto">If you ever use your LifeVac device to save a life, we will replace it for <strong>FREE</strong>. Simply contact us and share your story. It's our way of ensuring you're always prepared.</p>
-                             <a href="mailto:info@airwayclear.us" className="mt-6 inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">
+                             <a href="mailto:info@lifevacdevice.com" className="mt-6 inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">
                                 Report a Life Saved
                              </a>
                         </div>
@@ -60,8 +60,8 @@ const RefundPolicy = () => {
                             title="How to Start a Return"
                         >
                             <p>To start a return, please contact us at our dedicated support email. We will guide you through the process and provide you with all the necessary instructions.</p>
-                             <a href="mailto:info@airwayclear.us" className="mt-4 inline-block text-blue-600 font-semibold hover:underline">
-                                Email: info@airwayclear.us
+                             <a href="mailto:info@lifevacdevice.com" className="mt-4 inline-block text-blue-600 font-semibold hover:underline">
+                                Email: info@lifevacdevice.com
                              </a>
                         </InfoCard>
 

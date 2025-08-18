@@ -1,6 +1,6 @@
 import React from "react";
 const video ="https://ik.imagekit.io/g2qcghvoj/video2.webp";
-const AirwayClearHero = () => {
+const LifeVacHero = () => {
   return (
     <div className="bg-[#eaf6fc] py-12 px-4 md:px-16">
       <h2 className="text-3xl md:text-5xl font-extrabold text-center text-[#0d1a4a] mb-12">
@@ -36,4 +36,4 @@ const AirwayClearHero = () => {
   );
 };
 
-export default AirwayClearHero;
+export default LifeVacHero;

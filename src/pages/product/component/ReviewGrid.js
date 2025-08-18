@@ -357,7 +357,7 @@ export default function ReviewGrid() {
                       {review.images.map((imgSrc, index) => (
                         <div key={index}>
                           <img
-                            src={`https://airwayclear.ffnewsupdater.xyz/assets/${imgSrc}`}
+                            src={`https://api.lifevacdevice.com/assets/${imgSrc}`}
                             alt={`Review image ${index + 1}`}
                             className="w-full h-40 object-cover rounded"
                           />
@@ -367,7 +367,7 @@ export default function ReviewGrid() {
                   </div>
                 ) : (
                   <img
-                    src={`https://airwayclear.ffnewsupdater.xyz/assets/${review?.images[0]}`}
+                    src={`https://api.lifevacdevice.com/assets/${review?.images[0]}`}
                     alt="Review"
                     className="w-full h-40 object-cover rounded"
                   />
