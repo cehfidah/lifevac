@@ -1,6 +1,5 @@
 import React from "react";
-import video from "../../../assest/image/video.webp";
-
+const video = "https://ik.imagekit.io/g2qcghvoj/video.webp";
 const timelineData = [
   {
     time: "4-6 MINUTES",

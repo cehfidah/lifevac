@@ -2,18 +2,18 @@ import { useState, useRef, useEffect } from "react";
 import Faq from "./Faq";
 import OfferSelection from "./OfferSelection";
 
-// Import images
-import first from "../../../assest/image/firstsectioneaightimage.webp";
-import second from "../../../assest/image/firstsectionfifthimage.webp";
-import third from "../../../assest/lifevac.png";
-import four from "../../../assest/image/firstsectionfourimage.webp";
-import fifth from "../../../assest/image/firstsectionsecondimage.webp";
-import six from "../../../assest/image/firstsectionsevenimage.webp";
-import seven from "../../../assest/image/firstsectionsiximage.webp";
+
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 
 // **FIXED**: Accept 'onTakeAction' as a prop
 const ProductShowcase = ({ onTakeAction }) => {
+  const first = "https://ik.imagekit.io/g2qcghvoj/firstsectionfifthimage.webp?updatedAt=1755523907900";
+const second = "https://ik.imagekit.io/g2qcghvoj/firstsectionsevenimage.webp?updatedAt=1755523907812";
+const third = "https://ik.imagekit.io/g2qcghvoj/lifevac.png?updatedAt=1755523615067";
+const four = "https://ik.imagekit.io/g2qcghvoj/firstsectioneaightimage.webp?updatedAt=1755523907681";
+const fifth = "https://ik.imagekit.io/g2qcghvoj/firstsectionsecondimage.webp?updatedAt=1755523907655";
+const six = "https://ik.imagekit.io/g2qcghvoj/firstsectionfourimage.webp?updatedAt=1755523907939";
+const seven = "https://ik.imagekit.io/g2qcghvoj/firstsectionsiximage.webp?updatedAt=1755523907812";
   const images = [first, second, third, four, fifth, seven, six];
   const [mainImageIndex, setMainImageIndex] = useState(images.indexOf(six));
   const mainImageRef = useRef(null);

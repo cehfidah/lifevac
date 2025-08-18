@@ -104,7 +104,7 @@ export default function VerifyOtp() {
             <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
                 <div className="bg-white w-full max-w-md p-8 rounded-lg shadow-lg">
                     <Link to='/' className="flex justify-center items-center mb-6">
-                        <img src={logo} width={250} alt="LifeVac Logo" />
+                        <img src="https://ik.imagekit.io/g2qcghvoj/logo.png?updatedAt=1755523342704" width={250} alt="LifeVac Logo" />
                     </Link>
 
                     <div className="text-center">

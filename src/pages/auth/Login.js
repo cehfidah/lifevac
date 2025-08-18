@@ -109,7 +109,7 @@ export default function Login() {
             to="/"
             className="flex justify-center items-center text-center text-2xl font-semibold mb-6"
           >
-            <img src={logo} width={300} alt="LifeVac Logo"/>
+            <img src="https://ik.imagekit.io/g2qcghvoj/logo.png?updatedAt=1755523342704" width={300} alt="LifeVac Logo"/>
           </Link>
 
           <h3 className="text-lg font-medium text-center mb-4">Log in</h3>

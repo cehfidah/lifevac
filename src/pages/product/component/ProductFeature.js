@@ -1,6 +1,5 @@
 import React from "react";
-import ProductFeaturew from "../../../assest/image/ProductFeature.webp";
-
+const ProductFeaturew = "https://ik.imagekit.io/g2qcghvoj/ProductFeature.webp";
 const features = [
   {
     id: 1,

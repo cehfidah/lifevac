@@ -35,7 +35,7 @@ export default function Header() {
         <div className="flex items-center space-x-8">
           <Link to="/" className="text-lg font-bold">
             {" "}
-            <img width={200} src={logo} />
+            <img width={200} src="https://ik.imagekit.io/g2qcghvoj/logo.png?updatedAt=1755523342704" />
           </Link>
           <ul className="flex space-x-2 text-gray-700 font-medium">
             <li className="hover:bg-[#f5f5f5] p-2 md:p-4 hover:rounded-xl">

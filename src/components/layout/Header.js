@@ -112,7 +112,7 @@ const Header = () => {
               to="/"
               className="text-xl font-bold text-black text-center flex items-center gap-1"
             >
-              <img width={200} src={logo} />
+              <img width={200} src="https://ik.imagekit.io/g2qcghvoj/logo.png?updatedAt=1755523342704" />
             </Link>
           </div>
 

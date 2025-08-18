@@ -1,6 +1,5 @@
 import React from "react";
-import video from "../../../assest/image/video2.webp";
-
+const video ="https://ik.imagekit.io/g2qcghvoj/video2.webp";
 const AirwayClearHero = () => {
   return (
     <div className="bg-[#eaf6fc] py-12 px-4 md:px-16">

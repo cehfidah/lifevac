@@ -2,7 +2,6 @@ import React from "react";
 import SEO from "../../utils/SEO";
 import { useNavigate } from "react-router-dom";
 import Container from "../../components/Container";
-import collections_img from "../../assest/lifevac.png";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -32,7 +31,7 @@ twitterTitle="LifeVac Choking Rescue Devices"
             {/* Left Image Side */}
             <div className="flex-shrink-0 w-full md:w-1/2 flex justify-center">
               <img
-                src={collections_img}
+                src="https://ik.imagekit.io/g2qcghvoj/lifevac.png?updatedAt=1755523615067"
 alt="LifeVac Choking Rescue Kit"
                 className="w-full max-w-md object-contain"
               />

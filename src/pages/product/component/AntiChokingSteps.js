@@ -1,6 +1,5 @@
 import React from "react";
-import video from "../../../assest/image/video3.webp";
-
+const video = "https://ik.imagekit.io/g2qcghvoj/video3.webp";
 const AntiChokingSteps = ({ onTakeAction }) => {
   const steps = [
     {

@@ -1,16 +1,17 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
-import first from "../../../assest/image/AAAA.webp";
-import second from "../../../assest/image/BBB.webp";
-import third from "../../../assest/image/CCC.webp";
-import four from "../../../assest/image/DDD.webp";
-import fiveth from "../../../assest/image/EEE.jpeg";
-import sixth from "../../../assest/image/GGG.webp";
-import one from "../../../assest/image/021.webp";
-import two from "../../../assest/image/022.jpeg";
-import three from "../../../assest/image/023.png";
-import foure from "../../../assest/image/024.png";
-import five from "../../../assest/image/025.png";
+const first = "https://ik.imagekit.io/g2qcghvoj/AAAA.webp";
+const second = "https://ik.imagekit.io/g2qcghvoj/BBB.webp";
+const third = "https://ik.imagekit.io/g2qcghvoj/CCC.webp";
+const four = "https://ik.imagekit.io/g2qcghvoj/DDD.webp";
+const fiveth = "https://ik.imagekit.io/g2qcghvoj/EEE.jpeg";
+const sixth = "https://ik.imagekit.io/g2qcghvoj/GGG.webp";
+const one = "https://ik.imagekit.io/g2qcghvoj/021.webp";
+const two = "https://ik.imagekit.io/g2qcghvoj/022.jpeg";
+const three = "https://ik.imagekit.io/g2qcghvoj/023.png";
+const foure = "https://ik.imagekit.io/g2qcghvoj/024.png";
+const five = "https://ik.imagekit.io/g2qcghvoj/025.png";
+
 
 // Original images
 const images = [first, second, third, four, fiveth, sixth];

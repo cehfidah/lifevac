@@ -8,7 +8,7 @@ const CheckOutHead = () => {
             <header className="border-b shadow-sm px-6 sm:px-12 md:px-28 py-4 md:py-8 flex items-center justify-between bg-white">
                 <div className="flex items-center space-x-2 sm:space-x-4">
                     <Link to="/">
-                        <img width={250} src={logo} alt="Logo" />
+                        <img width={250} src="https://ik.imagekit.io/g2qcghvoj/logo.png?updatedAt=1755523342704" alt="Logo" />
                     </Link>
                 </div>
 
