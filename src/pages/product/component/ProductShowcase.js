@@ -7,15 +7,16 @@ import { IoCheckmarkCircleSharp } from "react-icons/io5";
 
 // **FIXED**: Accept 'onTakeAction' as a prop
 const ProductShowcase = ({ onTakeAction }) => {
-  const first = "https://ik.imagekit.io/g2qcghvoj/firstsectionfifthimage.webp?updatedAt=1755523907900";
+  const first = "https://ik.imagekit.io/g2qcghvoj/lifevac.png?updatedAt=1755523615067";
 const second = "https://ik.imagekit.io/g2qcghvoj/firstsectionsevenimage.webp?updatedAt=1755523907812";
-const third = "https://ik.imagekit.io/g2qcghvoj/lifevac.png?updatedAt=1755523615067";
+const third = "https://ik.imagekit.io/g2qcghvoj/firstsectionfifthimage.webp?updatedAt=1755523907900";
 const four = "https://ik.imagekit.io/g2qcghvoj/firstsectioneaightimage.webp?updatedAt=1755523907681";
 const fifth = "https://ik.imagekit.io/g2qcghvoj/firstsectionsecondimage.webp?updatedAt=1755523907655";
 const six = "https://ik.imagekit.io/g2qcghvoj/firstsectionfourimage.webp?updatedAt=1755523907939";
 const seven = "https://ik.imagekit.io/g2qcghvoj/firstsectionsiximage.jpg?updatedAt=1755525946084";
   const images = [first, second, third, four, fifth, seven, six];
-  const [mainImageIndex, setMainImageIndex] = useState(images.indexOf(six));
+// After
+const [mainImageIndex, setMainImageIndex] = useState(0);
   const mainImageRef = useRef(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -31,15 +32,7 @@ const seven = "https://ik.imagekit.io/g2qcghvoj/firstsectionsiximage.jpg?updated
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    if (!isMobile) return;
-
-    const interval = setInterval(() => {
-      setMainImageIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [isMobile, images.length]);
+  
 
   const handleMouseDown = (e) => {
     if (isMobile) return;

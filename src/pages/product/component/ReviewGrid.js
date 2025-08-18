@@ -7,15 +7,15 @@ import Slider from "react-slick";
 import ReviewModal from "./ReviewModal"; // Import the modal
 
 const ratingCounts = {
-  5: 69,
-  4: 6,
-  3: 3,
-  2: 0,
-  1: 0,
+  5: 7800,
+  4: 1300,
+  3: 600,
+  2: 200,
+  1: 100,
 };
 
 export default function ReviewGrid() {
-  const totalReviews = 78;
+  const totalReviews = 10000;
 
   const renderProgress = (count) => {
     const percent = (count / totalReviews) * 100;
@@ -196,11 +196,11 @@ export default function ReviewGrid() {
               {/* Left: Rating Box */}
               <div className="flex items-center gap-6">
                 <div className="bg-[#162950] text-white p-4 rounded-md w-20 h-20 flex flex-col items-center justify-center">
-                  <span className="text-2xl font-bold">4.8</span>
+                  <span className="text-2xl font-bold">4.7</span>
                   <span className="text-xs">out of 5</span>
                 </div>
                 <p className="text-sm text-[#162950] pt-1">
-                  Based on {totalReviews} reviews
+                  Based on {totalReviews}+ reviews
                 </p>
               </div>
 
