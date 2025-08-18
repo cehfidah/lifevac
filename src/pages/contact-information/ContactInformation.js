@@ -103,8 +103,8 @@ const ContactInformation = () => {
                                 icon={<FaPhoneAlt className="text-white" size={24} />}
                                 title="Call Us"
                                 description="Speak with our customer service team directly."
-                                contactInfo="+1 (555) 123-4567"
-                                link="tel:+15551234567"
+                                contactInfo="+1 (307) 2050-514"
+                                link="tel:+13072050514"
                             />
                             <ContactCard
                                 icon={<FaMapMarkerAlt className="text-white" size={24} />}
