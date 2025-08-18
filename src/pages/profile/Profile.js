@@ -135,7 +135,7 @@ export default function ProfilePage() {
                                             <div className="flex items-start gap-10 group hover:bg-[#f5f5f5] p-3 rounded-[12px]">
                                                 <div>
                                                     <p className="text-sm text-gray-400 mb-1">Default address</p>
-                                                    <p className="text-sm text-gray-700">India</p>
+                                                    <p className="text-sm text-gray-700">United States</p>
                                                 </div>
                                                 <button onClick={handleAddAddress} className="text-blue-900 hover:underline text-sm">
                                                     <MdOutlineEdit size={22} />

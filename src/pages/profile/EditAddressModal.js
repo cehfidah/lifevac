@@ -43,9 +43,9 @@ export default function EditAddressModal({ onClose, mode = "add", addressData = 
                     c.isoCode === addressData.country_code
             );
 
-            const selectedCountryIso = selectedCountry?.isoCode || "IN";
-            const selectedCountryLabel = selectedCountry?.name || "India";
-            const phonecode = selectedCountry?.phonecode || "91";
+            const selectedCountryIso = selectedCountry?.isoCode || "US";
+            const selectedCountryLabel = selectedCountry?.name || "United States";
+            const phonecode = selectedCountry?.phonecode || "1";
 
             const stateList = State.getStatesOfCountry(selectedCountryIso);
             const matchedState = stateList.find((s) => s.name === addressData.state);
