@@ -39,7 +39,7 @@ export default function Header() {
           </Link>
           <ul className="flex space-x-2 text-gray-700 font-medium">
             <li className="hover:bg-[#f5f5f5] p-2 md:p-4 hover:rounded-xl">
-              <Link to="/">Shop</Link>
+              <Link to="/product/lifevac">Shop</Link>
             </li>
             <li className="hover:bg-[#f5f5f5] p-2 md:p-4 hover:rounded-xl">
               <Link to="/orders">Orders</Link>

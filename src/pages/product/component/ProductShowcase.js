@@ -126,9 +126,7 @@ const [mainImageIndex, setMainImageIndex] = useState(0);
                 className="w-full rounded-lg shadow-lg select-none"
                 draggable={false}
               />
-              <div className="absolute top-[-30px] left-[-30px] bg-blue-700 text-white text-center rounded-full w-24 h-24 flex items-center justify-center shadow-md text-xs font-extrabold leading-tight">
-                <div>30<br />DAY MONEY<br />GUARANTEE</div>
-              </div>
+            
             </div>
           </div>
           <div className="md:hidden flex flex-col gap-2">
@@ -139,9 +137,7 @@ const [mainImageIndex, setMainImageIndex] = useState(0);
                 className="w-full rounded-lg shadow-lg select-none"
                 draggable={false}
               />
-              <div className="absolute top-[-20px] left-[-20px] bg-blue-700 text-white text-center rounded-full w-20 h-20 flex items-center justify-center shadow-md text-[10px] font-extrabold leading-tight">
-                <div>30<br />DAY MONEY<br />GUARANTEE</div>
-              </div>
+            
             </div>
             <div className="flex overflow-x-auto gap-2 mt-2 pb-1">
               {images.map((img, index) => (
