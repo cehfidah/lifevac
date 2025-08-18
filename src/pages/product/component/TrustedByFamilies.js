@@ -3,9 +3,11 @@ import Slider from "react-slick";
 import { FaStar } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import first from "../../../assest/image/imageone.jpeg";
-import second from "../../../assest/image/imagetwo.webp";
-import third from "../../../assest/image/imagefour.webp";
+
+const first = "https://ik.imagekit.io/g2qcghvoj/imageone.jpeg";
+const second = "https://ik.imagekit.io/g2qcghvoj/imagetwo.webp";
+const third = "https://ik.imagekit.io/g2qcghvoj/imagefour.webp";
+ 
 
 const testimonials = [
   {
