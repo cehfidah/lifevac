@@ -77,7 +77,7 @@ export default function Login() {
         const tokenPass = response.data.data.token;
         // **FIXED**: Use setCredentials with a placeholder user for guests
         dispatch(setCredentials({ token: tokenPass, user: { firstName: 'Guest', lastName: '' } }));
-        toast.success(response.data.msg);
+        //toast.success(response.data.msg);
         navigate("/checkouts", { state: { subtotal, cartItems } });
       } else {
         toast.error(response.data.msg);
