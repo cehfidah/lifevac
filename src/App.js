@@ -33,6 +33,8 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import ManageOrders from './pages/admin/ManageOrders';
 import ManageUsers from './pages/admin/ManageUsers';
 import ManageCoupons from './pages/admin/ManageCoupons';
+import AbandonedCheckouts from './pages/admin/AbandonedCheckouts'; // <-- 1. IMPORT THE NEW COMPONENT
+
 const App = () => {
   const location = useLocation();
 
@@ -76,6 +78,8 @@ const App = () => {
            <Route path="users" element={<ManageUsers />} />      {/* Add this line */}
     <Route path="coupons" element={<ManageCoupons />} />  
           {/* Redirect /admin to dashboard */}
+    <Route path="abandoned-checkouts" element={<AbandonedCheckouts />} />
+
           <Route index element={<Navigate to="/admin/dashboard" />} />
         </Route>
         <Route element={<AuthProtect />}>

@@ -46,10 +46,10 @@ const OfferSelection = () => {
     return (
         <>
             <div className="text-center">
-                <div class="flex items-center">
-                    <div class="flex-grow border-t border-gray-400"></div>
-                    <span class="flex-shrink mx-4 text-center text-lg font-bold">8 Left In Stock</span>
-                    <div class="flex-grow border-t border-gray-400"></div>
+<div className="flex items-center">
+                        <div className="flex-grow border-t border-gray-400"></div>
+                    <span className="flex-shrink mx-4 text-center text-lg font-bold">8 Left In Stock</span>
+                    <div className="flex-grow border-t border-gray-400"></div>
                 </div>
                 <br></br>
                 {offers.map((offer, idx) => (
@@ -85,7 +85,7 @@ const OfferSelection = () => {
                                 </div>
                                 <div>
                                     <span className="font-bold text-base md:text-xl">{offer.title}</span>
-                                    <div class="text-sm border-2 border-gray-300 rounded-full px-3 py-1 font-bold bg-[#0085ff1a]">{offer.kits}</div>
+                                    <div className="text-sm border-2 border-gray-300 rounded-full px-3 py-1 font-bold bg-[#0085ff1a]">{offer.kits}</div>
                                 </div>
                                 <div>
                                     <span className="font-semibold text-gray-800">

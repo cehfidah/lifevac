@@ -104,158 +104,129 @@ const CartModal = () => {
                 </div>
               ) : (
                 <div className="bg-white rounded-xl px-6 md:px-4 w-full">
-                  {cartItems.map((item) => (
-                    <div className="border-b py-4">
-                      <div key={item?.id} className="flex gap-4">
-                        <img
-                          src={item?.image}
-                          alt={item?.sectionTitle}
-                          className="w-20 h-20 object-contain"
-                        />
+                {cartItems.map((item) => (
+    // The key prop has been moved to this outer div, which is the direct child of the map.
+    <div key={item.id} className="border-b py-4">
+        {/* The key prop has been removed from this inner div. */}
+        <div className="flex gap-4">
+            <img
+                src={item?.image}
+                alt={item?.sectionTitle}
+                className="w-20 h-20 object-contain"
+            />
+            <div className="flex-1">
+                {(item?.type === 'guide' || item?.id === 'guideStandalone') ? (
+                    <Link
+                        to="/product/home-medic-a-guide-for-household-emergencies"
+                        className="font-semibold"
+                        onClick={() => dispatch(toggleCart())}
+                    >
+                        {item?.sectionTitle}
+                    </Link>
+                ) : (
+                    <h3 className="font-semibold">{item?.sectionTitle}</h3>
+                )}
 
-                        <div className="flex-1">
-                          {(item?.type === 'guide' || item?.id === 'guideStandalone') ? (
-                            <Link
-                              to="/product/home-medic-a-guide-for-household-emergencies"
-                              className="font-semibold"
-                              onClick={() => dispatch(toggleCart())}
-                            >
-                              {item?.sectionTitle}
-                            </Link>
-                          ) : (
-                            <h3 className="font-semibold">{item?.sectionTitle}</h3>
-                          )}
+                {item?.id !== "guideStandalone" && (
+                    <div className="mt-1">
+                        {item?.oneItemOriginalPrice && (
+                            <span className="line-through text-gray-400 text-sm mr-2">
+                                {item?.oneItemOriginalPrice.toLocaleString("en-US", { style: "currency", currency: "USD" })}
+                            </span>
+                        )}
+                        <span className="text-sm font-semibold">
+                            {item?.oneItemPrice.toLocaleString("en-US", { style: "currency", currency: "USD" })}
+                        </span>
+                    </div>
+                )}
 
-                          {item?.id !== "guideStandalone" && (
-                            <>
-                              <div className="mt-1">
-                                {item?.oneItemOriginalPrice && (
-                                  <span className="line-through text-gray-400 text-sm mr-2">
-                                    {item?.oneItemOriginalPrice.toLocaleString(
-                                      "en-US",
-                                      { style: "currency", currency: "USD" }
-                                    )}
-                                  </span>
-                                )}
-                                <span className="text-sm font-semibold">
-                                  {item?.oneItemPrice.toLocaleString("en-US", {
-                                    style: "currency",
-                                    currency: "USD",
-                                  })}
-                                </span>
-                              </div>
-                            </>
-                          )}
+                {item?.title && (
+                    <div className="mt-1 text-xs font-medium flex items-center gap-1 text-[#121212f3]">
+                        <MdOutlineDiscount /> <span>{item?.title}</span>
+                    </div>
+                )}
 
-                         
-
-                          {item?.title && (
-                            <div className="mt-1 text-xs font-medium flex items-center gap-1 text-[#121212f3]">
-                              <MdOutlineDiscount /> <span>{item?.title}</span>
-                            </div>
-                          )}
-
-                          {/* Quantity and Delete */}
-                          <div className="flex items-center gap-3 mt-3">
-                            <div className="flex items-center border rounded px-2">
-                              <button
-                                className="text-lg px-2"
-                                onClick={() =>
-                                  dispatch(
+                {/* Quantity and Delete */}
+                <div className="flex items-center gap-3 mt-3">
+                    <div className="flex items-center border rounded px-2">
+                        <button
+                            className="text-lg px-2"
+                            onClick={() =>
+                                dispatch(
                                     updateItemQuantity({
-                                      id: item.id,
-                                      quantity: Math.max(1, item.quantity - 1),
+                                        id: item.id,
+                                        quantity: Math.max(1, item.quantity - 1),
                                     })
-                                  )
-                                }
-                              >
-                                -
-                              </button>
-                              <span className="px-2">{item.quantity}</span>
-                              <button
-                                className="text-lg px-2"
-                                onClick={() => {
-                                  // Prevent manual increment for free guide
-                                  if (
-                                    item.type === "guide" &&
-                                    item.freeQty >= item.quantity
-                                  ) {
+                                )
+                            }
+                        >
+                            -
+                        </button>
+                        <span className="px-2">{item.quantity}</span>
+                        <button
+                            className="text-lg px-2"
+                            onClick={() => {
+                                if (item.type === "guide" && item.freeQty >= item.quantity) {
                                     handleAddCart();
                                     setErrorMessages((prev) => ({
-                                      ...prev,
-                                      [item.id]:
-                                        "You can only add 1 of this item to your cart.",
+                                        ...prev,
+                                        [item.id]: "You can only add 1 of this item to your cart.",
                                     }));
                                     setTimeout(() => {
-                                      setErrorMessages((prev) => {
-                                        const newErrors = { ...prev };
-                                        delete newErrors[item.id];
-                                        return newErrors;
-                                      });
+                                        setErrorMessages((prev) => {
+                                            const newErrors = { ...prev };
+                                            delete newErrors[item.id];
+                                            return newErrors;
+                                        });
                                     }, 5000);
                                     return;
-                                  }
-                                  dispatch(
+                                }
+                                dispatch(
                                     updateItemQuantity({
-                                      id: item.id,
-                                      quantity: item.quantity + 1,
+                                        id: item.id,
+                                        quantity: item.quantity + 1,
                                     })
-                                  );
-                                }}
-                              >
-                                +
-                              </button>
-                            </div>
-                            <button
-                              className="text-red-500 ml-2"
-                              onClick={() =>
-                                dispatch(removeItemFromCart(item.id))
-                              }
-                            >
-                              🗑️
-                            </button>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-col w-full items-end text-right">
-                          {item?.id !== "guideStandalone" && (
-                            <>
-                              {item?.originalPrice && (
-                                <div className="line-through text-gray-400 text-sm">
-                                  {(
-                                    parseFloat(item.quantity) *
-                                    parseFloat(item.originalPrice)
-                                  ).toLocaleString("en-US", {
-                                    style: "currency",
-                                    currency: "USD",
-                                  })}
-                                </div>
-                              )}
-                            </>
-                          )}
-                          <div className="text-base font-semibold">
-                            {
-                              item?.price && (
-                                <>
-                                  {(
-                                    parseFloat(item.quantity) * parseFloat(item.price)
-                                  ).toLocaleString("en-US", {
-                                    style: "currency",
-                                    currency: "USD",
-                                  })}
-                                </>
-                              )
-                            }
-                          </div>
-                        </div>
-                      </div>
-                      {errorMessages[item.id] && (
-                        <div className="px-4 text-red-600 font-medium text-sm">
-                          ⚠️ {errorMessages[item.id]}
-                        </div>
-                      )}
+                                );
+                            }}
+                        >
+                            +
+                        </button>
                     </div>
-                  ))}
+                    <button
+                        className="text-red-500 ml-2"
+                        onClick={() => dispatch(removeItemFromCart(item.id))}
+                    >
+                        🗑️
+                    </button>
+                </div>
+            </div>
+
+            <div className="flex flex-col w-full items-end text-right">
+                {item?.id !== "guideStandalone" && item?.originalPrice && (
+                    <div className="line-through text-gray-400 text-sm">
+                        {(parseFloat(item.quantity) * parseFloat(item.originalPrice)).toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                        })}
+                    </div>
+                )}
+                {item?.price && (
+                    <div className="text-base font-semibold">
+                        {(parseFloat(item.quantity) * parseFloat(item.price)).toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                        })}
+                    </div>
+                )}
+            </div>
+        </div>
+        {errorMessages[item.id] && (
+            <div className="px-4 text-red-600 font-medium text-sm">
+                ⚠️ {errorMessages[item.id]}
+            </div>
+        )}
+    </div>
+))}
                   {/* Suggest Guide if no guideIncluded exists 
                   {!hasGuideIncluded && (
                     <>

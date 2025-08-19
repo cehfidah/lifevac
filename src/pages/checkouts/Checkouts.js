@@ -406,16 +406,46 @@ const Checkouts = () => {
     closeModal();
   };
     // **NEW FUNCTION**: Logic to handle abandoned cart
-    const handleEmailBlur = (e) => {
-        const email = e.target.value;
-        if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && cartItems.length > 0) {
-            const payload = {
-                email: email,
-                cart_items: cartItems,
+// ADD THIS ENTIRE useEffect HOOK
+
+// --- ❗ NEW AND IMPROVED ABANDONED CART LOGIC ---
+useEffect(() => {
+    // This function will be called automatically when user details change.
+    const captureAbandonedCart = () => {
+        // Only proceed if email is valid and there are items in the cart
+        if (formData.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) && cartItems.length > 0) {
+            
+            const shippingData = {
+                ...formData,
+                country: country?.label || "",
+                state: selectedState?.label || "",
+                phoneCode: phoneCode,
             };
+
+            const payload = {
+                user_email: formData.email,
+                shipping_address: shippingData,
+                product_detail: cartItems,
+                final_amount: subtotal + (selectedOption?.price || 0),
+              
+
+            };
+
+            // Fire-and-forget the API call. We don't need to wait for the response.
             ApiHandler("/capture_abandoned_cart.php", "POST", payload, undefined, dispatch, navigate);
         }
     };
+
+    // Set a timer to run the capture function 3 seconds after the user stops typing.
+    // This is called "debouncing" and prevents sending too many requests.
+    const timer = setTimeout(() => {
+        captureAbandonedCart();
+    }, 3000);
+
+    // Clean up the timer if the component re-renders
+    return () => clearTimeout(timer);
+
+}, [formData, cartItems, country, selectedState, phoneCode, dispatch, navigate]); // This effect re-runs whenever the user's data changes.
 
   const baseAmount = subtotal + (selectedOption?.price || 0);
   const discountAmt = discountPercent > 0 ? (baseAmount * discountPercent) / 100 : 0;
@@ -471,7 +501,6 @@ const Checkouts = () => {
   couponError={couponError}
   couponSuccess={couponSuccess}
   setFormErrors={setFormErrors}
-   handleEmailBlur={handleEmailBlur} // **MODIFIED**: Pass the function as a prop
 
 />
 
