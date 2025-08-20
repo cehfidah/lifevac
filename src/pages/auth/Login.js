@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import Loading from "../../components/Common/Loading";
 import { ApiHandler } from "../../helper/ApiHandler";
 import { useDispatch, useSelector } from "react-redux";
-import logo from "../../assest/logo.png";
 import { setCredentials } from "../../store/slice/authSlice";
 
 export default function Login() {
@@ -16,6 +15,8 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  // New state to control the visibility of the email form
+  const [showEmailForm, setShowEmailForm] = useState(false);
 
   const isEmailValid = email.trim() !== "";
 
@@ -75,9 +76,7 @@ export default function Login() {
       );
       if (response.data.status === "1") {
         const tokenPass = response.data.data.token;
-        // **FIXED**: Use setCredentials with a placeholder user for guests
         dispatch(setCredentials({ token: tokenPass, user: { firstName: 'Guest', lastName: '' } }));
-        //toast.success(response.data.msg);
         navigate("/checkouts", { state: { subtotal, cartItems } });
       } else {
         toast.error(response.data.msg);
@@ -93,15 +92,15 @@ export default function Login() {
 
   return (
     <>
-   <SEO
-  title="Secure Login to Your LifeVac Account"
-  description="Sign in to your LifeVac account to access your order history, shipping details, and profile settings. Your information is protected with our secure login."
-  keywords="LifeVac login, sign in, secure user access, my orders, order history"
-  ogTitle="Login to Your LifeVac Account"
-  ogDescription="Access your LifeVac dashboard and manage your orders. Your account is protected by our secure login."
-  twitterTitle="LifeVac Login | Secure Account Access"
-  twitterDescription="Sign in to your account with confidence. Your LifeVac profile and order history are waiting for you."
-/>
+      <SEO
+        title="Secure Login to Your LifeVac Account"
+        description="Sign in to your LifeVac account to access your order history, shipping details, and profile settings. Your information is protected with our secure login."
+        keywords="LifeVac login, sign in, secure user access, my orders, order history"
+        ogTitle="Login to Your LifeVac Account"
+        ogDescription="Access your LifeVac dashboard and manage your orders. Your account is protected by our secure login."
+        twitterTitle="LifeVac Login | Secure Account Access"
+        twitterDescription="Sign in to your account with confidence. Your LifeVac profile and order history are waiting for you."
+      />
 
       <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
         <div className="bg-white w-full max-w-md p-8 rounded-lg shadow-md">
@@ -109,54 +108,71 @@ export default function Login() {
             to="/"
             className="flex justify-center items-center text-center text-2xl font-semibold mb-6"
           >
-            <img src="https://ik.imagekit.io/g2qcghvoj/logo.png?updatedAt=1755523342704" width={300} alt="LifeVac Logo"/>
+            <img src="https://ik.imagekit.io/g2qcghvoj/logo.png?updatedAt=1755523342704" width={300} alt="LifeVac Logo" />
           </Link>
 
-          <h3 className="text-lg font-medium text-center mb-4">Log in</h3>
+          <h3 className="text-lg font-medium text-center mb-4">Ready to Check Out?</h3>
           <p className="text-sm text-center text-gray-500 mb-6">
-            Choose how you’d like to log in
+           Continue as a guest or log in to your account"
           </p>
 
-          <form onSubmit={handleSendOtp}>
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
+          {!showEmailForm && (
+            <>
+              {/* Guest Checkout Button - Prominently placed */}
+              <button
+                className="w-full py-3 rounded-md font-medium transition bg-indigo-600 text-white hover:bg-indigo-700"
+                type="button"
+                onClick={guestLogin}
+              >
+                Guest Checkout
+              </button>
 
-            {/* Error Message */}
-            {errorMessage && (
-              <div className="text-red-600 text-sm mb-3 font-medium">
-                {errorMessage}
+              <div className="flex items-center my-4">
+                <hr className="flex-grow border-gray-300" />
+                <span className="mx-3 text-gray-500 text-sm">or</span>
+                <hr className="flex-grow border-gray-300" />
               </div>
-            )}
 
-            <button
-              type="submit"
-              disabled={!isEmailValid}
-              className={`w-full py-3 rounded-md font-medium transition ${isEmailValid
-                ? "bg-indigo-600 text-white hover:bg-indigo-700"
-                : "bg-gray-200 text-gray-500 cursor-not-allowed"
-                }`}
-            >
-              Continue
-            </button>
+              {/* Login/Register Button - Triggers form visibility */}
+              <button
+                className="w-full py-3 rounded-md font-medium transition bg-gray-200 text-gray-800 hover:bg-gray-300"
+                type="button"
+                onClick={() => setShowEmailForm(true)}
+              >
+                Log in or Register
+              </button>
+            </>
+          )}
 
-            <div className="flex items-center my-4">
-              <hr className="flex-grow border-gray-300" />
-              <span className="mx-3 text-gray-500 text-sm">or</span>
-              <hr className="flex-grow border-gray-300" />
-            </div>
+          {showEmailForm && (
+            <form onSubmit={handleSendOtp}>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border border-gray-300 rounded-md px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
 
-            <button className="w-full py-3 rounded-md font-medium transition bg-[#00083f] mt-4 text-white"
-              type="button"
-              onClick={guestLogin}
-            >
-              Guest Login
-            </button>
-          </form>
+              {/* Error Message */}
+              {errorMessage && (
+                <div className="text-red-600 text-sm mb-3 font-medium">
+                  {errorMessage}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={!isEmailValid}
+                className={`w-full py-3 rounded-md font-medium transition ${isEmailValid
+                  ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                  : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                  }`}
+              >
+                Continue
+              </button>
+            </form>
+          )}
 
           <p className="text-xs text-center text-gray-500 mt-6">
             <Link to="/privacy-policy" className="underline">
