@@ -3,7 +3,7 @@
 const offers = [
     {
         id: "offer1",
-        image: "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_3_300x300.svg?v=1737985220",
+        image: "https://ik.imagekit.io/g2qcghvoj/life%20vac%20(15).png?updatedAt=1755691855187",
         sectionTitle: "LifeVac™ - Anti-Choking Device",
         title: "Buy Home Kit",
         kits: "1x Home Kit",
@@ -19,7 +19,7 @@ const offers = [
     },
     {
         id: "offer2",
-        image: "https://ik.imagekit.io/g2qcghvoj/life%20vac%20(14).png?updatedAt=1755691555363",
+        image: "https://ik.imagekit.io/g2qcghvoj/life%20vac%20(13).png?updatedAt=1755691171040",
         sectionTitle: "LifeVac™ - Anti-Choking Device",
         title: "Buy Home + Travel Kit",
         kits: "1x Home + Travel Kit",
@@ -35,7 +35,7 @@ const offers = [
     },
     {
         id: "offer3",
-        image: "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_4_300x300.svg?v=1737985322",
+        image: "https://ik.imagekit.io/g2qcghvoj/life%20vac%20(14).png?updatedAt=1755691555363",
         sectionTitle: "LifeVac™ - Anti-Choking Device",
         title: "Buy Travel Kit",
         kits: "1x Travel Kit",
