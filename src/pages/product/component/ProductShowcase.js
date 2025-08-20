@@ -7,18 +7,9 @@ import { IoCheckmarkCircleSharp } from "react-icons/io5";
 
 // **FIXED**: Accept 'onTakeAction' as a prop
 const ProductShowcase = ({ onTakeAction }) => {
-const WIDTH_779 = "https://ik.imagekit.io/g2qcghvoj/width_779.webp";
-const WIDTH_800_1 = "https://ik.imagekit.io/g2qcghvoj/width_800 (1).webp";
-const WIDTH_800_2 = "https://ik.imagekit.io/g2qcghvoj/width_800 (2).webp";
-const WIDTH_800_3 = "https://ik.imagekit.io/g2qcghvoj/width_800 (3).webp";
-const WIDTH_800_4 = "https://ik.imagekit.io/g2qcghvoj/width_800 (4).webp";
-const WIDTH_800_6 = "https://ik.imagekit.io/g2qcghvoj/width_800 (6).webp";
-const WIDTH_800_7 = "https://ik.imagekit.io/g2qcghvoj/width_800 (7).webp";
-const WIDTH_800 = "https://ik.imagekit.io/g2qcghvoj/width_800.webp";
-const WIDTH_1280 = "https://ik.imagekit.io/g2qcghvoj/width_1280.webp";
-const WIDTH_1600_1 = "https://ik.imagekit.io/g2qcghvoj/width_1600 (1).webp";
-const WIDTH_1600 = "https://ik.imagekit.io/g2qcghvoj/width_1600.webp";
 const first = "https://ik.imagekit.io/g2qcghvoj/lifevac.png?updatedAt=1755523615067";
+const firstsecond ="https://ik.imagekit.io/g2qcghvoj/home%20and%20traval%20kit.webp";
+const firstthird = "https://ik.imagekit.io/g2qcghvoj/life%20vac%20(17).png?updatedAt=1755692110488";
 const second = "https://ik.imagekit.io/g2qcghvoj/firstsectionsevenimage.webp?updatedAt=1755523907812";
 const third = "https://ik.imagekit.io/g2qcghvoj/firstsectionfifthimage.webp?updatedAt=1755523907900";
 const four = "https://ik.imagekit.io/g2qcghvoj/firstsectioneaightimage.webp?updatedAt=1755523907681";
@@ -27,12 +18,8 @@ const six = "https://ik.imagekit.io/g2qcghvoj/firstsectionfourimage.webp?updated
 const seven = "https://ik.imagekit.io/g2qcghvoj/firstsectionsiximage.jpg?updatedAt=1755525946084";
   const images = [
     first,
-  WIDTH_779,
-  WIDTH_800_1,
-  WIDTH_800_3,
-  WIDTH_800_6,
-  WIDTH_800_7,
-  WIDTH_800,
+    firstsecond,
+    firstthird,
   second,
   third,
   four,
