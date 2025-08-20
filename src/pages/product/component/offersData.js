@@ -19,7 +19,7 @@ const offers = [
     },
     {
         id: "offer2",
-        image: "https://ik.imagekit.io/g2qcghvoj/life%20vac%20(13).png?updatedAt=1755691171040",
+        image: "https://ik.imagekit.io/g2qcghvoj/life%20vac%20(14).png?updatedAt=1755691555363",
         sectionTitle: "LifeVac™ - Anti-Choking Device",
         title: "Buy Home + Travel Kit",
         kits: "1x Home + Travel Kit",

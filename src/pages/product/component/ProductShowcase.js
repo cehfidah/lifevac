@@ -26,13 +26,13 @@ const fifth = "https://ik.imagekit.io/g2qcghvoj/firstsectionsecondimage.webp?upd
 const six = "https://ik.imagekit.io/g2qcghvoj/firstsectionfourimage.webp?updatedAt=1755523907939";
 const seven = "https://ik.imagekit.io/g2qcghvoj/firstsectionsiximage.jpg?updatedAt=1755525946084";
   const images = [
+    first,
   WIDTH_779,
   WIDTH_800_1,
   WIDTH_800_3,
   WIDTH_800_6,
   WIDTH_800_7,
   WIDTH_800,
-  first,
   second,
   third,
   four,
