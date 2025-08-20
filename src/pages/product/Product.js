@@ -77,7 +77,6 @@ const Product = () => {
                 <ComparisonTable onTakeAction={handleTakeAction} /> 
 <TrustAirwaySection onTakeAction={handleTakeAction} /> 
                 <FAQSection onTakeAction={handleTakeAction} />
-                <ReviewGrid onTakeAction={handleTakeAction} />
                 <ScrollToTopArrow /> 
             </div>
         </>
