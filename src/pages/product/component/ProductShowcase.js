@@ -17,7 +17,6 @@ const fifth = "https://ik.imagekit.io/g2qcghvoj/firstsectionsecondimage.webp?upd
 const six = "https://ik.imagekit.io/g2qcghvoj/firstsectionfourimage.webp?updatedAt=1755523907939";
 const seven = "https://ik.imagekit.io/g2qcghvoj/firstsectionsiximage.jpg?updatedAt=1755525946084";
   const images = [
-    first,
     firstsecond,
     firstthird,
   second,

@@ -31,7 +31,7 @@ twitterTitle="LifeVac Choking Rescue Devices"
             {/* Left Image Side */}
             <div className="flex-shrink-0 w-full md:w-1/2 flex justify-center">
               <img
-                src="https://ik.imagekit.io/g2qcghvoj/lifevac.png?updatedAt=1755523615067"
+                src="https://ik.imagekit.io/g2qcghvoj/home%20and%20traval%20kit.webp"
 alt="LifeVac Choking Rescue Kit"
                 className="w-full max-w-md object-contain"
               />
