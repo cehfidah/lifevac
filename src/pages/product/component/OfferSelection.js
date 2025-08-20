@@ -1,4 +1,6 @@
 import { useState } from "react";
+import ReactGA from 'react-ga4';
+
 import { useDispatch } from "react-redux";
 import { addItemToCart, toggleCart } from "../../../store/slice/cartSlice";
 import payone from "../../../assest/image/payment1.svg";
