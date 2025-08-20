@@ -27,6 +27,12 @@ const OfferSelection = () => {
         if (selectedId) {
             const offer = offers.find((o) => o.id === selectedId);
             if (offer) {
+                   ReactGA.event({
+      category: 'Ecommerce',
+      action: 'add_to_cart',
+      label: offer.title,
+      value: offer.price,
+    });
                 dispatch(addItemToCart(offer)); // Only dispatch here
                 dispatch(toggleCart());
             }

@@ -2,6 +2,8 @@
 
 // Imports
 import { useEffect, useRef, useState } from "react";
+import ReactGA from 'react-ga4';
+
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Country, State } from "country-state-city";
@@ -99,6 +101,12 @@ const Checkouts = () => {
       toast.error("Your cart is empty. Redirecting to home.");
       navigate("/", { replace: true });
     }
+      ReactGA.event({
+      category: 'Ecommerce',
+      action: 'begin_checkout',
+      label: 'User started the checkout process',
+      value: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
+    });
   }, [cartItems, navigate]);
 
   useEffect(() => {
@@ -366,8 +374,38 @@ const Checkouts = () => {
 
           if (response.data.data === "1" || response.data.data === 1) {
             navigate("/success", { state: paymentResponse });
+                 ReactGA.event({
+  category: 'Ecommerce',
+  action: 'purchased',
+  label: 'User completed an order',
+  value: payload.final_amount,
+  transaction_id: payload.gateway_transaction_id,
+  currency: 'USD',
+  items: payload.product_detail.map(item => ({
+    item_id: item.id,
+    item_name: item.title,
+    price: item.price,
+    quantity: item.quantity
+  }))
+});
+
           } else {
             navigate("/fail", { state: paymentResponse });
+                       ReactGA.event({
+  category: 'Ecommerce',
+  action: 'purchase_failed',
+  label: 'User not completed an order failed',
+  value: payload.final_amount,
+  transaction_id: payload.gateway_transaction_id,
+  currency: 'USD',
+  items: payload.product_detail.map(item => ({
+    item_id: item.id,
+    item_name: item.title,
+    price: item.price,
+    quantity: item.quantity
+  }))
+});
+
           }
         } else {
           toast.error(response.data.msg);
