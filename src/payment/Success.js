@@ -74,11 +74,11 @@ const Success = () => {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="text-center p-10 bg-white shadow-md rounded-lg">
-            <h1 className="text-xl font-semibold text-red-600">Error</h1>
-            <p className="text-gray-600 mt-2">No transaction data found. Please return to the homepage.</p>
-            <Link to="/" className="mt-4 inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition">
-              Go Home
-            </Link>
+          <h1 className="text-xl font-semibold text-red-600">Error</h1>
+          <p className="text-gray-600 mt-2">No transaction data found. Please return to the homepage.</p>
+          <Link to="/" className="mt-4 inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+            Go Home
+          </Link>
         </div>
       </div>
     );
@@ -94,6 +94,7 @@ const Success = () => {
     sub_total,
     shipping_amount,
     gateway_response,
+    coupon_discount_amount, // Destructure coupon_discount_amount
   } = state;
 
   return (
@@ -228,6 +229,12 @@ const Success = () => {
                     <p>Shipping</p>
                     <p>${shipping_amount.toFixed(2)}</p>
                   </div>
+                  {coupon_discount_amount > 0 && (
+                    <div className="flex justify-between text-green-600">
+                        <p>Discount</p>
+                        <p>-${coupon_discount_amount.toFixed(2)}</p>
+                    </div>
+                  )}
                   <div className="flex justify-between font-bold text-gray-800 mt-2 text-base">
                     <p>Total</p>
                     <p>
@@ -246,14 +253,14 @@ const Success = () => {
             </p>
             <div className="flex items-center gap-4">
                  <button onClick={handlePrint} className="text-sm bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition">
-                    Print Receipt
+                   Print Receipt
                  </button>
-                <Link
+              <Link
                 to="/"
                 className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition"
-                >
+              >
                 Continue Shopping
-                </Link>
+              </Link>
             </div>
           </div>
 
