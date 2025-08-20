@@ -9,7 +9,7 @@ import { IoCheckmarkCircleSharp } from "react-icons/io5";
 const ProductShowcase = ({ onTakeAction }) => {
 const first = "https://ik.imagekit.io/g2qcghvoj/lifevac.png?updatedAt=1755523615067";
 const firstsecond ="https://ik.imagekit.io/g2qcghvoj/home%20and%20traval%20kit.webp";
-const firstthird = "https://ik.imagekit.io/g2qcghvoj/life%20vac%20(17).png?updatedAt=1755692110488";
+const firstthird = "https://ik.imagekit.io/g2qcghvoj/life%20vac%20(19).png";
 const second = "https://ik.imagekit.io/g2qcghvoj/firstsectionsevenimage.webp?updatedAt=1755523907812";
 const third = "https://ik.imagekit.io/g2qcghvoj/firstsectionfifthimage.webp?updatedAt=1755523907900";
 const four = "https://ik.imagekit.io/g2qcghvoj/firstsectioneaightimage.webp?updatedAt=1755523907681";
