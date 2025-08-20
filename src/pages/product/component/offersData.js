@@ -19,7 +19,7 @@ const offers = [
     },
     {
         id: "offer2",
-        image: "https://cdn.shopify.com/s/files/1/0638/0378/5380/files/Kaching-Bundles-Adult_Mask_2_300x300.svg?v=1737985180",
+        image: "https://ik.imagekit.io/g2qcghvoj/width_800.webp?updatedAt=1755690711639",
         sectionTitle: "LifeVac™ - Anti-Choking Device",
         title: "Buy Home + Travel Kit",
         kits: "1x Home + Travel Kit",

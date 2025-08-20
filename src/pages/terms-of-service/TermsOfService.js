@@ -21,7 +21,7 @@ const TermsOfService = () => {
                     <section>
                         <h2 className="font-semibold uppercase">Overview</h2>
                         <p>
-                            This website is operated by Whitts Sales And Marketing LLC. Throughout the site, the terms “we”, “us” and “our” refer to Whitts Sales And Marketing LLC. Whitts Sales And Marketing LLC offers this website, including all information, tools and Services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies and notices stated here.
+                            This website is operated by LifeVac LLC. Throughout the site, the terms “we”, “us” and “our” refer to LifeVac LLC. LifeVac LLC offers this website, including all information, tools and Services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies and notices stated here.
                         </p>
                         <p>
                             By visiting our site and/or purchasing something from us, you engage in our “Service” and agree to be bound by the following terms and conditions (“Terms of Service”, “Terms”), including those additional terms and conditions and policies referenced herein and/or available by hyperlink. These Terms of Service apply to all users of the site, including without limitation users who are browsers, vendors, customers, merchants, and/or contributors of content.
@@ -309,18 +309,18 @@ const TermsOfService = () => {
                     <section>
                         <h2 className="text-lg md:text-xl font-semibold mb-2">SECTION 20 - <strong>No Affiliation Statement</strong></h2>
                         <p className="leading-relaxed">
-                            Whitts Sales And Marketing LLC is an independent entity and is not affiliated with, endorsed by, or in any way officially connected with LifeVac, Dechoker, or any other organization mentioned or referenced on this Site.
+                            LifeVac LLC is an independent entity and is not affiliated with, endorsed by, or in any way officially connected with LifeVac, Dechoker, or any other organization mentioned or referenced on this Site.
                         </p>
                     </section>
 
                     <section>
                         <h2 className="text-lg md:text-xl font-semibold mb-2">SECTION 21 - CONTACT INFORMATION</h2>
                         <p className="leading-relaxed">
-                            Questions about the Terms of Service should be sent to us at help@lifevacdevice.com
+                            Questions about the Terms of Service should be sent to us at info@lifevacdevice.com 
                         </p>
                         <br />
                         <p className="leading-relaxed">
-                            Our contact information is posted below: By consenting to Whitts Sales And Marketing LLC SMS marketing in the checkout and initializing a purchase or subscribing via our subscription tools, you agree to receive recurring text notifications (for your order, including abandoned checkout reminders), text marketing offers, and transactional texts, including requests for reviews from us, even if your mobile number is registered on any state or federal do-not-call list.
+                            Our contact information is posted below: By consenting to LifeVac LLC SMS marketing in the checkout and initializing a purchase or subscribing via our subscription tools, you agree to receive recurring text notifications (for your order, including abandoned checkout reminders), text marketing offers, and transactional texts, including requests for reviews from us, even if your mobile number is registered on any state or federal do-not-call list.
                         </p>
                         <br />
                         <p className="leading-relaxed">

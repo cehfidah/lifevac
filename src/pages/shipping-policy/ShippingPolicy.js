@@ -54,7 +54,7 @@ const ShippingPolicy = () => {
                                     <tbody className="bg-white divide-y divide-gray-200">
                                         <tr>
                                             <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Standard Shipping</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-gray-500">5-7 business days</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-gray-500">4-6 business days</td>
                                             <td className="px-6 py-4 whitespace-nowrap text-gray-500">Calculated at checkout</td>
                                         </tr>
                                         <tr>
@@ -90,7 +90,7 @@ const ShippingPolicy = () => {
                             <h2 className="text-2xl font-bold text-[#162950] mb-6 flex items-center"><FaQuestionCircle className="mr-3 text-blue-600" />Frequently Asked Questions</h2>
                             <div className="space-y-4">
                                 <FAQItem title="What if my order is lost or stolen?">
-                                    The buyer holds all responsibility for stolen or lost delivery as a result of inputting the wrong shipment information. Please double-check your shipping address before confirming your order. If you believe your package was lost in transit, please contact us at <a href="mailto:help@lifevacdevice.com" className="text-blue-600 underline">help@lifevacdevice.com</a> for assistance.
+                                    The buyer holds all responsibility for stolen or lost delivery as a result of inputting the wrong shipment information. Please double-check your shipping address before confirming your order. If you believe your package was lost in transit, please contact us at <a href="mailto:info@lifevacdevice.com " className="text-blue-600 underline">info@lifevacdevice.com </a> for assistance.
                                 </FAQItem>
                                 <FAQItem title="What about unexpected delays?">
                                     Delays imposed by shipping carriers (due to weather, high volume, or other unforeseen circumstances) are beyond our control. We appreciate your patience and will do everything we can to ensure your order reaches you as soon as possible.

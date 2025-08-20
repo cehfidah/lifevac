@@ -96,7 +96,7 @@ const ContactInformation = () => {
                                 icon={<FaEnvelope className="text-white" size={24} />}
                                 title="Email Us"
                                 description="For general inquiries, support, or feedback."
-                                contactInfo="help@lifevacdevice.com"
+                                contactInfo="info@lifevacdevice.com "
                                 link="mailto:info@lifevacdevice.com"
                             />
                             <ContactCard
@@ -109,8 +109,8 @@ const ContactInformation = () => {
                             <ContactCard
                                 icon={<FaMapMarkerAlt className="text-white" size={24} />}
                                 title="Our Office"
-                                description="Whitts Sales And Marketing LLC"
-                                contactInfo="123 Safety Lane, LifeSaver City, USA 12345"
+                                description="LifeVac LLC"
+                                contactInfo="120 Lake Avenue South, Suite 26, Nesconset, NY 11767"
                             />
                              <div className="bg-white p-6 rounded-lg shadow-lg">
                                 <h3 className="text-xl font-semibold text-[#162950] mb-3">Business Hours</h3>
