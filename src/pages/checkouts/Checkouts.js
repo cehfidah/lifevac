@@ -376,7 +376,7 @@ const Checkouts = () => {
             navigate("/success", { state: paymentResponse });
                  ReactGA.event({
   category: 'Ecommerce',
-  action: 'purchased',
+  action: 'purchase',
   label: 'User completed an order',
   value: payload.final_amount,
   transaction_id: payload.gateway_transaction_id,
